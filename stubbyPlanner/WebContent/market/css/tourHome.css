@@ -1,0 +1,369 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+section { margin-top:30px; }
+.swiper-button-prev { background-image:url(../images/icon/arr-prev.png); outline:none; }
+.swiper-button-next { background-image:url(../images/icon/arr-next.png); outline:none; }
+.swiper-button-prev:hover, .swiper-button-next:hover { opacity:1; }
+.ico_country:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -150px 0 no-repeat; background-size:240px; }
+.ico_theme:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -90px -30px no-repeat; background-size:240px; }
+.ico_product:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -120px -30px no-repeat; background-size:240px; }
+
+
+
+/* 검색창(모달) */
+    /* background 음영 */
+.stu_md-background { display:none; position:fixed; top:0; right:0; bottom:0; left:0; margin:0; padding:0; background:rgba(0,0,0,.5); overflow:hidden; z-index:11; }
+.stu_md-background.on { display:block; }
+    /* 모달 영역 */
+.md-container { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; -webkit-flex-direction:column; flex-direction:column; position:fixed; top:0; left:50%; width:100%; max-width:680px; -webkit-max-width:680px; height:100%; background-color:#fff; transform:translateX(-50%); }
+    /* 모달 헤더 영역 */
+.md-header { position:fixed; left:50%; transform:translateX(-50%); width:100%; max-width:680px; padding:6.5px 10px; border-bottom:1px solid #3598fd; background:#3598fd; z-index:1; }
+.md-header a.ico_back { display:inline-block; width:34px; height:34px; margin-right:5px; background:url(../images/icon/ico_gnb.png) -68px -34px no-repeat; background-size:272px; vertical-align:middle; cursor:pointer; }
+.md-header .md-searchWrap { display:inline-block; position:relative; width:calc(100% - 50px);width:-moz-calc(100% - 50px);width:-webkit-calc(100% - 50px); height:46px; padding:0 18px; -webkit-border-radius:3px; border-radius:3px; background:#fafafa; vertical-align:middle; }
+.md-header fieldset { border:none; outline:none; }
+.md-header .md-search-input { display:inline-block; height:46px; border:none; background:none; font-size:16px; font-weight:400;  }
+.md-header .md-search-input:hover, .md-searchArea .md-search-input:focus { outline:none; }
+    /* 모달 컨텐츠 영역 */
+.md-content { margin-top:60px; padding-bottom:60px; overflow-y:auto; }
+.md-content .content-header { padding:0 10px; border-bottom:1px solid #e5e5e5; background:#f4f7f8; font-size:16px; font-weight:500; line-height:50px; color:#aaa; }
+.md-content .content-header.ico_country:before { opacity:.4; }
+.md-content .content-header.ico_theme:before { opacity:.4; }
+.md-content .content-header.ico_product:before { opacity:.4; }
+.md-content .content-item { border-bottom:1px solid #e5e5e5; }
+.md-content .content-item > a { position:relative; display:-webkit-box; display:-webkit-flex; display:flex; padding:15px 20px; }
+.md-content .value { -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1; -webkit-align-self:center; align-self:center; padding-right:15px; }
+.md-content .value .name { font-size:16px; font-weight:400; color:#444; }
+.md-content .value .category { display:block; font-size:15px; font-weight:300; color:#888; }
+.md-content .count { -webkit-flex-shrink:0; flex-shrink:0; -webkit-align-self:center; align-self:center; text-align:right; font-size:15px; font-weight:300; color:#3598fd; }
+.md-content .md-product { -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1; position:relative; }
+.md-content .md-photo { float:left; position:relative; width:93px; height:93px; margin-right:12px; -webkit-border-radius:3px; border-radius:3px; background:url(../images/thumb/bg-default.gif) center no-repeat; background-size:cover; overflow:hidden; white-space:normal; }
+.md-content .md-product .name { display:block; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; -webkit-max-width:calc(100% - 90px); max-width:calc(100% - 90px); max-height:50px; padding:4px 0 2px; white-space:normal; word-wrap:normal; text-overflow:ellipsis; overflow:hidden; }
+.md-content .md-product .txt { font-size:16px; font-weight:400; line-height:22px; color:#444; }
+.md-content .md-product .category { display:block; font-size:15px; font-weight:300; color:#888; }
+.md-content .md-product .price { font-size:15px; font-weight:300; color:#888; }
+.md-content .md-product .amount, .md-content .md-product .base { font-weight:300; color:#444; }
+
+
+
+/* topBanner 영역 */
+.stu_topBanner { position:relative; width:100%; margin-top:0; }
+.stu_topBanner .swiper-slide { padding-bottom:30px; }
+.stu_topBanner .swiper-slide .viewport .textArea { position:absolute; bottom:30%; padding:10px 4%; text-align:left; box-sizing:border-box; z-index:1; background:rgba(0,0,0,.2); }
+.stu_topBanner .swiper-slide .vewport .textArea p { margin:0; }
+.stu_topBanner .swiper-slide .viewport .type1 a { font-size:24px; font-weight:600; text-shadow:#000 0 0 3px; color:#fff; }
+.stu_topBanner .swiper-slide .viewport .type1 span { display:block; font-size:15px; font-weight:300; color:#0071b5; }
+.stu_topBanner .swiper-slide .viewport .type2 { margin-top:4px; font-size:15px; font-weight:400; line-height:20px; text-shadow:#000 0 0 3px;color:#fff; }
+.stu_topBanner .swiper-slide .viewport .type2 span { display:none; }
+.stu_topBanner .swiper-slide .viewport .type3 { display:none; margin-top:6px; font-size:26px; font-weight:300; line-height:30px; color:#222; }
+.stu_topBanner .swiper-slide .viewport .photoArea { position:relative; width:100%; padding-top:58%; overflow:hidden; }
+.stu_topBanner .swiper-slide .viewport .photoArea img { position:absolute; width:100%; height:auto; top:-100%; right:-100%; bottom:-100%; left:-100%; margin:auto; }
+.stu_topBanner .swiper-button-prev, .stu_topBanner .swiper-button-next { display:none; }
+.stu_topBanner .swiper-pagination { text-align:center; bottom:40px; }
+.swiper-pagination-bullet { width:11px; height:11px; border:1px solid #fff; }
+.swiper-pagination-bullet-active { background:#fff; }
+
+
+
+/* 검색폼 */
+.stu_searchArea { margin-top:0; }
+.stu_searchArea .stu_search-input-wrap { padding:0 20px; }
+.stu_searchArea .stu_search-input { display:block; position:relative; height:56px; border:3px solid #3598fd; border-bottom-right-radius:10px; -webkit-border-bottom-right-radius:10px; background:#fff; font-size:16px; font-weight:400; line-height:50px; text-indent:16px; color:#bbb; cursor:text; }
+.stu_searchArea .stu_search-input:after { content:""; position:absolute; top:0; right:0; width:40px; height:40px; margin:5px 8px 0 0; background:url(../images/icon/ico_gnb.png) -40px -40px no-repeat; background-size:320px; }
+.stu_searchArea .stu_search-input:before { content:""; position:absolute; width:2px; height:20px; margin-top:16px; background:url(../images/icon/bar_2x20.gif) center no-repeat; background-size:2px; }
+
+
+
+/* 태그 */
+.stu_tagArea { max-height:117px; margin-top:15px; margin-bottom:-9px; padding:0 20px; text-align:center; overflow:hidden; }
+.stu_tagArea .stu_tag { display:inline-block; max-height:30px; margin-bottom:9px; padding:4px 14px 2px 8px; -webkit-border-radius:19px; border-radius:19px; vertical-align:top; background:#f8f8f8; -webkit-box-shadow:0 1px 1px 0 rgba(0,0,0,.3); box-shadow:0 1px 1px 0 rgba(0,0,0,.3); font-size:15px; font-weight:300; line-height:1; color:#666; overflow:hidden; }
+.stu_tagArea .stu_tag + .stu_tag { margin-left:6px; }
+.stu_tagArea .ico_country:before { background-position:-120px 0; }
+.stu_tagArea .ico_theme:before { background-position:-72px -24px; }
+.stu_tagArea .ico_product:before { background-position:-96px -24px; }
+.stu_tagArea .ico_country:before, .stu_tagArea .ico_theme:before, .stu_tagArea .ico_product:before { width:24px; height:24px; background-size:192px; opacity:.8; }
+
+
+
+/* bestPrice 영역 */
+.stu_bestPrice .swiper-container { position:relative; margin:15px 0 0; overflow:hidden; z-index:1; }
+.stu_bestPrice li { position:relative; display:inline-block; width:52%; margin:0 1%; padding-bottom:4px; border:1px solid #e5e5e5; box-sizing:border-box; background:#fff; text-align:left; color:#888; }
+.stu_bestPrice li:first-child { margin-left:2%; }
+.stu_bestPrice li:last-child { margin-right:2%; }
+.stu_bestPrice .swiper-button-prev, .stu_bestPrice .swiper-button-next { display:none; }
+.stu_bestPrice .swiper-pagination { display:none; text-align:center; bottom:0; }
+.stu_band { position:absolute; top:8px; left:8px; height:26px; padding:0 8px; -webkit-border-radius:5px; border-radius:5px; font-size:12.5px; font-weight:300; letter-spacing:0; line-height:26px; color:#fff; z-index:1; }
+.stu_thumbnail_img { float:left; position:relative; width:100%; height:0; padding-bottom:60%; overflow:hidden; }
+.stu_caption { float:left; display:block; width:100%; height:82px; padding:8px 4%; border-top:1px solid #e5e5e5; font-size:12.5px; vertical-align:top; box-sizing:border-box; }
+.stu_caption .stu_company { display:block; font-weight:400; color:#497eb7; }
+.stu_caption .stu_name { display:-webkit-box; display:-ms-box; margin-top:4px; font-size:14.5px; font-weight:500; line-height:20px; height:40px; white-space:normal; overflow:hidden; text-overflow:ellipsis; word-wrap:break-word; -webkit-line-clamp:2; -webkit-box-orient:vertical; color:#222; }
+.stu_info { display:block; float:left; width:100%; padding:10px 4% 6px; box-sizing:border-box; }
+.stu_info .stu_price { position:relative; right:0; bottom:0; font-size:13px; font-weight:300; color:#666; text-align:left; line-height:20px; }
+.stu_info .stu_price span { display:block; float:right; font-size:15px; font-weight:500; color:#222; }
+.stu_info .stu_review { position:relative; height:40px; }
+.stu_info .stu_ratingBox { display:inline-block; vertical-align:middle; }
+.stu_info .stu_ratingBox .stu_icon { display:inline-block; width:12px; height:11px; margin-right:-4px; padding:0; background:url(../images/icon/star01.png) -24px 0 no-repeat; background-size:60px; }
+.stu_info .stu_icon.half { background-position:-12px 0; }
+.stu_info .stu_icon.max { background-position:0 0; }
+.stu_info .stu_icon.new { width:24px; background-position:-36px 0; }
+.stu_info .stu_icon.none { display:none; }
+.stu_info .stu_total { display:inline-block; margin:0 0 0 4px; font-size:12.5px; font-weight:300; line-height:18px; vertical-align:middle; color:#666; }
+
+
+
+/* 유럽 필수투어 상품 */
+.stu_main_prd_list { display:inline-flex; flex-flow:row wrap; justify-content:center; width:100%; margin:10px 0; }
+.stu_main_prd_list li { width:25%; border:1px solid #e5e5e5; box-sizing:border-box; }
+.stu_main_prd_list li a { text-decoration:none; }
+.stu_main_prd_list .stu_list_wrap { padding:5px 0; }
+.stu_main_prd_list .stu_list { display:block; width:50%; padding-top:50%; background-position:center; background-repeat:no-repeat; background-size:cover !important; margin:0 auto; }
+.stu_main_prd_list .stu_list_wrap p { font-size:12px; font-weight:300; line-height:16px; color:#666; text-align:center; }
+.stu_main_prd_list .stu_list_wrap p span { display:none; }
+.stu_main_prd_list .stu_list.prd01 { background-image:url(../images/icon/mprd01.png); }
+.stu_main_prd_list .stu_list.prd02 { background-image:url(../images/icon/mprd02.png); }
+.stu_main_prd_list .stu_list.prd03 { background-image:url(../images/icon/mprd03.png); }
+.stu_main_prd_list .stu_list.prd04 { background-image:url(../images/icon/mprd04.png); }
+.stu_main_prd_list .stu_list.prd05 { background-image:url(../images/icon/mprd05.png); }
+.stu_main_prd_list .stu_list.prd06 { background-image:url(../images/icon/mprd06.png); }
+.stu_main_prd_list .stu_list.prd07 { background-image:url(../images/icon/mprd07.png); }
+.stu_main_prd_list .stu_list.prd08 { background-image:url(../images/icon/mprd08.png); }
+
+
+
+/* 유럽 인기여행지 */
+.stu_regions { background:#f5f5f5; padding:25px 0 40px; }
+.stu_category { margin:15px 4% 0; }
+.stu_category ul { display:block; width:100%; text-align:center; font-size:0; }
+.stu_category li { display:inline-block; width:22%; height:40px; margin-left:3%; cursor:pointer; -webkit-border-radius::20px; border-radius:20px; font-size:13.5px; font-weight:300; line-height:40px; color:#888; background:#fff; white-space:nowrap; box-sizing:border-box; }
+.stu_category li:first-child { margin-left:0; }
+.stu_category li.current { font-weight:400; color:#fff; background:#007aff; }
+.stu_tab-content { visibility:hidden; height:0; overflow: hidden; }
+.stu_tab-content.current { visibility:visible; height:inherit; }
+.stu_tab-content .swiper-container { position:relative; overflow:hidden; margin:20px 0 0; }
+.stu_tab-content .swiper-wrapper { display:flex; flex-flow:row nowrap; justify-content:flex-start; }
+.stu_tab-content .swiper-slide { position:relative; height:0; margin:0 2%; white-space:nowrap; box-sizing:border-box; flex-basis:40%; padding-top:40%; }
+.stu_tab-content .swiper-slide .tone-down { -webkit-border-radius:4px; border-radius:4px; }
+.stu_tab-content .swiper-slide .stu_titleArea { position:absolute; top:50%; left:50%; transform:translateX(-50%) translateY(-50%); font-size:20px; font-weight:700; color:#fff; text-shadow:#000 0 0 3px; }
+.stu_tab-content .swiper-slide .stu_titleArea .type2 { font-size:17px; font-weight:400; }
+.stu_tab-content .swiper-button-prev, .stu_tab-content .swiper-button-next { display:none; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    태블릿 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:620px){
+
+/* 공통 */
+section { margin-top:40px; }
+
+
+
+/* 검색창(모달) */
+    /* 모달 영역 */
+.md-container { top:10%; width:80%; height:80%; }
+
+
+
+/* topBanner 영역 */
+.stu_topBanner { background:#f5f5f5; }
+.stu_topBanner .swiper-container { width:92%; max-width:780px; }
+.stu_topBanner .swiper-slide { padding-bottom:0; background:#f5f5f5; }
+.stu_topBanner .swiper-slide .viewport { display:flex; flex-flow:row wrap; justify-content:space-between; width:100%; height:340px; padding:30px 0; }
+.stu_topBanner .swiper-slide .viewport .textArea { display:block; position:relative; bottom:auto; width:37%; height:100%; padding:0; background:#f5f5f5; z-index:0; }
+.stu_topBanner .swiper-slide .viewport .type1 a { font-size:22.5px; text-shadow:none; color:#222; }
+.stu_topBanner .swiper-slide .viewport .type1 span { margin-bottom:4px; font-size:15px; font-weight:400; }
+.stu_topBanner .swiper-slide .viewport .type2 { margin-top:20px; font-size:15px; line-height:26px; font-weight:300; text-shadow:none; color:#666; }
+.stu_topBanner .swiper-slide .viewport .type2 span { display:inline; }
+.stu_topBanner .swiper-slide .viewport .type3 { display:block; margin-top:30px; font-size:30px; }
+.stu_topBanner .swiper-slide .viewport .photoArea { padding-top:0; width:60%; }
+.stu_topBanner .swiper-slide .viewport .photoArea img { position:absolute; width:auto; height:100%; top:-100%; right:-100%; bottom:-100%; left:-100%; margin:auto; }
+.stu_topBanner .swiper-pagination { text-align:left; bottom:30px; }
+.swiper-pagination-bullet { width:12px; height:12px; border:none; }
+.swiper-pagination-bullet-active { background:#007aff; }
+
+
+
+/* 검색폼 */
+.stu_searchArea { margin-top:25px; }
+.stu_searchArea .stu_search-input-wrap { width:80%; margin:0 auto; padding:0; }
+.stu_searchArea .stu_search-input { font-size:18px; }
+
+
+
+/* 태그 */
+.stu_tagArea { width:80%; max-height:74px; margin:15px auto 0; }
+
+
+
+/* bestPrice 영역 */
+.stu_bestPrice li { width:28%; }
+.stu_band { font-size:13px; }
+.stu_caption { height:90px; font-size:14px; }
+.stu_caption .stu_name { font-size:15.5px; }
+.stu_info .stu_price { font-size:14px; }
+.stu_info .stu_price span { font-size:15.5px; }
+.stu_info .stu_total { margin:0 0 0 5px; font-size:14px; }
+
+
+
+/* 유럽 필수투어 상품 */
+.stu_main_prd_list { justify-content:space-around; margin:10px 0; }
+.stu_main_prd_list li { width:12%; border:none; }
+
+.stu_main_prd_list .stu_list_wrap { width:100%; }
+.stu_main_prd_list .stu_list { width:100%; padding-top:100%; }
+.stu_main_prd_list .stu_list_wrap p { font-size:13px; font-weight:400; color:#222; margin-top:10px; }
+.stu_main_prd_list .stu_list_wrap p span { display:block; }
+.stu_main_prd_list .stu_list.prd01 { background-image:url(../images/thumb/prd01.png); }
+.stu_main_prd_list .stu_list.prd02 { background-image:url(../images/thumb/prd02.png); }
+.stu_main_prd_list .stu_list.prd03 { background-image:url(../images/thumb/prd03.png); }
+.stu_main_prd_list .stu_list.prd04 { background-image:url(../images/thumb/prd04.png); }
+.stu_main_prd_list .stu_list.prd05 { background-image:url(../images/thumb/prd05.png); }
+.stu_main_prd_list .stu_list.prd06 { background-image:url(../images/thumb/prd06.png); }
+.stu_main_prd_list .stu_list.prd07 { background-image:url(../images/thumb/prd07.png); }
+.stu_main_prd_list .stu_list.prd08 { background-image:url(../images/thumb/prd08.png); }
+
+
+/* 유럽 인기여행지 */
+.stu_regions { padding:35px 0 40px; }
+.stu_category li { width:auto; height:44px; margin-left:16px; padding:0 20px; -webkit-border-radius:22px; border-radius:22px; font-size:14.5px; line-height:44px; }
+.stu_tab-content .swiper-container {  }
+.stu_tab-content .swiper-slide { margin:0 1%; flex-basis:20%; padding-top:20%; }
+.stu_tab-content .swiper-slide:first-child { margin-left:2%; }
+.stu_tab-content .swiper-slide:last-child { margin-right:2%; }
+.stu_tab-content .swiper-slide .stu_titleArea .type2 { font-size:16px; }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1024px){
+
+/* topBanner 영역 */
+.stu_topBanner .swiper-container { width:72%; max-width:1100px; }
+.stu_topBanner .swiper-slide .viewport { height:385px; }
+.stu_topBanner .swiper-slide .viewport .textArea { width:38%; margin-left:5%; }
+.stu_topBanner .swiper-slide .viewport .type1 a { font-size:30px; }
+.stu_topBanner .swiper-slide .viewport .type1 span { font-size:18px; }
+.stu_topBanner .swiper-slide .viewport .type2 { font-size:17px; line-height:30px; }
+.stu_topBanner .swiper-slide .viewport .photoArea { width:50%; margin-right:5%; }
+.stu_topBanner .swiper-button-prev, .stu_topBanner .swiper-button-next { display:block; }
+.stu_topBanner .swiper-button-prev { left:10%; }
+.stu_topBanner .swiper-button-next { right:10%; }
+.stu_topBanner .swiper-pagination { margin-left:5%; }
+
+
+
+/* 검색폼 */
+.stu_searchArea { margin-top:25px; }
+.stu_searchArea .stu_search-input-wrap { width:auto; -webkit-max-width:916px; max-width:916px; }
+.stu_searchArea .stu_search-input { height:60px; font-size:20px; line-height:54px; }
+.stu_searchArea .stu_search-input:after { margin:7px 12px 0 0; }
+.stu_searchArea .stu_search-input:before { height:26px; margin-top:15px; background-repeat:repeat-y; }
+
+
+
+/* 태그 */
+.stu_tagArea { width:auto; -webkit-max-width:916px; max-width:916px; max-height:40px; }
+.stu_tagArea .stu_tag { max-height:38px; padding:8px 16px 6px 8px; }
+.stu_tagArea .stu_tag + .stu_tag { margin-left:8px; }
+
+
+
+/* bestPrice 영역 */
+.stu_bestPrice .swiper-container { width:100%; height:352px; margin:15px auto 0; }
+.stu_bestPrice ul { height:306px; }
+.stu_bestPrice li { width:23.2%; margin:0 .9%; }
+.stu_bestPrice li:first-child { margin-left:0.9%; }
+.stu_bestPrice li:last-child { margin-right:0.9%; }
+.stu_bestPrice .swiper-button-prev, .stu_bestPrice .swiper-button-next { display:block; }
+.stu_bestPrice .swiper-button-prev { left:-62px; }
+.stu_bestPrice .swiper-button-next { right:-62px; }
+.stu_bestPrice .swiper-pagination { display:block; }
+.stu_caption { padding:10px 4%; }
+.stu_info .stu_price span { font-size:17px; }
+
+
+
+/* 유럽 필수투어 상품 */
+.stu_main_prd_list { justify-content:space-between; margin:10px 0 40px; }
+.stu_main_prd_list li { width:11%; }
+.stu_main_prd_list .stu_list_wrap p { font-size:15px; }
+
+
+
+/* 유럽 인기여행지 */
+.stu_regions { padding:40px 0; }
+.stu_category { margin:25px auto 0; }
+.stu_category li { height:48px; padding:0 30px; -webkit-border-radius:24px; border-radius:24px; font-size:16px; line-height:48px; }
+.stu_tab-content .swiper-container { margin:20px 0 0; }
+.stu_tab-content .swiper-slide { flex-basis:18.4%; padding-top:18.4%; margin:0 0.8%; }
+.stu_tab-content .swiper-slide:first-child { margin-left:0.8%; }
+.stu_tab-content .swiper-slide:last-child { margin-right:0.8%; }
+.stu_tab-content .swiper-slide .stu_titleArea { font-size:24px; }
+.stu_tab-content .swiper-slide .stu_titleArea .type2 { font-size:18px; }
+.stu_tab-content .swiper-button-prev, .stu_tab-content .swiper-button-next { display:block; transform:translateY(50%); }
+.stu_tab-content .swiper-button-prev { left:-62px; }
+.stu_tab-content .swiper-button-next { right:-62px; }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
