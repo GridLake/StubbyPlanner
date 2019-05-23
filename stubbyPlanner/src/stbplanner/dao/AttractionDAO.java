@@ -1,4 +1,4 @@
-package stbplanner.dao;
+/*package stbplanner.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,7 +82,7 @@ public class AttractionDAO {
 		
 		return result;
 	}
-	/*
+	
 	public List<AttractionDTO> selectList(
 			Connection conn){
 		String sql =" select rownum rnum, num,writer,email,subject,pass, regdate,readcount,ref,step,depth,content,ip "
@@ -124,8 +124,8 @@ public class AttractionDAO {
 		}
 		return list;		
 	}
-	*/
-	/*
+	
+	
 	// 조회수 증가, 필요한지 아닌지는 아직 모름
 	public int updateReadcount(Connection conn, int num) {
 		String sql = "update 테이블명 "
@@ -146,7 +146,7 @@ public class AttractionDAO {
 		}
 		return result;
 	}
- 	*/
+ 	
 	
 	// 얻어오기
 	public AttractionDTO selectOne(Connection conn, int num) {
@@ -188,3 +188,4 @@ public class AttractionDAO {
 		return dto;
 	}
 }
+*/
