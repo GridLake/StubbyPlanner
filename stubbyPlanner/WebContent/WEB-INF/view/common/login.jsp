@@ -25,7 +25,7 @@
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stubbyPlanner/externalData/market/chn/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/css/shop.style.css">
 
     <!-- CSS Header and Footer -->

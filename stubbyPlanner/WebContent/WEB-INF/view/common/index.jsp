@@ -36,18 +36,18 @@
     <link rel="icon" href="favicon.png"> 
 
     <!-- CSS/JavaScript -->
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/css2/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/css2/common.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/market/css/tourHome.css">
-	<link rel="stylesheet" href="/stubbyPlanner/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/common.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome.css">
+	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/css2/header_footer.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/header_footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- swiper.min.js : 이미지슬라이더 -->
-    <script src="/stubbyPlanner/js2/swiper.min.js" type="text/javascript"></script>
+    <script src="/stubbyPlanner/externalData/js2/swiper.min.js" type="text/javascript"></script>
     <!-- header/footer -->
-    <script src="/stubbyPlanner/js2/header_footer.js" type="text/javascript"></script>
+    <script src="/stubbyPlanner/externalData/js2/header_footer.js" type="text/javascript"></script>
 
 
 <script src="https://www.google.com/jsapi"></script>
@@ -478,7 +478,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
         <div class="header_banner">
             <div class="stu_inner_wrap">
-                <a href="/stubbyPlanner/market/index.asp?from=top1">
+                <a href="/stubbyPlanner/externalData/market/index.asp?from=top1">
                     <div class="header_banner_wrap">
                         <p class="txtWrap">1,700가지 유럽투어/액티비티
                             <span>얼리버드 SALE</span>
@@ -500,7 +500,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                     </div>
                     <h1 class="stu_logo">
                         <a href="/">
-                            <img class="fh" src="/stubbyPlanner/images2/stu_logo_mobile.png" alt="logo"/>
+                            <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>
                     <div class="gnb_banner on-pc">
@@ -521,7 +521,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 -->
                                 <li class="swiper-slide">
                                    <a href="/consulting/index.asp?from=top2">
-                                        <img class="fw" src="/stubbyPlanner/images2/sample/GB03.jpg" alt=""/>
+                                        <img class="fw" src="/stubbyPlanner/externalData/images2/sample/GB03.jpg" alt=""/>
                                         <div class="txtWrap">
                                             <p>유럽 초보자를 위한</p>
                                             <b>전문가 유럽 맞춤계획 의뢰<span> </span></b>
@@ -605,7 +605,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                     <ul class="side_section">
                         <li class="side_item side_logo sign_out">
                             <a href="http://stubbyplanner.com/">
-                                <img class="fh" src="/stubbyPlanner/images2/stu_logo_mobile.png" alt="logo"/>
+                                <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
 
@@ -754,7 +754,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/img_v6/img_pfnull.gif'" src="/stubbyPlanner/pfimg/1/6/skdus109_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/1/6/skdus109_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -767,7 +767,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/img_v6/img_pfnull.gif'" src="/pfimg/7/5/yjyang213_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/7/5/yjyang213_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -780,7 +780,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/img_v6/img_pfnull.gif'" src="/stubbyPlanner/pfimg/2/6/dkakeh5_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/2/6/dkakeh5_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -793,7 +793,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/img_v6/img_pfnull.gif'" src="/pfimg/5/8/ippny333_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/5/8/ippny333_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -2518,7 +2518,7 @@ function updateExp()
                                     <p>유럽여행이 처음이라면</p>
                                     <b >전문가의 도움을 받아보세요.</b>
                                 </div>
-                                <div class="imgWrap" style="background-image:url(/stubbyPlanner/img_v15/back_private.png);">
+                                <div class="imgWrap" style="background-image:url(/stubbyPlanner/externalData/img_v15/back_private.png);">
                                     <b><span>전문가 유럽계획 의뢰</span>￦ 55,200</b>
                                 </div>
                             </a>
@@ -2585,7 +2585,7 @@ function updateExp()
 
 		</div>
 
-    <script src="/stubbyPlanner/market/js/lazysizes.min.js" type="text/javascript" async=""></script>
+    <script src="/stubbyPlanner/externalData/market/js/lazysizes.min.js" type="text/javascript" async=""></script>
 
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <!-- JS Implementing Plugins -->

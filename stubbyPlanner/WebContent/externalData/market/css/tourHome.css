@@ -6,12 +6,12 @@
 
 /* 공통 */
 section { margin-top:30px; }
-.swiper-button-prev { background-image:url(../images/icon/arr-prev.png); outline:none; }
-.swiper-button-next { background-image:url(../images/icon/arr-next.png); outline:none; }
+.swiper-button-prev { background-image:url(/stubbyPlanner/externalData/market/images/icon/arr-prev.png); outline:none; }
+.swiper-button-next { background-image:url(/stubbyPlanner/externalData/market/images/icon/arr-next.png); outline:none; }
 .swiper-button-prev:hover, .swiper-button-next:hover { opacity:1; }
-.ico_country:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -150px 0 no-repeat; background-size:240px; }
-.ico_theme:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -90px -30px no-repeat; background-size:240px; }
-.ico_product:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(../images/icon/ico_gnb.png) -120px -30px no-repeat; background-size:240px; }
+.ico_country:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(/stubbyPlanner/externalData/market/images/icon/ico_gnb.png) -150px 0 no-repeat; background-size:240px; }
+.ico_theme:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(/stubbyPlanner/externalData/market/images/icon/ico_gnb.png) -90px -30px no-repeat; background-size:240px; }
+.ico_product:before { display:inline-block; position:relative; content:""; bottom:1px; width:30px; height:30px; vertical-align:middle; background:url(/stubbyPlanner/externalData/market/images/icon/ico_gnb.png) -120px -30px no-repeat; background-size:240px; }
 
 
 
@@ -23,7 +23,7 @@ section { margin-top:30px; }
 .md-container { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-orient:vertical; -webkit-box-direction:normal; -webkit-flex-direction:column; flex-direction:column; position:fixed; top:0; left:50%; width:100%; max-width:680px; -webkit-max-width:680px; height:100%; background-color:#fff; transform:translateX(-50%); }
     /* 모달 헤더 영역 */
 .md-header { position:fixed; left:50%; transform:translateX(-50%); width:100%; max-width:680px; padding:6.5px 10px; border-bottom:1px solid #3598fd; background:#3598fd; z-index:1; }
-.md-header a.ico_back { display:inline-block; width:34px; height:34px; margin-right:5px; background:url(../images/icon/ico_gnb.png) -68px -34px no-repeat; background-size:272px; vertical-align:middle; cursor:pointer; }
+.md-header a.ico_back { display:inline-block; width:34px; height:34px; margin-right:5px; background:url(/stubbyPlanner/externalData/market/images/icon/ico_gnb.png) -68px -34px no-repeat; background-size:272px; vertical-align:middle; cursor:pointer; }
 .md-header .md-searchWrap { display:inline-block; position:relative; width:calc(100% - 50px);width:-moz-calc(100% - 50px);width:-webkit-calc(100% - 50px); height:46px; padding:0 18px; -webkit-border-radius:3px; border-radius:3px; background:#fafafa; vertical-align:middle; }
 .md-header fieldset { border:none; outline:none; }
 .md-header .md-search-input { display:inline-block; height:46px; border:none; background:none; font-size:16px; font-weight:400;  }

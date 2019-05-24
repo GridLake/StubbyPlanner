@@ -39,7 +39,7 @@ header .sign_out
 	.stu_event_banner .imgWrap b { margin:-4px 0 0; font-size:28px; } 
 	.stu_event_banner .imgWrap b span { margin:0 0 -2px; font-size:13px; } 
 	.stu_event_banner .swiper-button-prev, 
-	.stu_event_banner .swiper-button-next { display:block; width:46.5px; height:62px; margin:-44px 0 0; background-image:url(/images2/common/stu_icon.png); background-repeat:no-repeat; background-size:496px; vertical-align:middle; } 
+	.stu_event_banner .swiper-button-next { display:block; width:46.5px; height:62px; margin:-44px 0 0; background-image:url(/stubbyPlanner/externalData/images2/common/stu_icon.png); background-repeat:no-repeat; background-size:496px; vertical-align:middle; } 
 	.stu_event_banner .swiper-button-prev { background-position:0 -124px; } 
 	.stu_event_banner .swiper-button-next { background-position:-46.5px -124px; }
 } 
@@ -59,8 +59,8 @@ header .sign_out
 
 
 /* 공통 */
-header .header_banner i.ico_close, header .ico_menu, header .gnb_container .swiper-button-prev, header .gnb_container .swiper-button-next, header .ico_search, header .side_item i, header .prfPopup_item i, .stu_scroll_top i, .md-header a.ico_close, .md-content .content-header.ico_country:before, .md-content .content-header.ico_theme:before, footer .info_btn i { background-image:url(/images2/common/stu_icon.png); background-repeat:no-repeat; vertical-align:middle; }
-footer .stu_sns a, footer .stu_footer_logo { background-image:url(/images2/common/stu_footer.png); background-repeat:no-repeat; vertical-align:middle; }
+header .header_banner i.ico_close, header .ico_menu, header .gnb_container .swiper-button-prev, header .gnb_container .swiper-button-next, header .ico_search, header .side_item i, header .prfPopup_item i, .stu_scroll_top i, .md-header a.ico_close, .md-content .content-header.ico_country:before, .md-content .content-header.ico_theme:before, footer .info_btn i { background-image:url(/stubbyPlanner/externalData/images2/common/stu_icon.png); background-repeat:no-repeat; vertical-align:middle; }
+footer .stu_sns a, footer .stu_footer_logo { background-image:url(/stubbyPlanner/externalData/images2/common/stu_footer.png); background-repeat:no-repeat; vertical-align:middle; }
 .on-pc { display:none; }
 
 
