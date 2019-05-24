@@ -565,7 +565,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
 
                         <li class="gnb_item sign_out">
-                            <a href="/common/login.asp">로그인</a>
+                            <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>
                         <li class="gnb_item sign_out">
                             <a href="/common/register.asp" class="signup">회원가입</a>
@@ -610,7 +610,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                         </li>
 
                         <li class="side_item side_btn sign_out">
-                            <a href="/common/login.asp" class="btn_login">로그인</a>
+                            <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
                         </li>
                         <li class="side_item side_btn sign_out">
                             <a href="/common/register.asp" class="btn_signup">회원가입</a>

@@ -7,6 +7,6 @@ public class IndexHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return "/stubbyPage/index";
+		return "/common/index";
 	}
 }

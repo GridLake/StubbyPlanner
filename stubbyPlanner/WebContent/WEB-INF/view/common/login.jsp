@@ -25,24 +25,24 @@
     <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="/chn/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/chn/assets/css/shop.style.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/css/shop.style.css">
 
     <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="/chn/assets/css/headers/header-v5.css">
-    <link rel="stylesheet" href="/chn/assets/css/footers/footer-v4.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/css/headers/header-v5.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/css/footers/footer-v4.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="/chn/assets/plugins/animate.css">    
-    <link rel="stylesheet" href="/chn/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/chn/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-    <link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
     <!--[if lt IE 9]><link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
 
 
-	<link rel="stylesheet" href="/superguide/assets/css/headers/header-v4.css">
-	<link rel="stylesheet" href="/css/stubbynew_topmenu.css">
+	<link rel="stylesheet" href="//www.stubbyplanner.com/superguide/assets/css/headers/header-v4.css">
+	<link rel="stylesheet" href="//www.stubbyplanner.com/css/stubbynew_topmenu.css">
 
 <script src="https://www.google.com/jsapi"></script>
 <script>
@@ -56,7 +56,7 @@
 </script>
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="/chn/assets/css/custom.css">
+    <link rel="stylesheet" href="//www.stubbyplanner.com/chn/assets/css/custom.css">
 
 </head>	
 
@@ -458,7 +458,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                             
                             <fieldset>                  
                                 <section  style="text-align:center">
-			<a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="/img_v8/facebook_login.png"></a>
+			<a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="www.stubbyplanner.com/img_v8/facebook_login.png"></a>
 
 		    </section>
 		</fieldset>
