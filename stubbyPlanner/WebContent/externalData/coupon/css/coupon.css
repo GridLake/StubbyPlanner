@@ -1,0 +1,408 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+.swiper-button-prev, .swiper-button-next, a.more:after, .stu_top_banner .titArea b a:after, .stu_coupon_list .titArea h4:before, .stu_coupon_list .name dd i, .stu_category .tabArea li p:after, .stu_coupon_list .empty_wrap a span:after, .band2 i, .band2 p, .stu_prd_list .prd_item .score:before, .stu_prd_list .prd_item .score.new:before, .event_info p:after, .stu_top p:before { background-image:url(../images/common/stu_icon.png); background-repeat:no-repeat; vertical-align:middle; }
+.swiper-button-prev, .swiper-button-next { display:none; }
+main { margin:0; padding:0; }
+section { padding:20px 0 0; background:#fff; }
+section:last-child { padding-bottom:40px; }
+.titArea { position:relative; padding:0 20px; }
+.stu_title { display:inline-block; margin:0 0 12px; font-weight:600; text-align:left; }
+h2.stu_title { font-size:20px; line-height:30px; }
+h3.stu_title { font-size:17px; line-height:26px; }
+h4.stu_title { font-size:15.5px; line-height:24px; }
+p { margin:0; font-size:16px; font-weight:300; line-height:24px; color:#8f8f8f; }
+footer { padding:30px 4% 80px; }
+
+
+
+/* 헤더영역 */
+header .stu_gnb_container { position:fixed; top:0; left:0; right:0; height:50px; border-bottom:1px solid #e5e5e5; background:rgba(255,255,255,.95); line-height:50px; z-index:10; -webkit-transition:top .3s ease; -moz-transition:top .3s ease; -o-transition:top .3s ease; transition:top .3s ease; }
+header .stu_gnb_container .stu_inner_wrap { padding:0 16px; }
+header .stu_gnb_container .stu_logo { float:left; position:relative; top:8px; height:34px; }
+header .stu_gnb_container .stu_gnb_wrap { float:right; display:inline-block; }
+header .stu_gnb_container .stu_gnb_wrap li { display:inline-block; position:relative; }
+header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:6px; }
+header .stu_gnb_container .stu_gnb_wrap li p { display:none; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 20px 0 5px; -webkit-border-radius:18px; border-radius:18px; border:1px solid #e5e5e5; background:#f5f5f5; line-height:34px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"검색"; font-size:15px; font-weight:300; color:#666; cursor:text; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_planner { display:none; }
+header .stu_gnb_container button { margin-top:-2px; }
+header .stu_gnb_container button.ico_search { display:inline-block; width:30px; height:30px; background-position:-60px -30px; background-size:240px; opacity:.6; }
+header .stu_gnb_container button.ico_booking { display:inline-block; width:34px; height:34px; background:url(../images/common/stu_icon.png) 0 -204px no-repeat; background-size:272px; }
+header .stu_gnb_container button.ico_planner { display:none; }
+
+
+
+/* 배너영역 */
+.stu_top_banner { display:block; position:relative; min-height:100px; margin:50px 0 0; padding:0; }
+.stu_top_banner .stu_inner_wrap { position:relative; padding:24px 0 0; text-align:center; }
+.stu_top_banner .titArea { position:relative; margin:0 0 10px; font-size:26px; font-weight:500; line-height:34px; color:#4a4a4a; }
+.stu_top_banner .titArea b { display:block; }
+.stu_top_banner .titArea b a { display:inline-block; font-size:26px; font-weight:bold; line-height:34px; color:#4a4a4a; }
+.stu_top_banner .titArea b a:after { content:""; display:inline-block; width:20px; height:30px; margin:0 2px 0 6px; background-position:-35px -85px; background-size:320px; vertical-align:-5.5px; }
+.stu_top_banner .titArea h3 { display:block; margin:20px 0 12px; color:#4a4a4a; }
+.stu_top_banner .titArea a.more { position:absolute; bottom:0; right:20px; font-size:15px; font-weight:400; line-height:26px; color:#4a4a4a; }
+.stu_top_banner .titArea a.more:after { content:""; display:inline-block; width:12px; height:18px; margin:0 0 0 4px; background-position:-21px -51px; background-size:192px; vertical-align:-4px; }
+.stu_top_banner .titArea .before_login { display:inline-block; position:relative; width:100%; padding:20px 0 0; }
+.stu_top_banner .titArea .before_login p { font-size:16px; line-height:22px; letter-spacing:0; }
+.stu_top_banner .titArea .before_login .btn_login { text-align:center; }
+.stu_top_banner .titArea .before_login .btn_login a { display:inline-block; width:200px; margin:16px 0 25px; background:#72c02c; font-size:16px; font-weight:400; line-height:44px; text-decoration:none; color:#fff; }
+.stu_top_banner .titArea .before_login .btn_login a:hover { background:#5bb82a; }
+.stu_top_banner .titArea .after_login { display:inline-block; width:100%; padding:10px 0 0; }
+.stu_top_banner .titArea .after_login a { display:inline-block; font-size:18px; font-weight:bolder; color:#4a4a4a; }
+.stu_top_banner .coupon_list .coupon { margin:0; -webkit-box-shadow:none; box-shadow:none; border:3px solid #ccc; text-align:left; }
+.stu_top_banner .coupon_list .name { display:block; }
+.stu_top_banner .coupon_list .name a { pointer-events:none; }
+.stu_top_banner .coupon_list .name dt { display:block; }
+.stu_top_banner .coupon_list .name dd { display:none; }
+.stu_top_banner .txtArea { padding:12px 20px 30px; text-align:left; border-bottom:1px solid #eaeaea; }
+.stu_top_banner .txtArea p { position:relative; margin:0 0 4px; padding:0 0 0 10px; font-size:14px; line-height:21px; color:#8f8f8f; }
+.stu_top_banner .txtArea p:before { content:""; position:absolute; top:9.5px; left:0; width:5.5px; height:2.5px; -webkit-border-radius:2px; border-radius:2px; background:#ddd; }
+.stu_top_banner .txtArea p span { font-weight:bolder; color:#4a4a4a; }
+
+
+
+/* 카테고리 */
+.stu_category { padding:10px 0 0; }
+.stu_category:before, .stu_category:after { content:""; display:block; position:relative; height:8px; border-top:1px solid #eaeaea; background:#f6f6f6; }
+.stu_category .tabArea li { float:left; display:inline-block; width:50%; height:52px; border-right:1px solid #eaeaea; text-align:center; }
+.stu_category .tabArea li:last-child { border:0; }
+.stu_category .tabArea li a { padding:0 24px; cursor:pointer; }
+.stu_category .tabArea li p { display:inline-block; width:100%; font-size:15px; font-weight:300; line-height:50px; white-space:nowrap; color:#8f8f8f; }
+.stu_category .tabArea li.on p { border-bottom:3px solid #3ad195; font-weight:bolder; color:#4a4a4a; }
+
+
+
+/* 쿠폰 리스트 */
+.stu_coupon_list { min-height:285px; padding:14px 0; background:#f6f6f6; }
+.stu_coupon_list .titArea h4 { color:#4a4a4a; }
+.stu_coupon_list .titArea h4:before { content:""; display:inline-block; width:18px; height:18px; margin:0 4px 0 0; background-position:-162px -126px; background-size:288px; vertical-align:-3px; }
+.coupon_list { padding:0 20px; }
+.coupon_list .coupon, .stu_coupon_list .empty_wrap { position:relative; margin:0 0 30px; -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+.coupon_list .coupon { padding:16px 16px 12px; border-top:4px solid #bebebe; -webkit-box-shadow:0 5px 10px rgba(0,0,0,.2); box-shadow:0 5px 10px rgba(0,0,0,.2); background:#fff; }
+.coupon_list .discount { margin:0 0 5px; font-size:15.5px; font-weight:400; line-height:24px; color:#4a4a4a; }
+.coupon_list .discount span { display:inline-block; margin:0 5px 0 0; font-size:20px; font-weight:bolder; color:#f58850; }
+.coupon_list .name { display:table; width:100%; margin:0 0 14px;}
+.coupon_list .name dt, .coupon_list .name dd { display:table-cell; width:100%; vertical-align:middle; overflow:hidden; }
+.coupon_list .name dt span { display:block; display:-webkit-box; max-height:44px; font-size:16.5px; font-weight:bolder; line-height:22px; color:#4a4a4a; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+.coupon_list .name dd i { display:block; width:30px; height:30px; background-position:-25px -85px; background-size:320px; }
+.coupon_list .desc { display:table; width:100%; padding:10px 0 0; border-top:1px dashed #ccc; }
+.coupon_list .desc dl { display:table-row; }
+.coupon_list .desc dt { display:table-cell; position:relative; padding:0 0 0 12px; width:100px; font-size:14px; font-weight:300; line-height:30px; color:#8f8f8f; }
+.coupon_list .desc dt:before { content:""; position:absolute; top:13px; left:4px; width:3px; height:3px; -webkit-border-radius:50%; border-radius:50%; background:#8f8f8f; }
+.coupon_list .desc dd { display:table-cell; width:calc(100% - 100px); font-size:14px; font-weight:400; color:#4a4a4a; }
+.coupon_list .desc dd span { display:block; }
+.stu_coupon_list .empty_container { padding:0 20px; }
+.stu_coupon_list .empty_wrap { padding:40px 20px; -webkit-box-shadow:inset 0 0 0 .6px rgba(0,0,0,.1); box-shadow:inset 0 0 0 .6px rgba(0,0,0,.1); background:rgba(255,255,255,.8); text-align:center; }
+.stu_coupon_list .empty_wrap img { display:block; width:70px; margin:0 auto 8px; }
+.stu_coupon_list .empty_wrap p { display:block; font-size:14px; font-weight:normal; line-height:22px; color:#bebebe; }
+.stu_coupon_list .empty_wrap p span { display:block; margin:0 0 6px; font-size:18px; }
+.stu_coupon_list .empty_wrap a { display:inline-block; margin:20px 0 0; border:1px solid #8f8f8f; line-height:42px; color:#4a4a4a; }
+.stu_coupon_list .empty_wrap a:hover { background:#fafafa; }
+.stu_coupon_list .empty_wrap a span:after { content:""; display:inline-block; width:18px; height:18px; margin:0 0 0 3px; background-position:-18px -51px; background-size:192px; vertical-align:-3.5px; }
+
+
+
+/* 지난 쿠폰 */
+.coupon.completed { opacity:.6; pointer-events:none; }
+
+
+
+/* 상품 리스트 */
+.stu_prd_list { padding:30px 0; background:#f6f6f6; }
+.stu_prd_list .titArea span.prd_count { display:inline-block; margin:0 0 0 4px; font-size:17px; font-weight:bolder; color:#3ad195; }
+.stu_prd_list .prd_list { padding:0 12px; font-size:0; }
+.stu_prd_list .prd_item { display:inline-block; width:50%; margin:0 0 14px; padding:0 8px; vertical-align:top; }
+.stu_prd_list .prd_item a.prd { position:relative; overflow:hidden; }
+.stu_prd_list .prd_item .outline:before { content:""; }
+.stu_prd_list .prd_item .thumb { float:left; position:relative; width:100%; height:0; margin:0; padding:60% 0 0; -webkit-border-radius:2px; border-radius:2px; overflow:hidden; }
+.stu_prd_list .prd_item .thumb:before { content:""; position:absolute; left:0; right:0; bottom:0; height:30%; background-image:linear-gradient(to top, black, rgba(0,0,0,0)); }
+.stu_prd_list .prd_item .band, .stu_prd_list .prd_item .band2 { position:absolute; font-size:14px; font-weight:400; color:#fff; }
+.stu_prd_list .prd_item .band { display:none; }
+.stu_prd_list .prd_item .band2 { display:none; right:0; bottom:0; padding:5px 10px 6px 12px; -webkit-border-top-left-radius:2px; border-top-left-radius:2px; }
+.stu_prd_list .prd_item .band2 i { display:none; width:18px; height:18px; margin:0 2px 0 0; background-position:-174px -99px; background-size:192px; vertical-align:-4px; }
+.stu_prd_list .prd_item .band2 p { display:none; width:18px; height:18px; margin:0 2px 0 0; background-position:-171px -27px; background-size:192px; vertical-align:-4px; }
+.stu_prd_list .prd_item .prd_info { float:left; position:relative; width:100%; max-height:70px; padding:6px 0 26px; }
+.stu_prd_list .prd_item .cpn { position:absolute; top:-6px; left:8px; -webkit-transform:translateY(-100%); transform:translateY(-100%); font-size:14px; font-weight:400; color:#fff; }
+.stu_prd_list .prd_item .name { display:block; display:-webkit-box; max-height:36px; font-size:14px; font-weight:bolder; line-height:18px; color:#4a4a4a; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+.stu_prd_list .prd_item .tag { display:none; }
+.stu_prd_list .prd_item .score { display:none; position:absolute; left:0; bottom:6px; font-size:14px; font-weight:bolder; line-height:18px; color:#4a4a4a; }
+.stu_prd_list .prd_item .score:before, .stu_prd_list .prd_item .score.new:before { content:""; display:inline-block; width:14px; height:14px; margin:0 2px 0 0; background-position:0 -119.66px; background-size:213.66px; vertical-align:-1.5px; }
+.stu_prd_list .prd_item .buy { margin:0 0 0 8px; font-weight:400; color:#8f8f8f; }
+.stu_prd_list .prd_item .buy:before { content:""; display:inline-block; height:12px; margin:0 6px 0 4px; border-left:1px solid #ddd; vertical-align:-1px; }
+.stu_prd_list .prd_item .price { position:absolute; left:0; bottom:6px; font-size:15px; font-weight:bolder; line-height:18px; color:#222; }
+.stu_prd_list .prd_item .price span { display:none; font-size:14px; font-weight:400; color:#8f8f8f; }
+
+
+
+/* 이벤트 배너 */
+.stu_event_banner { padding:30px 0; border-top:1px solid #eaeaea; }
+.stu_event_banner .titArea h2 span { display:block; font-size:17px; line-height:26px; color:#8f8f8f; }
+.stu_event_banner .swiper-event li { width:85%; margin:0 8px; -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+.stu_event_banner .swiper-event li:first-child { margin-left:20px; }
+.stu_event_banner .swiper-event li:last-child { margin-right:20px; }
+.stu_event_banner .swiper-event .thumb { position:relative; padding:48% 0 0; overflow:hidden; }
+.stu_event_banner .swiper-event .event_info { padding:8px 18px 10px 20px; background:#444; text-align:left; }
+.stu_event_banner .swiper-event .event_info p { position:relative; font-size:16px; font-weight:normal; line-height:25px; letter-spacing:0; color:#fff; }
+.stu_event_banner .swiper-event .event_info p:after { content:""; position:absolute; top:50%; right:0; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:22px; height:22px; background-position:-72px -68px; background-size:256px; }
+.stu_event_banner .swiper-event .event_info span { display:block; font-size:20px; font-weight:bolder; color:#3ad195; }
+
+
+
+/* scroll top */
+.stu_top_wrap { display:none; position:relative; height:50px; border-top:1px solid #e5e5e5; background:#fbfbfb; text-align:center; }
+.stu_top p { line-height:50px; }
+.stu_top p:before { content:""; display:inline-block; position:relative; bottom:1px; width:16.8px; height:18px; margin-right:4px; vertical-align:middle; background-position:-57.6px -123px; background-size:192px; opacity:.8; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    태블릿 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:620px){
+
+/* 공통 */
+h2.stu_title { font-size:22px; line-height:30px; }
+h3.stu_title { font-size:19px; line-height:28px; }
+h4.stu_title { font-size:17px; line-height:26px; }
+
+
+
+/* 헤더영역 */
+header .stu_gnb_container { position:relative; top:0! important; height:56px; line-height:56px; }
+header .stu_gnb_container .stu_inner_wrap { padding:0 20px; }
+header .stu_gnb_container .stu_logo { top:11px; }
+header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:32px; }
+header .stu_gnb_container .stu_gnb_wrap li:after { display:inline-block; font-size:16px; font-weight:400; color:#222; }
+header .stu_gnb_container .stu_gnb_wrap li a { position:absolute; top:0; left:0; width:100%; height:100%; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 32px 0 10px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"국가 또는 도시 검색"; font-size:14px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_booking:after { content:"내 예약"; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_planner { display:inline-block; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_planner:after { content:"플래너"; }
+header .stu_gnb_container button.ico_booking { display:none; }
+
+
+
+/* 배너영역 */
+.stu_top_banner { margin:0; }
+.stu_top_banner .stu_inner_wrap { padding:30px 0 0; text-align:left; }
+.stu_top_banner .titArea { margin:0 0 16px; font-size:30px; }
+.stu_top_banner .titArea b { margin:0 0 6px; }
+.stu_top_banner .titArea b a { font-size:30px; }
+.stu_top_banner .titArea b a:after { width:22.5px; height:33.75px; margin:0 4px 0 10px; background-position:-39.375px -95.625px; background-size:360px; vertical-align:-6.5px; }
+.stu_top_banner .titArea h3 { padding:0 0 10px; border-bottom:1px solid #eaeaea; }
+.stu_top_banner .titArea a.more { bottom:10px; font-size:16.5px; }
+.stu_top_banner .titArea a.more:after { vertical-align:-3px; }
+.stu_top_banner .titArea .before_login p { width:calc(100% - 240px); font-size:16.5px; line-height:24px; }
+.stu_top_banner .titArea .before_login .btn_login { position:absolute; top:19px; right:0; }
+.stu_top_banner .titArea .before_login .btn_login a { height:50px; margin:0; font-size:17px; line-height:50px; }
+.stu_top_banner .titArea .after_login { font-size:18px; }
+.stu_top_banner .titArea .after_login a { font-size:20px; }
+.stu_top_banner .coupon_list { float:left; width:320px; padding:6px 0 40px 20px; }
+.stu_top_banner .coupon_list .coupon { width:100%; border-width:4px; }
+.stu_top_banner .txtArea { float:left; width:calc(100% - 320px); padding:6px 20px 40px 14px; border:none; }
+.stu_top_banner .txtArea p { font-size:15.5px; line-height:22px; word-break:keep-all; }
+
+
+
+/* 카테고리 */
+.stu_category .tabArea li { width:200px; }
+.stu_category .tabArea li:last-child { border-right:1px solid #eaeaea; }
+.stu_category .tabArea li a { padding:0 24px; }
+.stu_category .tabArea li p { font-size:16px; }
+.stu_category .tabArea li.on p { font-size:16px; }
+
+
+
+/* 쿠폰 리스트 */
+.stu_coupon_list { padding:30px 0; }
+.stu_coupon_list .stu_inner_wrap { padding:0 12px; }
+.stu_coupon_list .titArea { padding:0; }
+.stu_coupon_list .titArea h4 { margin:0 0 12px 8px; }
+.stu_coupon_list .titArea h4:before { vertical-align:-2px; }
+.coupon_list { padding:0; font-size:0; }
+.coupon_list .coupon { display:inline-block; width:calc(50% - 16px); margin:0 8px 20px; vertical-align:top; }
+.coupon_list .desc { width:100%; }
+.coupon_list .desc dt { font-size:14.5px; line-height:28px; white-space:nowrap; }
+.coupon_list .desc dd { font-size:14.5px; }
+.coupon_list .desc dd.price { white-space:nowrap; }
+.stu_coupon_list .empty_container { padding:0 8px; }
+.stu_coupon_list .empty_wrap img { display:inline-block; margin:0 10px 0 0; }
+.stu_coupon_list .empty_wrap p { display:inline-block; font-size:16px; font-weight:300; line-height:26px; text-align:left; vertical-align:middle; }
+.stu_coupon_list .empty_wrap p span { font-size:20px; font-weight:normal; }
+.stu_coupon_list .empty_wrap a { display:block; width:200px; margin:20px auto 0; font-size:16px; }
+.stu_coupon_list .empty_wrap a span:after { margin:0 -6px 0 3px; vertical-align:-3px; }
+
+
+
+/* 이벤트 배너 */
+.stu_event_banner .titArea h2 span { font-size:18px; }
+.stu_event_banner .swiper-event li { width:44%; }
+
+
+
+/* 상품 리스트 */
+.stu_prd_list { border-top:1px solid #eaeaea; }
+.stu_prd_list .titArea span.prd_count { font-size:19px; }
+.stu_prd_list .prd_item { width:33.33%; }
+.stu_prd_list .prd_item .name { min-height:22px; font-size:14.5px; }
+.stu_prd_list .prd_item .score { display:block; }
+.stu_prd_list .prd_item .buy { display:none; }
+.stu_prd_list .prd_item .price { left:auto; right:0; font-size:15.5px; }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1025px){
+
+/* 공통 */
+.stu_wrap { background:#eeecec; }
+.swiper-button-prev, .swiper-button-next { display:block; width:46.5px; -webkit-transform:translateY(50%); transform:translateY(50%); background-size:496px; outline:none; }
+.swiper-button-prev { left:-68px; background-position:0 -124px; }
+.swiper-button-next { right:-68px; background-position:-46.5px -124px; }
+p { font-size:18px; }
+section { margin:40px 0 0; padding:30px 0 0; }
+section:last-child { padding-bottom:60px; }
+h2.stu_title { font-size:26px; line-height:32px; text-align:left; }
+h3.stu_title { font-size:22px; line-height:30px; }
+h4.stu_title { font-size:19px; line-height:28px; }
+footer { padding:0 2%; }
+
+
+
+/* 헤더영역 */
+header .stu_gnb_container .stu_inner_wrap { padding:0; }
+header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:40px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 32px 0 12px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"국가 또는 도시로 검색하세요"; }
+
+
+
+/* 배너영역 */
+.stu_top_banner { margin:30px 0 0; background:none; }
+.stu_top_banner .stu_inner_wrap { padding:40px 30px; background:#fff; }
+.stu_top_banner .titArea { margin:0; padding:0; font-size:34px; }
+.stu_top_banner .titArea b a { font-size:34px; }
+.stu_top_banner .titArea b a:after { vertical-align:-4.5px; }
+.stu_top_banner .titArea h3 { margin:30px 0 12px; }
+.stu_top_banner .titArea a.more { right:0; font-size:20px; }
+.stu_top_banner .titArea a.more:after { width:14px; height:21px; background-position:-24.5px -59.5px; background-size:224px; }
+.stu_top_banner .titArea .before_login p { width:calc(100% - 300px); font-size:19px; line-height:50px; color:#4a4a4a; }
+.stu_top_banner .titArea .before_login p br { display:none; }
+.stu_top_banner .titArea .before_login .btn_login { right:10px; }
+.stu_top_banner .coupon_list { width:400px; padding:10px 0 0; }
+.stu_top_banner .coupon_list .coupon { padding:20px 16px 16px; border-width:5px; }
+.stu_top_banner .coupon_list .discount { margin:0 0 7px; font-size:17px; }
+.stu_top_banner .coupon_list .discount span { font-size:24px; }
+.stu_top_banner .coupon_list .name dt span { font-size:19px; }
+.stu_top_banner .txtArea { width:calc(100% - 400px); padding:10px 20px 0; }
+.stu_top_banner .txtArea p { padding:0 0 0 12px; font-size:16px; line-height:24px; }
+.stu_top_banner .txtArea p:before { top:10px; }
+
+
+
+/* 카테고리 */
+.stu_category { position:relative; max-width:1100px; min-width:960px; margin:0 auto; padding:0; background:none; }
+.stu_category:before, .stu_category:after { display:none; }
+.stu_category .stu_inner_wrap { position:absolute; top:50px; left:0; width:24%; max-width:264px; min-width:auto; padding:0 24px 0 0; }
+.stu_category .tabArea { padding:10px 20px; border-top:5px solid #666; background:#fff; }
+.stu_category .tabArea li { float:none; display:block; width:100%; height:60px; border-right:0; border-bottom:1px solid #eaeaea; text-align:left; }
+.stu_category .tabArea li:last-child { border:0; }
+.stu_category .tabArea li a { padding:0; }
+.stu_category .tabArea li p { position:relative; line-height:60px; }
+.stu_category .tabArea li.on p { border:none; color:#3ad195; }
+.stu_category .tabArea li.on p:after { content:""; position:absolute; top:50%; right:0; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:22px; height:22px; margin:2px 0 0; background-position:-121.55px -150.15px; background-size:352px; }
+
+
+
+/* 쿠폰 리스트 */
+.stu_coupon_list { max-width:1100px; min-width:960px; margin:0 auto; padding:50px 0 0; background:none; }
+.stu_coupon_list .stu_inner_wrap { width:76%; max-width:836px; min-width:auto; margin:0 0 0 24%; padding:0; }
+.stu_coupon_list .titArea h4:before { width:20px; height:20px; background-position:-180px -140px; background-size:320px; vertical-align:-3px; }
+.coupon_list { padding:0; }
+.coupon_list .name dt span { max-height:48px; font-size:18px; line-height:24px; word-break:keep-all; }
+.coupon_list .desc dt { font-size:16px; line-height:30px; }
+.coupon_list .desc dt:before { top:13.5px; }
+.coupon_list .desc dd { font-size:16px; }
+.stu_coupon_list .empty_wrap img { margin:0 14px 0 0; }
+
+
+
+/* 상품 리스트 */
+.stu_prd_list { border:none; background:none; }
+.stu_prd_list .stu_inner_wrap { max-width:1116px; }
+.stu_prd_list .titArea { padding:0 8px; }
+.stu_prd_list .titArea span.prd_count { font-size:22px; }
+.stu_prd_list .prd_list { padding:0; }
+.stu_prd_list .prd_item { width:25%; }
+.stu_prd_list .prd_item .band2 { padding:7px 12px 8px 14px; }
+.stu_prd_list .prd_item .cpn { top:-8px; left:12px; }
+.stu_prd_list .prd_item .name { font-size:15px; }
+.stu_prd_list .prd_item .score { bottom:4px; }
+.stu_prd_list .prd_item .price { bottom:4px; font-size:16px; }
+
+
+
+/* 이벤트 배너 */
+.stu_event_banner { padding:40px 0; border:none; }
+.stu_event_banner .titArea { padding:0; }
+.stu_event_banner .titArea h2 span { font-size:20px; margin:0 0 4px; }
+.stu_event_banner .swiper-event li { width:calc(33.33% - 10px); margin:0 7.5px; }
+.stu_event_banner .swiper-event li:first-child { margin-left:0; }
+.stu_event_banner .swiper-event li:last-child { margin-right:0; }
+
+
+
+/* scroll top */
+.stu_top_wrap { position:fixed; bottom:50px; left:50%; width:55px; height:55px; margin-left:570px; -webkit-border-radius:2px; border-radius:2px; border:none; background:#8f8f8f; z-index:10; }
+.stu_top_wrap:hover { background:#4a4a4a; }
+.stu_top p { font-size:0; line-height:56px; }
+.stu_top p:before { display:block; bottom:0; width:35px; height:37.5px; margin:9px 0 0 10px; background-position:-155px -256.25px; background-size:400px; opacity:1; }
+
+
+}

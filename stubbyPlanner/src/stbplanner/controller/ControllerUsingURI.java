@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import stbplanner.command.CommandHandler;
-import stbplanner.command.NullHandler;
+import stbplanner.general.command.CommandHandler;
+import stbplanner.general.command.NullHandler;
 
 public class ControllerUsingURI extends HttpServlet{
 

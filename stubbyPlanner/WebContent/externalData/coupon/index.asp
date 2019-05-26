@@ -1,70 +1,61 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta http-equiv="Content-Language" content="ko">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <title>스투비 로그인 - 스투비플래너</title>
+    <title>쿠폰함</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
-
-    <!-- Web Fonts -->
-    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
-
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/css/shop.style.css">
-
-    <!-- CSS Header and Footer -->
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/css/headers/header-v5.css">
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/css/footers/footer-v4.css">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/animate.css">    
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
-    <!--[if lt IE 9]><link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
 
 
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/css/stubbynew_topmenu.css">
+<link rel="stylesheet" href="/superguide/assets/css/headers/header-v4.css">
+<link rel="stylesheet" href="/css/stubbynew_topmenu.css">
 
-<script src="https://www.google.com/jsapi"></script>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="/superguide/assets/css/style.css">
+	<link rel="stylesheet" href="/superguide/assets/css/custom.css">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <!-- CSS/JavaScript -->
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/md-search.css">
+    <link rel="stylesheet" type="text/css" href="css/coupon.css">
+
+
+<script src="http://www.google.com/jsapi"></script>
+
 <script>
  google.load( "webfont", "1" );
  google.setOnLoadCallback(function() {
   WebFont.load({ custom: {
    families: [ "NanumGothic" ],
-	urls: ['https://fonts.googleapis.com/earlyaccess/nanumgothic.css']
+	urls: ['http://fonts.googleapis.com/earlyaccess/nanumgothic.css']
   }});
  });
 </script>
 
-    <!-- CSS Customization -->
-    <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/css/custom.css">
-
 </head>	
+<body >
 
-<body class="header-fixed">
 
-<div class="wrapper">
-    <!--=== Header v5 ===-->
+<div class="stu_wrap" style="padding-top:80px">
 
+
+       <header>
+	
 		<!--=== Header v4 ===-->
 		<div id="header" class="header-v4" style="position:fixed;left:0;right: 0;top: 0;background:#fff">
 			<!-- Navbar -->
@@ -79,15 +70,15 @@
 
 						<div class="row">
 							<div class="col-md-2" style="padding-top:7px;width:17%;padding-left:0px">
-								<a  href="/stubbyPlanner/common/index.do" style="">
-									<img width="160px" id="logo-header" src="/stubbyPlanner/externalData/img_v9/logo_s.png" alt="Logo">
+								<a  href="/" style="">
+									<img width="160px" id="logo-header" src="/img_v9/logo_s.png" alt="Logo">
 								</a>
 							</div>
 							<div class="col-md-10" style="width:83%;padding-right:0px;text-align:right">
 
 
-<div style="float:left;cursor:pointer;margin-top:5px;margin-right:0px;padding: 0 52px 0 30px;display:inline-block;border-radius:18px!important;border:1px solid #e5e5e5;background: #f5f5f5;line-height: 34px;" onclick="window.location='/market/index.do'">
-<button style="border:0px;background: #f5f5f5;display:inline-block;width: 30px;height: 30px;background-position: -60px -30px;background-size: 240px;opacity: .6;background-image: url(/stubbyPlanner/externalData/market/images/common/stu_icon.png);background-repeat: no-repeat;cursor: pointer;vertical-align: middle;"></button>
+<div style="float:left;cursor:pointer;margin-top:5px;margin-right:0px;padding: 0 52px 0 30px;display:inline-block;border-radius:18px!important;border:1px solid #e5e5e5;background: #f5f5f5;line-height: 34px;" onclick="window.location='/market/index.asp'">
+<button style="border:0px;background: #f5f5f5;display:inline-block;width: 30px;height: 30px;background-position: -60px -30px;background-size: 240px;opacity: .6;background-image: url(/market/images/common/stu_icon.png);background-repeat: no-repeat;cursor: pointer;vertical-align: middle;"></button>
 <font style="font-size: 15px;font-weight: 300;color: rgb(102, 102, 102);cursor:pointer;">유럽도시 또는 국가로 검색해보세요.</font>
 </div>
 
@@ -98,24 +89,24 @@
 
 
 							<li   style="border:0px;color:#696969">
-								<a href="/planner/" style="padding-left:13px;padding-right:20px;">
+								<a <a href="/planner/" style="padding-left:13px;padding-right:20px;">
 									 <font style="font-size:12pt;color:#222;font-weight:600;outline: none;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 플래너</font>
 								</a>
 							</li>
 
 							<li   style="border:0px;color:#696969">
-								<a href="/exp/list.asp" style="padding-left:13px;padding-right:20px;">
+								<a <a href="/exp/list.asp" style="padding-left:13px;padding-right:20px;">
 									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 여행지</font>
 								</a>
 							</li>
 
 							<li   style="border:0px;color:#696969">
-								<a href="/market/" style="padding-left:13px;padding-right:20px;">
+								<a <a href="/market/" style="padding-left:13px;padding-right:20px;">
 									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 투어/일정</font>
 								</a>
 							</li>
 							<li   style="border:0px;color:#696969">
-								<a href="/mb/" style="padding-left:13px;padding-right:20px;">
+								<a <a href="/mb/" style="padding-left:13px;padding-right:20px;">
 									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 숙소</font>
 								</a>
 							</li>
@@ -445,182 +436,229 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
 
-    <!--=== End Header v5 ===-->
-    <div class="container">
-	
-
-<!--오른쪽 프레임 시작-->
-<div class="row" style="margin-top:95px;margin-bottom:50px;">
-	<div class="col-md-3 col-xs-1"></div>
-	<div class="col-md-6 col-xs-10">
-                        <form action="#" id="sky-form1" class="sky-form">
-                            <header  style="text-align:center">페이스북계정으로 로그인</header>
-                            
-                            <fieldset>                  
-                                <section  style="text-align:center">
-			<a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="/stubbyPlanner/externalData/img_v8/facebook_login.png"></a>
-
-		    </section>
-		</fieldset>
-	          </form>
-		<br>
-	          <form name="form" action="https://www.stubbyplanner.com/asp/login_ok.asp?ver=v2&flink=" method="post" class="sky-form">
-		<input type="hidden" name="h_url" value="http://www.stubbyplanner.com/planner/index.asp">
-                            <header  style="text-align:center">스투비계정으로 로그인</header>                            
-                            <fieldset>                  
-                                <section>
-                                    <div class="row">
-                                        <label class="label col col-4">아이디</label>
-                                        <div class="col col-8">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-user"></i>
-                                                <input type="text" id="join_id" name="join_id">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </section>
-                                
-                                <section>
-                                    <div class="row">
-                                        <label class="label col col-4">비밀번호</label>
-                                        <div class="col col-8">
-                                            <label class="input">
-                                                <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" id="join_pin" name="join_pin">
-                                            </label>
-                                            <div class="note"><a href="/common/find_idpass.asp" class="modal-opener"><u>아이디/비밀번호 찾기</u></a></div>
-                                        </div>
-                                    </div>
-                                </section>
-                                
-                                <section>
-                                    <div class="row">
-                                        <div class="col col-4"></div>
-                                        <div class="col col-8">
-                                            <label class="checkbox" style="font-size:9pt"><input type="checkbox" name="saveid" value="ON" checked><i></i>로그인 유지</label>
-                                        </div>
-                                    </div>
-                                </section>
-                            </fieldset>
-                            <footer style="text-align:center">
-                                <a href="javascript:FSubmit();" class="btn-u btn-u-lg">로그인</a>
-                                <a href="https://www.stubbyplanner.com/common/register.asp" class="btn-u btn-u-lg  btn-u-default">회원가입</a>
-                            </footer>
-                        </form>        
-	</div>
-	<div class="col-md-3 col-xs-1"></div>
-</div>
-
-
-<script> 
-
-function FSubmit()
-{
-	if (document.form.join_id.value =="") {
-		alert("아이디를 입력해 주세요.");
-		document.form.join_id.focus();
-		return false;
-	}
-	
-	if (document.form.join_pin.value =="") {
-		alert("비밀번호를 입력해 주세요.");
-		document.form.join_pin.focus();
-		return false;
-	}
-	
-	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
-	var split = letters.split("");var num = '';var c = '';
-	var encrypted = '';
-	var it = document.form.join_pin.value;
-	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.join_pin.value = encrypted;encrypted = '';
-	document.form.submit();
-}
-</script>
-	</form>
-
-    </div><!--/end cotnainer-->
-
- 
-
-
-    <!--=== Footer v4 ===-->
-	
-
-    <!--=== Footer v4 ===-->
+        </header>
 
 
 
-    <div class="footer-v4" >
-
-        <div class="copyright" style="background:#191919;padding-top:15px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">                     
-		<p style="text-align:left;color:#fff">
-			<b>(주)스투비플래너</b>  사업자번호: 220-88-67466 /  대표: 백주흠<br/>
-			<font style="color:#efefef;font-size:8pt">서울특별시 관악구 남부순환로 1837 샤론빌딩 4층 (스투비플래너)<br/>
-			대표번호 : +82-2-886-0982 |  대표이메일 : stubbyteam@gmail.com <br/> 
-			운영시간(한국) 11:00 ~ 19:00, 주말/공휴일은 제외.</font><br/>
-		
-		<font style="color:#efefef;font-size:8pt">스투비플래너는 광고서비스 제공자/예약 시스템의 공급자이며 통신판매의 당사자가 아닙니다.
-		따라서 스투비플래너는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</font>
-		<br>
-		2014 &copy; STUBBYPLANNER. ALL Rights Reserved. 
-
-
-		<a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" style="color:#efefef;font-size:8pt" target="_blank"><u>광고/제휴 문의</u></a> &nbsp;&nbsp;&nbsp;	
-		<a href="/qa/" style="color:#efefef;font-size:8pt"><u>서비스 문의</u></a> &nbsp;&nbsp;&nbsp;
-		<a href="/personalinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>개인정보 취급방침</u></a> &nbsp;&nbsp;&nbsp;
-		<a href="http://www.stubbyplanner.com/common/usercontract.html" style="color:#efefef;font-size:8pt" target="_blank"><u>이용약관</u></a>&nbsp;&nbsp;&nbsp;
-		<a href="/common/adserviceinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>광고서비스 이용약관</u></a>
-
-
-		<br>
 
 
 
-                        </p>
+
+        <section class="stu_top_banner">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <b>내 쿠폰함</b>
+
+
+
+                    <div class="before_login" style="display:none;">
+                        <p>쿠폰 할인 혜택을 적용하시거나 지급 받으신 <br/>쿠폰을 관리하시려면 먼저 로그인해주세요.</p>
+                        <div class="btn_login">
+                            <a href="/common/login.asp" class="stu_btn">스투비플래너 로그인</a>
+                        </div>
                     </div>
 
                 </div>
-            </div> 
-        </div><!--/copyright--> 
-    </div>
-    <!--=== End Footer v4 ===-->
-  
-    <!--=== End Footer v4 ===-->
+            </div>
+        </section>
+
+        <section class="stu_category">
+            <div class="stu_inner_wrap">
+                <ul class="tabArea">
+                    <li class="on"><a>
+                        <p class="ongoing">사용가능한 쿠폰
+                            <span class="count"></span>
+                        </p></a>
+                    </li>
+                    <li class=""><a>
+                        <p class="completed">만료된 쿠폰
+                            <span class="count"></span>
+                        </p></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section class="stu_coupon_list stu_clearfix">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h4 class="stu_title">적용일이 지난 쿠폰은 자동 만료됩니다.</h4>
+                </div>
+
+	<div id="cp_content">
+                <div class="empty_container d-n">
+                    <div class="empty_wrap">
+                        <img src="images/empty.png" alt=""/>
+                        <p><span>해당 내역이 없습니다.</span>스투비플래너와 함께 즐거운 여행을 떠나보세요.</p>
+                        <a href="/coupon/winter_coupon.asp" class="stu_btn">
+                            <span>쿠폰 발급받기</span>
+                        </a>
+                    </div>
+                </div>
+
+
+	</div>
+
+
+
+
+
+
+
+
+            </div>
+        </section>
+
+
+        <section class="stu_event_banner">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h2 class="stu_title">
+                        <span>스투비 회원들을 위한</span>100% 쿠폰증정 이벤트
+                    </h2>
+                </div>
+
+
+                <div class="swiper-container swiper-event" id="swiper_event">
+                    <ul class="swiper-wrapper"id="swiper_event">
+                        <li class="swiper-slide">
+                            <a href="/coupon/winter_coupon.asp">
+                                <figure class="thumb">
+                                    <img class="fw" src="images/sample/m39.jpg" alt=""/>
+                                </figure>
+                                <figcaption class="event_info">
+                                    <p>유럽 현지투어/액티비티<span>100,000원 쿠폰</span></p>
+                                </figcaption>
+                            </a>
+                        </li>
+                        <li class="swiper-slide">
+                            <a href="/coupon/iceland_coupon.asp">
+                                <figure class="thumb">
+                                    <img class="fw" src="images/sample/m40.jpg" alt=""/>
+                                </figure>
+                                <figcaption class="event_info">
+                                    <p>아이슬란드 필수투어<span>130,000원 쿠폰</span></p>
+                                </figcaption>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="swiper-button-prev swiper-event-button-prev"></div>
+                <div class="swiper-button-next swiper-event-button-next"></div>
+
+            </div>
+        </section>
+
+
+
+
+
+
 </div><!--/wrapper-->
+	
+        <footer>
+            <div class="stu_inner_wrap">
+                <div class="stu_footerMenu">
+                    <!--유틸메뉴-->
+                    <img src="/market/images/footLogo.png" alt="스투비플래너">
+                    <ul class="stu_utilMenu">
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" target="_blank">광고/제휴문의</a></li>
+                        <li><a href="http://www.stubbyplanner.com/qa/"  target="_blank">서비스문의</a></li>
+                        <li><a href="http://www.stubbyplanner.com/personalinfo.asp" target="_blank">개인정보 취급방침</a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/usercontract.html" target="_blank">이용약관 </a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/adserviceinfo.asp" target="_blank">광고서비스 이용약관 </a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/guidecontract.html" target="_blank">가이드 약관 </a></li>
+                    </ul>
+                    <!--sns-->
+                    <ul class="stu_snsShare">
+                        <li id="stu_sns1"><a href="http://www.facebook.com/stubbyplanner/" target="_blank" title="페이스북">페이스북</a></li>
+                        <li id="stu_sns2"><a href="https://www.instagram.com/stubbyplanner/" target="_blank" title="인스타그램">인스타그램</a></li>
+                    </ul>
+                </div>
+                <div class="stu_footerInfo">
+                    <address>
+                        <b>서비스제공</b>&nbsp;&nbsp;스투비플래너 │ 대표 백주흠 │ 사업자등록번호 220-88-67466 │ 서울특별시 관악구 남부순환로 1837 샤론빌딩 402 <br/>
+  <b>가이드상품중개</b>&nbsp;&nbsp;스투비익스피어리언스 │ 대표 백주흠 │ 사업자등록번호 635-81-01124 │ 서울특별시 관악구 남부순환로 1837 샤론빌딩 402 <br/>
+                        통신판매업 신고 : 2018-서울관악-1368호 | 대표번호 02-886-0982 │  고객문의  stubbyteam@gmail.com │  운영시간(한국) 11:00 ~ 19:00, 주말 / 공휴일은 제외<br/>
+스투비익스피어리언스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 스투비익스피어리언스는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.<br/>
+자사는 서울특별시관광협회 공제영업보증보험에 가입이 되어 있습니다.
+                    </address>
+                </div>
+            </div>
+        </footer>
 
-<!-- JS Global Compulsory -->
-<script src="/stubbyPlanner/externalData/chn/assets/plugins/jquery/jquery.min.js"></script>
-<script src="/stubbyPlanner/externalData/chn/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script src="/stubbyPlanner/externalData/chn/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
+<!-- JS Global Compulsory -->			
+<script type="text/javascript" src="/assets/plugins/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
 
-<!-- JS Customization -->
-<script src="/stubbyPlanner/externalData/chn/assets/js/custom.js"></script>
-<!-- JS Page Level -->
-<script src="/stubbyPlanner/externalData/chn/assets/js/shop.app.js"></script>
+
+    <script src="/market/js/swiper.min.js" type="text/javascript"></script>
+
+
 
 <script>
-    jQuery(document).ready(function() {
-        App.init();
-$("#join_pin").keyup(function(event){
-    if(event.keyCode == 13){
-        FSubmit();
-    }
-});
-      
-});
+    $(document).ready(function() {
+        // header 고정(슬라이드)
+        var lastScrollTop = 0, delta = 15;
+        $(window).scroll(function(event) {
+            var st = $(this).scrollTop();
+            var gnbHeight = $('.stu_gnb_container').outerHeight();
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+            if((st > lastScrollTop) && (lastScrollTop > 48)) {
+                $('.stu_gnb_container').css('top', - gnbHeight);
+            } else {
+                $('.stu_gnb_container').css('top', '0');
+            }
+            lastScrollTop = st;
+        });
+
+        // 카테고리 Toggle
+        $('.stu_category li').click(function() {
+            // 카테고리 탭 활성화
+            $('.stu_category li').removeClass('on');
+            $(this).addClass('on');
+            // 예약 리스트 필터링
+            var filterName = $(this).find('p').attr('class');
+            var category = $('.coupon_list').children('li.coupon').attr('class');
+            $('.coupon_list').children('li.' + filterName).removeClass('d-n');
+            $('.coupon_list').children('li:not(.' + filterName + ')').addClass('d-n');
+            // 디폴트(empty) 이미지 표시
+            var itemCount = $('.coupon_list').children('li.coupon:not(.d-n)').length;
+            if(itemCount == 0) { $('.stu_coupon_list .empty_container').removeClass('d-n'); } else { $('.stu_coupon_list .empty_container').addClass('d-n'); };
+        }); $('.stu_category li:first').click();
+
+
+        // 이미지 스와이핑
+        var swiperEvent = new Swiper('#swiper_event', { direction:'horizontal', slidesPerView:'auto', slidesPerGroup:3, navigation: { nextEl: '.swiper-event-button-next', prevEl: '.swiper-event-button-prev' }, breakpoints: { 1024: { slidesPerGroup:1 }}});
+
+
+
+        // 쿠폰 리스트 카운팅
+        var ongoing = $('.stu_category .ongoing .count');
+        var completed = $('.stu_category .completed .count');
+        ongoing.text('(' + $('.coupon_list').children('li.ongoing').length + ')');
+        if(ongoing.text() == '(0)') { $(ongoing).css('display','none'); } else { $(ongoing).css('display', 'inline-block'); }
+        completed.text('(' + $('.coupon_list').children('li.completed').length + ')');
+        if(completed.text() == '(0)') { $(completed).css('display','none'); } else { $(completed).css('display', 'inline-block'); }
+
+
+
+        // 맨 위로 가기
+        $(window).scroll(function() {
+            if($(this).scrollTop() > 600) {
+                $('.stu_top_wrap').fadeIn();
+            } else {
+                $('.stu_top_wrap').fadeOut();
+            }
+        });
+        $('.stu_top').click(function() {
+            $('html, body').animate({scrollTop : 0}, 400);
+            return false;
+        });
+    });
 </script>
-<!--[if lt IE 9]>
-    <script src="/chn/assets/plugins/respond.js"></script>
-    <script src="/chn/assets/plugins/html5shiv.js"></script>
-    <script src="/chn/assets/js/plugins/placeholder-IE-fixes.js"></script>
-    <script src="/chn/assets/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
-<![endif]-->
-<!--[if lt IE 10]>
-    <script src="/chn/assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
-<![endif]-->  
 </body>
-</html> 
+</html>	

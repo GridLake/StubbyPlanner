@@ -557,10 +557,10 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                     </div>
                     <ul class="gnb_wrap on-pc">
                         <li class="gnb_item">
-                            <a href="/guide/reservation.asp">예약내역</a>
+                            <a href="/stubbyPlanner/guide/reservation.do">예약내역</a>
                         </li>
                         <li class="gnb_item">
-                            <a href="/coupon/index.asp">쿠폰함</a>
+                            <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
                         </li>
 
 
@@ -568,7 +568,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>
                         <li class="gnb_item sign_out">
-                            <a href="/common/register.asp" class="signup">회원가입</a>
+                            <a href="/stubbyPlanner/common/register.do" class="signup">회원가입</a>
                         </li>
 
 
@@ -581,17 +581,17 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/">홈</a>
                         </li>
                         <li class="lnb_item ">
-                            <a href="/planner/index.asp">계획짜기</a>
+                            <a href="/stubbyPlanner/planner/index.do">계획짜기</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/market/index.asp">투어예약</a>
+                            <a href="/stubbyPlanner/market/index.do">투어예약</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/mb/index.asp">숙소예약</a>
+                            <a href="/stubbyPlanner/mb/index.do">숙소예약</a>
                         </li>
 
                         <li class="lnb_item ">
-                            <a href="/exp/list.asp">여행지</a>
+                            <a href="/stubbyPlanner/exp/list.do">여행지</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
@@ -604,7 +604,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                 <aside class="side_container on-mobile">
                     <ul class="side_section">
                         <li class="side_item side_logo sign_out">
-                            <a href="http://stubbyplanner.com/">
+                            <a href="/stubbyPlanner/common/index.do">
                                 <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
@@ -613,26 +613,26 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
                         </li>
                         <li class="side_item side_btn sign_out">
-                            <a href="/common/register.asp" class="btn_signup">회원가입</a>
+                            <a href="/stubbyPlanner/common/register.do" class="btn_signup">회원가입</a>
                         </li>
 
                     </ul>
                     <ul class="side_section">
 
                         <li class="side_item side_resv">
-                            <a href="/guide/reservation.asp">
+                            <a href="/stubbyPlanner/guide/reservation.do">
                                 <i></i><span class="sign_out">비회원&nbsp;</span>예약내역
                             </a>
                         </li>
 
                         <li class="side_item side_coupon">
-                            <a href="/coupon/index.asp"><i></i>쿠폰함</a>
+                            <a href="/stubbyPlanner/coupon/index.do"><i></i>쿠폰함</a>
                         </li>
                         <li class="side_item side_square">
-                            <a href="/square/index.asp"><i></i>광장</a>
+                            <a href="/stubbyPlanner/square/index.do"><i></i>광장</a>
                         </li>
                         <li class="side_item side_premium">
-                            <a href="/selfguide/index.asp"><i></i>프리미엄</a>
+                            <a href="/stubbyPlanner/selfguide/index.do"><i></i>프리미엄</a>
                         </li>
                     </ul>
 
@@ -665,7 +665,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
 
 
-			<img width="100%" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/75c51157166c419c4d59e591ca078082.jpg">
+			<img width="100%" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/75c51157166c419c4d59e591ca078082.jpg">
 			
 		</div>
 		<div style="float:left;width:40%">
@@ -676,7 +676,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 					<div style="width:50%;position:relative;display:inline-block;margin-top:8px;vertical-align:middle">
 						<a href="javascript:showPlannerSelector();" style="margin-right:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
 					</div><div style="width:50%;display:inline-block;margin-top:8px;margin-left:0px;vertical-align:middle ">
-						<a href="/consulting/index.asp" style="margin-left:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('consulting','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
+						<a href="/stubbyPlanner/consulting/index.do" style="margin-left:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('consulting','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
 					</div>
 					<div style="clear:both"></div>
 <script>
@@ -688,9 +688,9 @@ function showPlannerSelector()
 					<div id="speech-bubble" class="speech-bubble" style="display:none;margin-top:20px;height:56px;">	
 	
 						<div style="width:50%;vertical-align:middle;float:left">
-							<a href="/planner/planner_rt.asp" style="margin-top:8px;margin-bottom:8px;margin-left:12px;margin-right:4px;center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 빈 플래너 시작</a>
+							<a href="/stubbyPlanner/planner/planner_rt.do" style="margin-top:8px;margin-bottom:8px;margin-left:12px;margin-right:4px;center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 빈 플래너 시작</a>
 						</div><div style="width:50%;vertical-align:middle;float:left">
-							<a href="/stubbyx/step0.asp" style="margin-top:8px;margin-bottom:8px;margin-left:4px;margin-right:12;text-align:center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('recom','home')"><i class="fa fa-magic" aria-hidden="true"></i> 루트 추천받고 시작</a>
+							<a href="/stubbyPlanner/stubbyx/step0.do" style="margin-top:8px;margin-bottom:8px;margin-left:4px;margin-right:12;text-align:center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('recom','home')"><i class="fa fa-magic" aria-hidden="true"></i> 루트 추천받고 시작</a>
 						</div>
 						<div style="clear:both"></div>
 
@@ -824,13 +824,14 @@ function logging(a,p)
 
 
                             <li class="swiper-slide">
-                                   <a href="/guide/detail.asp?needlogin=&serial=148">
+                            	   <!-- line 828 경로 : ? 뒤 확인 필요 -->
+                                   <a href="/guide/detail.do?needlogin=&serial=148">
 
 
                                 <div class="stu_band bg_red">⚡️6.9천원</div>
 
                                     <div class="stu_thumbnail_img">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='https://d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
+                                        <img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
                                     </div>
                                     <div class="stu_caption">
                                         <span class="stu_company">메멘토투어</span>
@@ -876,7 +877,8 @@ function logging(a,p)
 
 
                             <li class="swiper-slide">
-                                   <a href="/guide/detail.asp?needlogin=&serial=1524">
+                            	   <!-- line 881 경로 : ? 뒤 확인 필요  -->
+                                   <a href="/guide/detail.do?needlogin=&serial=1524">
 
 
                                 <div class="stu_band bg_red">⚡️2.07만원</div>

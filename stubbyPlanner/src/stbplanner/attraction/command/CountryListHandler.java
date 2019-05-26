@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import stbplanner.attraction.model.CityDTO;
 import stbplanner.attraction.service.CountryListService;
-import stbplanner.command.CommandHandler;
+import stbplanner.general.command.CommandHandler;
 
 public class CountryListHandler implements CommandHandler {
 
