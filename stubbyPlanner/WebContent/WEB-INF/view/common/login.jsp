@@ -464,8 +464,8 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 		</fieldset>
 	          </form>
 		<br>
-	          <form name="form" action="https://www.stubbyplanner.com/asp/login_ok.asp?ver=v2&flink=" method="post" class="sky-form">
-		<input type="hidden" name="h_url" value="http://www.stubbyplanner.com/planner/index.asp">
+	          <form name="form" action="/stubbyPlanner/common/login.do" method="post" class="sky-form">
+		<input type="hidden" name="h_url" value=""><!-- "http://www.stubbyplanner.com/planner/index.asp" -->
                             <header  style="text-align:center">스투비계정으로 로그인</header>                            
                             <fieldset>                  
                                 <section>
@@ -474,10 +474,10 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" id="join_id" name="join_id">
+                                                <input type="text" id="member_id" name="member_id">
                                             </label>
                                         </div>
-                                    </div>
+                                    </div>	
                                 </section>
                                 
                                 <section>
@@ -486,7 +486,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" id="join_pin" name="join_pin">
+                                                <input type="password" id="password" name="password" />
                                             </label>
                                             <div class="note"><a href="/common/find_idpass.asp" class="modal-opener"><u>아이디/비밀번호 찾기</u></a></div>
                                         </div>
@@ -504,7 +504,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                             </fieldset>
                             <footer style="text-align:center">
                                 <a href="javascript:FSubmit();" class="btn-u btn-u-lg">로그인</a>
-                                <a href="https://www.stubbyplanner.com/common/register.asp" class="btn-u btn-u-lg  btn-u-default">회원가입</a>
+                                <a href="/stubbyPlanner/common/register.do" class="btn-u btn-u-lg  btn-u-default">회원가입</a>
                             </footer>
                         </form>        
 	</div>
@@ -515,24 +515,25 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 <script> 
 
 function FSubmit()
-{
-	if (document.form.join_id.value =="") {
+{ 
+	if (document.form.member_id.value =="") {
 		alert("아이디를 입력해 주세요.");
-		document.form.join_id.focus();
+		document.form.member_id.focus();
 		return false;
 	}
 	
-	if (document.form.join_pin.value =="") {
+	if (document.form.password.value =="") {
 		alert("비밀번호를 입력해 주세요.");
-		document.form.join_pin.focus();
+		document.form.password.focus();
 		return false;
 	}
 	
 	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
 	var split = letters.split("");var num = '';var c = '';
 	var encrypted = '';
-	var it = document.form.join_pin.value;
-	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.join_pin.value = encrypted;encrypted = '';
+	var it = document.form.password.value;
+	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.password.value = encrypted;encrypted = '';
+	 
 	document.form.submit();
 }
 </script>
@@ -605,7 +606,7 @@ function FSubmit()
 <script>
     jQuery(document).ready(function() {
         App.init();
-$("#join_pin").keyup(function(event){
+$("#password").keyup(function(event){
     if(event.keyCode == 13){
         FSubmit();
     }

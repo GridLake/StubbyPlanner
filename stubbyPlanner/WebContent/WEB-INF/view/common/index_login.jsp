@@ -36,9 +36,9 @@
     <link rel="icon" href="favicon.png"> 
 
     <!-- CSS/JavaScript -->
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/common.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome.css">
+    <link rel="stylesheet" type="text/css" href="/css2/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/css2/common.css">
+    <link rel="stylesheet" type="text/css" href="/market/css/tourHome.css">
 	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/header_footer.css">
@@ -476,14 +476,15 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
     <header>
 
 
+
         <div class="header_banner">
             <div class="stu_inner_wrap">
                 <a href="/stubbyPlanner/externalData/market/index.asp?from=top1">
                     <div class="header_banner_wrap">
-                        <p class="txtWrap">1,700가지 유럽투어/액티비티
-                            <span>얼리버드 SALE</span>
+                        <p class="txtWrap">복잡한 유럽 자유여행이 처음이라면
+                            <span>전문가 맞춤여행 의뢰 55,200원~</span>
                         </p>
-                        <p class="btnWrap">미리 예약할수록!!</p>
+                        <p class="btnWrap">자세히</p>
                     </div>
                 </a>
                 <i class="ico_close"></i>
@@ -563,9 +564,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
                         </li>
 
-
-<!--  -->
-						<li class="gnb_item gnb_profile sign_in">
+                        <li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
                                 <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                             </a>
@@ -612,15 +611,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             </div>
                         </li>
 
-<!--  -->
-                        <li class="gnb_item sign_out">
-                            <a href="/stubbyPlanner/common/login.do">로그인</a>
-                        </li>
-                        <li class="gnb_item sign_out">
-                            <a href="/stubbyPlanner/common/register.do" class="signup">회원가입</a>
-                        </li>
 
-<!--  -->
 
                     </ul>
                 </nav>
@@ -630,17 +621,17 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/">홈</a>
                         </li>
                         <li class="lnb_item ">
-                            <a href="/stubbyPlanner/planner/index.do">계획짜기</a>
+                            <a href="/stubbyPlanner/planner/index.asp">계획짜기</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/stubbyPlanner/market/index.do">투어예약</a>
+                            <a href="/stubbyPlanner/market/index.asp">투어예약</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/stubbyPlanner/mb/index.do">숙소예약</a>
+                            <a href="/stubbyPlanner/mb/index.asp">숙소예약</a>
                         </li>
 
                         <li class="lnb_item ">
-                            <a href="/stubbyPlanner/exp/list.do">여행지</a>
+                            <a href="/stubbyPlanner/exp/list.asp">여행지</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
@@ -657,8 +648,8 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                 <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
-<!--  -->
-						<li class="side_item sign_in">
+
+                        <li class="side_item sign_in">
                             <div class="side_profile">
                                 <a href="#" class="profile_photo">
                                     <i>
@@ -705,36 +696,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/common/logout.asp">로그아웃</a>
                         </li>
                     </ul>
-<!--  -->
 
-                        <li class="side_item side_btn sign_out">
-                            <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
-                        </li>
-                        <li class="side_item side_btn sign_out">
-                            <a href="/stubbyPlanner/common/register.do" class="btn_signup">회원가입</a>
-                        </li>
-
-                    </ul>
-                    <ul class="side_section">
-
-                        <li class="side_item side_resv">
-                            <a href="/stubbyPlanner/guide/reservation.do">
-                                <i></i><span class="sign_out">비회원&nbsp;</span>예약내역
-                            </a>
-                        </li>
-
-                        <li class="side_item side_coupon">
-                            <a href="/stubbyPlanner/coupon/index.do"><i></i>쿠폰함</a>
-                        </li>
-                        <li class="side_item side_square">
-                            <a href="/stubbyPlanner/square/index.do"><i></i>광장</a>
-                        </li>
-                        <li class="side_item side_premium">
-                            <a href="/stubbyPlanner/selfguide/index.do"><i></i>프리미엄</a>
-                        </li>
-                    </ul>
-
-<!--  -->
 
                 </aside>
             </div>

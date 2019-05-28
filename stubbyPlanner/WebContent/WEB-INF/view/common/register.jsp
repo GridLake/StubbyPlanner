@@ -98,48 +98,48 @@ function FSubmit()
 
 
 
-	if(f.pname.value=='')
+	if(f.name.value=='')
 	{
 		func_alert("이름이 입력되지 않았습니다.");
-		f.pname.focus();
+		f.name.focus();
 		return;
 	}
 
-	if(f.pid.value=='')
+	if(f.member_id.value=='')
 	{
 		func_alert("아이디가 입력되지 않았습니다.");
-		f.pid.focus();
+		f.member_id.focus();
 		return;
 	}
-	if(f.pid.value.length<4)
+	if(f.member_id.value.length<4)
 	{
 		func_alert("아이디는 4자 이상이어야 합니다.");
-		f.pid.focus();
+		f.member_id.focus();
 		return;
 	}
-	if(f.ppass.value=='')
+	if(f.password.value=='')
 	{
 		func_alert("비밀번호가 입력되지 않았습니다.");
-		f.ppass.focus();
+		f.password.focus();
 		return;
 	}
-	if(f.ppass.value.length<4)
+	if(f.password.value.length<4)
 	{
 		func_alert("비밀번호는 6자이상이어야 합니다.");
-		f.ppass.focus();
+		f.password.focus();
 		return;
 	}
 
-	if(f.ppass.value!=f.ppass_confirm.value)
+	if(f.password.value!=f.password_confirm.value)
 	{
 		func_alert("입력된 비밀번호가 서로 일치하지 않습니다.");
-		f.ppass.focus();
+		f.password.focus();
 		return;
 	}
-	if(f.pemail.value=='')
+	if(f.member_email.value=='')
 	{
 		func_alert("이메일이 입력되지 않았습니다.");
-		f.pemail.focus();
+		f.member_email.focus();
 		return;
 	}
 	if(f.vemail.value!='1')
@@ -159,14 +159,14 @@ function FSubmit()
 //		return;
 //	}
 
-	if(IDValidated==0)
-	{func_alert("아이디 중복검사를 먼저 하세요.");return;}
+	/* if(IDValidated==0)
+	{func_alert("아이디 중복검사를 먼저 하세요.");return;} */
 
 	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
 	var split = letters.split("");var num = '';var c = '';
 	var encrypted = '';
-	var it = f.ppass.value;
-	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.ppass.value = encrypted;encrypted = '';
+	var it = f.password.value;
+	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.password.value = encrypted;encrypted = '';
 
 
 	f.submit();
@@ -175,17 +175,17 @@ function FSubmit()
 
 	function check(ctype)
 	{
-		v_id=$("#pid").val();
+		v_id=$("#member_id").val();
 
-		if($("#pid").val().length<5||$("#pid").val().length>10)
+		if($("#member_id").val().length<5||$("#member_id").val().length>10)
 		{
 			func_alert("아이디는 5자~10자까지 가능합니다.");
-			$("#pid").focus();
+			$("#member_id").focus();
 			return;
 		}
 
-		$.ajax({
-			   url: "checkUser_ajax.asp",
+		/* $.ajax({
+			   url: "/stubbyPlanner/common_ajax/checkUser_ajax.do",
 			 type: "POST",
 			  async: false,
 			  data: {id:v_id},
@@ -208,8 +208,8 @@ function FSubmit()
 				$("#pid_btn").removeClass("btn-u-default");
 
 					func_alert("이미 등록된 아이디입니다. 다른 아이디를 입력하세요.");
-					$("#pid").val("");
-					$("#pid").focus("");
+					$("#member_id").val("");
+					$("#member_id").focus("");
 				
 
 				
@@ -217,7 +217,7 @@ function FSubmit()
 
 			}
 		});
-
+ */
 
 
 	}
@@ -237,7 +237,7 @@ function FSubmit()
 				<script>
 				function verify()
 				{
-					if(document.getElementById("pemail").value.length>5)
+					if(document.getElementById("member_email").value.length>5)
 					{
 
 	verifyemail();
@@ -257,8 +257,8 @@ function FSubmit()
 					$("#btnemail").addClass("btn-u-default");
 					$("#btnemail").hide();
 
-					document.getElementById("pemail").style.border = "0px";
-					document.getElementById("pemail").blur();
+					document.getElementById("member_email").style.border = "0px";
+					document.getElementById("member_email").blur();
 				}
 				</script>
 
@@ -266,7 +266,7 @@ function FSubmit()
 
 
 
-	<form name="form" action="/stubbyPlanner/asp/join.do?lang=ko&flink=&mode=new&from=b2" method="post" class="sky-form">
+	<form name="form" action="/stubbyPlanner/asp/join.do" method="post" class="sky-form">
 	<input type="hidden" name="h_url" value="">
 
 
@@ -287,7 +287,7 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" name="pname">
+                                                <input type="text" name="name">
                                             </label>
                                         </div>
                                     </div>
@@ -298,9 +298,9 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
                                 <div class="input-group">
-			<input class="form-control" type="text" size="12" name="pid" id="pid" maxlength="12"  placeholder="영문/숫자만 사용가능, 4~12자"> 
+			<input class="form-control" type="text" size="12" name="member_id" id="member_id" maxlength="12"  placeholder="영문/숫자만 사용가능, 4~12자"> 
                                     <span class="input-group-btn">
-				<button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button>
+				<!-- <button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button> -->
                                     </span>
                                 </div>
                                             </label>
@@ -317,7 +317,7 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" name="ppass" maxlength="18" placeholder="영문/숫자만 사용가능, 4~8자">
+                                                <input type="password" name="password" maxlength="18" placeholder="영문/숫자만 사용가능, 4~8자">
                                             </label>
                                         </div>
                                     </div>
@@ -328,7 +328,7 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password"  size="12" name="ppass_confirm" maxlength="18">
+                                                <input type="password"  size="12" name="password_confirm" maxlength="18">
                                             </label>
                                         </div>
                                     </div>
@@ -340,7 +340,7 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
                                 <div class="input-group">
-	                            <input type="text" class="form-control"  size="25" name="pemail" id="pemail" maxlength="100">
+	                            <input type="text" class="form-control"  size="25" name="member_email" id="member_email" maxlength="100">
 			<input type="hidden" name="vemail" id="vemail" value="0">
                                     <span class="input-group-btn">
                                         <button onclick="javascript:verify();"  id="btnemail"  class="btn-u btn-u-red" type="button">이메일 인증받기</button>
@@ -602,7 +602,7 @@ function FSubmit()
                                 </section>
 
                                 <section>
-                                    <label class="checkbox"><input type="checkbox" name="accept_mail" value="Y" id="AcceptMail" checked><i></i>여행(계획)중일때에 해당 여행과 관련된 회원특가 광고메일을 받겠습니다.</label>
+                                    <label class="checkbox"><input type="checkbox" name="accept_mail" value="Y" id="accept_mail" checked><i></i>여행(계획)중일때에 해당 여행과 관련된 회원특가 광고메일을 받겠습니다.</label>
                                 </section>
                                 
                                 <section>
