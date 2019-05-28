@@ -267,7 +267,7 @@ function FSubmit()
 
 
 	<form name="form" action="/stubbyPlanner/asp/join.do" method="post" class="sky-form">
-	<input type="hidden" name="h_url" value="">
+<!-- 	<input type="hidden" name="h_url" value="">
 
 
                         <header  style="text-align:center">회원가입 with FACEBOOK</header>                            
@@ -277,8 +277,15 @@ function FSubmit()
 		    </section>
 		 </fieldset>
 	
-	<hr/>
-
+	<hr/> -->
+				<section>
+	 				<h1 class="c">
+                        <a href="/stubbyPlanner/common/index.do">
+                            <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo" style="align: center;"/>
+                        </a>
+                    </h1>
+				</section>
+				<hr/>
                         <header  style="text-align:center">회원가입/정보변경</header>                            
                             <fieldset>                  
                                 <section>

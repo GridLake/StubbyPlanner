@@ -564,7 +564,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                         </li>
 
 
-<!--  -->
+<!-- 
 						<li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
                                 <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
@@ -584,14 +584,14 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                     </li>
                                 </ul>
                                 <ul class="prfPopup_section">
-<!--
+
                                     <li class="prfPopup_item prfPopup_coupon">
                                         <a href="/coupon/index.asp"><i></i>쿠폰함</a>
                                     </li>
                                     <li class="prfPopup_item prfPopup_square">
                                         <a href="/square/"><i></i>광장</a>
                                     </li>
--->
+
                                     <li class="prfPopup_item prfPopup_premium">
                                         <a href="/selfguide/"><i></i>프리미엄</a>
                                     </li>
@@ -612,7 +612,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             </div>
                         </li>
 
-<!--  -->
+ -->
                         <li class="gnb_item sign_out">
                             <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>
@@ -657,7 +657,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                 <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
-<!--  -->
+<!-- 
 						<li class="side_item sign_in">
                             <div class="side_profile">
                                 <a href="#" class="profile_photo">
@@ -680,14 +680,14 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                 <i></i>예약내역
                             </a>
                         </li>
-<!--
+
                         <li class="side_item side_coupon">
                             <a href="/coupon/index.asp"><i></i>쿠폰함</a>
                         </li>
                         <li class="side_item side_square">
                             <a href="/square/index.asp"><i></i>광장</a>
                         </li>
--->
+
                         <li class="side_item side_premium">
                             <a href="/selfguide/index.asp"><i></i>프리미엄</a>
                         </li>
@@ -705,8 +705,8 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/common/logout.asp">로그아웃</a>
                         </li>
                     </ul>
-<!--  -->
 
+ -->
                         <li class="side_item side_btn sign_out">
                             <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
                         </li>

@@ -31,12 +31,11 @@ public class LoginHandler implements CommandHandler{
 
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("UTF-8");
 		
 		System.out.println("loginhandler");
 		String member_id = trim(request.getParameter("member_id"));
 		//String password = trim(request.getParameter("password"));
-		String password = trim(request.getParameter("pwd"));
+		String password = trim(request.getParameter("password"));
 		
 		
 		// System.out.println( "XXXX : " +   password );
@@ -63,11 +62,10 @@ public class LoginHandler implements CommandHandler{
 			//res.sendRedirect(req.getContextPath() + "/index.jsp");
 	HttpSession session = request.getSession(false);
 	if ( session.getAttribute("referer") != null) {
-		System.out.println("loginhandlerif");
 		response.sendRedirect( (String)session.getAttribute("referer") );
 	}else {
 		System.out.println("loginhandlerelse");
-		response.sendRedirect(request.getContextPath() + "/common/index.do");
+		response.sendRedirect(request.getContextPath() + "/common/index_login.do");
 	}
 			return null;
 		} catch (LoginFailException e) {			

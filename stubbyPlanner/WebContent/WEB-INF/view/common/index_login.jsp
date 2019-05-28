@@ -36,9 +36,9 @@
     <link rel="icon" href="favicon.png"> 
 
     <!-- CSS/JavaScript -->
-    <link rel="stylesheet" type="text/css" href="/css2/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="/css2/common.css">
-    <link rel="stylesheet" type="text/css" href="/market/css/tourHome.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/common.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome.css">
 	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/header_footer.css">
@@ -476,15 +476,14 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
     <header>
 
 
-
         <div class="header_banner">
             <div class="stu_inner_wrap">
                 <a href="/stubbyPlanner/externalData/market/index.asp?from=top1">
                     <div class="header_banner_wrap">
-                        <p class="txtWrap">복잡한 유럽 자유여행이 처음이라면
-                            <span>전문가 맞춤여행 의뢰 55,200원~</span>
+                        <p class="txtWrap">1,700가지 유럽투어/액티비티
+                            <span>얼리버드 SALE</span>
                         </p>
-                        <p class="btnWrap">자세히</p>
+                        <p class="btnWrap">미리 예약할수록!!</p>
                     </div>
                 </a>
                 <i class="ico_close"></i>
@@ -564,9 +563,16 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
                         </li>
 
-                        <li class="gnb_item gnb_profile sign_in">
+
+<!--  -->
+						<li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
-                                <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        <c:if test="${!empty authUser.profile_pic }">
+                                            <img class="fh" src="${authUser.profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty authUser.profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
                             </a>
 
 
@@ -574,11 +580,16 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                 <ul class="prfPopup_section">
                                     <li class="prfPopup_item prfPopup_profile">
                                         <a href="#" class="profile_photo">
+                                        <c:if test="${!empty authUser.profile_pic }">
+                                            <img class="fh" src="${authUser.profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty authUser.profile_pic }">
                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
                                         </a>
                                         <div class="profile_name">
-                                            <p>rlrlghk</p>
-                                            <a href="/rlrlghk" class="mng_account">마이페이지</a>
+                                            <p>${authUser.member_id}</p>
+                                            <a href="/${authUser.member_id}" class="mng_account">마이페이지</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -590,10 +601,10 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                     <li class="prfPopup_item prfPopup_square">
                                         <a href="/square/"><i></i>광장</a>
                                     </li>
--->
                                     <li class="prfPopup_item prfPopup_premium">
                                         <a href="/selfguide/"><i></i>프리미엄</a>
                                     </li>
+-->
                                 </ul>
 
                                 <ul class="prfPopup_section">
@@ -601,16 +612,15 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                         <a href="/qa/">1:1문의</a>
                                     </li>
                                     <li class="prfPopup_item">
-                                        <a href="/common/memberinfo.asp">회원정보변경</a>
+                                        <a href="/stubbyPlanner/common/register.do">회원정보변경</a>
                                     </li>
                                     <li class="prfPopup_item">
-                                        <a href="/common/logout.asp">로그아웃</a>
+                                        <a href="/stubbyPlanner/common/login.do">로그아웃</a>
                                     </li>
                                 </ul>
 
                             </div>
                         </li>
-
 
 
                     </ul>
@@ -621,17 +631,17 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/">홈</a>
                         </li>
                         <li class="lnb_item ">
-                            <a href="/stubbyPlanner/planner/index.asp">계획짜기</a>
+                            <a href="/stubbyPlanner/planner/index.do">계획짜기</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/stubbyPlanner/market/index.asp">투어예약</a>
+                            <a href="/stubbyPlanner/market/index.do">투어예약</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/stubbyPlanner/mb/index.asp">숙소예약</a>
+                            <a href="/stubbyPlanner/mb/index.do">숙소예약</a>
                         </li>
 
                         <li class="lnb_item ">
-                            <a href="/stubbyPlanner/exp/list.asp">여행지</a>
+                            <a href="/stubbyPlanner/exp/list.do">여행지</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
@@ -649,16 +659,16 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             </a>
                         </li>
 
-                        <li class="side_item sign_in">
+						<li class="side_item sign_in">
                             <div class="side_profile">
                                 <a href="#" class="profile_photo">
                                     <i>
-                                        <img class="fh" src="/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        <img class="fh" src="${authUser.profile_pic}" alt="프로필 사진"/>
                                     </i>
                                 </a>
                                 <div class="profile_name">
-                                    <p>rlrlghk</p>
-                                    <a href="/rlrlghk" class="mng_account">마이페이지</a>
+                                    <p>${authUser.member_id}</p>
+                                    <a href="/${authUser.member_id}" class="mng_account">마이페이지</a>
                                 </div>
                             </div>
                         </li>
@@ -696,7 +706,6 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                             <a href="/common/logout.asp">로그아웃</a>
                         </li>
                     </ul>
-
 
                 </aside>
             </div>
