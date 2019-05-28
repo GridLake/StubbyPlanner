@@ -46,6 +46,7 @@
 
     <!-- swiper.min.js : 이미지슬라이더 -->
     <script src="/stubbyPlanner/externalData/js2/swiper.min.js" type="text/javascript"></script>
+    <script src="/stubbyPlanner/externalData/js2/swiper.min.js" type="text/javascript"></script>
     <!-- header/footer -->
     <script src="/stubbyPlanner/externalData/js2/header_footer.js" type="text/javascript"></script>
 
@@ -499,7 +500,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                         </a>
                     </div>
                     <h1 class="stu_logo">
-                        <a href="/">
+                        <a href="/stubbyPlanner/common/index.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>

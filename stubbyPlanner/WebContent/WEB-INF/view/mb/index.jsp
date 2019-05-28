@@ -160,7 +160,7 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"도시로
                         </a>
                     </div>
                     <h1 class="stu_logo">
-                        <a href="/">
+                        <a href="/stubbyPlanner/common/index.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>

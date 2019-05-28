@@ -285,7 +285,7 @@ function logging(a,p)
                         </a>
                     </div>
                     <h1 class="stu_logo">
-                        <a href="/">
+                        <a href="/stubbyPlanner/common/index.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>

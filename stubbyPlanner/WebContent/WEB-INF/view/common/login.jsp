@@ -453,6 +453,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 <div class="row" style="margin-top:95px;margin-bottom:50px;">
 	<div class="col-md-3 col-xs-1"></div>
 	<div class="col-md-6 col-xs-10">
+	<!-- 
                         <form action="#" id="sky-form1" class="sky-form">
                             <header  style="text-align:center">페이스북계정으로 로그인</header>
                             
@@ -461,9 +462,11 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 			<a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="/stubbyPlanner/externalData/img_v8/facebook_login.png"></a>
 
 		    </section>
+		    
 		</fieldset>
 	          </form>
 		<br>
+		 -->
 	          <form name="form" action="/stubbyPlanner/common/login.do" method="post" class="sky-form">
 		<input type="hidden" name="h_url" value=""><!-- "http://www.stubbyplanner.com/planner/index.asp" -->
                             <header  style="text-align:center">스투비계정으로 로그인</header>                            
