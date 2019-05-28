@@ -279,11 +279,13 @@ function FSubmit()
 	
 	<hr/> -->
 				<section>
+                 <fieldset>                  
 	 				<h1 class="c">
                         <a href="/stubbyPlanner/common/index.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo" style="align: center;"/>
                         </a>
                     </h1>
+				 </fieldset>
 				</section>
 				<hr/>
                         <header  style="text-align:center">회원가입/정보변경</header>                            
