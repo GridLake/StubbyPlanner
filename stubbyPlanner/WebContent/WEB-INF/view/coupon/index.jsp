@@ -14,7 +14,7 @@
     <meta name="author" content="">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/stubbyPlanner/externalData/images2/common/favicon.ico">
     <link rel="stylesheet" href="/stubbyPlanner/externalData/assets/plugins/font-awesome/css/font-awesome.min.css">
 
 

@@ -254,6 +254,9 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"도시로
                         <li class="lnb_item ">
                             <a href="/stubbyPlanner/exp/list.do">여행지</a>
                         </li>
+                        <li class="lnb_item ">
+                            <a href="/stubbyPlanner/square/index.do">광장</a>
+                        </li>
                     </ul>
                     <div class="gnb_search_wrap">
                         <a href="#" class="gnb_search">

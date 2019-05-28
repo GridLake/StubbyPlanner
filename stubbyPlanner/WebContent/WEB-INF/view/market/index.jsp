@@ -28,8 +28,8 @@
     <meta name="author" content="">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" href="/favicon.png"> 
+    <link rel="shortcut icon" href="/stubbyPlanner/externalData/images2/common/favicon.ico">
+    <link rel="icon" href="/stubbyPlanner/externalData/images2/common/favicon.png"> 
 
 
 
@@ -270,6 +270,9 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"투어 �
 
                         <li class="lnb_item ">
                             <a href="/stubbyPlanner/exp/list.do">여행지</a>
+                        </li>
+                        <li class="lnb_item ">
+                            <a href="/stubbyPlanner/square/index.do">광장</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">

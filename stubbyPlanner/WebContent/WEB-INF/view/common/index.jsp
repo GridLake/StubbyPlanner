@@ -627,7 +627,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                 <nav class="lnb_container">
                     <ul class="lnb_wrap">
                         <li class="lnb_item active">
-                            <a href="/">홈</a>
+                            <a href="/stubbyPlanner/common/index.do">홈</a>
                         </li>
                         <li class="lnb_item ">
                             <a href="/stubbyPlanner/planner/index.do">계획짜기</a>
@@ -641,6 +641,9 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
                         <li class="lnb_item ">
                             <a href="/stubbyPlanner/exp/list.do">여행지</a>
+                        </li>
+                        <li class="lnb_item ">
+                            <a href="/stubbyPlanner/square/index.do">광장</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
