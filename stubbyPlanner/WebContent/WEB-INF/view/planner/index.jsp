@@ -236,6 +236,7 @@ a {display:inline}
 	margin-left: -11.5px;
 	margin-top: -18px;
 }
+
 </style>
 <script>
 function logging(a,p)
@@ -251,11 +252,15 @@ function logging(a,p)
 	
 }
 </script>
+<script>
+		var id = "#"+'${ lnb_item }';
+		$(".lnb_item").removeClass("active");
+		$(id).addClass("active");
+	</script>
 </head>	
 <body >
     <div class="stu_wrap">
         <!-- 기존 헤더 영역(삭제하세요.) -->
-
 
 <jsp:include page="/WEB-INF/layout/header_large.jsp"></jsp:include>
 
