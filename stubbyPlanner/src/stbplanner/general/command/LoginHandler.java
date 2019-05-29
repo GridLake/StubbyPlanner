@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import stbplanner.general.dto.RegisterDTO;
 import stbplanner.general.service.LoginService;
 import stbplanner.general.service.User;
 import stbplanner.service.LoginFailException;
@@ -57,8 +58,8 @@ public class LoginHandler implements CommandHandler{
 //System.out.println("> LoginHandler - referer : " + referer);
 		try {
 			System.out.println("loginhandler try ");
-			User user = loginService.login(member_id, password);
-			request.getSession().setAttribute("authUser", user);
+			RegisterDTO dto = loginService.login(member_id, password);
+			request.getSession().setAttribute("authUser", dto);
 			//res.sendRedirect(req.getContextPath() + "/index.jsp");
 	HttpSession session = request.getSession(false);
 	if ( session.getAttribute("referer") != null) {

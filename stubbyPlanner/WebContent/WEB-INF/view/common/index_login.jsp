@@ -612,7 +612,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                         <a href="/qa/">1:1문의</a>
                                     </li>
                                     <li class="prfPopup_item">
-                                        <a href="/stubbyPlanner/common/register.do">회원정보변경</a>
+                                        <a href="/stubbyPlanner/common/infoChange.do">회원정보변경</a>
                                     </li>
                                     <li class="prfPopup_item">
                                         <a href="/stubbyPlanner/common/login.do">로그아웃</a>

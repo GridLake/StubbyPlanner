@@ -9,7 +9,7 @@
 
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> 회원가입 - 스투비플래너</title>
+<title> 회원정보변경 - 스투비플래너</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -90,37 +90,24 @@ function FSubmit()
 {
 	var f=document.form;
 
-	if(!f.agree.checked)
-	{
-		func_alert("약관에 동의하셔야 회원가입이 가능합니다.");
-		return;
-	}
-
-
 
 	if(f.name.value=='')
 	{
-		func_alert("이름이 입력되지 않았습니다.");
+		func_alert("이름/별명을 입력하셔야 수정됩니다.");
 		f.name.focus();
 		return;
 	}
 
-	if(f.member_id.value=='')
+	if(f.cur_password.value=='')
 	{
-		func_alert("아이디가 입력되지 않았습니다.");
-		f.member_id.focus();
+		func_alert("현재의 비밀번호를 입력하셔야 수정됩니다.");
+		f.cur_password.focus();
 		return;
 	}
-	if(f.member_id.value.length<4)
+	if(!f.cur_password.value=="${authUser.password}")
 	{
-		func_alert("아이디는 4자 이상이어야 합니다.");
-		f.member_id.focus();
-		return;
-	}
-	if(f.password.value=='')
-	{
-		func_alert("비밀번호가 입력되지 않았습니다.");
-		f.password.focus();
+		func_alert("입력하신 현재 비밀번호가 틀렸습니다.");
+		f.cur_password.focus();
 		return;
 	}
 	if(f.password.value.length<4)
@@ -148,19 +135,25 @@ function FSubmit()
 		f.pemail.focus();
 		return;
 	}
-if(f.gender.value=='')
-{
-	func_alert('성별이 선택되지 않았습니다. 성별을 선택해주세요.');
-	return;
-}
-if(document.getElementById("birth_year").value==''||document.getElementById("birth_month").value=='')
-{
-	func_alert('생년월일이 선택되지 않았습니다. 생년월일을 선택해주세요.');
-	return;
-}
+	if(f.gender.value=='')
+	{
+		func_alert('성별이 선택되지 않았습니다. 성별을 선택해주세요.');
+		return;
+	}
+	if(document.getElementById("birth_year").value==''||document.getElementById("birth_month").value=='')
+	{
+		func_alert('생년월일이 선택되지 않았습니다. 생년월일을 선택해주세요.');
+		return;
+	}
 
 	/* if(IDValidated==0)
 	{func_alert("아이디 중복검사를 먼저 하세요.");return;} */
+
+	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
+	var split = letters.split("");var num = '';var c = '';
+	var encrypted = '';
+	var it = f.cur_password.value;
+	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.cur_password.value = encrypted;encrypted = '';
 
 	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
 	var split = letters.split("");var num = '';var c = '';
@@ -172,55 +165,6 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 	f.submit();
 }
 
-
-	function check(ctype)
-	{
-		v_id=$("#member_id").val();
-
-		if($("#member_id").val().length<5||$("#member_id").val().length>10)
-		{
-			func_alert("아이디는 5자~10자까지 가능합니다.");
-			$("#member_id").focus();
-			return;
-		}
-
-		/* $.ajax({
-			   url: "/stubbyPlanner/common_ajax/checkUser_ajax.do",
-			 type: "POST",
-			  async: false,
-			  data: {id:v_id},
-			  success: function( data ) {
-
-			if($.trim(data)=="OK")
-			{
-				IDValidated=1;
-				func_alert("사용가능한 아이디입니다.");
-
-				$("#pid_btn").removeClass("btn-u-red");
-				$("#pid_btn").addClass("btn-u-default");
-				
-			}
-			else	
-			{
-					IDValidated=0;
-
-				$("#pid_btn").addClass("btn-u-red");
-				$("#pid_btn").removeClass("btn-u-default");
-
-					func_alert("이미 등록된 아이디입니다. 다른 아이디를 입력하세요.");
-					$("#member_id").val("");
-					$("#member_id").focus("");
-				
-
-				
-			}					
-
-			}
-		});
- */
-
-
-	}
 	function ferror()
 	{
 		IDValidated=0;
@@ -266,7 +210,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 
 
 
-	<form name="form" action="/stubbyPlanner/asp/join.do" method="post" class="sky-form">
+	<form name="form" action="/stubbyPlanner/common/infoChange.do" method="post" class="sky-form">
 <!-- 	<input type="hidden" name="h_url" value="">
 
 
@@ -282,7 +226,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                  <fieldset>                  
 	 				<h1 class="c">
 	 				<div style="text-align: center;">
-                        <a href="/stubbyPlanner/common/index.do">
+                        <a href="/stubbyPlanner/common/index_login.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
 	 				</div>
@@ -290,7 +234,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 				 </fieldset>
 				</section>
 				<hr/>
-                        <header  style="text-align:center">회원가입</header>                            
+                        <header  style="text-align:center">회원정보변경</header>                            
                             <fieldset>                  
                                 <section>
                                     <div class="row">
@@ -298,7 +242,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" name="name">
+                                                <input type="text" name="name" value="${authUser.name}">
                                             </label>
                                         </div>
                                     </div>
@@ -308,12 +252,13 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         <label class="label col col-4">아이디</label>
                                         <div class="col col-8">
                                             <label class="input">
-                                <div class="input-group">
+			                                <b>${authUser.member_id}</b>
+<!--                                 <div class="input-group">
 			<input class="form-control" type="text" size="12" name="member_id" id="member_id" maxlength="12"  placeholder="영문/숫자만 사용가능, 4~12자"> 
                                     <span class="input-group-btn">
-				<!-- <button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button> -->
+				<button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button>
                                     </span>
-                                </div>
+                                </div> -->
                                             </label>
                                         </div>
                                     </div>
@@ -324,7 +269,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 
 
                                     <div class="row">
-                                        <label class="label col col-4">비밀번호</label>
+                                        <label class="label col col-4">변경 비밀번호</label>
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
@@ -335,11 +280,22 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                 </section>
                                 <section>
                                     <div class="row">
-                                        <label class="label col col-4">비밀번호 확인</label>
+                                        <label class="label col col-4">변경 비밀번호 확인</label>
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
                                                 <input type="password"  size="12" name="password_confirm" maxlength="18">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section>
+                                    <div class="row">
+                                        <label class="label col col-4">현재 비밀번호</label>
+                                        <div class="col col-8">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-lock"></i>
+                                                <input type="password"  size="12" name="cur_password" maxlength="18">
                                             </label>
                                         </div>
                                     </div>
@@ -351,8 +307,8 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         <div class="col col-8">
                                             <label class="input">
                                 <div class="input-group">
-	                            <input type="text" class="form-control"  size="25" name="member_email" id="member_email" maxlength="100">
-			<input type="hidden" name="vemail" id="vemail" value="0">
+	                            <input type="text" class="form-control"  size="25" name="member_email" id="member_email" value="${authUser.member_email}" maxlength="100">
+			<!-- <in	put type="hidden" name="vemail" id="vemail" value="0"> -->
                                     <span class="input-group-btn">
                                         <button onclick="javascript:verify();"  id="btnemail"  class="btn-u btn-u-red" type="button">이메일 인증받기</button>
                                     </span>
@@ -368,7 +324,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         <div class="col col-8">
                                             <label class="input">
 
-				<select id="gender" name="gender" class="form-control  col-5">
+				<select id="gender" name="gender" class="form-control  col-5" >
 				<option value="">----</option>
 				<option value="M">남성</option>
 				<option value="W">여성</option>
@@ -611,19 +567,18 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         </div>
                                     </div>
                                 </section>
-
+				
                                 <section>
                                     <label class="checkbox"><input type="checkbox" name="accept_mail" value="Y" id="accept_mail" checked><i></i>여행(계획)중일때에 해당 여행과 관련된 회원특가 광고메일을 받겠습니다.</label>
                                 </section>
                                 
                                 <section>
-			<a class="btn-u btn-u-dark btn-block" href="https://www.stubbyplanner.com/common/usercontract.html" target="_blank">이용약관</a>
-			<a class="btn-u btn-u-dark btn-block" href="https://www.stubbyplanner.com/personalinfo.asp" target="_blank">개인정보 취급방침</a>
-                                    <label class="checkbox"><input type="checkbox" name="agree" id="agree"><i></i>약관과 개인정보 수집 및 이용방침에 동의합니다.</label>
+                                	<a class="btn-u btn-u-dark btn-block" href="https://www.stubbyplanner.com/common/usercontract.html" target="_blank">회원탈퇴</a>
                                 </section>
+                                
                             </fieldset>
                             <footer style="text-align:center">
-			<a class="btn-u btn-u-lg" href="javascript:FSubmit();">회원가입</a> <a class="btn-u btn-u-lg btn-u-default" href="javascript:window.history.go(-1);">취소</a>
+			<a class="btn-u btn-u-lg" href="javascript:FSubmit();">정보변경</a> <a class="btn-u btn-u-lg btn-u-default" href="javascript:window.history.go(-1);">취소</a>
                             </footer>
 
                         </form>      

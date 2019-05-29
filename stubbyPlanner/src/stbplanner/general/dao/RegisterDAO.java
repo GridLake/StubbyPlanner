@@ -12,7 +12,7 @@ import stbplanner.general.dto.RegisterDTO;
 public class RegisterDAO {
 	private static RegisterDAO dao = null;
 	
-	public RegisterDAO(){}
+	private RegisterDAO(){}
 	
 	public static RegisterDAO getInstance() {
 		if (dao==null) {
@@ -35,9 +35,23 @@ public class RegisterDAO {
 			pstmt.setString(9, dto.getVemail());
 			System.out.println("registerdao");
 			return pstmt.executeUpdate();
-//		}finally {
-//			JdbcUtil.close(pstmt);
 		}
+	}
+	
+	public void update(Connection conn, RegisterDTO dto)throws SQLException{
+		try(PreparedStatement pstmt = conn.prepareStatement
+				("update tbl_member set name=?,password=?,member_email=?,gender=?,birth_year=?,birth_month=?,accept_mail=? where member_id=? and password=?")){
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getPassword());
+			pstmt.setString(3, dto.getMember_email());
+			pstmt.setString(4, dto.getGender());
+			pstmt.setString(5, dto.getBirth_year());
+			pstmt.setString(6, dto.getBirth_month());
+			pstmt.setString(7, dto.getAccept_mail());
+			pstmt.setString(8, dto.getMember_id());
+			pstmt.setString(9, dto.getPassword_confirm());
+			pstmt.executeUpdate();
+		}                      
 	}
 
 	public RegisterDTO selectById(Connection conn, String member_id) throws SQLException {
@@ -45,18 +59,26 @@ public class RegisterDAO {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement("select member_id,password from tbl_member where member_id=?");
+			pstmt = conn.prepareStatement("select * from tbl_member where member_id=?");
 			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 			RegisterDTO dto = null;
 			if( rs.next()) {
-				
-				dto = new RegisterDTO(
-						rs.getString("member_id"),
-						rs.getString("password")
-						);
+				dto = new RegisterDTO( );
+				dto.setName(rs.getString("name"));
+				dto.setMember_id(rs.getString("member_id")); 
+				dto.setPassword(rs.getString("password"));		
+				dto.setMember_email(rs.getString("member_email"));
+				dto.setGender(rs.getString("gender"));
+				dto.setBirth_year(rs.getString("birth_year"));
+				dto.setBirth_month(rs.getString("birth_month"));
+				dto.setAccept_mail(rs.getString("accept_mail"));
+				dto.setProfile_pic(rs.getString("profile_pic"));						 
 			}
 			return dto;
+		
+			
+			
 			
 		} finally {
 			JdbcUtil.close(rs);

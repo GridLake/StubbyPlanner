@@ -13,28 +13,27 @@ public class RegisterDTO {
 	private String accept_mail;
 	private String profile_pic;
 	
-	
-	public RegisterDTO(String name, String member_id, String password, String password_confirm, String member_email,
-			String vemail, String gender, String birth_year, String birth_month, String accept_mail) {
-		this.name = name;
-		this.member_id = member_id;
-		this.password = password;
-		this.password_confirm = password_confirm;
-		this.member_email = member_email;
-		this.vemail = vemail;
-		this.gender = gender;
-		this.birth_year = birth_year;
-		this.birth_month = birth_month;
-		this.accept_mail = accept_mail;
-	}
-	
 	public RegisterDTO(String member_id, String password) {
 		this.member_id = member_id;
 		this.password = password;
 	}
-
-	public RegisterDTO() {
+ 
+	public RegisterDTO() { 
 	}
+
+	public RegisterDTO(String name, String member_id, String password, String member_email, String gender,
+			String birth_year, String birth_month, String accept_mail, String profile_pic) {
+		this.name = name;
+		this.member_id = member_id;
+		this.password = password;
+		this.member_email = member_email;
+		this.gender = gender;
+		this.birth_year = birth_year;
+		this.birth_month = birth_month;
+		this.accept_mail = accept_mail;
+		this.profile_pic = profile_pic;
+	}
+
 	public String getVemail() {
 		return vemail;
 	}
