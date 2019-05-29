@@ -262,6 +262,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
     });
 </script>
 </div>
+
             <section class="stu_md-background" style="z-index:999">
                 <div class="md-container" style="z-index:999">
                     <div class="md-header" style="background:#00A572">

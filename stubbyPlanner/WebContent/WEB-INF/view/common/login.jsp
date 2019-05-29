@@ -41,8 +41,8 @@
     <!--[if lt IE 9]><link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
 
 
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/css/stubbynew_topmenu.css">
+   <link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
+   <link rel="stylesheet" href="/stubbyPlanner/externalData/css/stubbynew_topmenu.css">
 
 <script src="https://www.google.com/jsapi"></script>
 <script>
@@ -50,7 +50,7 @@
  google.setOnLoadCallback(function() {
   WebFont.load({ custom: {
    families: [ "NanumGothic" ],
-	urls: ['https://fonts.googleapis.com/earlyaccess/nanumgothic.css']
+   urls: ['https://fonts.googleapis.com/earlyaccess/nanumgothic.css']
   }});
  });
 </script>
@@ -58,32 +58,32 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/css/custom.css">
 
-</head>	
+</head>   
 
 <body class="header-fixed">
 
 <div class="wrapper">
     <!--=== Header v5 ===-->
 
-		<!--=== Header v4 ===-->
-		<div id="header" class="header-v4" style="position:fixed;left:0;right: 0;top: 0;background:#fff">
-			<!-- Navbar -->
-			<div class="navbar navbar-default" role="navigation" >
+      <!--=== Header v4 ===-->
+      <div id="header" class="header-v4" style="position:fixed;left:0;right: 0;top: 0;background:#fff">
+         <!-- Navbar -->
+         <div class="navbar navbar-default" role="navigation" >
 
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse navbar-responsive-collapse" >
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-responsive-collapse" >
 <div style="background:#fff">
-					<div class="container" style="padding-top:5px;padding-bottom:5px;">
+               <div class="container" style="padding-top:5px;padding-bottom:5px;">
 
 
-						<div class="row">
-							<div class="col-md-2" style="padding-top:7px;width:17%;padding-left:0px">
-								<a  href="/stubbyPlanner/common/index.do" style="">
-									<img width="160px" id="logo-header" src="/stubbyPlanner/externalData/img_v9/logo_s.png" alt="Logo">
-								</a>
-							</div>
-							<div class="col-md-10" style="width:83%;padding-right:0px;text-align:right">
+                  <div class="row">
+                     <div class="col-md-2" style="padding-top:7px;width:17%;padding-left:0px">
+                        <a  href="/stubbyPlanner/common/index.do" style="">
+                           <img width="160px" id="logo-header" src="/stubbyPlanner/externalData/img_v9/logo_s.png" alt="Logo">
+                        </a>
+                     </div>
+                     <div class="col-md-10" style="width:83%;padding-right:0px;text-align:right">
 
 
 <div style="float:left;cursor:pointer;margin-top:5px;margin-right:0px;padding: 0 52px 0 30px;display:inline-block;border-radius:18px!important;border:1px solid #e5e5e5;background: #f5f5f5;line-height: 34px;" onclick="window.location='/market/index.do'">
@@ -93,97 +93,97 @@
 
 
 
-						<ul class="nav navbar-nav" style="float:right">
+                  <ul class="nav navbar-nav" style="float:right">
 
 
 
-							<li   style="border:0px;color:#696969">
-								<a href="/planner/" style="padding-left:13px;padding-right:20px;">
-									 <font style="font-size:12pt;color:#222;font-weight:600;outline: none;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 플래너</font>
-								</a>
-							</li>
+                     <li   style="border:0px;color:#696969">
+                        <a href="/planner/" style="padding-left:13px;padding-right:20px;">
+                            <font style="font-size:12pt;color:#222;font-weight:600;outline: none;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 플래너</font>
+                        </a>
+                     </li>
 
-							<li   style="border:0px;color:#696969">
-								<a href="/exp/list.asp" style="padding-left:13px;padding-right:20px;">
-									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 여행지</font>
-								</a>
-							</li>
+                     <li   style="border:0px;color:#696969">
+                        <a href="/exp/list.asp" style="padding-left:13px;padding-right:20px;">
+                            <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 여행지</font>
+                        </a>
+                     </li>
 
-							<li   style="border:0px;color:#696969">
-								<a href="/market/" style="padding-left:13px;padding-right:20px;">
-									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 투어/일정</font>
-								</a>
-							</li>
-							<li   style="border:0px;color:#696969">
-								<a href="/mb/" style="padding-left:13px;padding-right:20px;">
-									 <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 숙소</font>
-								</a>
-							</li>
+                     <li   style="border:0px;color:#696969">
+                        <a href="/market/" style="padding-left:13px;padding-right:20px;">
+                            <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 투어/일정</font>
+                        </a>
+                     </li>
+                     <li   style="border:0px;color:#696969">
+                        <a href="/mb/" style="padding-left:13px;padding-right:20px;">
+                            <font style="font-size:11pt;color:#222;font-weight:500;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 숙소</font>
+                        </a>
+                     </li>
 
-							<li style="border:0px">
-								<a href="/guide/reservation.asp" style="padding-left:13px;padding-right:13px;">
-									<font style="font-size:10pt;color:#222;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 내 예약</font> 
+                     <li style="border:0px">
+                        <a href="/guide/reservation.asp" style="padding-left:13px;padding-right:13px;">
+                           <font style="font-size:10pt;color:#222;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 내 예약</font> 
 
 
     
-								</a>
-							</li>
+                        </a>
+                     </li>
 
-							<li style="border:0px">
-								<a href="/coupon/index.asp" style="padding-left:13px;padding-right:13px;">
-									<font style="font-size:10pt;color:#222;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 쿠폰함</font> 
-								</a>
-							</li>
-
-
-
-
-
-							<li class="dropdown" style="border:0px;">
-								<a href="javascript:window.location='/market/'" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:13px;padding-right:30px">
-									 <font style="font-size:15pt;color:#696969"><i class="fa fa-user" aria-hidden="true"></i></font>
-								</a>
-								<ul class="dropdown-menu" style="margin-left:-150px">
-
-								<li><a href="https://www.stubbyplanner.com/common/login.asp">로그인</a></li>
-								<li><a href="https://www.stubbyplanner.com/common/register.asp">회원가입</a></li>
-
-
-
-								<li><a href="/square/"><b>광장</b></a></li>
-
-								<li><a href="/selfguide/"><b>프리미엄</b></a></li>
-								<li><a href="/crowd/tripwith.asp"><b>동행</b></a></li>
-								<li><a href="/qa/">문의</a></li>
-								</ul>
-							</li>
-
-
-
-						</ul>
-
-						
-
-							</div>
-						</div>
+                     <li style="border:0px">
+                        <a href="/coupon/index.asp" style="padding-left:13px;padding-right:13px;">
+                           <font style="font-size:10pt;color:#222;font-family: 'Noto Sans KR','dotum','돋움','verdana','snas-serif';letter-spacing: -1px;line-height: 1.4;"> 쿠폰함</font> 
+                        </a>
+                     </li>
 
 
 
 
 
+                     <li class="dropdown" style="border:0px;">
+                        <a href="javascript:window.location='/market/'" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:13px;padding-right:30px">
+                            <font style="font-size:15pt;color:#696969"><i class="fa fa-user" aria-hidden="true"></i></font>
+                        </a>
+                        <ul class="dropdown-menu" style="margin-left:-150px">
 
-					</div><!--/end container-->
+                        <li><a href="https://www.stubbyplanner.com/common/login.asp">로그인</a></li>
+                        <li><a href="https://www.stubbyplanner.com/common/register.asp">회원가입</a></li>
+
+
+
+                        <li><a href="/square/"><b>광장</b></a></li>
+
+                        <li><a href="/selfguide/"><b>프리미엄</b></a></li>
+                        <li><a href="/crowd/tripwith.asp"><b>동행</b></a></li>
+                        <li><a href="/qa/">문의</a></li>
+                        </ul>
+                     </li>
+
+
+
+                  </ul>
+
+                  
+
+                     </div>
+                  </div>
+
+
+
+
+
+
+               </div><!--/end container-->
 </div>
 <div style="padding-top:0px;padding-bottom:0px;" class="container"><div id="header_plannerlist" style="display:none;border-top:1px solid #efefef;margin-top:5px;padding-top:5px;padding-bottom:10px;"></div></div>
 
 
-				</div><!--/navbar-collapse-->
-			</div>
-			<!-- End Navbar -->
+            </div><!--/navbar-collapse-->
+         </div>
+         <!-- End Navbar -->
 
 
-		</div>
-		<!--=== End Header v4 ===-->
+      </div>
+      <!--=== End Header v4 ===-->
 
 
 <script>
@@ -191,42 +191,42 @@ var is_displayed_header_plannerlist=0;
 function togglePlannerList()
 {
 
-	if(is_displayed_header_plannerlist)
-	{
-		is_displayed_header_plannerlist=0;
-		$("#header_plannerlist").html('');
-		$("#header_plannerlist").hide();
-	}
-	else
-	{
+   if(is_displayed_header_plannerlist)
+   {
+      is_displayed_header_plannerlist=0;
+      $("#header_plannerlist").html('');
+      $("#header_plannerlist").hide();
+   }
+   else
+   {
 
-		is_displayed_header_plannerlist=1;
-		
-		thtml='<div style="overflow-x:auto;">';
-		thtml+='<div style="float:left;width:20%;"><div style="padding-top:4px;padding-bottom:5px;"><b>새 플래너 시작</b></div><div style="margin-right:10px;height:220px;border:1px solid #efefef;text-align:center;background:#efefef;padding-top:50px;cursor:pointer" onclick="window.location=\'/planner/planner_rt.asp\'"><font style="font-size:49pt"><i class="fa fa-plus-circle" aria-hidden="true"></i></font></div>빈 플래너</div>';
-		thtml+='<div style="float:left;width:80%;"><div style="padding-top:4px;padding-bottom:5px;"><b>인기루트로 시작</b></div>';
-			thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg" width="100%"></a><br>서유럽 단기</div></div>';
-			thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=111031001,111011004,111021002,111041006,111041003,111041004"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c04eadc3c03e90ca9c25d825120ed706_l.jpg" width="100%"></a><br>서유럽 핵심</div></div>';
-			thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=131011001,131011003,131041002,131041032,131041001,131021001"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg" width="100%"></a><br>동유럽 단기</div></div>';
-			thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=121011002,121011001,121011048,121011005,121011057,121011007,121021001,121021041,121011003,121011004,121011008,121011003"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg" width="100%"></a><br>스페인+포르투갈</div></div>';
-			thtml+='<div style="clear:both"></div>';
-		thtml+='</div>';
+      is_displayed_header_plannerlist=1;
+      
+      thtml='<div style="overflow-x:auto;">';
+      thtml+='<div style="float:left;width:20%;"><div style="padding-top:4px;padding-bottom:5px;"><b>새 플래너 시작</b></div><div style="margin-right:10px;height:220px;border:1px solid #efefef;text-align:center;background:#efefef;padding-top:50px;cursor:pointer" onclick="window.location=\'/planner/planner_rt.asp\'"><font style="font-size:49pt"><i class="fa fa-plus-circle" aria-hidden="true"></i></font></div>빈 플래너</div>';
+      thtml+='<div style="float:left;width:80%;"><div style="padding-top:4px;padding-bottom:5px;"><b>인기루트로 시작</b></div>';
+         thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg" width="100%"></a><br>서유럽 단기</div></div>';
+         thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=111031001,111011004,111021002,111041006,111041003,111041004"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c04eadc3c03e90ca9c25d825120ed706_l.jpg" width="100%"></a><br>서유럽 핵심</div></div>';
+         thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=131011001,131011003,131041002,131041032,131041001,131021001"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg" width="100%"></a><br>동유럽 단기</div></div>';
+         thtml+='<div style="float:left;width:25%;"><div style="margin-right:10px;height:160px;"><a href="/planner/planner_rt.asp?tripgene=121011002,121011001,121011048,121011005,121011057,121011007,121021001,121021041,121011003,121011004,121011008,121011003"><img  width="100%"  src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg" width="100%"></a><br>스페인+포르투갈</div></div>';
+         thtml+='<div style="clear:both"></div>';
+      thtml+='</div>';
 
 
-		thtml+='<div style="clear:both"></div>';
-		thtml+='</div>';
+      thtml+='<div style="clear:both"></div>';
+      thtml+='</div>';
 
-		
-		
+      
+      
 
-		
+      
 
-		$("#header_plannerlist").html(thtml);
-		$("#header_plannerlist").show();
+      $("#header_plannerlist").html(thtml);
+      $("#header_plannerlist").show();
 
-		
+      
 
-	}
+   }
 }
 function initializeCart()
 {
@@ -234,29 +234,29 @@ function initializeCart()
 
 function closeModal(id)
 {
-	$(".modal.in").modal('hide');
+   $(".modal.in").modal('hide');
 }
 function login()
 {
-	closeModal();
-	
-	var surl="/planner/if_login.asp?h_url="+escape(document.URL);
-	document.getElementById("if_login").src=surl;
+   closeModal();
+   
+   var surl="/planner/if_login.asp?h_url="+escape(document.URL);
+   document.getElementById("if_login").src=surl;
 
-	$('#modal-login').modal({
-		keyboard: true,
-		backdrop: 'static',
-		show:true
-	});
+   $('#modal-login').modal({
+      keyboard: true,
+      backdrop: 'static',
+      show:true
+   });
 }
 function showASSD()
 {
-	closeModal();
-	$('#modal-assd').modal({
-		keyboard: true,
-		backdrop: 'static',
-		show:true
-	});
+   closeModal();
+   $('#modal-assd').modal({
+      keyboard: true,
+      backdrop: 'static',
+      show:true
+   });
 }
 </script>
 
@@ -267,7 +267,7 @@ function showASSD()
     <div class="modal-content">
 
             <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
               <h3></h3>
             </div>
@@ -281,87 +281,87 @@ function showASSD()
 
 function shownotifylist()
 {
-	var surl="/planner/if_notifylist.asp";
-	document.getElementById("if_notifydetail").src=surl;
-	$("#notifydetail_title").html("Notifications");
-	$('#modal-notifydetail').modal({
-		keyboard: true,
-		backdrop: 'static',
-		show:true
-	});
+   var surl="/planner/if_notifylist.asp";
+   document.getElementById("if_notifydetail").src=surl;
+   $("#notifydetail_title").html("Notifications");
+   $('#modal-notifydetail').modal({
+      keyboard: true,
+      backdrop: 'static',
+      show:true
+   });
 }
 function closeModal(id)
 {
-	$(".modal.in").modal('hide');
+   $(".modal.in").modal('hide');
 }
 function login()
 {
-	closeModal();
-	
-	var surl="/planner/if_login.asp?h_url="+escape(document.URL);
-	document.getElementById("if_login").src=surl;
+   closeModal();
+   
+   var surl="/planner/if_login.asp?h_url="+escape(document.URL);
+   document.getElementById("if_login").src=surl;
 
-	$('#modal-login').modal({
-		keyboard: true,
-		backdrop: 'static',
-		show:true
-	});
+   $('#modal-login').modal({
+      keyboard: true,
+      backdrop: 'static',
+      show:true
+   });
 }
 function shownotifydetail(t,s,ns)
 {
 
-		var surl="/planner/if_notifydetail.asp?ns="+ns+"&t="+t+"&s="+s;
-		document.getElementById("if_notifydetail").src=surl;
-		if(t=="plan")
-			$("#notifydetail_title").html("플래너 댓글");
-		else
-			$("#notifydetail_title").html("NEWS FEED");
-		$('#modal-notifydetail').modal({
-			keyboard: true,
-			backdrop: 'static',
-			show:true
-		});
+      var surl="/planner/if_notifydetail.asp?ns="+ns+"&t="+t+"&s="+s;
+      document.getElementById("if_notifydetail").src=surl;
+      if(t=="plan")
+         $("#notifydetail_title").html("플래너 댓글");
+      else
+         $("#notifydetail_title").html("NEWS FEED");
+      $('#modal-notifydetail').modal({
+         keyboard: true,
+         backdrop: 'static',
+         show:true
+      });
 }
 
 function openTourMap(srcserial,ds,mapid)
 {
-	if(ds)
-	{
-		if(mapid)
-		{
-			bindex=mapid.indexOf("b");
-			cid=mapid.substring(1,bindex);
-			bid=mapid.substring(bindex+1);
+   if(ds)
+   {
+      if(mapid)
+      {
+         bindex=mapid.indexOf("b");
+         cid=mapid.substring(1,bindex);
+         bid=mapid.substring(bindex+1);
 
-			NewWin=window.open("/tourmap/tourmap.asp?ds="+ds+"&bid="+bid+"&cid="+cid, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
-			NewWin.moveTo(0,0);
-			NewWin.focus();
-		}
-		else
-		{
-			NewWin=window.open("/tourmap/tourmap.asp?ds="+ds, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
-			NewWin.moveTo(0,0);
-			NewWin.focus();
-		}
-	}
-	else
-	{
-		NewWin=window.open("/tourmap/tourmap.asp?SrcSerial="+srcserial, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
-		NewWin.moveTo(0,0);
-		NewWin.focus();
-	}
+         NewWin=window.open("/tourmap/tourmap.asp?ds="+ds+"&bid="+bid+"&cid="+cid, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
+         NewWin.moveTo(0,0);
+         NewWin.focus();
+      }
+      else
+      {
+         NewWin=window.open("/tourmap/tourmap.asp?ds="+ds, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
+         NewWin.moveTo(0,0);
+         NewWin.focus();
+      }
+   }
+   else
+   {
+      NewWin=window.open("/tourmap/tourmap.asp?SrcSerial="+srcserial, "map", "width=1000,height=710,toolbar=No,location=No,scrollbars=no,status=No,resizable=yes"); 
+      NewWin.moveTo(0,0);
+      NewWin.focus();
+   }
 }
 
 function showASSD()
 {
-	closeModal();
-	$('#modal-assd').modal({
-		keyboard: true,
-		backdrop: 'static',
-		show:true
-	});
-	
-	
+   closeModal();
+   $('#modal-assd').modal({
+      keyboard: true,
+      backdrop: 'static',
+      show:true
+   });
+   
+   
 }
 
 </script>
@@ -375,7 +375,7 @@ function showASSD()
     <div class="modal-content">
 
             <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
              <h3 id="notifydetail_title"></h3>
             </div>
             <div class="modal-body">
@@ -391,7 +391,7 @@ function showASSD()
     <div class="modal-content">
 
             <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
               <h3></h3>
             </div>
@@ -447,28 +447,28 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 
     <!--=== End Header v5 ===-->
     <div class="container">
-	
+   
 
 <!--오른쪽 프레임 시작-->
 <div class="row" style="margin-top:95px;margin-bottom:50px;">
-	<div class="col-md-3 col-xs-1"></div>
-	<div class="col-md-6 col-xs-10">
-	<!-- 
+   <div class="col-md-3 col-xs-1"></div>
+   <div class="col-md-6 col-xs-10">
+   <!-- 
                         <form action="#" id="sky-form1" class="sky-form">
                             <header  style="text-align:center">페이스북계정으로 로그인</header>
                             
                             <fieldset>                  
                                 <section  style="text-align:center">
-			<a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="/stubbyPlanner/externalData/img_v8/facebook_login.png"></a>
+         <a href="https://www.stubbyplanner.com/common/fb_login.asp?flink=&h_url=http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fplanner%2Findex%2Easp"><img class="img-responsive" src="/stubbyPlanner/externalData/img_v8/facebook_login.png"></a>
 
-		    </section>
-		    
-		</fieldset>
-	          </form>
-		<br>
-		 -->
-	          <form name="form" action="/stubbyPlanner/common/login.do" method="post" class="sky-form">
-		<input type="hidden" name="h_url" value=""><!-- "http://www.stubbyplanner.com/planner/index.asp" -->
+          </section>
+          
+      </fieldset>
+             </form>
+      <br>
+       -->
+             <form name="form" action="/stubbyPlanner/common/login.do" method="post" class="sky-form">
+      <input type="hidden" name="h_url" value=""><!-- "http://www.stubbyplanner.com/planner/index.asp" -->
                             <header  style="text-align:center">스투비계정으로 로그인</header>                            
                             <fieldset>                  
                                 <section>
@@ -480,7 +480,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                                 <input type="text" id="member_id" name="member_id">
                                             </label>
                                         </div>
-                                    </div>	
+                                    </div>   
                                 </section>
                                 
                                 <section>
@@ -510,8 +510,8 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                 <a href="/stubbyPlanner/common/register.do" class="btn-u btn-u-lg  btn-u-default">회원가입</a>
                             </footer>
                         </form>        
-	</div>
-	<div class="col-md-3 col-xs-1"></div>
+   </div>
+   <div class="col-md-3 col-xs-1"></div>
 </div>
 
 
@@ -519,28 +519,28 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 
 function FSubmit()
 { 
-	if (document.form.member_id.value =="") {
-		alert("아이디를 입력해 주세요.");
-		document.form.member_id.focus();
-		return false;
-	}
-	
-	if (document.form.password.value =="") {
-		alert("비밀번호를 입력해 주세요.");
-		document.form.password.focus();
-		return false;
-	}
-	
-	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
-	var split = letters.split("");var num = '';var c = '';
-	var encrypted = '';
-	var it = document.form.password.value;
-	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.password.value = encrypted;encrypted = '';
-	 
-	document.form.submit();
+   if (document.form.member_id.value =="") {
+      alert("아이디를 입력해 주세요.");
+      document.form.member_id.focus();
+      return false;
+   }
+   
+   if (document.form.password.value =="") {
+      alert("비밀번호를 입력해 주세요.");
+      document.form.password.focus();
+      return false;
+   }
+   
+   var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
+   var split = letters.split("");var num = '';var c = '';
+   var encrypted = '';
+   var it = document.form.password.value;
+   var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.password.value = encrypted;encrypted = '';
+    
+   document.form.submit();
 }
 </script>
-	</form>
+   </form>
 
     </div><!--/end cotnainer-->
 
@@ -548,7 +548,7 @@ function FSubmit()
 
 
     <!--=== Footer v4 ===-->
-	
+   
 
     <!--=== Footer v4 ===-->
 
@@ -560,26 +560,26 @@ function FSubmit()
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">                     
-		<p style="text-align:left;color:#fff">
-			<b>(주)스투비플래너</b>  사업자번호: 220-88-67466 /  대표: 백주흠<br/>
-			<font style="color:#efefef;font-size:8pt">서울특별시 관악구 남부순환로 1837 샤론빌딩 4층 (스투비플래너)<br/>
-			대표번호 : +82-2-886-0982 |  대표이메일 : stubbyteam@gmail.com <br/> 
-			운영시간(한국) 11:00 ~ 19:00, 주말/공휴일은 제외.</font><br/>
-		
-		<font style="color:#efefef;font-size:8pt">스투비플래너는 광고서비스 제공자/예약 시스템의 공급자이며 통신판매의 당사자가 아닙니다.
-		따라서 스투비플래너는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</font>
-		<br>
-		2014 &copy; STUBBYPLANNER. ALL Rights Reserved. 
+      <p style="text-align:left;color:#fff">
+         <b>(주)스투비플래너</b>  사업자번호: 220-88-67466 /  대표: 백주흠<br/>
+         <font style="color:#efefef;font-size:8pt">서울특별시 관악구 남부순환로 1837 샤론빌딩 4층 (스투비플래너)<br/>
+         대표번호 : +82-2-886-0982 |  대표이메일 : stubbyteam@gmail.com <br/> 
+         운영시간(한국) 11:00 ~ 19:00, 주말/공휴일은 제외.</font><br/>
+      
+      <font style="color:#efefef;font-size:8pt">스투비플래너는 광고서비스 제공자/예약 시스템의 공급자이며 통신판매의 당사자가 아닙니다.
+      따라서 스투비플래너는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.</font>
+      <br>
+      2014 &copy; STUBBYPLANNER. ALL Rights Reserved. 
 
 
-		<a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" style="color:#efefef;font-size:8pt" target="_blank"><u>광고/제휴 문의</u></a> &nbsp;&nbsp;&nbsp;	
-		<a href="/qa/" style="color:#efefef;font-size:8pt"><u>서비스 문의</u></a> &nbsp;&nbsp;&nbsp;
-		<a href="/personalinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>개인정보 취급방침</u></a> &nbsp;&nbsp;&nbsp;
-		<a href="http://www.stubbyplanner.com/common/usercontract.html" style="color:#efefef;font-size:8pt" target="_blank"><u>이용약관</u></a>&nbsp;&nbsp;&nbsp;
-		<a href="/common/adserviceinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>광고서비스 이용약관</u></a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" style="color:#efefef;font-size:8pt" target="_blank"><u>광고/제휴 문의</u></a> &nbsp;&nbsp;&nbsp;   
+      <a href="/qa/" style="color:#efefef;font-size:8pt"><u>서비스 문의</u></a> &nbsp;&nbsp;&nbsp;
+      <a href="/personalinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>개인정보 취급방침</u></a> &nbsp;&nbsp;&nbsp;
+      <a href="http://www.stubbyplanner.com/common/usercontract.html" style="color:#efefef;font-size:8pt" target="_blank"><u>이용약관</u></a>&nbsp;&nbsp;&nbsp;
+      <a href="/common/adserviceinfo.asp" style="color:#efefef;font-size:8pt" target="_blank"><u>광고서비스 이용약관</u></a>
 
 
-		<br>
+      <br>
 
 
 

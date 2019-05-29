@@ -62,8 +62,8 @@
  ga('create', 'UA-913663-1', 'auto');
  ga('send', 'pageview');
  ga('send','event','exp','listview','');
-
 </script>
+
 <style>
 .stu_tagArea .stu_tag_on
 {
@@ -93,245 +93,21 @@
 
 }
 
+<%@include file="/WEB-INF/layout/css/header_large.css" %>
 
-
-/* 헤더영역 */
-header .stu_gnb_container { position:fixed; top:0; left:0; right:0; height:50px; border-bottom:1px solid #e5e5e5; background:rgba(255,255,255,.95); line-height:50px; z-index:10; -webkit-transition:top .3s ease; -moz-transition:top .3s ease; -o-transition:top .3s ease; transition:top .3s ease; }
-header .stu_gnb_container .stu_inner_wrap { padding:0 16px; }
-header .stu_gnb_container .stu_logo { float:left; position:relative; top:8px; height:34px; }
-header .stu_gnb_container .stu_gnb_wrap { float:right; display:inline-block; }
-header .stu_gnb_container .stu_gnb_wrap li { display:inline-block; position:relative; }
-header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:6px; }
-header .stu_gnb_container .stu_gnb_wrap li p { display:none; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 20px 0 5px; -webkit-border-radius:18px; border-radius:18px; border:1px solid #e5e5e5; background:#f5f5f5; line-height:34px; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"검색"; font-size:15px; font-weight:300; color:#666; cursor:text; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_planner { display:none; }
-header .stu_gnb_container button { margin-top:-2px; }
-header .stu_gnb_container button.ico_search { display:inline-block; width:30px; height:30px; background-position:-60px -30px; background-size:240px; opacity:.6; }
-header .stu_gnb_container button.ico_booking { display:inline-block; width:34px; height:34px; background:url(/stubbyPlanner/externalData/market/images/common/stu_icon.png) 0 -204px no-repeat; background-size:272px; }
-header .stu_gnb_container button.ico_planner { display:none; }
-
-
-@media (min-width:620px){
-
-/* 헤더영역 */
-header .stu_gnb_container { position:relative; top:0! important; height:56px; line-height:56px; }
-header .stu_gnb_container .stu_inner_wrap { padding:0 20px; }
-header .stu_gnb_container .stu_logo { top:11px; }
-header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:32px; }
-header .stu_gnb_container .stu_gnb_wrap li:after { display:inline-block; font-size:16px; font-weight:400; color:#222; }
-header .stu_gnb_container .stu_gnb_wrap li a { position:absolute; top:0; left:0; width:100%; height:100%; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 32px 0 10px; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"투어 또는 국가 검색"; font-size:14px; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_booking:after { content:"내 예약"; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_planner { display:inline-block; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_planner:after { content:"플래너"; }
-header .stu_gnb_container button.ico_booking { display:none; }
-
-}
-
-@media (min-width:1025px){
-
-
-/* 헤더영역 */
-header .stu_gnb_container .stu_inner_wrap { padding:0; }
-header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:40px; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 32px 0 12px; }
-header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"투어 또는 국가로 검색하세요"; }
-
-}
 </style>
 </head>	
 <body >
     <div class="stu_wrap">
-        <!-- 기존 헤더 영역(삭제하세요.) -->
 
 
+<jsp:include page="/WEB-INF/layout/header_large.jsp"></jsp:include>
 
-    <header>
-
-
-
-        <div class="header_banner">
-            <div class="stu_inner_wrap">
-            	<!-- 경로 확인: ? 뒤 체크 -->
-                <a href="/stubbyPlanner/consulting/index.do?from=top1">
-                    <div class="header_banner_wrap">
-                        <p class="txtWrap">복잡한 유럽 자유여행이 처음이라면
-                            <span>전문가 맞춤여행 의뢰 55,200원~</span>
-                        </p>
-                        <p class="btnWrap">자세히</p>
-                    </div>
-                </a>
-                <i class="ico_close"></i>
-            </div>
-        </div>
-
-        <div class="stu_header">
-            <div class="stu_inner_wrap">
-                <nav class="gnb_container">
-                    <div class="aside_button on-mobile">
-                        <a href="#" class="gnb_menu">
-                            <i class="ico_menu"></i>
-                        </a>
-                    </div>
-                    <h1 class="stu_logo">
-                        <a href="/stubbyPlanner/common/index.do">
-                            <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
-                        </a>
-                    </h1>
-                    <div class="gnb_banner on-pc">
-                        <div class="swiper-container swiper-gnb_banner">
-                            <ul class="swiper-wrapper">
-
-<!--
-                              <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/coupon/iceland_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB02.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>아이슬란드 특급 할인!</p>
-                                            <b><span>130,000원</span> 할인쿠폰</b>
-                                        </div>
-                                    </a>
-                                </li>
-
--->
-                                <li class="swiper-slide">
-                                   <!-- 경로 확인: ? 뒤 체크 -->
-                                   <a href="/stubbyPlanner/consulting/index.do?from=top2">
-                                        <img class="fw" src="/stubbyPlanner/externalData/images2/sample/GB03.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>유럽 초보자를 위한</p>
-                                            <b>전문가 유럽 맞춤계획 의뢰<span> </span></b>
-                                        </div>
-                                    </a>
-                                </li>
-<!--
-
-                                <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/event_1/event_1plus1.asp">
-                                        <img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547623875104u6XHHWT7nu.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>하나만 사도 핵이득!</p>
-                                            <b><span>1+1 할인상품</span> 총집합</b>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/coupon/winter_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB01.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>유럽 현지투어 / 액티비티</p>
-                                            <b><span>100,000원</span> 할인쿠폰</b>
-                                        </div>
-                                    </a>
-                                </li>
-  -->
-                            </ul>
-                            <div class="swiper-pagination gnb_banner-pagination"></div>
-                            <div class="swiper-button-prev gnb_banner-button-prev"></div>
-                            <div class="swiper-button-next gnb_banner-button-next"></div>
-                        </div>
-                    </div>
-                    <ul class="gnb_wrap on-pc">
-                        <li class="gnb_item">
-                            <a href="/stubbyPlanner/guide/reservation.do">예약내역</a>
-                        </li>
-                        <li class="gnb_item">
-                            <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
-                        </li>
-
-
-                        <li class="gnb_item sign_out">
-                            <a href="/stubbyPlanner/common/login.do">로그인</a>
-                        </li>
-                        <li class="gnb_item sign_out">
-                            <a href="stubbyPlanner/common/register.do" class="signup">회원가입</a>
-                        </li>
-
-
-
-                    </ul>
-                </nav>
-                <nav class="lnb_container">
-                    <ul class="lnb_wrap">
-                        <li class="lnb_item ">
-                            <a href="/stubbyPlanner/common/index.do">홈</a>
-                        </li>
-                        <li class="lnb_item ">
-                            <a href="/stubbyPlanner/planner/index.do">계획짜기</a>
-                        </li>
-                        <li class="lnb_item  active">
-                            <a href="/stubbyPlanner/market/index.do">투어예약</a>
-                        </li>
-                        <li class="lnb_item  ">
-                            <a href="/stubbyPlanner/mb/index.do">숙소예약</a>
-                        </li>
-
-                        <li class="lnb_item ">
-                            <a href="/stubbyPlanner/exp/list.do">여행지</a>
-                        </li>
-                        <li class="lnb_item ">
-                            <a href="/stubbyPlanner/square/index.do">광장</a>
-                        </li>
-                    </ul>
-                    <div class="gnb_search_wrap">
-                        <a href="#" class="gnb_search">
-                            <i class="ico_search"></i>
-                        </a>
-                    </div>
-                </nav>
-                <div class="side_background"></div>
-                <aside class="side_container on-mobile">
-                    <ul class="side_section">
-                        <li class="side_item side_logo sign_out">
-                            <a href="/stubbyPlanner/common/index.do">
-                                <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
-                            </a>
-                        </li>
-
-                        <li class="side_item side_btn sign_out">
-                            <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
-                        </li>
-                        <li class="side_item side_btn sign_out">
-                            <a href="/stubbyPlanner/common/register.do" class="btn_signup">회원가입</a>
-                        </li>
-
-                    </ul>
-                    <ul class="side_section">
-
-                        <li class="side_item side_resv">
-                            <a href="/stubbyPlanner/guide/reservation.do">
-                                <i></i><span class="sign_out">비회원&nbsp;</span>예약내역
-                            </a>
-                        </li>
-<!--
-                        <li class="side_item side_coupon">
-                            <a href="/coupon/index.asp"><i></i>쿠폰함</a>
-                        </li>
-                        <li class="side_item side_square">
-                            <a href="/square/index.asp"><i></i>광장</a>
-                        </li>
--->
-                        <li class="side_item side_premium">
-                            <a href="/stubbyPlanner/selfguide/index.do"><i></i>프리미엄</a>
-                        </li>
-                    </ul>
-
-
-
-                </aside>
-            </div>
-        </div>
-        <a href="#" class="stu_scroll_top"><span>맨 위로 가기</span><i></i></a>
-    </header>
-
-
-
-
-
-
-
+	<script>
+		var id = "#"+'${ lnb_item }';
+		$(".lnb_item").removeClass("active");
+		$(id).addClass("active");
+	</script>
 
 
 <main  class="stu_clearfix" >
@@ -2475,83 +2251,11 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"투어 �
     </main>
 
 
+<jsp:include page="/WEB-INF/layout/advertisement.jsp"></jsp:include>
 
-        <section class="stu_event_banner">
-            <div class="stu_inner_wrap">
-                <div class="event_banner2" style="background:#f3f3f3;height:120px;overflow:hidden;position:relative;">
-                   
-                            <a href="/stubbyPlanner/consulting/index.do" target="_blank" style="width:100%; height:100%;">
-                                <div class="txtWrap">
-                                    <p>유럽여행이 처음이라면</p>
-                                    <b >전문가의 도움을 받아보세요.</b>
-                                </div>
-                                <div class="imgWrap" style="background-image:url(/stubbyPlanner/externalData/img_v15/back_private.png);">
-                                    <b><span>전문가 유럽계획 의뢰</span>￦ 55,200</b>
-                                </div>
-                            </a>
-		<div style="clear:both"></div>
-                </div>
-            </div>
-        </section>
+<jsp:include page="/WEB-INF/layout/footer_large.jsp"></jsp:include>
 
-
-
-   <footer>
-        <div class="stu_utils">
-            <div class="stu_inner_wrap">
-                <ul class="stu_links stu_clearfix">
-                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" target="_blank">광고/제휴문의</a></li>
-                    <li><a href="http://www.stubbyplanner.com/qa/" target="_blank">서비스문의</a></li>
-                    <li><a href="http://www.stubbyplanner.com/personalinfo.asp" target="_blank">개인정보 취급방침</a></li><br/>
-                    <li><a href="http://www.stubbyplanner.com/common/usercontract.html" target="_blank">이용약관</a></li>
-                    <li><a href="http://www.stubbyplanner.com/guide/tour_user_contract.html" target="_blank">여행자약관</a></li>
-                    <li><a href="http://www.stubbyplanner.com/common/guidecontract.html" target="_blank">가이드약관</a></li>
-
-                </ul>
-                <ul class="stu_sns">
-                    <li class="stu_facebook">
-                        <a href="http://www.facebook.com/stubbyplanner/" target="_blank" title="페이스북">페이스북</a>
-                    </li>
-                    <li class="stu_instagram">
-                        <a href="https://www.instagram.com/stubbyplanner/" target="_blank" title="인스타그램">인스타그램</a>
-                    </li>
-                    <li class="stu_kakaotalk">
-                        <a href="https://pf.kakao.com/_QwGUM/" target="_blank" title="카카오톡">카카오톡</a>
-                    </li>
-                    <li class="stu_email">
-                        <a href="mailto://stubbyteam@gmail.com" target="_blank" title="이메일">이메일</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="stu_coInfo">
-            <div class="stu_inner_wrap">
-                <div class="stu_footer_logo"></div>
-                <div class="stu_copyright">
-                    <div class="info_btn">사업자정보<i></i></div>
-                    <div class="business_info">
-                        <ul class="txtWrap">
-                            <li>(주)스투비익스피어리언스</li>
-                            <li>대표 : 백주흠</li>
-                            <li>사업자등록번호 : 635-81-01124</li>
-                        </ul>
-                        <ul class="txtWrap">
-                            <li>고객센터 : 02-886-0982</li>
-                            <li>이메일 : stubbyteam@gmail.com</li>
-                            <li>운영시간(한국) : 11시~19시(주말/공휴일 휴무)</li><br/>
-                            <li>주소 : 서울특별시 관악구 남부순환로 1837 샤론빌딩 402</li>
-                            <li>통신판매업 신고 : 2018-서울관악-1368호</li>
-                        </ul>
-                    </div>
-                    자사는 서울특별시관광협회 공제영업보증보험에 가입되어 있습니다. 스투비익스피어리언스는 통신판매중개자이며 통신판매의 당사자가 아닙니다.<br/>따라서 스투비익스피어리언스는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.
-
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-		</div>
+	</div>
 
 
 

@@ -9,6 +9,7 @@ public class PlannerDisplayHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setAttribute("lnb_item", "planner");
 		return "/planner/planner_rt";
 	}
 

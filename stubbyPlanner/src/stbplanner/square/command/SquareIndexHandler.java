@@ -9,7 +9,7 @@ public class SquareIndexHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		request.setAttribute("lnb_item", "square");
 		return "/square/index";
 	}
 
