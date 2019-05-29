@@ -27,26 +27,10 @@ public static RegisterService getInstance() {
 		System.out.println("registerservice");
 		try {
 			conn = ConnectionProvider.getConnection();
-			RegisterDAO dao = RegisterDAO.getInstance();
-			System.out.println(dao);
-			
+			RegisterDAO dao = RegisterDAO.getInstance();			
 			result = dao.insert(conn, dto);
-//			conn.setAutoCommit(false);
-//			this.dao.insert(conn, new RegisterDTO(
-//					dto.getName(),
-//					dto.getMember_id(),
-//					dto.getPassword(),
-//					dto.getPassword_confirm(),
-//					dto.getMember_email(),
-//					dto.getVemail(),
-//					dto.getGender(),
-//					dto.getBirth_year(),
-//					dto.getBirth_month(),
-//					dto.getAccept_mail()
-//					));
-//			conn.commit();
+
 		} catch (NamingException | SQLException e) {
-//			JdbcUtil.rollback(conn);
 			e.printStackTrace();
 			System.out.println("error");
 			throw new RuntimeException(e);

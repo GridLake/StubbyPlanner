@@ -66,6 +66,7 @@
 	<div class="col-md-6 col-xs-10">
 
 <script>
+	
 	function agree()
 	{
 		document.getElementById('contract').style.display='none';
@@ -104,12 +105,13 @@ function FSubmit()
 		f.cur_password.focus();
 		return;
 	}
-	if(!f.cur_password.value=="${authUser.password}")
+	
+ 	if(f.cur_password.value=='${authUser.password}')
 	{
 		func_alert("입력하신 현재 비밀번호가 틀렸습니다.");
 		f.cur_password.focus();
 		return;
-	}
+	} 
 	if(f.password.value.length<4)
 	{
 		func_alert("비밀번호는 4자이상이어야 합니다.");
@@ -148,20 +150,20 @@ function FSubmit()
 
 	/* if(IDValidated==0)
 	{func_alert("아이디 중복검사를 먼저 하세요.");return;} */
-
+/* 
 	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
 	var split = letters.split("");var num = '';var c = '';
 	var encrypted = '';
 	var it = f.cur_password.value;
 	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.cur_password.value = encrypted;encrypted = '';
-
+	
 	var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
 	var split = letters.split("");var num = '';var c = '';
 	var encrypted = '';
 	var it = f.password.value;
 	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.password.value = encrypted;encrypted = '';
 
-
+ */
 	f.submit();
 }
 
@@ -252,7 +254,9 @@ function FSubmit()
                                         <label class="label col col-4">아이디</label>
                                         <div class="col col-8">
                                             <label class="input">
-			                                <b>${authUser.member_id}</b>
+                                            <input value="${authUser.member_id}" disabled="disabled">
+                                            <input name="member_id" type="hidden" value="${authUser.member_id}"/>
+			                        
 <!--                                 <div class="input-group">
 			<input class="form-control" type="text" size="12" name="member_id" id="member_id" maxlength="12"  placeholder="영문/숫자만 사용가능, 4~12자"> 
                                     <span class="input-group-btn">
@@ -263,7 +267,11 @@ function FSubmit()
                                         </div>
                                     </div>
                                 </section>
-
+<!-- <script>
+	$("#member_id").on("click", function(){
+		event.preventDefault();
+	});
+</script> -->
                                 <section>
 
 
@@ -308,7 +316,7 @@ function FSubmit()
                                             <label class="input">
                                 <div class="input-group">
 	                            <input type="text" class="form-control"  size="25" name="member_email" id="member_email" value="${authUser.member_email}" maxlength="100">
-			<!-- <in	put type="hidden" name="vemail" id="vemail" value="0"> -->
+								<input type="hidden" name="vemail" id="vemail" value="1"> 
                                     <span class="input-group-btn">
                                         <button onclick="javascript:verify();"  id="btnemail"  class="btn-u btn-u-red" type="button">이메일 인증받기</button>
                                     </span>
@@ -324,7 +332,7 @@ function FSubmit()
                                         <div class="col col-8">
                                             <label class="input">
 
-				<select id="gender" name="gender" class="form-control  col-5" >
+				<select id="gender" name="gender" class="form-control  col-5">
 				<option value="">----</option>
 				<option value="M">남성</option>
 				<option value="W">여성</option>
@@ -573,15 +581,15 @@ function FSubmit()
                                 </section>
                                 
                                 <section>
-                                	<a class="btn-u btn-u-dark btn-block" href="https://www.stubbyplanner.com/common/usercontract.html" target="_blank">회원탈퇴</a>
+                                	<a class="btn-u btn-u-dark btn-block" href="/stubbyPlanner/common/exit.do" >회원탈퇴</a>
                                 </section>
                                 
                             </fieldset>
                             <footer style="text-align:center">
 			<a class="btn-u btn-u-lg" href="javascript:FSubmit();">정보변경</a> <a class="btn-u btn-u-lg btn-u-default" href="javascript:window.history.go(-1);">취소</a>
                             </footer>
-
-                        </form>      
+	</form>
+                 
 	</div>
 	<div class="col-md-3 col-xs-1"></div>
 

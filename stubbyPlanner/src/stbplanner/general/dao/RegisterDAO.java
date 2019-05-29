@@ -21,7 +21,15 @@ public class RegisterDAO {
 		return dao;
 	}
 	
-	public int insert(Connection conn,RegisterDTO dto)throws SQLException{
+	public int delete(Connection conn, RegisterDTO dto)throws SQLException{
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from tbl_member where member_id = ?")){
+			pstmt.setString(1, dto.getMember_id());
+			return pstmt.executeUpdate();
+		}
+		
+	}
+	
+	public int insert(Connection conn, RegisterDTO dto)throws SQLException{
 		System.out.println("registerdao");
 		try(PreparedStatement pstmt = conn.prepareStatement("insert into tbl_member values(?,?,null,0,?,1,?,?,?,?,?,?)")){
 			pstmt.setString(1, dto.getMember_id());
@@ -38,7 +46,7 @@ public class RegisterDAO {
 		}
 	}
 	
-	public void update(Connection conn, RegisterDTO dto)throws SQLException{
+	public int update(Connection conn, RegisterDTO dto)throws SQLException{
 		try(PreparedStatement pstmt = conn.prepareStatement
 				("update tbl_member set name=?,password=?,member_email=?,gender=?,birth_year=?,birth_month=?,accept_mail=? where member_id=? and password=?")){
 			pstmt.setString(1, dto.getName());
@@ -50,7 +58,9 @@ public class RegisterDAO {
 			pstmt.setString(7, dto.getAccept_mail());
 			pstmt.setString(8, dto.getMember_id());
 			pstmt.setString(9, dto.getPassword_confirm());
-			pstmt.executeUpdate();
+			System.out.println(dto.getMember_id());
+			System.out.println(dto.getPassword_confirm());
+			return pstmt.executeUpdate();
 		}                      
 	}
 

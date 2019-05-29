@@ -28,13 +28,9 @@ public class InfoChangeHandler implements CommandHandler{
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response)
 			throws UnsupportedEncodingException {
-		// 1. 세션  member_id 얻어면 된다.
-		
-		// 2. RegisterDTO dto = 서비스 ( member_id )
-		//    RegisterDTO dto =   DAO.select멤버정보( member_id);
-		
+
 		RegisterDTO dto = new RegisterDTO();
-		System.out.println("registerhandler");
+		System.out.println("infoChangeHandler");
 		dto.setName(request.getParameter("name"));
 		dto.setMember_id(request.getParameter("member_id"));
 		dto.setPassword(request.getParameter("password"));
@@ -45,9 +41,7 @@ public class InfoChangeHandler implements CommandHandler{
 		dto.setBirth_month(request.getParameter("birth_month"));
 		dto.setAccept_mail(request.getParameter("accept_mail"));
 		
-		// 3. request.setAttribute("dto",dto);
-		
-		// InfoChangeService.register(dto);
+		infoChangeService.infoChange(dto);
 		return "/common/index_login"; 
 	}
 	private String processForm(HttpServletRequest request, HttpServletResponse response) {
