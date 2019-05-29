@@ -273,9 +273,6 @@ function FSubmit()
 	});
 </script> -->
                                 <section>
-
-
-
                                     <div class="row">
                                         <label class="label col col-4">변경 비밀번호</label>
                                         <div class="col col-8">
