@@ -16,6 +16,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/common4.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
@@ -38,6 +39,19 @@
     <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
     <link rel="stylesheet" href="/stubbyPlanner/externalData/chn/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
     <!--[if lt IE 9]><link rel="stylesheet" href="/chn/assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
+
+
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+
+    <!-- CSS/JavaScript -->
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/md-search.css">
+<!--     <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/reservation.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
@@ -66,7 +80,7 @@
 		<!--=== Header v4 ===-->
 		<div id="header" class="header-v4" style="position:fixed;left:0;right: 0;top: 0;background:#fff">
 			<!-- Navbar -->
-			<div class="navbar navbar-default" role="navigation" >
+			<div class="navbar navbar-default" role="navigation" >	
 
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -83,7 +97,7 @@
 							</div>
 							<div class="col-md-10" style="width:83%;padding-right:0px;text-align:right">
 
-
+<!-- 
 <div style="float:left;cursor:pointer;margin-top:5px;margin-right:0px;padding: 0 52px 0 30px;display:inline-block;border-radius:18px!important;border:1px solid #e5e5e5;background: #f5f5f5;line-height: 34px;" onclick="window.location='/market/index.asp'">
 <button style="border:0px;background: #f5f5f5;display:inline-block;width: 30px;height: 30px;background-position: -60px -30px;background-size: 240px;opacity: .6;background-image: url(/market/images/common/stu_icon.png);background-repeat: no-repeat;cursor: pointer;vertical-align: middle;"></button>
 <font style="font-size: 15px;font-weight: 300;color: rgb(102, 102, 102);cursor:pointer;">유럽도시 또는 국가로 검색해보세요.</font>
@@ -162,7 +176,7 @@
 
 						</ul>
 
-						
+-->
 
 							</div>
 						</div>
@@ -513,6 +527,7 @@ function FSubmit()
 	console.log(f.password.value);
  */
 	f.submit();
+ 	alert("회원 탈퇴가 완료되었습니다.");
 }
 
 </script>
@@ -532,9 +547,9 @@ function FSubmit()
 4. 여행정보와 현지교통과 관련해 집필하신 지식글들은 자동으로 삭제되지 않습니다.</font>
 </p>
 <hr>
-<div style="padding-bottom:10px;">비밀번호 : <input class="input" class="form-control" style="border:1px solid #696969" type=password size=25 name="password" maxlength="29" ></div>
-<input class="btn-u btn-u-lg btn-u-dark" type="button" onclick="FSubmit();" value="탈퇴하기"> 
-<input class="btn-u btn-u-lg btn-u-default" type="button" value=" 취소 " onclick="window.history.go(-1);">
+<div style="padding-bottom:10px;">비밀번호 : <input class="input" class="form-control" style="border:1px solid #696969; max-width: 200px" type=password size=25 name="password" maxlength="29" ></div>
+<input style="max-width: 150px" class="btn-u btn-u-lg btn-u-dark" type="button" onclick="FSubmit();" value="탈퇴하기"> 
+<input style="max-width: 150px" class="btn-u btn-u-lg btn-u-default" type="button" value=" 취소 " onclick="window.history.go(-1);">
 
 </form>
 </div>
@@ -546,7 +561,7 @@ function FSubmit()
 
     <!--=== Footer v4 ===-->
 
-
+<!-- 
 
     <div class="footer-v4" >
 
@@ -582,10 +597,44 @@ function FSubmit()
 
                 </div>
             </div> 
-        </div><!--/copyright--> 
+        </div>/copyright 
     </div>
-    <!--=== End Footer v4 ===-->
-  
+    === End Footer v4 ===
+ -->  
+ </div>
+        <footer>
+            <div class="stu_inner_wrap">
+                <div class="stu_footerMenu">
+                    <!--유틸메뉴-->
+                    <img src="/stubbyPlanner/externalData/market/images/footLogo.png" alt="스투비플래너">
+                    <ul class="stu_utilMenu">
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdEGNceBzh0dJAaY5oF74W6z9Er9_M7ZMcv2xqvOWMcArKbsA/viewform" target="_blank">광고/제휴문의</a></li>
+                        <li><a href="http://www.stubbyplanner.com/qa/"  target="_blank">서비스문의</a></li>
+                        <li><a href="http://www.stubbyplanner.com/personalinfo.asp" target="_blank">개인정보 취급방침</a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/usercontract.html" target="_blank">이용약관 </a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/adserviceinfo.asp" target="_blank">광고서비스 이용약관 </a></li>
+                        <li><a href="http://www.stubbyplanner.com/common/guidecontract.html" target="_blank">가이드 약관 </a></li>
+                    </ul>
+                    <!--sns-->
+                    <ul class="stu_snsShare">
+                        <li id="stu_sns1"><a href="http://www.facebook.com/stubbyplanner/" target="_blank" title="페이스북">페이스북</a></li>
+                        <li id="stu_sns2"><a href="https://www.instagram.com/stubbyplanner/" target="_blank" title="인스타그램">인스타그램</a></li>
+                    </ul>
+                </div>
+                <div class="stu_footerInfo">
+                    <address>
+                        <b>서비스제공</b>&nbsp;&nbsp;스투비` │ 대표 백주흠 │ 사업자등록번호 220-88-67466 │ 서울특별시 관악구 남부순환로 1837 샤론빌딩 402 <br/>
+  <b>가이드상품중개</b>&nbsp;&nbsp;스투비익스피어리언스 │ 대표 백주흠 │ 사업자등록번호 635-81-01124 │ 서울특별시 관악구 남부순환로 1837 샤론빌딩 402 <br/>
+                        통신판매업 신고 : 2018-서울관악-1368호 | 대표번호 02-886-0982 │  고객문의  stubbyteam@gmail.com │  운영시간(한국) 11:00 ~ 19:00, 주말 / 공휴일은 제외<br/>
+스투비익스피어리언스는 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 스투비익스피어리언스는 상품·거래정보 및 거래에 대하여 책임을 지지 않습니다.<br/>
+자사는 서울특별시관광협회 공제영업보증보험에 가입이 되어 있습니다.
+                    </address>
+                </div>
+            </div>
+        </footer>
+ 
+ 
+ 
     <!--=== End Footer v4 ===-->
 </div><!--/wrapper-->
 

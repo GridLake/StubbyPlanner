@@ -91,7 +91,7 @@
                         </li>
 
 
-                        <li class="gnb_item sign_out">
+                        <li class="gnb_item sign_out">	
                             <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>
                         <li class="gnb_item sign_out">
@@ -122,6 +122,8 @@
                         </li>
                         <li id="square" class="lnb_item">
                             <a href="/stubbyPlanner/square/index.do">광장</a>
+         				   <ul class="a">
+      				       </ul>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">

@@ -2,6 +2,7 @@ package stbplanner.general.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import stbplanner.general.dto.RegisterDTO;
 import stbplanner.general.service.MemberExitService;
@@ -24,9 +25,13 @@ public class MemberExitHandler implements CommandHandler{
 
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("MemberExitHandler post");
+		// 세션 정보 -> dto 저장
+		HttpSession httpSession = request.getSession();
 		RegisterDTO dto = new RegisterDTO();
+//		dto = (RegisterDTO)httpSession.getAttribute("authUser");
 		dto.setMember_id(request.getParameter("member_id"));
 		dto.setPassword(request.getParameter("password"));
+
 		memberExitService.delete(dto);
 		return "/common/index";
 	}

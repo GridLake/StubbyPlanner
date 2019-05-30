@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>스투비 로그인 - 스투비플래너</title>
+    <title>스투비 아이디/비번찾기 - 스투비플래너</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -461,49 +461,58 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
              </form>
       <br>
        -->
-             <form name="form" action="/stubbyPlanner/common/login.do" method="post" class="sky-form">
+             <form name="form" action="/stubbyPlanner/common/find.do" method="post" class="sky-form">
       <input type="hidden" name="h_url" value=""><!-- "http://www.stubbyplanner.com/planner/index.asp" -->
-                            <header  style="text-align:center">스투비계정 로그인</header>      
+                            <header  style="text-align:center">아이디/비밀번호 찾기</header>      
                                                   
                             <fieldset>                  
                                 <section>
+                                <b><h6 style="color: gray">아이디 찾기</h6></b>
+                                <b5>----------------</b5>
                                     <div class="row">
-                                        <label class="label col col-4">아이디</label>
+                                        <label class="label col col-4">이메일 입력</label>
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" id="member_id" name="member_id">
+                                                <input type="text" id="member_email" name="member_email" >
                                             </label>
                                         </div>
+                                        <c:if test="${member_email.member_id!=null}">
+                                        <b id="complete">회원님의 ID 찾기가 완료되었습니다.  <b style="color: ORANGE">[ ID : ${member_email.member_id} ]</b></b>
+                                        </c:if>
                                     </div>   
                                 </section>
 
                                 <section>
+                                <b><h6 style="color: gray">비밀번호 찾기</h6></b>
+                                <b5>----------------</b5>
                                     <div class="row">
-                                        <label class="label col col-4">비밀번호</label>
+                                        <label class="label col col-4">아이디 입력</label>
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" id="password" name="password" />
+                                                <input type="text" id="member_id" name="member_id" />
                                             </label>
-                                            <div class="note"><a href="/stubbyPlanner/common/find.do" class="modal-opener"><u>아이디/비밀번호 찾기</u></a></div>
                                         </div>
+                                        <c:if test="${member_id.password!=null}">
+                                        <b id="complete">회원님의 PWD 찾기가 완료되었습니다.  <b style="color: ORANGE">[ PWD : ${member_id.password} ]</b></b>
+                                        </c:if>
                                     </div>
                                 </section>
-
-                                <section>
-                                    <div class="row">
-                                        <div class="col col-4"></div>
-                                        <div class="col col-8">
-                                            <label class="checkbox" style="font-size:9pt"><input type="checkbox" name="saveid" value="ON" checked><i></i>로그인 유지</label>
-                                        </div>
-                                    </div>
-                                </section>
+                            
                             </fieldset>
+                            
+                            
+                            
                             <footer style="text-align:center">
-                                <a href="javascript:FSubmit();" class="btn-u btn-u-lg">로그인</a>
+<!--                                 <a href="/stubbyPlanner/common/find.do" class="btn-u btn-u-lg">찾기</a> -->
+                                <a href="javascript:FSubmit();" class="btn-u btn-u-lg">찾기</a>
+                                <a href="/stubbyPlanner/common/login.do" class="btn-u btn-u-lg btn-u-default">로그인</a>
                                 <a href="/stubbyPlanner/common/register.do" class="btn-u btn-u-lg  btn-u-default">회원가입</a>
                             </footer>
+                            
+                            
+                            
                         </form>        
    </div>
    <div class="col-md-3 col-xs-1"></div>
@@ -513,25 +522,18 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 <script> 
 function FSubmit()
 { 
-   if (document.form.member_id.value =="") {
-      alert("아이디를 입력해 주세요.");
-      document.form.member_id.focus();
+    if (document.form.member_id.value =="" & document.form.member_email.value=="") {
+      alert("이메일 또는 아이디를 입력해 주세요.");
+      document.form.member_email.focus();
       return false;
    }
-   
-   if (document.form.password.value =="") {
-      alert("비밀번호를 입력해 주세요.");
-      document.form.password.focus();
+    if (document.form.member_id.value !="" & document.form.member_email.value!="") {
+      alert("이메일 또는 아이디 중에서 하나만 입력해 주세요.");
+      document.form.member_email.focus();
       return false;
    }
-   /* 
-   var letters = 'ghijklabvwxyzABCDEFef)_+|<>?:mnQRSTU~!@#$%^VWXYZ`1234567opGHIJKLu./;'+"'"+'[]MNOP890-='+'\\'+'&*("{},cdqrst'+"\n";
-   var split = letters.split("");var num = '';var c = '';
-   var encrypted = '';
-   var it = document.form.password.value;
-   var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}document.form.password.value = encrypted;encrypted = '';
-     */
    document.form.submit();
+   
 }
 </script>
    </form>
@@ -639,7 +641,7 @@ function FSubmit()
 <script src="/stubbyPlanner/externalData/chn/assets/js/shop.app.js"></script>
 
 <script>
-    jQuery(document).ready(function() {
+/*     jQuery(document).ready(function() {
         App.init();
 $("#password").keyup(function(event){
     if(event.keyCode == 13){
@@ -647,7 +649,7 @@ $("#password").keyup(function(event){
     }
 });
       
-});
+}); */
 </script>
 <!--[if lt IE 9]>
     <script src="/chn/assets/plugins/respond.js"></script>

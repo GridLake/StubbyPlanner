@@ -1,97 +1,130 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
-    <title>광장 - 스투비플래너</title>
-    <!-- meta -->
+<link rel="image_src" href="" />
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="fb:app_id" content="218650814915663">
+
+<meta property="og:title" content="유럽 투어 예약 - 스투비플래너" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.stubbyplanner.com/exp/list.asp" />
+<meta property="og:image" content="" />
+<meta property="og:site_name" content="스투비플래너" />
+<meta property="og:description" content="상상속 유럽여행을 현실로, 스투비플래너" />
+
+<title>광장 - 스투비플래너</title>
+<!-- Meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimun-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/stubbyPlanner/externalData/images2/common/favicon.ico">
+    <link rel="icon" href="/stubbyPlanner/externalData/images2/common/favicon.png"> 
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
-
-	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
-
-	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/animate.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
 
     <!-- CSS/JavaScript -->
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/mb/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/common.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/mb/css/BnB_home.css">
-
-<link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/header_footer.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-
-
-	<!-- CSS Customization -->
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/style.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/common11.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/header_footer11.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/md_select_group.css">
+    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome11.css">
+<!--     <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome.css"> -->
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- swiper.js : 이미지슬라이더 -->
-    <script type="text/javascript" src="/stubbyPlanner/externalData/mb/js/swiper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/stubbyPlanner/externalData/market/js/swiper.min.js"></script>
+    <!-- header/footer -->
+	
+<script src="/stubbyPlanner/externalData/js2/header_footer3.js" type="text/javascript"></script>
+    <!-- md-select_group -->
+    <script type="text/javascript" src="/stubbyPlanner/externalData/market/js/md_select_group.js"></script>
+
+
+
+
+<script src="http://www.google.com/jsapi"></script>
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ ga('create', 'UA-913663-1', 'auto');
+ ga('send', 'pageview');
+ ga('send','event','exp','listview','');
+</script>
 
 
 <style>
-
-.like.active {
-    background-position: -84px 0;
-}
-.like {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 28px;
-    height: 28px;
-    background-position: -112px 0;
-    background-size: 224px;
-    z-index: 9;
-}
-.like
-{
-    background-image: url(/stubbyPlanner/externalData/images2/common/stu_icon.png);
-    background-repeat: no-repeat;
-    vertical-align: middle;
-}
-
-a{display:inline;}
-.search_tag
-{
-	display:inline-block;
-	margin-right:5px;
-	padding-top:4px;
-	padding-bottom:4px;
-	padding-left:8px;
-	padding-right:8px;
-	background:#007aff;
-	color:#fff;
-	font-size:16px;
-	border-radius:20px;
-	margin-bottom:5px;
-}
-
-<%@ include file="/WEB-INF/layout/css/header_large.css" %>
+/* 유럽 인기여행지 */
+.stu_regions { padding:40px 0; }
+.stu_category { margin:25px auto 0; }
+.stu_category li { height:48px; padding:0 30px; -webkit-border-radius:24px; border-radius:24px; font-size:16px; line-height:48px; }
+.stu_tab-content .swiper-container { margin:20px 0 0; }
+.stu_tab-content .swiper-slide { flex-basis:18.4%; padding-top:18.4%; margin:0 0.8%; }
+.stu_tab-content .swiper-slide:first-child { margin-left:0.8%; }
+.stu_tab-content .swiper-slide:last-child { margin-right:0.8%; }
+.stu_tab-content .swiper-slide .stu_titleArea { font-size:24px; }
+.stu_tab-content .swiper-slide .stu_titleArea .type2 { font-size:18px; }
+.stu_tab-content .swiper-button-prev, .stu_tab-content .swiper-button-next { display:block; transform:translateY(50%); }
+.stu_tab-content .swiper-button-prev { left:-62px; }
+.stu_tab-content .swiper-button-next { right:-62px; }
 
 </style>
-</head>
-<body>
 
 
-    <div class="stu_wrap" >
+
+
+<style>
+.stu_tagArea .stu_tag_on
+{
+	background:#696969;
+	color:#fff;
+	padding:10px 10px;
+}
+.stu_tagArea .stu_tag_off
+{
+	padding:10px 10px;
+}
+.stu_searchArea .stu_search-input:before
+{
+	display:none;
+}
+.md-header .md-searchWrap { display:inline-block; position:relative; width:calc(100% - 50px);width:-moz-calc(100% - 50px);width:-webkit-calc(100% - 50px); height:46px; padding:0 18px; -webkit-border-radius:3px; border-radius:3px; background:#fafafa; vertical-align:middle; }
+
+.stu_category li
+{
+	-webkit-border-radius: 22px;
+	  border-radius: 22px;
+}
+.stu_tab-content .swiper-slide
+{
+
+    padding-top: 12.4%;
+
+}
+
+<%@include file="/WEB-INF/layout/css/header_large.css" %>
+
+</style>
+</head>	
+<body >
+    <div class="stu_wrap">
 
 
 <jsp:include page="/WEB-INF/layout/header_large.jsp"></jsp:include>
-
 
 	<script>
 		var id = "#"+'${ lnb_item }';
@@ -99,2643 +132,2365 @@ a{display:inline;}
 		$(id).addClass("active");
 	</script>
 
-        <main >
-            <section class="stu_topBanner">
-                <div class="stu_inner_wrap">
-                    <div class="viewport">
-                        <div class="textArea">
-                            <p class="type1">미리 예약하면 할인되는</p>
-                            <p class="type2">유럽 할인 숙소 검색</p>
-                        </div>
-                        <img src="/stubbyPlanner/externalData/mb/images/sleeping.png" alt="샘플이미지">
-                    </div>
+
+<main  class="stu_clearfix" >
+
+
+
+        <section class="stu_md_select_group">
+            <div class="stu_md_background"></div>
+            <div class="stu_md_container md_citylist">
+                <div class="stu_md_head">
+                    <a>
+                        <i class="ico_close"></i>
+                    </a>
+                    <p>전체 여행지</p>
                 </div>
-            </section>
-            <section class="stu_selectCity">
-                <div class="stu_inner_wrap">
+                <div class="stu_md_body">
+                    <ul class="tabArea stu_clearfix">
+                        <li class="tabItem current">
+                            <button type="button" class="tab1">서유럽</button>
+                        </li>
+                        <li class="tabItem">
+                            <button type="button" class="tab2">지중해</button>
+                        </li>
+                        <li class="tabItem">
+                            <button type="button" class="tab3">동유럽</button>
+                        </li>
+                        <li class="tabItem">
+                            <button type="button" class="tab4">북유럽</button>
+                        </li>
+                    </ul>
+                    <ul class="contArea tab1">
+                       
+
+		 <li>
+                            <div class="c_left">
+                            <!-- 경로 재설정 필요 -->
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11101">프랑스</a>
+                            </div>
+                            <div class="c_right">
 
 
+<!-- line 374 ~ 926 경로 확인: ? 뒤 체크 -->
+<a href="/stubbyPlanner/market/index_city.do?region=111011004">파리</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111011010">리옹</a>
 
-                    <h2 class="stu_h2_title">내 계획에 포함된 도시</h2>
-                    <div class="swiper-container swiper1">
-                        <ul class="swiper-wrapper">
+		<a href="/stubbyPlanner/market/index_city.do?region=111011008">몽셍미셸</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111011143">지베르니</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111011144">오베르 쉬르 우와즈</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111011141">퐁텐블로</a>
 
-                            <li class="swiper-slide">
-                                <a href="/stubbyPlanner/mb/index_city.do?region=111061005&checkin=2019-06-27&checkout=2019-06-28">
-                                    <div class="stu_thumb_wrap">
-                                        <div class="imgArea">
+		<a href="/stubbyPlanner/market/index_city.do?region=111011003">니스</a>
 
-                                            <img src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/73440dd1d4d7018d8d03b29727ef101c_l.jpg" alt="">
-                                        </div>
-                                        <div class="textArea">
-                                            <p>뮌헨1박</font><font style="font-size:9pt;color:#c0c0c0;font-weight:300">6월 27일~28일</font></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+		<a href="/stubbyPlanner/market/index_city.do?region=111011120">생 말로</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111011126">옹플뢰르</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111011161">에트르타</a>
 
-                            <li class="swiper-slide">
-                                <a href="/stubbyPlanner/mb/index_city.do?region=131011001&checkin=2019-06-28&checkout=2019-07-01">
-                                    <div class="stu_thumb_wrap">
-                                        <div class="imgArea">
+		<a href="/stubbyPlanner/market/index_city.do?region=111011098">투르</a>
+                               
 
-                                            <img src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/1e543d53f4cda67e8343fc22f52e750c_l.jpg" alt="">
-                                        </div>
-                                        <div class="textArea">
-                                            <p>프라하3박</font><font style="font-size:9pt;color:#c0c0c0;font-weight:300">6월 28일~6월1일</font></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11104">이탈리아</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041004">로마</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041006">베니스</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041003">피렌체</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041123">친퀘테레</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041036">베로나</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041016">볼로냐</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111041026">팔레르모</a>
 
-                            <li class="swiper-slide">
-                                <a href="/stubbyPlanner/mb/index_city.do?region=131011003&checkin=2019-07-01&checkout=2019-07-02">
-                                    <div class="stu_thumb_wrap">
-                                        <div class="imgArea">
+		<a href="/stubbyPlanner/market/index_city.do?region=111041064">아말피</a>
 
-                                            <img src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/ed30cf2d96e71866f1264888d803a8f3_l.jpg" alt="">
-                                        </div>
-                                        <div class="textArea">
-                                            <p>체스키 크루믈로프1박</font><font style="font-size:9pt;color:#c0c0c0;font-weight:300">7월 1일~2일</font></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+		<a href="/stubbyPlanner/market/index_city.do?region=111041011">나폴리</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041161">키안티</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041130">산 지미냐노</a>
 
-                            <li class="swiper-slide">
-                                <a href="/stubbyPlanner/mb/index_city.do?region=131041002&checkin=2019-07-02&checkout=2019-07-03">
-                                    <div class="stu_thumb_wrap">
-                                        <div class="imgArea">
+		<a href="/stubbyPlanner/market/index_city.do?region=111041012">피사</a>
 
-                                            <img src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/f74c87589b6a7f107f02c76659ba4399_l.jpg" alt="">
-                                        </div>
-                                        <div class="textArea">
-                                            <p>잘츠부르크1박</font><font style="font-size:9pt;color:#c0c0c0;font-weight:300">7월 2일~3일</font></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+		<a href="/stubbyPlanner/market/index_city.do?region=111041133">시칠리아</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041009">아시시</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041056">오르비에토</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041010">카프리 섬</a>
 
+		<a href="/stubbyPlanner/market/index_city.do?region=111041005">폼페이</a>
+                               
 
-                        </ul>
-                        <!--scrollbar-->
-                        <div class="swiper-scrollbar"></div>
-                    </div>
+                            </div>
+                        </li>
 
-                    <div class="ct-toggle-btn-wrap">
-                        <button type="button" class="ct-toggle-btn"></button>
-                    </div>
-
-                </div>
-            </section>
-
+		 <li>
+                            <div class="c_left">
+                            <!-- 경로 재설정 필요 -->
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11102">스위스</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111021002">인터라켄</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111021009">라우터브룬넨</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111021001">루체른</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111021005">취리히</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111021086">뮈렌</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111021031">몽트뢰</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111021035">샤프하우젠</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111021102">라보지구</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11103">영국</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111031001">런던</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111031008">에든버러</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031197">코츠월드</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031004">옥스퍼드</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031187">세븐 시스터즈</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031184">스톤헨지</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031195">라이</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031003">윈저</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=111031006">바스</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11106">독일</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061006">프랑크푸르트</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061005">뮌헨</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061008">베를린</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061001">하이델베르크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061003">퓌센</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111061004">드레스덴</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11107">네덜란드</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111071001">암스테르담</a>
 
-<script>
-        // 리스트 찜하기(토글)
-        $('.prd-list .like').on('click', function() {
-	tid=$(this).attr("id");
-            $(this).toggleClass('active');
+		<a href="/stubbyPlanner/market/index_city.do?region=111071002">잔세스칸스</a>
+                               
 
-	             $.ajax({
-	            	/* 경로 재설정 필요 */
-	             	url: '/api/guidetour/toggle_slp_like.do?slp_id='+tid,
-	               	dataType: 'json',
-	               	success: function(data){
-$(this).remove();
-			}
-		});
+                            </div>
+                        </li>
 
-        });
-</script>
-
-	<section style="text-align:center;">
-                <div class="stu_inner_wrap">
-                    <h2 class="stu_h2_title">주요도시 숙소선택 튜토리얼</h2>
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11108">벨기에</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111081001">브뤼셀</a>
 
-	<div class="col-md-3  col-xs-3" style="padding-left:10px;padding-right:10px;">
-		<a href="/stubbyPlanner/stay/index.do?region=111011004"><img style="border-radius:5px;" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/b7e2260cb529dd1714c4c673ef6f2ae0_l.jpg" class="img-responsive"></a>
-		<div><a href="/stubbyPlanner/stay/index.do?region=111011004"><h3 style="text-align:center">파리편</h3></a></div>
-	</div>
-	<div class="col-md-3  col-xs-3" style="padding-left:10px;padding-right:10px">
-		<a href="/stubbyPlanner/stay/index.do?region=111031001"><img style="border-radius:5px;" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/922df351983150dd831bccf09528e6c9_l.jpg" class="img-responsive"></a>
-		<div><a href="/stubbyPlanner/stay/index.do?region=111031001"><h3 style="text-align:center">런던편</h3></a></div>
-	</div>
-	<div class="col-md-3  col-xs-3" style="padding-left:10px;padding-right:10px">
-		<a href="/stubbyPlanner/stay/index.do?region=131011001"><img style="border-radius:5px;" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/fe283a7c685b1ed0b7cd7e9213a748b4_l.jpg" class="img-responsive"></a>
-		<div><a href="/stubbyPlanner/stay/index.do?region=131011001"><h3 style="text-align:center">프라하편</h3></a></div>
-	</div>
-	<div class="col-md-3  col-xs-3" style="padding-left:10px;padding-right:10px">
-		<a href="/stubbyPlanner/stay/index.do?region=121011002"><img style="border-radius:5px;" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/430c622b02756bf6960bcf4aab44b698_l.jpg" class="img-responsive"></a>
-		<div><a href="/stubbyPlanner/stay/index.do?region=121011002"><h3 style="text-align:center">바르셀로나편</h3></a></div>
-	</div>
+		<a href="/stubbyPlanner/market/index_city.do?region=111081002">브뤼헤</a>
 
-	<div style="clear:both"></div>
-</div>
-<!---숙소튜토리얼---->
+		<a href="/stubbyPlanner/market/index_city.do?region=111081006">겐트</a>
+                               
 
-        </section>
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11110">아일랜드</a>
+                            </div>
+                            <div class="c_right">
 
 
+	
+<a href="/stubbyPlanner/market/index_city.do?region=111101001">더블린</a>
+                               
 
-        </main>
+                            </div>
+                        </li>
+
+                    
+                    </ul>
+                    <ul class="contArea tab2 d-n">
 
 
-        <section class="stu_event_banner">
-            <div class="stu_inner_wrap">
-                <div class="event_banner2" style="background:#f3f3f3;height:120px;overflow:hidden;position:relative;">
-                   
-                            <a href="/stubbyPlanner/consulting/index.do" target="_blank" style="width:100%; height:100%;">
-                                <div class="txtWrap">
-                                    <p>유럽여행이 처음이라면</p>
-                                    <b >전문가의 도움을 받아보세요.</b>
-                                </div>
-                                <div class="imgWrap" style="background-image:url(/stubbyPlanner/externalData/img_v15/back_private.png);">
-                                    <b><span>전문가 유럽계획 의뢰</span>￦ 55,200</b>
-                                </div>
-                            </a>
-		<div style="clear:both"></div>
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12101">스페인</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011002">바르셀로나</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011003">마드리드</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011004">톨레도</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011001">그라나다</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011007">세비야</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011005">말라가</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011028">테네리페</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121011057">론다</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121011104">몬세라트</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121011016">헤로나</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121011070">시체스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121011008">세고비아</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121011100">콘수에그라</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12102">포르투갈</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121021001">리스본</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121021008">포르투</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121021004">카스카이스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121021002">로카 곶</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121021003">신트라</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12103">그리스</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121031001">아테네</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121031002">산토리니</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121031021">자킨토스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121031011">케팔로니아 섬</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121031052">메테오라</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121031036">델포이</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121031024">이라클리온</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12104">터키</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121041001">이스탄불</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121041003">카파도키아</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121041028">페티예</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121041008">보드룸</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121041030">파묵칼레</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=121041007">안탈리아</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12107">몰타</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=121071009">몰타</a>
+                               
+
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <ul class="contArea tab3 d-n">
+
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=13101">체코</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131011001">프라하</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131011003">체스키크롬로프</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=13104">오스트리아</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131041001">비엔나</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131041002">잘츠부르크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131041032">할슈타트</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=13102">헝가리</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131021001">부다페스트</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=13106">크로아티아</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131061001">두브로브니크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131061002">스플리트</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=131061008">자그레브</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=131061009">플리트비체</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=131061028">라스토케</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=131141002">모스타르</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=131221002">코토르 지역의 자연 및 역사문화 유적지</a>
+                               
+
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="contArea tab4 d-n">
+   
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14107">아이슬란드</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071003">레이캬비크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071022">굴포스</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071019">스카프타펠</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071044">요쿨살론</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071010">후사비크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141071001">아퀴레이리</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071027">블루라군</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071020">싱벨리르 국립공원</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071021">게이시르</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071033">셀라란즈포스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071042">스코가포스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071005">비크</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071043">바트나요쿨</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071026">데티포스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071024">고다포스</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141071037">스나이펠스요쿨 국립공원</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14104">노르웨이</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141041002">오슬로</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141041002">오슬로</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141041011">뤼세 피오르드</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141041011">스타방에르</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141041012">트롬쇠</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141041071">프레이케스톨렌</a>
+
+		<a href="/stubbyPlanner/market/index_city.do?region=141041125">쉐락볼튼</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14103">덴마크</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141031001">코펜하겐</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14102">핀란드</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141021001">헬싱키</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14105">스웨덴</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141051001">스톡홀름</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14101">러시아</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141011001">모스크바</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141011002">상트페테르부르크</a>
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141011008">블라디보스톡</a>
+                               
+
+                            </div>
+                        </li>
+
+		 <li>
+                            <div class="c_left">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14106">에스토니아</a>
+                            </div>
+                            <div class="c_right">
+
+
+	
+<a href="/stubbyPlanner/market/index_city.do?region=141061001">탈린</a>
+                               
+
+                            </div>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </section>
 
-	<jsp:include page="/WEB-INF/layout/footer_large.jsp"></jsp:include>
-
-    </div>
 
 
+        <section class="stu_top_banner">
+            <div class="swiper-container swiper-top_banner">
+<!--                 <ul class="swiper-wrapper"> -->
 
-    <script>
-        $(document).ready(function() {
+                    <li class="swiper-slide">
+                        <a href="#">
+                            <div class="stu_bg" style="background-image:url(/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/square.jpg);">
+                                <div class="stu_tone"></div>
+                                <div class="stu_inner_wrap">
+                                    <div class="titArea" style="text-shadows:3px 4px 5px #000;">
+                                        <b class="type" style="color:orange;">1,700가지 유럽투어/액티비티</b>
+                                        <b class="title"> 광장</b>
+                                        <p>미리 예약할수록 커지는 추가할인율!</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+<!--
+                    <li class="swiper-slide">
+                        <a href="/stubbyPlanner/market/index_ctry.do?region=14107">
+                            <div class="stu_bg" style="background-image:url(/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1557200068405fXpJZvHbLv.jpg);">
+                                <div class="stu_tone"></div>
+                                <div class="stu_inner_wrap">
+                                    <div class="titArea">
+                                        <b class="type" style="color:#ffec95;">한여름의 아이슬란드</b>
+                                        <b class="title">13만원 할인 쿠폰</b>
+                                        <p>현지 NO.1 업체들과의 직거래!</p>
+			 <span>할인상품들 보기<i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+-->
+<!-- 
+                    <li class="swiper-slide">
+                        <a href="/stubbyPlanner/market/index_ctry.do?region=13106">
+                            <div class="stu_bg" style="background-image:url(/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1557200073282p7xDARFqSW.jpg);">
+                                <div class="stu_tone"></div>
+                                <div class="stu_inner_wrap">
+                                    <div class="titArea">
+                                        <b class="type" style="color:#ffec95;">크로아티아의 재발견</b>
+                                        <b class="title"> 얼리버드 SALE중</b>
+                                        <p>현지 NO.1 업체들과의 직거래!</p>
+			 <span>할인상품들 보기<i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+ -->                    
+                    
+<!---
+                    <li class="swiper-slide">
+                        <a href="/coupon/winter_coupon.asp">
+                            <div class="stu_bg" style="background-image:url(/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548143509681qeUESXqBuF.jpg);">
+                                <div class="stu_tone"></div>
+                                <div class="stu_inner_wrap">
+                                    <div class="titArea">
+                                        <b class="type" style="color:#ffec95;">COUPON</b>
+                                        <b class="title">놓치지 말아야 할<br/>유럽 5대 필수투어 쿠폰</b>
+                                        <p>100,000원 할인쿠폰!</p>
+                                        <span>쿠폰받기<i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="swiper-slide">
+                        <a href="/event_1/event_1plus1.asp">
+                            <div class="stu_bg" style="background-image:url(/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548143514207g7GoOyuFIS.jpg);">
+                                <div class="stu_tone"></div>
+                                <div class="stu_inner_wrap">
+                                    <div class="titArea">
+                                        <b class="type">EVENT</b>
+                                        <b class="title" style="color:#4a4a4a;">하나 사면 하나 더!<br/>1+1 할인상품</b>
+                                        <p style="color:#4a4a4a;">하나만 사도 핵이득!</p>
+                                        <span>자세히 보기<i></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+--->
+<!--                 </ul> -->
+            </div>
+<!---
+            <div class="swiper-pagination top_banner-pagination"></div>
+            <div class="swiper-button-prev top_banner-button-prev"></div>
+            <div class="swiper-button-next top_banner-button-next"></div>
+-->
+
+
+           <div class="stu_square_search" style=" position:absolute; bottom:0; left:50%; transform:translate(-50%, 50%); max-width:900px; width:calc(100% - 80px);">
+                <input href="#" class="search_input" placeholder="제목, 내용, 작성자로 검색">
+            </div>
+        </section>
+<!--         
+        <section class="stu_svc_icon">
+            <div class="stu_inner_wrap">
+                <ul class="stu_clearfix">
+                    <li>
+                        <div class="imgWrap">
+                            <i class="ico_svc1"></i>
+                        </div>
+                        <div class="txtWrap">
+                            <b>간편예약</b>
+                            <p>회원가입없이도 간편하게 예약!</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="imgWrap">
+                            <i class="ico_svc2"></i>
+                        </div>
+                        <div class="txtWrap">
+                            <b>유럽 현지 1,700여개 상품</b>
+                            <p>얼리버드 할인 최대 30%</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="imgWrap">
+                            <i class="ico_svc3"></i>
+                        </div>
+                        <div class="txtWrap">
+                            <b>오전 / 오후 / 저녁 / 1DAY</b>
+                            <p>원하는 시간에 맞는 투어를 손쉽게 검색</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+ -->
+
+<section></section>
+
+
+       <section class="stu_regions">
+                <div class="stu_inner_wrap" style="">
+
+               <h2 style="font-size:18pt;font-weight:700;color:#696969">
+                    인기있는 플래너
+                </h2>
+ 
+
+                
+
+                    <div id="tab-1" class="stu_tab-content current">
+                        <div class="swiper-container swiper3">
+                            <ul class="swiper-wrapper">
+
+
+
+
+
+                                <li class="swiper-slide">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
+                                        <div class="tone-down"></div>
+                                        <div class="stu_titleArea">
+                                            <p>서유럽 단기</p>
+                                            <p class="type2">12~15일</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide">
+                                  <!-- 경로 & 파라미터 변경 필요 -->
+                                  <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
+                                        <div class="tone-down"></div>
+                                        <div class="stu_titleArea">
+                                            <p>동유럽 단기</p>
+                                            <p class="type2">7~10일</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
+                                        <div class="tone-down"></div>
+                                        <div class="stu_titleArea">
+                                            <p>스페인+포르투갈</p>
+                                            <p class="type2">15~20일</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
+                                        <div class="tone-down"></div>
+                                        <div class="stu_titleArea">
+                                            <p>터키+그리스</p>
+                                            <p class="type2">15~20일</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
+                                        <div class="tone-down"></div>
+                                        <div class="stu_titleArea">
+                                            <p>유럽일주</p>
+                                            <p class="type2">30일</p>
+                                        </div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!--Navigation buttons-->
+
+                    </div>
+	</div>
+            </section>
+
+
+<!-- 
+        <section class="stu_swiper-section select_city">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h3 class="stu_title">인기 플래너</h3>
+                </div>
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111011004">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/8dd49e94be2f1f20057849442b8f5dbf_l.jpg" alt="파리"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>파리</p>
+			<span>프랑스</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111031001">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e0c6526ddbece5b5df458b3edf6eb60d_l.jpg" alt="런던"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>런던</p>
+			<span>영국</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111021002">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/9331fa26a6d4d1ba7e62333d8bd95a86_l.jpg" alt="인터라켄"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>인터라켄</p>
+			<span>스위스</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111041004">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/09049d95b76b6e3c32e9f1c1de218db6_l.jpg" alt="로마"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>로마</p>
+			<span>이탈리아</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=131041001">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/fcc6e80ef56cf742c1f73b39aca09f7e_l.jpg" alt="비엔나"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>비엔나</p>
+			<span>오스트리아</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111041006">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e96de2bbbaa6efa080ce695b5947d65b_l.jpg" alt="베니스"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>베니스</p>
+			<span>이탈리아</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111041003">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/4d6a32cb00d88ef3e96657ef69645dbc_l.jpg" alt="피렌체"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>피렌체</p>
+			<span>이탈리아</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=111061005">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/86c9a566d17bda4856df9f1968e4e785_l.jpg" alt="뮌헨"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>뮌헨</p>
+			<span>독일</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+
+                        <li class="swiper-slide" >
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=121041001">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3c7cc46847c4aa0dc11df83d3ac6702d_l.jpg" alt="이스탄불"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>이스탄불</p>
+			<span>터키</span>
+                                    </div>
+                                </a>
+                            </div>
+
+
+
+                        </li>
+
+	</ul>
+	</div>
+	</div>
+	</section>
+
+ -->
+
+
+
+
+       <section class="stu_swiper-section stu_recent-offer">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h3 class="stu_title">인기 슈퍼 얼리버드 할인상품 <small style="font-size:10pt;color:#696969"> 최대 30% 할인 </small></h3>
+                </div>
+
+
+
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=156">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc.jpg'">
+
+
+                                    <div class="band bg_red">⚡️21CHF</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>Skywings</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>스위스 NO.1 인터라켄 패러글라이딩</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>4.6</span>
+                                         <span class="buy">13829명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        183,111원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리176,023원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
 
 
 
 
 
 
-         // 스와이핑
-            var mySwiper = new Swiper ('.swiper1', {
-                slidesPerView:'auto',
-                freeMode:true,
-                direction:'horizontal',
-                noSwiping:true,
-                noSwipingClass:'swiper-slide',
-                breakpoints: {
-                    620: {
-                        noSwiping:false,
-                        scrollbar: {
-                            el: '.swiper-scrollbar',
-                            hide: true,
-                        },
-                    },
-                }
-            });
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=64">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e22cc94d860ef44e2cf131dff3d9977d_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e22cc94d860ef44e2cf131dff3d9977d.jpg'">
 
-            // 아코디언 버튼(토글)
-            var hide_list = $('.swiper1 li:gt(5)');
-            $(hide_list).addClass('stu_hide');
-            $('.ct-toggle-btn-wrap').click(function() {
-                $(this).children('.ct-toggle-btn').toggleClass('on');
-                $(hide_list).toggleClass('stu_hide');
-            });
+
+                                    <div class="band bg_red">⚡️5EUR</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>Walk about Florence</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[현지1위, 직거래 특가] 토스카나 와이너리 + 차량투어</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
 
 
 
-        })
-    </script>
+                                        <span><i></i>4.5</span>
+                                         <span class="buy">1031명 예약</span>
 
 
 
-
-
-
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        112,733원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리106,102원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
 
 
 
 
-<script src="/stubbyPlanner/externalData/js2/header_footer3.js" type="text/javascript"></script>
-        <section class="stu_md_search">
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=148">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
+
+
+                                    <div class="band bg_red">⚡️6.9천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>메멘토투어</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[5월특가]스페인 전문 메멘토투어 가우디 반일 버스투어 </span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>4.7</span>
+                                         <span class="buy">1474명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        23,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리16,100원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=50">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/910673112ceee03c554302d9a29f670c_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/910673112ceee03c554302d9a29f670c.jpg'">
+
+
+                                    <div class="band bg_red">⚡️5.4만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>예술과여행</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>파리 근교 3종세트★지베르니+옹플뢰르+몽생미셸</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>4.5</span>
+                                         <span class="buy">679명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        180,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리126,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=313">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/033ab7dba1af8d1915c06f993bada22f_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/033ab7dba1af8d1915c06f993bada22f.jpg'">
+
+
+                                    <div class="band bg_red">⚡️1.05만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>Hon's Trip(헌스트립)</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>「와인 한잔」과 「인생샷」이 함께하는 로맨틱 템즈강 야경투어</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 8명이 선택</span>
+		
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리24,500원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=1524">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2.jpg'">
+
+
+                                    <div class="band bg_red">⚡️2.07만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>여행의신</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[오픈특가][얼리버드] 베르사유 궁전내부설명 포함 + 지베르니 + 오베르쉬르우아즈 only대표가이드 진행!</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 25명이 선택</span>
+		
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        69,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리48,300원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=81">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/41ffee5d5b6ef47fec48e7ad1e14dc85_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/41ffee5d5b6ef47fec48e7ad1e14dc85.jpg'">
+
+
+                                    <div class="band bg_red">⚡️1.05만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>메멘토투어</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[1+1이벤트][특가] 오직 가우디만 있는 버스 투어</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>4.5</span>
+                                         <span class="buy">865명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리24,500원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=54">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/165cd593fa9cc7e1adfdfcffeadaada6_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/165cd593fa9cc7e1adfdfcffeadaada6.jpg'">
+
+
+                                    <div class="band bg_red">⚡️5.34만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>예술과여행</span>
+                                    </div>
+                                    <div class="name">
+                                        <span><소그룹> 몽생미셸 낮과밤 + 옹플뢰르  [8인이하 + 스냅사진+ 숙소샌딩 포함]</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>4.4</span>
+                                         <span class="buy">486명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        178,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리124,600원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=647">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/d26b6eb63f71a809c3424b7f7b89e8eb_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/d26b6eb63f71a809c3424b7f7b89e8eb.jpg'">
+
+
+                                    <div class="band bg_red">⚡️1800CZK</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>TastePRAHA</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[프라하스냅] 팀당 촬영가격, 현지 대표작가 촬영! 아름다운 프라하에서 남기는 추억여행</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>5</span>
+                                         <span class="buy">162명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        308,094원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리215,666원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=314">
+                                <figure class="thumb">
+                                <!-- img 태그 첫 번째 src는 서버에 이미지 존재X -> oneerror 발동 -->
+			<img class="fw" src="http://d3b39vpyptsv01.cloudfront.net/photo/6/9/97b5efb1c2b3df2deb4231d826707159_l.png" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/6/9/97b5efb1c2b3df2deb4231d826707159.png'">
+
+
+                                    <div class="band bg_red">⚡️2.76만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>QUE RICO(께 리꼬)</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[로맨스4 민셰프 진행] 빠에야,타파스 쿠킹클래스 + 보케리아 시장투어 + 와인</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+
+                                        <span><i></i>5</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
+                                        92,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리64,400원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+       <section class="stu_swiper-section stu_recent-offer">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h3 class="stu_title">최근 살펴본 여행</h3>
+                </div>
+
+
+                <div class="swiper-container stu_tagArea">
+                    <ul class="swiper-wrapper">
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=27" class="stu_tag ico_theme">
+                                <i></i>이탈리아 남부투어
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/index_ctry.do?needlogin=&region=11104"  class="stu_tag ico_country">
+                                <i></i>이탈리아
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=1" class="stu_tag ico_theme">
+                                <i></i>몽생미셀 베스트
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/index_ctry.do?needlogin=&region=11101"  class="stu_tag ico_country">
+                                <i></i>프랑스
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=2" class="stu_tag ico_theme">
+                                <i></i>지베르니+근교
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=26" class="stu_tag ico_theme">
+                                <i></i>바티칸 지식가이드
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=13" class="stu_tag ico_theme">
+                                <i></i>스위스 패러글라이딩
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/index_ctry.do?needlogin=&region=11102"  class="stu_tag ico_country">
+                                <i></i>스위스
+                            </a>
+                        </li>
+
+                        <li class="swiper-slide">
+                            <a href="/stubbyPlanner/market/group.do?needlogin=&serial=121" class="stu_tag ico_theme">
+                                <i></i>파리시내투어
+                            </a>
+                        </li>
+</ul>
+</div>
+
+
+
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=189">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c_l.jpeg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c.jpeg'">
+                                   
+
+                                    <div class="band bg_red">⚡️2천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>맘마미아투어</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[1+1이벤트] 최다예약엔 이유가 있다! 맘마미아 남부투어 (기간 한정 파격 특가 중)/ 로마야경무료</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>4.3</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        45,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 43,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=185">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5a0ca0f817c60e8c13c12c05467fc542_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5a0ca0f817c60e8c13c12c05467fc542.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️3천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>우노트래블</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[봄맞이 특가] 남부 아말피 코스트 투어</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 8명이 선택</span>
+		
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 32,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=275">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/b69915331fbdc90b487319a97f1b7b0c_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/b69915331fbdc90b487319a97f1b7b0c.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️5천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>파리크레파스</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[특가 진행중]몽생미셸 야경투어 (에타르타-옹플레흐-몽생미셸 야경) </span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>4.6</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        110,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 105,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=1524">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️2.07만원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>여행의신</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[오픈특가][얼리버드] 베르사유 궁전내부설명 포함 + 지베르니 + 오베르쉬르우아즈 only대표가이드 진행!</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 25명이 선택</span>
+		
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        69,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 48,300원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=162">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/56af13cbabd3c2633dcf4ca135b52747_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/56af13cbabd3c2633dcf4ca135b52747.jpg'">
+                                   
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>이태리스케치북</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[만족도 1위] 바티칸 전일코스 반일 오전투어 (★로마 야경투어 무료★)</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>4.9</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        25,000원
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=158">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3bfc5bfc713b197f0d7329a736097d53_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3bfc5bfc713b197f0d7329a736097d53.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️2천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>떼아모투어</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[사전예약입장]줄설필요없는 바티칸 반일 투어 + 회화관 입장</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>4.3</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        25,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 23,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=156">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️21CHF</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>Skywings</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>스위스 NO.1 인터라켄 패러글라이딩</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>4.6</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        183,111원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 176,023원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=183">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/bf85855c6f389d66df2d612f19d9c3a1_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/bf85855c6f389d66df2d612f19d9c3a1.jpg'">
+                                   
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>(주)헬로우유럽 </span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[4-10월만] 이탈리아 남부투어 1박2일</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>5</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        320,000원
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+
+                        <li class="swiper-slide prd_item">
+                            <a href="/stubbyPlanner/guide/detail.do?needlogin=&serial=416">
+                                <figure class="thumb">
+			<img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5dd3fd53136dc137772e0aca5349623d_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5dd3fd53136dc137772e0aca5349623d.jpg'">
+                                   
+
+                                    <div class="band bg_red">⚡️2천원</div>
+
+                                </figure>
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                        <span>파리크레파스</span>
+                                    </div>
+                                    <div class="name">
+                                        <span>[신규]오픈기념  특가! 파리 전일 워킹 투어</span>
+                                    </div>
+
+
+                                    <div class="score" style="display:inline-block">
+
+
+                                        <span><i></i>5</span>
+                                         <span class="buy">96명 예약</span>
+
+
+
+                                    </div>
+
+
+                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
+                                        25,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 23,000원~</font></span>
+                                    </div>
+                                </figcaption>
+                            </a>
+                        </li>
+
+
+
+
+
+
+                    </ul>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+
+
+
+
+
+        <section class="stu_swiper-section select_country">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h3 class="stu_title">인기있는 여행지</h3>
+                </div>
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11101">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547711396227KVaHVLHgqA.jpg" alt="파리"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>프랑스</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_ctry.do?region=11103">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547711394003kyZnHCTTgW.jpg" alt="런던"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>영국</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+
+
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_ctry.do?region=13">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547712192807iavhsdQHbY.jpg" alt="부다페스트"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>동유럽</p>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_city.do?region=131011001">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/15477129210620EHSn2EP9u.jpg" alt="프라하"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>프라하</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </li>
+
+                        <li class="swiper-slide">
+
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12101">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/6b51958bb4de78afde6d03d68dfc51f4_l.jpg" alt="마드리드"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>스페인</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_city.do?region=121011002">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547712729838QR4NG8pyvP.jpg" alt="바르셀로나"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>바르셀로나</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11104">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547712194992cXku5x0vSs.jpg" alt="피렌체"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>이탈리아</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_city.do?region=111041004">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547711568395fzvO9go2Ea.jpg" alt="로마"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>로마</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=11102">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/stuweb.s3.amazonaws.com/photo/1/2/862614206fb887d468abbbda3a32eca2_l.jpg" alt="베니스"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>스위스</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_city.do?region=111021002">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1547711570331UNm3biNX0n.jpg" alt="인터라켄"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>인터라켄</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+
+
+
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                              <a href="/stubbyPlanner/market/index_ctry.do?region=14107">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/d51565d8b6450b2ec2f9b48da840512e_l.jpg" alt="아이슬란드"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>아이슬란드</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12102">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/52a8e300b561ea9e3285081e313b3114_l.jpg" alt="포르투갈"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>포르투갈</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=13106">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/25e90fc4c14370a15c3d5c6a14548100_l.jpg" alt="크로아티아"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>크로아티아</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                               <a href="/stubbyPlanner/market/index_ctry.do?region=12103">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/0f4865e165dbd8a7c636549a79f7f678_l.jpg" alt="그리스"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>그리스</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12104">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/040c3d8e7e555abd88b9e2149136810d_l.jpg" alt="터키"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>터키</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=12107">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/272437f2c451e5ee27a2aa9b67926dae_l.jpg" alt="몰타"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>몰타</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14104">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/7c6c48bd799b9677ccd85b4b91f1d840_l.jpg" alt="노르웨이"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>노르웨이</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="/stubbyPlanner/market/index_ctry.do?region=14101">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/ac5674541ecd30fbbcd6f025c3e0df6d_l.jpg" alt="러시아"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>러시아</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="btnWrap">
+                    <a><i></i>전체 여행지</a>
+                </div>
+            </div>
+        </section>
+
+<!--
+
+        <section class="stu_swiper-section select_theme">
+            <div class="stu_inner_wrap">
+                <div class="titArea">
+                    <h3 class="stu_title">테마가 있는 여행</h3>
+                    <p>꿈꾸던 도시에서 특별한 하루를 만들어보세요.</p>
+                </div>
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/15480491921925GH329Hge1.jpg" alt="스냅촬영"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#스냅촬영</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548058378595YacrjMRwr6.jpg" alt="공연관람"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#공연관람</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548050473923zcJKrO1t6K.jpg" alt="야경투어"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#야경투어</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="swiper-slide">
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548060937617OyB6OUp1CL.jpg" alt="미술관·박물관"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#미술관·박물관</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548058535019DFl2nVEiKh.jpg" alt="로컬푸드"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#로컬푸드</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="prd_item">
+                                <a href="#">
+                                    <div class="imgArea">
+                                        <img class="fh" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548061444407FLMeKv7LNm.jpg" alt="워킹투어"/>
+                                    </div>
+                                    <div class="textArea">
+                                        <p>#워킹투어</p>
+                                        <span>000개 상품</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="btnWrap">
+                    <a><i></i>전체 테마</a>
+                </div>
+            </div>
+        </section>
+--->
+
+
+    </main>
+
+
+<jsp:include page="/WEB-INF/layout/advertisement.jsp"></jsp:include>
+
+<jsp:include page="/WEB-INF/layout/footer_large.jsp"></jsp:include>
+
+	</div>
+
+
+
+
+
+<!-- JS Global Compulsory -->
+
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script src="/stubbyPlanner/externalData/market/js/lazysizes.min.js" type="text/javascript" async=""></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
+
+
+	 
+       <section class="stu_md_search">
             <div class="search_background"></div>
             <div class="md-container">
                 <div class="md-header">
                     <a href="#stu_md-close" class="ico_close"></a>
                     <div class="md-searchWrap">
-                      
                             <fieldset>
-
-
-                                <input type="search" name="search_keyword" autocorrect="off" autosave="off" class="md-search-input" placeholder="도시로 검색하세요." value>
+                                <input type="search" name="search_keyword" autocorrect="off" autosave="off" class="md-search-input" placeholder="도시,국가,키워드로 검색" value>
                             </fieldset>
                      
                     </div>
                 </div>
+                    </div>
+                </div>
+                </section>
+
+
+
+<!-- JS Page Level -->
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/js/one.app.js"></script>
+
+
+<script>
+$(document).ready(function() {
+    // 이미지 스와이핑
+
+
+	$('.stu_main_search').click(function() {
+		$('body').addClass('modal-opened');
+		$('.stu_md_search').addClass('active');
+
+		if($('.header_banner').length > 0) {
+			$('.md-container').removeClass('pos-top1');
+			$('.md-container').addClass('pos-top2');
+		} else {
+			$('.md-container').removeClass('pos-top2');
+			$('.md-container').addClass('pos-top1');
+		};
+		$('.md-searchWrap input.md-search-input').focus();
+	});
+
+
+
+    var topBanner = new Swiper ('.swiper-top_banner', {
+        slidesPerView:'auto',
+        speed:1000,
+        loop:true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.top_banner-pagination',
+            clickable:true,
+        },
+        navigation: {
+            nextEl: '.top_banner-button-next',
+            prevEl: '.top_banner-button-prev',
+        },
+    });
+
+    var recentOffer = new Swiper ('.swiper-recent_offer', {
+        slidesPerView:'auto',
+        navigation: {
+            nextEl: '.recent_offer-button-next',
+            prevEl: '.recent_offer-button-prev',
+        },
+    });
+    var tagArea = new Swiper ('.stu_tagArea', {
+        slidesPerView:'auto',
+        freeMode:true,
+        direction:'horizontal',
+    });
+    $('.swiper-items').each(function() {
+        new Swiper($(this), {
+            slidesPerView:'auto',
+            freeMode:false,
+            direction:'horizontal',
+            scrollbar: {
+                el:$(this).children('.swiper-scrollbar'),
+                hide:true,
+            },
+            navigation: {
+                nextEl: $(this).siblings('.swiper-button-next'),
+                prevEl: $(this).siblings('.swiper-button-prev'),
+            },
+            breakpoints: {
+                619: {
+                    freeMode:true,
+                }
+            }
+        });
+    });
+});
+</script>
 
-                    <div class="md-content">
-
-                        <div class="md-section">
-                            <div class="content-header ico_theme">주요도시</div>
-                            <ul class="content-list">
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011004">
-                                        <div class="value">
-                                            <b class="name">파리</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                        <div class="count">
-
-                                        </div>
-                                    </a>
-                                </li>
-                               <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011003">
-                                        <div class="value">
-                                            <b class="name">니스</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                        <div class="count">
-                                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031001">
-                                        <div class="value">
-                                            <b class="name">런던</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                        <div class="count">
-      
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071001">
-                                        <div class="value">
-                                            <b class="name">암스테르담</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                        <div class="count">
-                       
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111081001">
-                                        <div class="value">
-                                            <b class="name">브뤼셀</b>
-                                            <i class="category">벨기에</i>
-                                        </div>
-                                        <div class="count">
-                             
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061006">
-                                        <div class="value">
-                                            <b class="name">프랑크푸르트</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                        <div class="count">
-                                       
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061008">
-                                        <div class="value">
-                                            <b class="name">베를린</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                        <div class="count">
-                                          
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061005">
-                                        <div class="value">
-                                            <b class="name">뮌헨</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                        <div class="count">
-                                      
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011001">
-                                        <div class="value">
-                                            <b class="name">프라하</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                        <div class="count">
-                                       
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041001">
-                                        <div class="value">
-                                            <b class="name">비엔나</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                        <div class="count">
-                                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041002">
-                                        <div class="value">
-                                            <b class="name">잘츠부르크</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                        <div class="count">
-                                       
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131021001">
-                                        <div class="value">
-                                            <b class="name">부다페스트</b>
-                                            <i class="category">헝가리</i>
-                                        </div>
-                                        <div class="count">
-                                
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061001">
-                                        <div class="value">
-                                            <b class="name">두브로브니크</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                        <div class="count">
-                                     
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061002">
-                                        <div class="value">
-                                            <b class="name">스플리트</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                        <div class="count">
-                                     
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061008">
-                                        <div class="value">
-                                            <b class="name">자그레브</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                        <div class="count">
-                                     
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041004">
-                                        <div class="value">
-                                            <b class="name">로마</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                        <div class="count">
-                                     
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041003">
-                                        <div class="value">
-                                            <b class="name">피렌체</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                        <div class="count">
-                         
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041006">
-                                        <div class="value">
-                                            <b class="name">베니스</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                        <div class="count">
-                                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041011">
-                                        <div class="value">
-                                            <b class="name">나폴리</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                        <div class="count">
-                                    
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041133">
-                                        <div class="value">
-                                            <b class="name">시칠리아</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                        <div class="count">
-                                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021002">
-                                        <div class="value">
-                                            <b class="name">인터라켄</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                        <div class="count">
-                                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011002">
-                                        <div class="value">
-                                            <b class="name">바르셀로나</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                        <div class="count">
-                        
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011003">
-                                        <div class="value">
-                                            <b class="name">마드리드</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011001">
-                                        <div class="value">
-                                            <b class="name">그라나다</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011007">
-                                        <div class="value">
-                                            <b class="name">세비야</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011005">
-                                        <div class="value">
-                                            <b class="name">말라가</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021001">
-                                        <div class="value">
-                                            <b class="name">리스본</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                        <div class="count">
-                                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021008">
-                                        <div class="value">
-                                            <b class="name">포르투</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                        <div class="count">
-                                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031001">
-                                        <div class="value">
-                                            <b class="name">아테네</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                        <div class="count">
-                                  
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031002">
-                                        <div class="value">
-                                            <b class="name">산토리니</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                        <div class="count">
-                                  
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031021">
-                                        <div class="value">
-                                            <b class="name">자킨토스</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                        <div class="count">
-                                  
-                                        </div>
-                                    </a>
-                                </li>
-
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041001">
-                                        <div class="value">
-                                            <b class="name">이스탄불</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                        <div class="count">
-                             
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041003">
-                                        <div class="value">
-                                            <b class="name">카파도키아</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                        <div class="count">
-                             
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041028">
-                                        <div class="value">
-                                            <b class="name">페티예</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                        <div class="count">
-                             
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141011001">
-                                        <div class="value">
-                                            <b class="name">모스크바</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                        <div class="count">
-                                  
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141011002">
-                                        <div class="value">
-                                            <b class="name">상트페테르부르크</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                        <div class="count">
-             
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141011008">
-                                        <div class="value">
-                                            <b class="name">블라디보스톡</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                        <div class="count">
-             
-                                        </div>
-                                    </a>
-                                </li>
-
-
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141051001">
-                                        <div class="value">
-                                            <b class="name">스톡홀름</b>
-                                            <i class="category">스웨덴</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141031001">
-                                        <div class="value">
-                                            <b class="name">코펜하겐</b>
-                                            <i class="category">덴마크</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141021001">
-                                        <div class="value">
-                                            <b class="name">헬싱키</b>
-                                            <i class="category">핀란드</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141041011">
-                                        <div class="value">
-                                            <b class="name">스타방에르</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141061001">
-                                        <div class="value">
-                                            <b class="name">탈린</b>
-                                            <i class="category">에스토니아</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=141071003">
-                                        <div class="value">
-                                            <b class="name">레이캬비크</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041032">
-                                        <div class="value">
-                                            <b class="name">할슈타트</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011003">
-                                        <div class="value">
-                                            <b class="name">체스키크롬로프</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=111101001">
-                                        <div class="value">
-                                            <b class="name">더블린</b>
-                                            <i class="category">아일랜드</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031024">
-                                        <div class="value">
-                                            <b class="name">이라클리온(크레타)</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031068">
-                                        <div class="value">
-                                            <b class="name">하니아(크레타)</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                        <div class="count">
-                                   
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-
-                    <div class="md-content">
-
-                        <div class="md-section">
-                            <div class="content-header ico_theme">모든도시</div>
-                            <ul class="content-list">
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011004">
-                                        <div class="value">
-                                            <b class="name">파리</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031001">
-                                        <div class="value">
-                                            <b class="name">런던</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041004">
-                                        <div class="value">
-                                            <b class="name">로마</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011001">
-                                        <div class="value">
-                                            <b class="name">프라하</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011002">
-                                        <div class="value">
-                                            <b class="name">바르셀로나</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061006">
-                                        <div class="value">
-                                            <b class="name">프랑크푸르트</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061005">
-                                        <div class="value">
-                                            <b class="name">뮌헨</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041006">
-                                        <div class="value">
-                                            <b class="name">베니스</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041003">
-                                        <div class="value">
-                                            <b class="name">피렌체</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071001">
-                                        <div class="value">
-                                            <b class="name">암스테르담</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041001">
-                                        <div class="value">
-                                            <b class="name">비엔나(빈)</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061008">
-                                        <div class="value">
-                                            <b class="name">베를린</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021002">
-                                        <div class="value">
-                                            <b class="name">인터라켄</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011003">
-                                        <div class="value">
-                                            <b class="name">마드리드</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021001">
-                                        <div class="value">
-                                            <b class="name">루체른</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041001">
-                                        <div class="value">
-                                            <b class="name">밀라노</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131021001">
-                                        <div class="value">
-                                            <b class="name">부다페스트</b>
-                                            <i class="category">헝가리</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031001">
-                                        <div class="value">
-                                            <b class="name">아테네</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041002">
-                                        <div class="value">
-                                            <b class="name">잘츠부르크</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111081001">
-                                        <div class="value">
-                                            <b class="name">브뤼셀</b>
-                                            <i class="category">벨기에</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041001">
-                                        <div class="value">
-                                            <b class="name">이스탄불</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011003">
-                                        <div class="value">
-                                            <b class="name">니스</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041011">
-                                        <div class="value">
-                                            <b class="name">나폴리</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011001">
-                                        <div class="value">
-                                            <b class="name">그라나다</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021005">
-                                        <div class="value">
-                                            <b class="name">취리히</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021001">
-                                        <div class="value">
-                                            <b class="name">리스본</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061001">
-                                        <div class="value">
-                                            <b class="name">하이델베르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011007">
-                                        <div class="value">
-                                            <b class="name">세비야</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141051001">
-                                        <div class="value">
-                                            <b class="name">스톡홀름</b>
-                                            <i class="category">스웨덴</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021015">
-                                        <div class="value">
-                                            <b class="name">베른</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041032">
-                                        <div class="value">
-                                            <b class="name">할슈타트</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031004">
-                                        <div class="value">
-                                            <b class="name">옥스퍼드</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141011002">
-                                        <div class="value">
-                                            <b class="name">상트페테르부르크</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011003">
-                                        <div class="value">
-                                            <b class="name">체스키 크루믈로프</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061001">
-                                        <div class="value">
-                                            <b class="name">두브로브니크</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061002">
-                                        <div class="value">
-                                            <b class="name">로텐부르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141011001">
-                                        <div class="value">
-                                            <b class="name">모스크바</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031008">
-                                        <div class="value">
-                                            <b class="name">에든버러</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011005">
-                                        <div class="value">
-                                            <b class="name">아비뇽</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141041002">
-                                        <div class="value">
-                                            <b class="name">오슬로</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011004">
-                                        <div class="value">
-                                            <b class="name">톨레도</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141021001">
-                                        <div class="value">
-                                            <b class="name">헬싱키</b>
-                                            <i class="category">핀란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061003">
-                                        <div class="value">
-                                            <b class="name">퓌센</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041005">
-                                        <div class="value">
-                                            <b class="name">인스브루크</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011057">
-                                        <div class="value">
-                                            <b class="name">론다</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131031003">
-                                        <div class="value">
-                                            <b class="name">바르샤바</b>
-                                            <i class="category">폴란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141031001">
-                                        <div class="value">
-                                            <b class="name">코펜하겐</b>
-                                            <i class="category">덴마크</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061012">
-                                        <div class="value">
-                                            <b class="name">뒤셀도르프</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011010">
-                                        <div class="value">
-                                            <b class="name">리옹</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021006">
-                                        <div class="value">
-                                            <b class="name">융프라우</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041009">
-                                        <div class="value">
-                                            <b class="name">아시시</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011002">
-                                        <div class="value">
-                                            <b class="name">베르사유</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061011">
-                                        <div class="value">
-                                            <b class="name">쾰른</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061004">
-                                        <div class="value">
-                                            <b class="name">드레스덴</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021008">
-                                        <div class="value">
-                                            <b class="name">제네바</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011008">
-                                        <div class="value">
-                                            <b class="name">몽생미셸</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011009">
-                                        <div class="value">
-                                            <b class="name">발렌시아</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031005">
-                                        <div class="value">
-                                            <b class="name">케임브리지</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031002">
-                                        <div class="value">
-                                            <b class="name">산토리니 섬</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111081002">
-                                        <div class="value">
-                                            <b class="name">브뤼헤</b>
-                                            <i class="category">벨기에</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031007">
-                                        <div class="value">
-                                            <b class="name">리버풀</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041036">
-                                        <div class="value">
-                                            <b class="name">베로나</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111101001">
-                                        <div class="value">
-                                            <b class="name">더블린</b>
-                                            <i class="category">아일랜드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131031004">
-                                        <div class="value">
-                                            <b class="name">크라쿠프</b>
-                                            <i class="category">폴란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041003">
-                                        <div class="value">
-                                            <b class="name">그라츠</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011012">
-                                        <div class="value">
-                                            <b class="name">스트라스부르</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011005">
-                                        <div class="value">
-                                            <b class="name">말라가</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061002">
-                                        <div class="value">
-                                            <b class="name">스플리트</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011014">
-                                        <div class="value">
-                                            <b class="name">마르세유</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031002">
-                                        <div class="value">
-                                            <b class="name">브라이튼</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011011">
-                                        <div class="value">
-                                            <b class="name">깐느</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041002">
-                                        <div class="value">
-                                            <b class="name">소렌토</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041003">
-                                        <div class="value">
-                                            <b class="name">카파도키아</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021016">
-                                        <div class="value">
-                                            <b class="name">로잔</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031030">
-                                        <div class="value">
-                                            <b class="name">맨체스터</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011128">
-                                        <div class="value">
-                                            <b class="name">엑상프로방스</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141041001">
-                                        <div class="value">
-                                            <b class="name">베르겐</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011143">
-                                        <div class="value">
-                                            <b class="name">지베르니</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041012">
-                                        <div class="value">
-                                            <b class="name">피사</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041005">
-                                        <div class="value">
-                                            <b class="name">폼페이</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071002">
-                                        <div class="value">
-                                            <b class="name">잔세스칸스</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031009">
-                                        <div class="value">
-                                            <b class="name">글래스고</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011008">
-                                        <div class="value">
-                                            <b class="name">세고비아</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061024">
-                                        <div class="value">
-                                            <b class="name">슈투트가르트</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061009">
-                                        <div class="value">
-                                            <b class="name">라이프치히</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041024">
-                                        <div class="value">
-                                            <b class="name">람페두사 섬</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061030">
-                                        <div class="value">
-                                            <b class="name">밤베르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061020">
-                                        <div class="value">
-                                            <b class="name">뉘른베르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041006">
-                                        <div class="value">
-                                            <b class="name">앙카라</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011013">
-                                        <div class="value">
-                                            <b class="name">보르도</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041004">
-                                        <div class="value">
-                                            <b class="name">에페소스</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111081003">
-                                        <div class="value">
-                                            <b class="name">안트워프</b>
-                                            <i class="category">벨기에</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061016">
-                                        <div class="value">
-                                            <b class="name">함부르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041010">
-                                        <div class="value">
-                                            <b class="name">카프리 섬</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011001">
-                                        <div class="value">
-                                            <b class="name">샤모니몽블랑</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041006">
-                                        <div class="value">
-                                            <b class="name">잘츠캄머구트</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011048">
-                                        <div class="value">
-                                            <b class="name">네르하</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061008">
-                                        <div class="value">
-                                            <b class="name">자그레브</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111111001">
-                                        <div class="value">
-                                            <b class="name">룩셈부르크</b>
-                                            <i class="category">룩셈부르크</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021003">
-                                        <div class="value">
-                                            <b class="name">신트라</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031003">
-                                        <div class="value">
-                                            <b class="name">윈저</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021031">
-                                        <div class="value">
-                                            <b class="name">몽트뢰</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141021012">
-                                        <div class="value">
-                                            <b class="name">로바니에미</b>
-                                            <i class="category">핀란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041030">
-                                        <div class="value">
-                                            <b class="name">파묵칼레</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041008">
-                                        <div class="value">
-                                            <b class="name">시에나</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021007">
-                                        <div class="value">
-                                            <b class="name">그린델발트</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011027">
-                                        <div class="value">
-                                            <b class="name">산티아고 데 콤포스텔라</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131081001">
-                                        <div class="value">
-                                            <b class="name">부쿠레슈티</b>
-                                            <i class="category">루마니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011006">
-                                        <div class="value">
-                                            <b class="name">코르도바</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031006">
-                                        <div class="value">
-                                            <b class="name">바스</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031010">
-                                        <div class="value">
-                                            <b class="name">바이버리</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041022">
-                                        <div class="value">
-                                            <b class="name">제노바</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141051002">
-                                        <div class="value">
-                                            <b class="name">웁살라</b>
-                                            <i class="category">스웨덴</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021004">
-                                        <div class="value">
-                                            <b class="name">체르마트</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011010">
-                                        <div class="value">
-                                            <b class="name">오스트라바</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071003">
-                                        <div class="value">
-                                            <b class="name">알크마르</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041028">
-                                        <div class="value">
-                                            <b class="name">페티예</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021017">
-                                        <div class="value">
-                                            <b class="name">바젤</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011110">
-                                        <div class="value">
-                                            <b class="name">아를</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011141">
-                                        <div class="value">
-                                            <b class="name">퐁텐블로</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031044">
-                                        <div class="value">
-                                            <b class="name">요크</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011002">
-                                        <div class="value">
-                                            <b class="name">브르노</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041035">
-                                        <div class="value">
-                                            <b class="name">토리노</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031014">
-                                        <div class="value">
-                                            <b class="name">버밍엄</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011081">
-                                        <div class="value">
-                                            <b class="name">레온</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011015">
-                                        <div class="value">
-                                            <b class="name">디종</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061027">
-                                        <div class="value">
-                                            <b class="name">아헨</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071008">
-                                        <div class="value">
-                                            <b class="name">로테르담</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131051002">
-                                        <div class="value">
-                                            <b class="name">브라티슬라바</b>
-                                            <i class="category">슬로바키아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021009">
-                                        <div class="value">
-                                            <b class="name">라우터브루넨</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061034">
-                                        <div class="value">
-                                            <b class="name">본</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061104">
-                                        <div class="value">
-                                            <b class="name">바트 소덴</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061017">
-                                        <div class="value">
-                                            <b class="name">하노버</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011005">
-                                        <div class="value">
-                                            <b class="name">카를로비 바리</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011009">
-                                        <div class="value">
-                                            <b class="name">생 폴 드 방스</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011089">
-                                        <div class="value">
-                                            <b class="name">마요르카 섬</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041016">
-                                        <div class="value">
-                                            <b class="name">볼로냐</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131081002">
-                                        <div class="value">
-                                            <b class="name">브라쇼브</b>
-                                            <i class="category">루마니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041025">
-                                        <div class="value">
-                                            <b class="name">바트 이슐</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021008">
-                                        <div class="value">
-                                            <b class="name">포르투</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141061001">
-                                        <div class="value">
-                                            <b class="name">탈린</b>
-                                            <i class="category">에스토니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131061009">
-                                        <div class="value">
-                                            <b class="name">플리트비체</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041079">
-                                        <div class="value">
-                                            <b class="name">포지타노</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131041007">
-                                        <div class="value">
-                                            <b class="name">린츠</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071004">
-                                        <div class="value">
-                                            <b class="name">헤이그</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061064">
-                                        <div class="value">
-                                            <b class="name">레겐스부르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011010">
-                                        <div class="value">
-                                            <b class="name">산 세바스티안</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131071003">
-                                        <div class="value">
-                                            <b class="name">류블랴나</b>
-                                            <i class="category">슬로베니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041031">
-                                        <div class="value">
-                                            <b class="name">셀축</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061058">
-                                        <div class="value">
-                                            <b class="name">만하임</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041056">
-                                        <div class="value">
-                                            <b class="name">오르비에토</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031029">
-                                        <div class="value">
-                                            <b class="name">리즈</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041015">
-                                        <div class="value">
-                                            <b class="name">바리</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021038">
-                                        <div class="value">
-                                            <b class="name">슈피츠</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011014">
-                                        <div class="value">
-                                            <b class="name">빌바오</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031031">
-                                        <div class="value">
-                                            <b class="name">뉴캐슬</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031013">
-                                        <div class="value">
-                                            <b class="name">미코노스 섬</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061010">
-                                        <div class="value">
-                                            <b class="name">브레멘</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031051">
-                                        <div class="value">
-                                            <b class="name">포츠머스</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111021012">
-                                        <div class="value">
-                                            <b class="name">필라투스 산</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031184">
-                                        <div class="value">
-                                            <b class="name">스톤헨지</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011093">
-                                        <div class="value">
-                                            <b class="name">프리힐리아나</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011044">
-                                        <div class="value">
-                                            <b class="name">툴루즈</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041007">
-                                        <div class="value">
-                                            <b class="name">안탈리아</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061040">
-                                        <div class="value">
-                                            <b class="name">에센</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131071001">
-                                        <div class="value">
-                                            <b class="name">블레드</b>
-                                            <i class="category">슬로베니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031081">
-                                        <div class="value">
-                                            <b class="name">스윈든</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071005">
-                                        <div class="value">
-                                            <b class="name">에인트호번</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011050">
-                                        <div class="value">
-                                            <b class="name">안시</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121051003">
-                                        <div class="value">
-                                            <b class="name">예루살렘</b>
-                                            <i class="category">이스라엘</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011023">
-                                        <div class="value">
-                                            <b class="name">팔마 데 마요르카</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141041011">
-                                        <div class="value">
-                                            <b class="name">스타방게르</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041043">
-                                        <div class="value">
-                                            <b class="name">코모</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031036">
-                                        <div class="value">
-                                            <b class="name">델포이</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061134">
-                                        <div class="value">
-                                            <b class="name">신스하임</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121041014">
-                                        <div class="value">
-                                            <b class="name">이즈미르</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031016">
-                                        <div class="value">
-                                            <b class="name">로도스 섬</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121021004">
-                                        <div class="value">
-                                            <b class="name">카스카이스</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011079">
-                                        <div class="value">
-                                            <b class="name">부르고스</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131011012">
-                                        <div class="value">
-                                            <b class="name">체스케 부데요비체</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111071011">
-                                        <div class="value">
-                                            <b class="name">위트레흐트</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011031">
-                                        <div class="value">
-                                            <b class="name">사라고사</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=141031002">
-                                        <div class="value">
-                                            <b class="name">오덴세</b>
-                                            <i class="category">덴마크</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011120">
-                                        <div class="value">
-                                            <b class="name">생 말로</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061101">
-                                        <div class="value">
-                                            <b class="name">포츠담</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121031019">
-                                        <div class="value">
-                                            <b class="name">테살로니키</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111031046">
-                                        <div class="value">
-                                            <b class="name">윈더미어</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061057">
-                                        <div class="value">
-                                            <b class="name">마인츠</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061102">
-                                        <div class="value">
-                                            <b class="name">노이스</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131031002">
-                                        <div class="value">
-                                            <b class="name">비엘리츠카</b>
-                                            <i class="category">폴란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131141001">
-                                        <div class="value">
-                                            <b class="name">사라예보</b>
-                                            <i class="category">보스니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131111001">
-                                        <div class="value">
-                                            <b class="name">베오그라드</b>
-                                            <i class="category">세르비아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011119">
-                                        <div class="value">
-                                            <b class="name">콜마르</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111120001">
-                                        <div class="value">
-                                            <b class="name">산 마리노</b>
-                                            <i class="category">산 마리노</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011036">
-                                        <div class="value">
-                                            <b class="name">낭트</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=121011086">
-                                        <div class="value">
-                                            <b class="name">라스 팔마스</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111011033">
-                                        <div class="value">
-                                            <b class="name">몽펠리에</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111041128">
-                                        <div class="value">
-                                            <b class="name">벨라지오</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=131051001">
-                                        <div class="value">
-                                            <b class="name">타트라 산맥</b>
-                                            <i class="category">슬로바키아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/stubbyPlanner/mb/index_city.do?l=&region=111061071">
-                                        <div class="value">
-                                            <b class="name">바이마르</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-
-            </section>
-            <!--// 모달 영역 -->
 </body>
 </html>

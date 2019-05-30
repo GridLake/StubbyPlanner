@@ -2519,7 +2519,7 @@ function updateExp()
                                     <a href="/market/index_ctry.asp?l=&region=12107">
 
                                         <div class="value">
-                                            <b class="name">몰타</b>
+                                            <b class="name">몰타</b>	
                                         </div>
                                         <div class="count">
                    

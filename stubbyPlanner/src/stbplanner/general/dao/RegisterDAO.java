@@ -95,4 +95,37 @@ public class RegisterDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+	public RegisterDTO selectByEmail(Connection conn, String member_email) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement("select * from tbl_member where member_email=?");
+			pstmt.setString(1, member_email);
+			rs = pstmt.executeQuery();
+			System.out.println("selectByEmail");
+			RegisterDTO dto = null;
+			if( rs.next()) {
+				dto = new RegisterDTO( );
+				dto.setName(rs.getString("name"));
+				dto.setMember_id(rs.getString("member_id")); 
+				dto.setPassword(rs.getString("password"));		
+				dto.setMember_email(rs.getString("member_email"));
+				dto.setGender(rs.getString("gender"));
+				dto.setBirth_year(rs.getString("birth_year"));
+				dto.setBirth_month(rs.getString("birth_month"));
+				dto.setAccept_mail(rs.getString("accept_mail"));
+				dto.setProfile_pic(rs.getString("profile_pic"));						 
+			}
+			return dto;
+			
+			
+			
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
 }
