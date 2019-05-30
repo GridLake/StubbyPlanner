@@ -589,7 +589,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                                         </a>
                                         <div class="profile_name">
                                             <p>${authUser.member_id}</p>
-                                            <a href="/${authUser.member_id}" class="mng_account">마이페이지</a>
+                                            <a href="/stubbyPlanner/personal/mypage.do" class="mng_account">마이페이지</a>
                                         </div>
                                     </li>
                                 </ul>
