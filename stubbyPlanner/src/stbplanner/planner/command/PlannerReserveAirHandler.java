@@ -1,13 +1,16 @@
-package stbplanner.general.command;
+package stbplanner.planner.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class IndexHandler implements CommandHandler{
+import stbplanner.general.command.CommandHandler;
+
+public class PlannerReserveAirHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setAttribute("lnb_item", "common");
-		return "/common/index";
+		return "/planner/planner_resv_air";
 	}
+
+	
 }

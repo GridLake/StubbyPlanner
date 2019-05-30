@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/include.jspf" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
@@ -36,21 +37,20 @@
     <link rel="icon" href="favicon.png"> 
 
     <!-- CSS/JavaScript -->
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/common.css">
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/market/css/tourHome.css">
-	<link rel="stylesheet" href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/common.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/tourHome.css">
+	<link rel="stylesheet" href="<%= contextPath %>/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="/stubbyPlanner/externalData/css2/header_footer.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/header_footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- swiper.min.js : 이미지슬라이더 -->
-    <script src="/stubbyPlanner/externalData/js2/swiper.min.js" type="text/javascript"></script>
-    <script src="/stubbyPlanner/externalData/js2/swiper.min.js" type="text/javascript"></script>
+    <script src="<%= contextPath %>/externalData/js2/swiper.min.js" type="text/javascript"></script>
+    <script src="<%= contextPath %>/externalData/js2/swiper.min.js" type="text/javascript"></script>
     <!-- header/footer -->
-    <script src="/stubbyPlanner/externalData/js2/header_footer.js" type="text/javascript"></script>
-
-
+    <script src="<%= contextPath %>/externalData/js2/header_footer.js" type="text/javascript"></script>
+	
 <script src="https://www.google.com/jsapi"></script>
 
 <script>
@@ -475,12 +475,6 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
 <jsp:include page="/WEB-INF/layout/header_large.jsp"></jsp:include>
 
-	<script>
-		var id = "#"+'${ lnb_item }';
-		$(".lnb_item").removeClass("active");
-		$(id).addClass("active");
-	</script>
-
 
 <main >
 
@@ -494,7 +488,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
 
 
-			<img width="100%" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/75c51157166c419c4d59e591ca078082.jpg">
+			<img width="100%" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/75c51157166c419c4d59e591ca078082.jpg">
 			
 		</div>
 		<div style="float:left;width:40%">
@@ -505,7 +499,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 					<div style="width:50%;position:relative;display:inline-block;margin-top:8px;vertical-align:middle">
 						<a href="javascript:showPlannerSelector();" style="margin-right:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
 					</div><div style="width:50%;display:inline-block;margin-top:8px;margin-left:0px;vertical-align:middle ">
-						<a href="/stubbyPlanner/consulting/index.do" style="margin-left:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('consulting','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
+						<a href="<%= contextPath %>/consulting/index.do" style="margin-left:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('consulting','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
 					</div>
 					<div style="clear:both"></div>
 <script>
@@ -517,9 +511,9 @@ function showPlannerSelector()
 					<div id="speech-bubble" class="speech-bubble" style="display:none;margin-top:20px;height:56px;">	
 	
 						<div style="width:50%;vertical-align:middle;float:left">
-							<a href="/stubbyPlanner/planner/planner_rt.do" style="margin-top:8px;margin-bottom:8px;margin-left:12px;margin-right:4px;center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 빈 플래너 시작</a>
+							<a href="<%= contextPath %>/planner/planner_rt.do" style="margin-top:8px;margin-bottom:8px;margin-left:12px;margin-right:4px;center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 빈 플래너 시작</a>
 						</div><div style="width:50%;vertical-align:middle;float:left">
-							<a href="/stubbyPlanner/stubbyx/step0.do" style="margin-top:8px;margin-bottom:8px;margin-left:4px;margin-right:12;text-align:center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('recom','home')"><i class="fa fa-magic" aria-hidden="true"></i> 루트 추천받고 시작</a>
+							<a href="<%= contextPath %>/stubbyx/step0.do" style="margin-top:8px;margin-bottom:8px;margin-left:4px;margin-right:12;text-align:center;text-decoration:none;font-weight:700;color:#fff;font-size:12pt;display:inline-block;padding-top:6px;padding-bottom:6px;width:90%;text-align:center;border:2px solid #fff;border-radius:2px" onclick="logging('recom','home')"><i class="fa fa-magic" aria-hidden="true"></i> 루트 추천받고 시작</a>
 						</div>
 						<div style="clear:both"></div>
 
@@ -583,7 +577,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/1/6/skdus109_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif'" src="<%= contextPath %>/externalData/pfimg/1/6/skdus109_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -596,7 +590,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/7/5/yjyang213_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif'" src="<%= contextPath %>/externalData/pfimg/7/5/yjyang213_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -609,7 +603,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/2/6/dkakeh5_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif'" src="<%= contextPath %>/externalData/pfimg/2/6/dkakeh5_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -622,7 +616,7 @@ function logging(a,p)
 				</div>
 			</div>
 
-			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="/stubbyPlanner/externalData/pfimg/5/8/ippny333_sq.jpg" style="width:100%;border-radius:100px;"></div>
+			<div style="position:absolute;top:10px;right:10px;width:45px;"><img onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif'" src="<%= contextPath %>/externalData/pfimg/5/8/ippny333_sq.jpg" style="width:100%;border-radius:100px;"></div>
 
 		</div>
 
@@ -660,7 +654,7 @@ function logging(a,p)
                                 <div class="stu_band bg_red">⚡️6.9천원</div>
 
                                     <div class="stu_thumbnail_img">
-                                        <img class="fw" src="/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='/stubbyPlanner/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
+                                        <img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
                                     </div>
                                     <div class="stu_caption">
                                         <span class="stu_company">메멘토투어</span>
@@ -2349,7 +2343,7 @@ function updateExp()
                                     <p>유럽여행이 처음이라면</p>
                                     <b >전문가의 도움을 받아보세요.</b>
                                 </div>
-                                <div class="imgWrap" style="background-image:url(/stubbyPlanner/externalData/img_v15/back_private.png);">
+                                <div class="imgWrap" style="background-image:url(<%= contextPath %>/externalData/img_v15/back_private.png);">
                                     <b><span>전문가 유럽계획 의뢰</span>￦ 55,200</b>
                                 </div>
                             </a>
@@ -2363,7 +2357,7 @@ function updateExp()
 
 	</div>
 
-    <script src="/stubbyPlanner/externalData/market/js/lazysizes.min.js" type="text/javascript" async=""></script>
+    <script src="<%= contextPath %>/externalData/market/js/lazysizes.min.js" type="text/javascript" async=""></script>
 
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <!-- JS Implementing Plugins -->
@@ -3463,6 +3457,10 @@ function updateExp()
 	  percentPosition: true
 	
 	});
+	
+	var id = '#'+'${ lnb_item }';
+	$(".lnb_item").removeClass("active");
+	$(id).addClass("active");
 
 });
 

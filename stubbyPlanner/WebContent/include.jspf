@@ -4,7 +4,6 @@
 	// 다른페이지에서 사용될 기능들 미리 선언.
 	request.setCharacterEncoding("UTF-8");
 	String contextPath = request.getContextPath();
-	String downloadPath = "download";
+	// String downloadPath = "download";
 %>
-<!--169p include 지시자 처리 방식의 이해 - 하나의 서블릿으로 만들어진다는 개념!? -->
 <%-- <h3> ex01.jsp title = <%= title %> </h3> --%>
