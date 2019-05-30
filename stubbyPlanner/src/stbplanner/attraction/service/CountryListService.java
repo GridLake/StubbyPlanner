@@ -9,17 +9,18 @@ import javax.naming.NamingException;
 import com.util.ConnectionProvider;
 
 import stbplanner.attraction.dao.AttractionDAO;
-import stbplanner.attraction.model.CityDTO;
+
+import stbplanner.attraction.model.CountryDTO;
 
 public class CountryListService {
 
 	private AttractionDAO attrDao = new AttractionDAO();
 	
-	public ArrayList<CityDTO> getCityList(){
+	public ArrayList<CountryDTO> getCountryList(){
 		
 		try(Connection conn = ConnectionProvider.getConnection()){
 			
-			ArrayList<CityDTO> countryList = attrDao.selectCountry(conn);
+			ArrayList<CountryDTO> countryList = attrDao.selectCountry(conn);
 	
 			return countryList;
 			
