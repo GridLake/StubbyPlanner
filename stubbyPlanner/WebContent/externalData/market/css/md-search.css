@@ -5,7 +5,11 @@
 /* ========================================================= */
 
 /* 공통 */
+<<<<<<< HEAD
 .md-header a.ico_back2, .md-content .content-header.ico_country:before, .md-content .content-header.ico_theme:before, .md-content .content-header.ico_product:before, .md-section .like, .md-section .like.active, .md-section .score:before, .md-section .score.new:before, .md-section .review:before { background-image:url(/stubbyPlanner/externalData/market/images/common/stu_icon.png); background-repeat:no-repeat; }
+=======
+.md-header a.ico_back2, .md-content .content-header.ico_country:before, .md-content .content-header.ico_theme:before, .md-content .content-header.ico_product:before, .md-section .like, .md-section .like.active, .md-section .score:before, .md-section .score.new:before, .md-section .review:before { background-image:url(../images/common/stu_icon.png); background-repeat:no-repeat; }
+>>>>>>> 0g-attraction
 
 
 
@@ -161,4 +165,8 @@
 
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0g-attraction

@@ -1,0 +1,312 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+.swiper-button-next, .swiper-button-prev, .score:before, .loc li:before, .stu_prd_list .swiper-prd .band2 i, .stu_prd_list .swiper-prd .band2 p, .action h3.stu_h3_title:before, .stu_section .swiper-bucket p.btn-location i, .stu_top p:before { background-image:url(../images/common/stu_icon.png); background-repeat:no-repeat; vertical-align:middle; }
+body { background-color:#e8e8e8; }
+main { margin:0; padding:0; }
+section { margin:10px 0 0; padding:20px 0 25px; border-bottom:1px solid #ddd; background:#fff; }
+section:last-child { padding-bottom:40px; border-bottom:0; }
+.titArea { position:relative; }
+h2.stu_h2_title { font-size:22px; font-weight:700; line-height:30px; text-align:left; }
+h3.stu_h3_title { font-size:17px; font-weight:600; line-height:26px; text-align:left; }
+p { margin:0; font-size:16px; font-weight:300; line-height:24px; color:#222; }
+.swiper-container { z-index:0; }
+.swiper-button-next, .swiper-button-prev { display:none; }
+.swiper-pagination { display:none; }
+.btn_all { text-align:center; }
+.btn_all a { display:inline-block; margin:0; line-height:42px; color:#666; }
+footer { padding:30px 4% 80px; }
+
+
+
+/* 헤더영역 */
+header .stu_gnb_container { position:fixed; top:0; left:0; right:0; height:50px; border-bottom:1px solid #e5e5e5; background:rgba(255,255,255,.95); line-height:50px; z-index:10; -webkit-transition:top .3s ease; -moz-transition:top .3s ease; -o-transition:top .3s ease; transition:top .3s ease; }
+header .stu_gnb_container .stu_inner_wrap { padding:0 16px; }
+header .stu_gnb_container .stu_logo { float:left; position:relative; top:8px; height:34px; }
+header .stu_gnb_container .stu_logo #logo-pc { display:none; }
+header .stu_gnb_container .stu_gnb_wrap { float:right; display:inline-block; }
+header .stu_gnb_container .stu_gnb_wrap li { display:inline-block; position:relative; }
+header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:10px; }
+header .stu_gnb_container .stu_gnb_wrap li a { font-size:15px; font-weight:400; color:#222; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 20px 0 5px; -webkit-border-radius:18px; border-radius:18px; border:1px solid #e5e5e5; background:#f5f5f5; line-height:34px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"도시 또는 국가 검색"; font-weight:300; color:#666; cursor:text; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search button.ico_search { display:inline-block; width:30px; height:30px; margin-top:-2px; background-position:-60px -30px; background-size:240px; opacity:.6; }
+header .stu_gnb_container .stu_gnb_wrap li#planner { display:none; }
+
+
+
+/* 배너영역 */
+.stu_top_banner { margin:50px 0 0; padding:0 0 25px; border-bottom:none; }
+.stu_top_banner .mainVisual { position:relative; width:100%; padding-top:54%; overflow:hidden; }
+.stu_top_banner .mainInfo { position:relative; padding:20px 20px 0; }
+.stu_top_banner .score { position:absolute; top:-20px; right:20px; -webkit-transform:translateY(-100%); transform:translateY(-100%); height:32px; padding:0 20px 0 16px; -webkit-border-radius:16px; border-radius:16px; background:rgba(0,0,0,.6); font-size:15px; font-weight:400; line-height:32px; color:#fff; }
+.stu_top_banner .score:before { content:""; display:inline-block; width:14px; height:14px; margin:0 4px 0 0; background-position:-109.2px -140px; background-size:224px; vertical-align:-.5px; }
+.stu_top_banner .loc { margin:0 0 4px; }
+.stu_top_banner .loc li { display:inline-block; position:relative; margin:0 0 0 4px; padding:0 0 0 20px; }
+.stu_top_banner .loc li:before { content:""; position:absolute; top:1.5px; left:0; width:15px; height:20px; background-position:-15px -40px; background-size:160px; }
+.stu_top_banner .loc li:first-child { margin:0; padding:0; }
+.stu_top_banner .loc li:first-child:before { display:none; }
+.stu_top_banner .loc li a { font-size:16px; font-weight:300; color:#888; }
+.stu_top_banner .loc li a:hover { color:#222; }
+.stu_top_banner .titArea .stu_h2_title { margin:0 0 8px; }
+.stu_top_banner .titArea p { display:inline-block; margin:0 0 16px; padding:4px 8px; -webkit-border-radius:3px; border-radius:3px; background:#f5f5f5; font-size:16px; font-weight:300; color:#666; }
+.stu_top_banner .descArea p { font-size:15px; font-weight:300; line-height:25px; word-break:break-all; letter-spacing:0; color:#222; }
+.stu_top_banner .descArea .table_wrap { display:table; position:relative; width:100%; padding:20px 0 0; }
+.stu_top_banner .descArea .table_wrap dl { display:table-cell; width:50%; font-size:15px; text-align:center; color:#6a6a6a; }
+.stu_top_banner .descArea .table_wrap dl + dl { border-left:1px solid #fff; }
+.stu_top_banner .descArea .table_wrap dt { padding:15px 0; background:#cfc6bc; color:#333; }
+.stu_top_banner .descArea .table_wrap dd { padding:12px 8px 0; }
+.stu_top_banner .descArea .table_wrap dd span { display:block; margin:0 0 8px; font-size:18px; font-weight:bolder; color:#333; }
+.stu_top_banner .descArea .table_wrap dd p { font-size:13.5px; line-height:22px; color:#6a6a6a; }
+
+
+
+/* 지도로 보기 */
+.prd_map { display:none; }
+.prd_map.action { display:block; position:fixed; top:0; left:0; right:0; bottom:0; margin:0; padding:0; background:#fff! important; z-index:999; }
+.prd_map.action .map-header { height:60px; padding:0 20px; border-bottom:1px solid #e5e5e5; background:#fff; text-align:center; }
+.prd_map.action h3.stu_h3_title { margin:0; font-size:19px; line-height:60px; text-align:center; }
+.prd_map.action h3.stu_h3_title:before { content:""; display:inline-block; position:absolute; top:0; left:16px; width:34px; height:34px; margin:12px 0 0 -8px; background-position:0 -34px; background-size:272px; cursor:pointer; }
+.prd_map.action .map-container { height:calc(100% - 60px); }
+
+
+
+/* 본문영역 1 - 대표사진 */
+.stu_main_photo { margin:0; padding:0 0 25px; }
+.stu_main_photo .swiper-photo li { width:168px; margin:0 4px; background:none; }
+.stu_main_photo .swiper-photo li:first-child { margin-left:20px; }
+.stu_main_photo .swiper-photo li:last-child { margin-right:20px; }
+.stu_main_photo .swiper-photo li a { position:relative; width:100%; padding:60% 0 0; -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+
+
+
+/* 본문영역 2 - 추천경험 */
+.stu_section .stu_h3_title { position:relative; margin:0 0 12px 20px; padding:0 0 0 10px; }
+.stu_section .stu_h3_title:before { content:""; position:absolute; top:50%; left:0; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:2px; height:20px; -webkit-border-radius:2px; border-radius:2px; background:#3ad195; }
+.stu_section .swiper-bucket li { width:52%; margin:0 1.5%; }
+.stu_section .swiper-bucket li:first-child { margin-left:20px; }
+.stu_section .swiper-bucket li:last-child { margin-right:20px; }
+.stu_section .swiper-bucket .thumb { float:left; position:relative; width:100%; height:0; margin:0; padding:60% 0 0; -webkit-border-radius:3px; border-radius:3px; text-align:right; overflow:hidden; }
+.stu_section .swiper-bucket .source { position:absolute; left:0; bottom:0; width:100%; height:24px; padding:0 14px; background:rgba(0,0,0,.5); font-size:13px; font-weight:300; line-height:24px; color:#fff; }
+.stu_section .swiper-bucket .exp_info { float:left; width:100%; padding:6px 0 8px; background:#fff; text-align:left; }
+.stu_section .swiper-bucket .exp_info p { display:inline-block; margin:0 0 6px; font-size:14.5px; font-weight:300; line-height:20px; color:#6a6a6a; }
+.stu_section .swiper-bucket p.name { font-size:15.5px; margin:0 0 2px; font-weight:bolder; line-height:21px; color:#222; }
+.stu_section .swiper-bucket p.tag { color:#bbb; }
+.stu_section .swiper-bucket p.btn-location { display:inline-block; margin:0; font-weight:normal; cursor:pointer; }
+.stu_section .swiper-bucket p.btn-location i { display:inline-block; width:16px; height:16px; margin:0 2.5px 0 0; background-position:-176px -160px; background-size:256px; vertical-align:-3px; }
+
+
+
+/* 본문영역 3 - 셀프북 */
+.stu_selfbook .selfbook_banner { height:160px; text-align:left; overflow:hidden; }
+.stu_selfbook .selfbook_banner a { position:relative; width:calc(100% - 40px); height:100%; margin:0 auto; -webkit-border-radius:3px; border-radius:3px; background:#f3f3f3; }
+.stu_selfbook .selfbook_banner .txtWrap { position:absolute; width:55%; height:100%; padding:16px 0 0 20px; word-break:keep-all; z-index:1; }
+.stu_selfbook .selfbook_banner .txtWrap b { display:block; margin:2px 0 6px; font-size:19px; font-weight:bolder; line-height:22px; color:#222; }
+.stu_selfbook .selfbook_banner .txtWrap span { display:inline-block; font-size:15px; line-height:20px; color:#8f8f8f; }
+.stu_selfbook .selfbook_banner .txtWrap p.desc { display:none; }
+.stu_selfbook .selfbook_banner .txtWrap p.amount { position:absolute; bottom:16px; font-size:14px; font-weight:400; color:#444; }
+.stu_selfbook .selfbook_banner .stu_badge { display:block; position:absolute; top:14px; left:62%; width:40px; height:40px; -webkit-border-radius:50%; border-radius:50%; -webkit-box-shadow:0 2px 3px 0 rgba(0,0,0,.3); box-shadow:0 2px 3px 0 rgba(0,0,0,.3); border:1px solid #0077d9; background:#1f8ce6; font-size:12px; font-weight:bolder; line-height:40px; text-align:center; color:#fff; z-index:1; }
+.stu_selfbook .selfbook_banner .imgWrap { float:left; position:relative; width:30%; margin:24px 0 0 65%; padding:53.4% 0 0; -webkit-border-radius:2px; border-radius:2px; -webkit-box-shadow:2px 4px 8px 0 rgba(0,0,0,.4); box-shadow:2px 4px 8px 0 rgba(0,0,0,.4); overflow:hidden; }
+.stu_selfbook .selfbook_banner .imgWrap img { position:absolute; top:0; left:0; width:100%; }
+
+
+
+/* itemStyle */
+.outline:before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; -webkit-box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15); box-shadow:inset 0 0 0 .5px rgba(0,0,0,.15); pointer-events:none; z-index:1; }
+.titArea .exp_count, .titArea .prd_count { display:inline-block; margin:0; font-size:17px; font-weight:600; line-height:26px; color:#222; }
+li.prd_item { display:-webkit-box; display:-webkit-flex; display:flex; flex-wrap:wrap; position:relative; width:64%; margin:0 1.5%; padding:0 0 20px; }
+li.prd_item:first-child { margin-left:20px; }
+li.prd_item:last-child { margin-right:20px; }
+li.prd_item a { -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1; position:relative; -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+li.prd_item .thumb { float:left; position:relative; width:100%; height:0; margin:0; padding:52% 0 0; overflow:hidden; }
+li.prd_item .thumb img { width:100%; height:auto; }
+li.prd_item .band2 i, li.prd_item .band2 p { display:inline-block; width:15px; height:15px; margin:0 1.5px 0 0; vertical-align:-2.5px! important; background-size:160px; }
+li.prd_item .prd_info { float:left; position:relative; width:100%; height:60px; padding:6px 10px 0; text-align:left; }
+li.prd_item .name { display:-webkit-box; max-height:44px; margin:0 0 4px; font-size:16px; font-weight:600; line-height:22px; word-break:break-all; color:#222; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+li.prd_item .score { position:absolute; font-size:14px; font-weight:600; line-height:18px; }
+li.prd_item .score:before { content:""; display:inline-block; width:14px; height:14px; vertical-align:-1.5px; }
+
+
+
+/* 본문영역 4 - 다른 경험 */
+.stu_exp_list { border-bottom:0; background:#fff; }
+.stu_exp_list .stu_h3_title { padding:0; }
+.stu_exp_list .stu_h3_title:before { display:none; }
+.stu_exp_list .swiper-exp .tag { display:-webkit-box; max-height:17.6px; font-size:14px; font-weight:300; color:#8f8f8f; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient:vertical; }
+.stu_exp_list .swiper-exp .score { top:0; right:0; -webkit-transform:translateY(-100%); transform:translateY(-100%); padding:5px 10px; -webkit-border-top-left-radius:3px; border-top-left-radius:3px; -webkit-border-bottom-right-radius:3px; border-bottom-right-radius:3px; background:rgba(0,0,0,.6); color:#fff; }
+.stu_exp_list .swiper-exp .score:before { background-position:-109.2px -140px; background-size:224px; }
+
+
+
+/* 본문영역 5 - 관련 상품 */
+.stu_prd_list { margin:0; border-bottom:0; background:#fff; }
+.stu_prd_list .stu_h3_title { padding:0; }
+.stu_prd_list .stu_h3_title:before { display:none; }
+.stu_prd_list .swiper-prd .thumb:before { content:""; position:absolute; left:0; right:0; bottom:0; height:30%; background-image:linear-gradient(to top, black, rgba(0,0,0,0)); opacity:.4; z-index:1; }
+.stu_prd_list .swiper-prd .band2 { position:absolute; display:inline-block; right:0; bottom:0; padding:4px 12px 4px 8px; -webkit-border-top-left-radius:3px; border-top-left-radius:3px; font-size:14px; font-weight:400; color:#fff; z-index:1; }
+.stu_prd_list .swiper-prd .band2 i { background-position:-145px -82.5px; }
+.stu_prd_list .swiper-prd .band2 p { background-position:-142.5px -22.5px; }
+.stu_prd_list .swiper-prd .prd_info { height:80px; }
+.stu_prd_list .swiper-prd .cpn { position:absolute; top:-4px; left:10px; -webkit-transform:translateY(-100%); transform:translateY(-100%); font-size:14px; font-weight:400; color:#fff; z-index:1; }
+.stu_prd_list .swiper-prd .tag { display:none; }
+.stu_prd_list .swiper-prd .score { left:10px; bottom:8px; color:#222; }
+.stu_prd_list .swiper-prd .score:before { margin:0 2px 0 0; background-position:0 -119.66px; background-size:213.66px; }
+.stu_prd_list .swiper-prd .buy { margin:0 0 0 4px; font-weight:400; color:#8f8f8f; }
+.stu_prd_list .swiper-prd .buy:before { content:""; display:inline-block; height:12px; margin:0 6px 0 4px; border-left:1px solid #ddd; vertical-align:-1px; }
+.stu_prd_list .swiper-prd .price { position:absolute; right:10px; bottom:8px; font-size:16px; font-weight:600; line-height:18px; color:#222; }
+
+
+
+/* scroll top */
+.stu_top_wrap { display:none; position:relative; height:50px; border-top:1px solid #e5e5e5; background:#fbfbfb; text-align:center; }
+.stu_top p { line-height:50px; color:#666; }
+.stu_top p:before { content:""; display:inline-block; position:relative; bottom:1px; width:16.8px; height:18px; margin-right:4px; vertical-align:middle; background-position:-57.6px -123px; background-size:192px; opacity:.8; }
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1025px){
+
+
+/* 공통 */
+body { background-color:#eeecec; }
+section { border:none; background:none; }
+section:last-child { padding-bottom:60px; }
+h2.stu_h2_title { font-size:28px; line-height:36px; }
+h3.stu_h3_title { font-size:23.5px; line-height:34px; }
+.swiper-button-next, .swiper-button-prev { display:block; width:46.5px; background-size:496px; outline:none; }
+.swiper-button-prev:hover, .swiper-button-next:hover { opacity:1; }
+.swiper-button-prev { left:-68px; background-position:0 -124px; }
+.swiper-button-next { right:-68px; background-position:-46.5px -124px; }
+.swiper-pagination { display:inline-block; position:absolute; top:8px; left:auto; right:8px; bottom:auto; width:auto; font-size:16px; font-weight:300; color:#666; }
+.swiper-pagination span.swiper-pagination-current { font-weight:400; color:#222; }
+footer { padding:0 2%; }
+
+
+
+/* 헤더영역 */
+header .stu_gnb_container { position:relative; top:0! important; height:56px; line-height:56px; }
+header .stu_gnb_container .stu_inner_wrap { padding:0; }
+header .stu_gnb_container .stu_logo { top:11px; }
+header .stu_gnb_container .stu_logo #logo-pc { display:block; }
+header .stu_gnb_container .stu_logo #logo-mobile { display:none; }
+header .stu_gnb_container .stu_gnb_wrap li + li { margin-left:40px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search { padding:0 32px 0 12px; }
+header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { content:"도시 또는 국가로 검색하세요"; }
+header .stu_gnb_container .stu_gnb_wrap li#planner { display:inline-block; }
+
+
+
+/* 배너영역*/
+.stu_top_banner { margin:20px 0 13px; }
+.stu_top_banner .stu_inner_wrap { background:#fff; }
+.stu_top_banner .mainVisual { float:left; width:480px; padding:480px 0 0; }
+.stu_top_banner .mainVisual img { width:auto; height:100%; }
+.stu_top_banner .mainInfo { display:inline-block; position:relative; width:572px; height:480px; margin:0 0 0 48px; padding:30px 30px 0 0; }
+.stu_top_banner .score { top:30px; right:30px; -webkit-transform:none; transform:none; -webkit-border-radius:3px; border-radius:3px; background:rgba(0,0,0,.3); font-size:16px; }
+.stu_top_banner .titArea { margin:0 0 10px; }
+.stu_top_banner .descArea { position:relative; max-height:290px; padding:0 20px 20px 0; overflow-y:auto; }
+.stu_top_banner .descArea p { font-size:16px; line-height:26px; }
+
+
+
+/* 지도로 보기 */
+.prd_map.action { top:auto; left:auto; right:auto; bottom:auto; }
+.prd_map.action .map-header { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); }
+.prd_map.action h3.stu_h3_title { position:absolute; top:60px; right:10%; -webkit-transform:translateX(-28px); transform:translateX(-28px); line-height:28px; color:#fff; }
+.prd_map.action h3.stu_h3_title:before { left:auto; right:0; margin:-3px -32px 0 0; background-position:-34px -34px; }
+.prd_map.action .map-container { position:fixed; top:100px; left:10%; right:10%; bottom:60px; height:auto; box-shadow:4px 4px 7px rgba(0,0,0,.3); background:#f5f5f5; }
+
+
+
+/* 본문영역 1 - 대표사진 */
+.stu_main_photo .swiper-photo li { width:200px; margin:0; }
+.stu_main_photo .swiper-photo li:first-child { margin-left:0; }
+.stu_main_photo .swiper-photo li:last-child { margin-right:0; }
+.stu_main_photo .swiper-photo li + li { margin-left:12px; }
+
+
+
+/* 본문영역 2 - 추천경험 */
+.stu_section .stu_inner_wrap { max-width:1116px; }
+.stu_section .stu_h3_title { margin:0 0 12px 8px; padding:0 0 0 14px; }
+.stu_section .stu_h3_title:before { width:3.5px; height:24px; }
+.stu_section .swiper-bucket ul { flex-flow:row wrap; -webkit-transform:translate3d(0,0,0)! important; transform:translate3d(0,0,0)! important; }
+.stu_section .swiper-bucket li { width:33.33%; margin:0; padding:0 8px 30px; background:none; }
+.stu_section .swiper-bucket li:first-child, .stu_section .swiper-bucket li:last-child { margin:0; }
+.stu_section .swiper-bucket a { -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+.stu_section .swiper-bucket .thumb { padding:54% 0 0; -webkit-border-radius:0; border-radius:0; }
+.stu_section .swiper-bucket .exp_info { padding:10px 16px 8px; }
+.stu_section .swiper-bucket .exp_info p { font-size:15px; line-height:22px; }
+.stu_section .swiper-bucket p.name { font-size:17.5px; line-height:24px; margin:0 0 4px; }
+.stu_section .swiper-bucket p.btn-location { position:absolute; top:14px; right:22px; padding:4px 10px; -webkit-border-radius:2px; border-radius:2px; background:#3ad195; font-size:14px; color:#fff; z-index:1; }
+.stu_section .swiper-bucket p.btn-location i { display:none; }
+
+
+
+/* 본문영역 3 - 셀프북 */
+.stu_selfbook .swiper-bucket p.btn-location i { display:none; }
+.stu_selfbook .selfbook_banner { height:240px; }
+.stu_selfbook .selfbook_banner a { width:calc(100% - 16px); background:#fff; }
+.stu_selfbook .selfbook_banner .txtWrap { width:62%; padding:36px 0 0 50px; }
+.stu_selfbook .selfbook_banner .txtWrap b { font-size:26px; margin:0 0 14px; }
+.stu_selfbook .selfbook_banner .txtWrap span { margin:0 0 10px; font-size:18px; line-height:24px; }
+.stu_selfbook .selfbook_banner .txtWrap p.desc { display:inline-block; font-size:15px; font-weight:300; line-height:24px; color:#444; }
+.stu_selfbook .selfbook_banner .txtWrap p.amount { font-size:15px; }
+.stu_selfbook .selfbook_banner .stu_badge { top:24px; left:69%; width:44px; height:44px; font-size:13px; line-height:44px; }
+.stu_selfbook .selfbook_banner .imgWrap { width:160px; margin:36px 0 0 71%; }
+
+
+
+/* itemStyle */
+.titArea .exp_count, .titArea .prd_count { font-size:21px; line-height:34px; }
+li.prd_item { width:25%; margin:0; padding:0 8px 20px; background:none; }
+li.prd_item:first-child, li.prd_item:last-child { margin:0; }
+li.prd_item .prd_info { padding:6px 12px 0; }
+li.prd_item .name { font-size:15px; }
+
+
+
+/* 본문영역 4 - 다른 경험 */
+.stu_exp_list { padding:40px 0; }
+.stu_exp_list .stu_inner_wrap { max-width:1116px; }
+.stu_exp_list .titArea .stu_h3_title { margin:0 0 12px 8px; padding:0; }
+
+
+
+/* 본문영역 5 - 관련 상품 */
+.stu_prd_list { padding:0 0 40px; }
+.stu_prd_list .stu_inner_wrap { max-width:1116px; }
+.stu_prd_list .titArea .stu_h3_title { margin:0 0 12px 8px; padding:0; }
+.stu_prd_list .swiper-prd .cpn, .stu_prd_list .swiper-prd .score { left:12px; }
+.stu_prd_list .swiper-prd .price { right:12px; }
+
+
+
+/* scroll top */
+.stu_top_wrap { position:fixed; bottom:50px; left:50%; width:55px; height:55px; margin-left:570px; -webkit-border-radius:2px; border-radius:2px; border:none; background:#8f8f8f; z-index:10; }
+.stu_top_wrap:hover { background:#4a4a4a; }
+.stu_top p { font-size:0; line-height:56px; }
+.stu_top p:before { display:block; bottom:0; width:35px; height:37.5px; margin:9px 0 0 10px; background-position:-155px -256.25px; background-size:400px; opacity:1; }
+
+
+
+}

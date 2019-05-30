@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import stbplanner.attraction.model.CityDTO;
+
+import stbplanner.attraction.model.CountryDTO;
 import stbplanner.attraction.service.CountryListService;
 import stbplanner.general.command.CommandHandler;
 
@@ -17,7 +18,7 @@ public class CountryListHandler implements CommandHandler {
 		
 		CountryListService countryListService = new CountryListService();
 		
-		ArrayList<CityDTO> countryList = countryListService.getCityList();
+		ArrayList<CountryDTO> countryList = countryListService.getCountryList();
 		
 		request.setAttribute("list", countryList); 
 		
