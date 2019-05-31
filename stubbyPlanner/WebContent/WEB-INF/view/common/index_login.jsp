@@ -499,7 +499,7 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
                         </a>
                     </div>
                     <h1 class="stu_logo">
-                        <a href="/stubbyPlanner/common/index.do">
+                        <a href="/stubbyPlanner/common/index_login.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>
@@ -642,6 +642,11 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
                         <li class="lnb_item ">
                             <a href="/stubbyPlanner/exp/list.do">여행지</a>
+                        </li>
+                        <li id="square" class="lnb_item">
+                            <a href="/stubbyPlanner/square/index.do">광장</a>
+         				   <ul class="a">
+      				       </ul>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">

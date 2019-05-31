@@ -90,18 +90,9 @@
                             <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
                         </li>
 
-<c:choose>
 
-<c:when test="${authUser ne ''}">
-                        <li class="gnb_item sign_out">	
-                            <a href="/stubbyPlanner/common/login.do">로그인</a>
-                        </li>
-                        <li class="gnb_item sign_out">
-                            <a href="/stubbyPlanner/common/register.do" class="signup">회원가입</a>
-                        </li>
-</c:when>
-<c:otherwise>
 
+<!--  -->
 						<li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
                                         <c:if test="${!empty authUser.profile_pic }">
@@ -158,8 +149,6 @@
 
                             </div>
                         </li>
-</c:otherwise>
-</c:choose>
 
 
                     </ul>

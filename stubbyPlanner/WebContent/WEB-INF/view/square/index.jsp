@@ -1,3 +1,4 @@
+<%@page import="stbplanner.square.dao.SquareDAO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/include.jspf"%>
@@ -28,9 +29,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<%= contextPath %>/externalData/images2/common/favicon.ico">
     <link rel="icon" href="<%= contextPath %>/externalData/images2/common/favicon.png"> 
+
+
 
 
 
@@ -750,9 +754,9 @@
                                 <div class="stu_tone"></div>
                                 <div class="stu_inner_wrap">
                                     <div class="titArea" style="text-shadows:3px 4px 5px #000;">
-                                        <b class="type" style="color:orange;">1,700가지 유럽투어/액티비티</b>
-                                        <b class="title"> 광장</b>
-                                        <p>미리 예약할수록 커지는 추가할인율!</p>
+                                      
+                                        <b class="title" style="color:yellow"><h1>유럽여행 만남의 공간</h1></b>
+                                        <p >자신만의 여행정보를 공유하세요!</p>
 
                                     </div>
                                 </div>
@@ -883,10 +887,14 @@
        <section class="stu_regions">
                 <div class="stu_inner_wrap" style="">
 
+<!--        <li class="swiper-slide"> -->
                <h2 style="font-size:18pt;font-weight:700;color:#696969">
-                    인기있는 플래너
-                </h2>
- 
+                  	  인기있는 플래너
+               <a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; ">
+                  +더 보기
+               </a>
+               </h2>
+<!--        </li> -->
 
                 
 
@@ -1171,413 +1179,44 @@
 
        <section class="stu_swiper-section stu_recent-offer">
             <div class="stu_inner_wrap">
-                <div class="titArea">
-                    <h3 class="stu_title">인기 슈퍼 얼리버드 할인상품 <small style="font-size:10pt;color:#696969"> 최대 30% 할인 </small></h3>
+                <div class="titArea" style="display: inline-block">
+                    <h3 class="stu_title" style="position:relative;">추천 게시글 </h3>
                 </div>
-
+                <div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="/stubbyPlanner/square/index.do"><b> 일반 .</b></a></div>
+                <div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="/stubbyPlanner/square/index.do"><b> 질문 .</b></a></div>
+                <div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="/stubbyPlanner/square/index.do"><b> 여행정보 	</b></a></div>
+                
+   				<a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
 
 
                 <div class="swiper-container swiper-items">
                     <ul class="swiper-wrapper">
 
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=156">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc.jpg'">
-
-
-                                    <div class="band bg_red">⚡️21CHF</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>Skywings</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>스위스 NO.1 인터라켄 패러글라이딩</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.6</span>
-                                         <span class="buy">13829명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        183,111원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리176,023원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=64">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e22cc94d860ef44e2cf131dff3d9977d_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/e22cc94d860ef44e2cf131dff3d9977d.jpg'">
-
-
-                                    <div class="band bg_red">⚡️5EUR</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>Walk about Florence</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[현지1위, 직거래 특가] 토스카나 와이너리 + 차량투어</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.5</span>
-                                         <span class="buy">1031명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        112,733원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리106,102원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=148">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/81479c500bf57cd7f7a4cde010bfbf68.jpg'">
-
-
-                                    <div class="band bg_red">⚡️6.9천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>메멘토투어</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[5월특가]스페인 전문 메멘토투어 가우디 반일 버스투어 </span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.7</span>
-                                         <span class="buy">1474명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        23,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리16,100원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=50">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/910673112ceee03c554302d9a29f670c_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/910673112ceee03c554302d9a29f670c.jpg'">
-
-
-                                    <div class="band bg_red">⚡️5.4만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>예술과여행</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>파리 근교 3종세트★지베르니+옹플뢰르+몽생미셸</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.5</span>
-                                         <span class="buy">679명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        180,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리126,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=313">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/033ab7dba1af8d1915c06f993bada22f_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/033ab7dba1af8d1915c06f993bada22f.jpg'">
-
-
-                                    <div class="band bg_red">⚡️1.05만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>Hon's Trip(헌스트립)</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>「와인 한잔」과 「인생샷」이 함께하는 로맨틱 템즈강 야경투어</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 8명이 선택</span>
-		
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리24,500원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=1524">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2.jpg'">
-
-
-                                    <div class="band bg_red">⚡️2.07만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>여행의신</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[오픈특가][얼리버드] 베르사유 궁전내부설명 포함 + 지베르니 + 오베르쉬르우아즈 only대표가이드 진행!</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 25명이 선택</span>
-		
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        69,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리48,300원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=81">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/41ffee5d5b6ef47fec48e7ad1e14dc85_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/41ffee5d5b6ef47fec48e7ad1e14dc85.jpg'">
-
-
-                                    <div class="band bg_red">⚡️1.05만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>메멘토투어</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[1+1이벤트][특가] 오직 가우디만 있는 버스 투어</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.5</span>
-                                         <span class="buy">865명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리24,500원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=54">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/165cd593fa9cc7e1adfdfcffeadaada6_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/165cd593fa9cc7e1adfdfcffeadaada6.jpg'">
-
-
-                                    <div class="band bg_red">⚡️5.34만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>예술과여행</span>
-                                    </div>
-                                    <div class="name">
-                                        <span><소그룹> 몽생미셸 낮과밤 + 옹플뢰르  [8인이하 + 스냅사진+ 숙소샌딩 포함]</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>4.4</span>
-                                         <span class="buy">486명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        178,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리124,600원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=647">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/d26b6eb63f71a809c3424b7f7b89e8eb_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/d26b6eb63f71a809c3424b7f7b89e8eb.jpg'">
-
-
-                                    <div class="band bg_red">⚡️1800CZK</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>TastePRAHA</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[프라하스냅] 팀당 촬영가격, 현지 대표작가 촬영! 아름다운 프라하에서 남기는 추억여행</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>5</span>
-                                         <span class="buy">162명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        308,094원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리215,666원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=314">
-                                <figure class="thumb">
-                                <!-- img 태그 첫 번째 src는 서버에 이미지 존재X -> oneerror 발동 -->
-			<img class="fw" src="http://d3b39vpyptsv01.cloudfront.net/photo/6/9/97b5efb1c2b3df2deb4231d826707159_l.png" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/6/9/97b5efb1c2b3df2deb4231d826707159.png'">
-
-
-                                    <div class="band bg_red">⚡️2.76만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>QUE RICO(께 리꼬)</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[로맨스4 민셰프 진행] 빠에야,타파스 쿠킹클래스 + 보케리아 시장투어 + 와인</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-
-                                        <span><i></i>5</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-                                    <div class="price"  style="line-height:100%;text-align:right;right:2px;">
-                                        92,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#ee685a;font-weight:700;">⚡️ 슈퍼얼리64,400원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
+					<figcaption class="prd_info">
+						<div class="common" style="display: inline-block;">
+							<td><span>프로필사진</span></td>
+							<span>아이디</span>
+							<span>제목</span>
+							<span>추천수</span>
+							<span>댓글</span>
+							<span>날짜</span>
+							
+						<c:forEach var="i" begin="0" end="2" step="1">
+							<c:out value="${boardList[i].member_id}"/>
+						</c:forEach>
+							<span>${boardList[i].post_seq}</span>
+							
+							<%
+								
+							
+							%>
+							
+							
+						</div>
+					</figcaption>
+
+                    </div>
+                </div>
 
                     </ul>
                 </div>
@@ -1587,6 +1226,44 @@
         </section>
 
 
+<!--  -->
+
+
+       <section class="stu_swiper-section stu_recent-offer">
+            <div class="stu_inner_wrap">
+                <div class="titArea" style="display: inline-block">
+                    <h3 class="stu_title" style="position:relative;">최근 동행 찾기</h3>
+                </div>
+             
+   				<a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
+
+
+                <div class="swiper-container swiper-items">
+                    <ul class="swiper-wrapper">
+
+				<figcaption class="prd_info">
+						<div class="common" style="display: inline-block;">
+							<td><span>프로필사진</span></td>
+							<span>아이디</span>
+							<span>내용</span>
+							
+						<c:forEach var="i" begin="0" end="2" step="1">
+							<c:out value="${partyList[i].member_id}"/>
+							<span><c:out value="${partyList[i].party_seqno}"/></span>
+						</c:forEach>
+							
+						</div>
+					</figcaption>
+
+                    </div>
+                </div>
+
+                    </ul>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
 
 
 
@@ -1659,382 +1336,6 @@
 </div>
 
 
-
-                <div class="swiper-container swiper-items">
-                    <ul class="swiper-wrapper">
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=189">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c_l.jpeg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c.jpeg'">
-                                   
-
-                                    <div class="band bg_red">⚡️2천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>맘마미아투어</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[1+1이벤트] 최다예약엔 이유가 있다! 맘마미아 남부투어 (기간 한정 파격 특가 중)/ 로마야경무료</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>4.3</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        45,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 43,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=185">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5a0ca0f817c60e8c13c12c05467fc542_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5a0ca0f817c60e8c13c12c05467fc542.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️3천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>우노트래블</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[봄맞이 특가] 남부 아말피 코스트 투어</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 8명이 선택</span>
-		
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        35,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 32,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=275">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/b69915331fbdc90b487319a97f1b7b0c_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/b69915331fbdc90b487319a97f1b7b0c.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️5천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>파리크레파스</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[특가 진행중]몽생미셸 야경투어 (에타르타-옹플레흐-몽생미셸 야경) </span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>4.6</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        110,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 105,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=1524">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/951dddc4fdd177a23ca78762ab8edaf2.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️2.07만원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>여행의신</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[오픈특가][얼리버드] 베르사유 궁전내부설명 포함 + 지베르니 + 오베르쉬르우아즈 only대표가이드 진행!</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-			❤️ <span style="color:#8f8f8f;font-size:9pt">최근 플래너 25명이 선택</span>
-		
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        69,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 48,300원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=162">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/56af13cbabd3c2633dcf4ca135b52747_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/56af13cbabd3c2633dcf4ca135b52747.jpg'">
-                                   
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>이태리스케치북</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[만족도 1위] 바티칸 전일코스 반일 오전투어 (★로마 야경투어 무료★)</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>4.9</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        25,000원
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=158">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3bfc5bfc713b197f0d7329a736097d53_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3bfc5bfc713b197f0d7329a736097d53.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️2천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>떼아모투어</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[사전예약입장]줄설필요없는 바티칸 반일 투어 + 회화관 입장</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>4.3</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        25,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 23,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=156">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/3acea8484c51650b8364dc8b65fc94bc.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️21CHF</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>Skywings</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>스위스 NO.1 인터라켄 패러글라이딩</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>4.6</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        183,111원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 176,023원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=183">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/bf85855c6f389d66df2d612f19d9c3a1_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/bf85855c6f389d66df2d612f19d9c3a1.jpg'">
-                                   
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>(주)헬로우유럽 </span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[4-10월만] 이탈리아 남부투어 1박2일</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>5</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        320,000원
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
-
-                        <li class="swiper-slide prd_item">
-                            <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=416">
-                                <figure class="thumb">
-			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5dd3fd53136dc137772e0aca5349623d_l.jpg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5dd3fd53136dc137772e0aca5349623d.jpg'">
-                                   
-
-                                    <div class="band bg_red">⚡️2천원</div>
-
-                                </figure>
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                        <span>파리크레파스</span>
-                                    </div>
-                                    <div class="name">
-                                        <span>[신규]오픈기념  특가! 파리 전일 워킹 투어</span>
-                                    </div>
-
-
-                                    <div class="score" style="display:inline-block">
-
-
-                                        <span><i></i>5</span>
-                                         <span class="buy">96명 예약</span>
-
-
-
-                                    </div>
-
-
-                                    <div class="price"  style="line-height:100%;text-align:right;right;right:2px;">
-                                        25,000원<span style="margin-right:0px"><br><font style="font-size:9pt;color:#3ad195">⚡️ 얼리버드 23,000원~</font></span>
-                                    </div>
-                                </figcaption>
-                            </a>
-                        </li>
-
-
-
-
-
-
                     </ul>
                 </div>
                 <div class="swiper-button-prev"></div>
@@ -2104,7 +1405,7 @@
                             </div>
 
                         </li>
-
+<%--
                         <li class="swiper-slide">
 
                             <div class="prd_item">
@@ -2175,7 +1476,7 @@
                             </div>
                         </li>
 
-
+ 
 
                         <li class="swiper-slide">
                             <div class="prd_item">
@@ -2263,13 +1564,12 @@
                                         <p>러시아</p>
                                     </div>
                                 </a>
-                            </div>
+                            </div> --%>
                         </li>
                     </ul>
                     <div class="swiper-scrollbar"></div>
                 </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+
                 <div class="btnWrap">
                     <a><i></i>전체 여행지</a>
                 </div>
