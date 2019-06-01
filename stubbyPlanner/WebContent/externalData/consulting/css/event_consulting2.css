@@ -1,0 +1,314 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+i.ico_down { background-image:url(http://d3b39vpyptsv01.cloudfront.net/0/0/1548062231191VwAkOaUebn.png); background-repeat:no-repeat; vertical-align:middle; }
+select { margin:6px 0 0; padding:10px 12px; background:#fafafa; line-height:1; text-indent:0; color:#4a4a4a; -webkit-appearance:none; -moz-appearance:none; appearance:none; }
+i.ico_down { content:""; position:absolute; top:9px; right:12px; width:20px; height:20px; background-position:-40px -260px; background-size:320px; pointer-events:none; }
+select::-ms-expand { display:none; }
+main { margin:0; padding:0; }
+section { margin:10px 0 0; padding:20px 0 25px; background:#fff; }
+section:last-child { padding-bottom:40px; }
+h2 { font-size:22px; line-height:1.4; }
+h3 { font-size:19px; line-height:1.5; }
+p { display:inline-block; margin:0; font-size:16px; font-weight:300; line-height:1.5; color:#4a4a4a; }
+.stu_title { position:relative; font-weight:bold; text-align:left; color:#222; }
+.titArea { padding:0 20px; }
+.titArea p { font-size:17px; }
+h3.stu_title { margin:0 0 12px; padding:0 0 0 10px; }
+h3.stu_title:before { content:""; position:absolute; top:50%; left:0; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:3px; height:20px; margin:.5px 0 0; -webkit-border-radius:2px; border-radius:2px; background:#3ad195; }
+.bg_red { background:#ee685a!important; }
+
+
+
+/* topBanner 영역 */
+.stu_top_banner { margin:0; padding:0; }
+.stu_top_banner img { width:100%; }
+.stu_top_banner .on-pc, .stu_top_banner .on-tablet { display:none; }
+.stu_top_banner .main_comment { padding:0 0 28px; }
+.stu_top_banner .txt_box { position:relative; padding:20px 0; background:#0d233a; text-align:center; }
+.stu_top_banner .txt_box:after { content:""; position:absolute; bottom:0; left:50%; -webkit-transform:translate(-50%, 100%); transform:translate(-50%, 100%); border:14px solid transparent; border-top-color:#0d233a; }
+.stu_top_banner .txt_box p { position:relative; max-width:calc(100% - 40px); padding:0 28px; font-weight:normal; color:#fff; }
+.stu_top_banner .txt_box p:before, .stu_top_banner .txt_box p:after { content:""; display:inline-block; position:absolute; top:4px; width:20px; height:20px; background:url(http://d3b39vpyptsv01.cloudfront.net/0/0/1548386361577aHZvMh4Fi8.jpg) 0 0 no-repeat; background-size:cover; }
+.stu_top_banner .txt_box p:before { left:0; }
+.stu_top_banner .txt_box p:after { right:0; }
+.stu_top_banner .txt_box span { font-weight:bold; color:#3ad195; }
+
+
+
+/* 상담절차 영역 */
+.stu_consulting_step { margin:0; }
+.stu_consulting_step li { padding:30px 20px; }
+.stu_consulting_step li:nth-child(even) { background:#f5f5f5; }
+.stu_consulting_step .ico_box { position:relative; width:90px; height:90px; margin:0 auto 10px; -webkit-border-radius:50%; border-radius:50%; background:#3ad195; font-size:18px; font-weight:bold; line-height:1.35; letter-spacing:0; text-align:center; white-space:nowrap; color:#fff; }
+.stu_consulting_step .ico_box span { position:absolute; top:50%; left:50%; -webkit-transform:translate(-50%, -50%); transform:translate(-50%, -50%); }
+.stu_consulting_step .txt_box { text-align:center; word-break:keep-all; }
+.stu_consulting_step .txt_box h3 { margin:14px 0 6px; font-size:18px; }
+.stu_consulting_step .txt_box span { font-size:17px; font-weight:bold; color:#3ad195; }
+
+
+
+/* 상담예시 영역 */
+.stu_consulting_example .on-pc { display:none; }
+.stu_consulting_example ol { padding:20px; }
+.stu_consulting_example li { float:left; position:relative; width:100%; height:0; margin:0 0 20px; padding:66.5% 0 0; }
+.stu_consulting_example li.on-mobile { padding:193.19% 0 0; }
+
+
+
+/* 리뷰영역 */
+.stu_consulting_review ul { padding:0 20px; }
+.stu_consulting_review li { float:left; display:table; width:100%; padding:10px 0; }
+.stu_consulting_review figure, .stu_consulting_review figcaption { float:left; display:table-cell; position:relative; }
+.stu_consulting_review figure { display:inline-block; position:relative; width:60px; height:60px; -webkit-border-radius:50%; border-radius:50%; overflow:hidden; }
+.stu_consulting_review .review-left figure { margin:0 20px 0 0; }
+.stu_consulting_review .review-right figure { margin:0 0 0 20px; }
+.stu_consulting_review figcaption { display:inline-block; position:relative; width:calc(100% - 80px); border:1px solid #eaeaea; -webkit-border-radius:5px; border-radius:5px; background:#fcfcfc; padding:14px 18px; }
+.stu_consulting_review figcaption:before, .stu_consulting_review figcaption:after { content:""; position:absolute; top:20px; border:10px solid transparent; }
+.stu_consulting_review .review-left figcaption:before, .stu_consulting_review .review-left figcaption:after { left:-20px; border-right-color:#fcfcfc; }
+.stu_consulting_review .review-left figcaption:before { margin:0 0 0 -1px; border-right-color:#eaeaea; }
+.stu_consulting_review .review-right figcaption:before, .stu_consulting_review .review-right figcaption:after { right:-20px; border-left-color:#fcfcfc; }
+.stu_consulting_review .review-right figcaption:before { margin:0 -1px 0 0; border-left-color:#eaeaea; }
+.stu_consulting_review .name { margin:0 0 6px; font-size:15px; font-weight:bold; color:#222; }
+.stu_consulting_review .ment { font-size:15px; }
+
+
+
+/* 가격안내 */
+.stu_consulting_pricing ol { float:left; width:100%; padding:10px 20px 0; }
+.stu_consulting_pricing ol li { float:left; position:relative; width:25%; -webkit-box-shadow:inset 0 0 0 .5px rgba(0,0,0,.1); box-shadow:inset 0 0 0 .5px rgba(0,0,0,.1); background:#3ad195; font-size:15px; text-shadow:.5px .5px 0 rgba(0,0,0,.2); text-align:center; white-space:nowrap; color:#fff; }
+.stu_consulting_pricing .pricing_plan { padding:10px 0; background:rgba(0,0,0,.1); font-weight:300; }
+.stu_consulting_pricing .pricing_price { padding:18px 0 20px; border-top:1px solid rgba(255,255,255,.2); font-size:14px; }
+.stu_consulting_pricing .pricing_price span { font-size:20px; }
+.stu_consulting_pricing ul { float:left; width:100%; padding:0 20px 10px; font-size:14px; text-align:center; color:#4a4a4a; }
+.stu_consulting_pricing ul li { padding:14px 16px; background:#f6f6f6; }
+.stu_consulting_pricing ul li:nth-child(odd) { background:#eaeaea; }
+.stu_consulting_pricing ul li span { font-size:17px; font-weight:bold; color:#222; }
+
+
+
+/* 서비스 결과 */
+.stu_consulting_result ul { padding:10px 20px; font-size:16px; color:#222; }
+.stu_consulting_result li { position:relative; padding:8px 0 8px 30px; }
+.stu_consulting_result li span { display:inline-block; position:absolute; left:0; width:24px; height:24px; -webkit-border-radius:3px; border-radius:3px; background:#3ad195; line-height:23px; text-align:center; color:#fff; }
+
+
+
+/* 서비스신청 */
+.stu_contact .formArea { padding:20px; }
+.stu_contact form p { width:100%; margin:0 0 20px; }
+.stu_contact form label { width:100%; font-weight:normal; }
+.stu_contact form span { position:relative; }
+.stu_contact form input, .stu_contact form textarea { margin:6px 0 0; padding:10px 12px; background:#fafafa; font-size:14px; color:#4a4a4a; }
+.stu_contact .btn_submit { display:block; width:80%; height:48px; margin:10px auto 0; padding:0; border:0; background:#0b2338; font-size:15px; line-height:48px; color:#fff; outline:none!important; -webkit-appearance:button; cursor:pointer; }
+.stu_contact .btn_contact { display:block; width:80%; height:48px; margin:20px auto 0; -webkit-border-radius:3px; border-radius:3px; background:#0b2338; font-size:15px; line-height:48px; text-align:center; color:#fff; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    태블릿 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:620px){
+
+/* 공통 */
+.stu_consulting_step li + li:before { background-image:url(../images/common/stu_icon.png); background-repeat:no-repeat; vertical-align:middle; }
+section { padding:24px 0 30px; }
+h2 { font-size:24px; }
+h3 { font-size:21px; }
+.titArea p { font-size:18px; line-height:1.6; }
+
+
+
+/* topBanner 영역 */
+.stu_top_banner .on-tablet { display:block; }
+.stu_top_banner .on-mobile, .stu_top_banner .on-pc { display:none; }
+.stu_top_banner .txt_box p { font-size:18px; }
+.stu_top_banner .txt_box p:before, .stu_top_banner .txt_box p:after {  }
+
+
+
+/* 상담절차 영역 */
+.stu_consulting_step ol { padding:0 10px; }
+.stu_consulting_step li { float:left; position:relative; width:25%; padding:30px 10px; }
+.stu_consulting_step li + li:before { content:""; position:absolute; top:58.8px; left:-16.2px; width:32.4px; height:32.4px; background-position:-32.4px -91.8px; background-size:345.6px; }
+.stu_consulting_step li:nth-child(even) { background:#fff; }
+.stu_consulting_step .txt_box h3 { margin:14px 0 0; font-size:17px; }
+.stu_consulting_step .txt_box p { font-size:15px; line-height:1.4; }
+.stu_consulting_step .txt_box span { font-size:15px; }
+
+
+
+/* 상담예시 영역 */
+.stu_consulting_example .on-mobile { display:none; }
+.stu_consulting_example .on-pc { display:block; }
+.stu_consulting_example ol { padding:20px 0; }
+.stu_consulting_example li { width:33.33%; margin:0; padding:22.21% 0 0; }
+.stu_consulting_example li.on-pc { width:100%; padding:33.33% 0 0; }
+
+
+
+/* 리뷰영역 */
+.stu_consulting_review figure { width:80px; height:80px; }
+.stu_consulting_review .review-right figure { float:right; }
+.stu_consulting_review .review-right figcaption { margin:0 0 0 140px; }
+.stu_consulting_review figcaption { width:calc(100% - 240px); }
+.stu_consulting_review .name { font-size:17px; }
+.stu_consulting_review .ment { font-size:16px; }
+
+
+
+/* 가격안내 */
+.stu_consulting_pricing .pricing_plan { font-size:16px; }
+.stu_consulting_pricing .pricing_price { font-size:16px; }
+.stu_consulting_pricing .pricing_price span { font-size:25px; }
+.stu_consulting_pricing ul { font-size:16px; }
+.stu_consulting_pricing ul li span { font-size:18px; }
+
+
+
+/* 서비스 결과 */
+.stu_consulting_result ul { font-size:17px; }
+.stu_consulting_result li { padding:4px 0 16px 34px; }
+
+
+
+/* 서비스신청 */
+.stu_contact .btn_contact { max-width:280px; margin:40px auto 0; font-size:16px; }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1025px){
+
+/* 공통 */
+section { padding:28px 0 35px; }
+section:last-child { padding-bottom:80px; }
+h2 { font-size:26px; }
+h3 { font-size:23px; }
+.titArea { padding:0; }
+.titArea p { font-size:19px; letter-spacing:0; }
+h3.stu_title { padding:0 0 0 14px; }
+h3.stu_title:before { width:4px; height:22px; }
+
+
+
+/* topBanner 영역 */
+.stu_top_banner .on-pc { display:block; }
+.stu_top_banner .on-mobile, .stu_top_banner .on-tablet { display:none; }
+.stu_top_banner .txt_box { padding:34px 0; }
+.stu_top_banner .txt_box:after { border-width:18px; }
+.stu_top_banner .txt_box p { font-size:22px; }
+.stu_top_banner .txt_box p br, .stu_top_banner .txt_box p br:after { content:" "; }
+.stu_top_banner .txt_box p:before, .stu_top_banner .txt_box p:after { top:7px; }
+
+
+
+/* 상담절차 영역 */
+.stu_consulting_step .stu_inner_wrap { border-bottom:1px solid #eaeaea; }
+.stu_consulting_step ol { padding:0; }
+.stu_consulting_step li + li:before { top:66px; left:-24px; width:48px; height:48px; background-position:-48px -136px; background-size:512px; }
+.stu_consulting_step .ico_box { width:120px; height:120px; }
+.stu_consulting_step .txt_box p { min-height:45px; font-size:16px; }
+
+
+
+/* 리뷰영역 */
+.stu_consulting_review ul { padding:0 0 0 20px; }
+.stu_consulting_review figure { width:100px; height:100px; }
+.stu_consulting_review .review-right figure { float:left; }
+.stu_consulting_review .review-right figcaption { margin:0 0 0 260px; }
+.stu_consulting_review figcaption { width:690px; }
+
+
+
+/* 가격안내 */
+.stu_consulting_pricing ol { padding:10px 0 0; }
+.stu_consulting_pricing .pricing_plan { font-size:18px; }
+.stu_consulting_pricing .pricing_price { font-size:18px; }
+.stu_consulting_pricing .pricing_price span { font-size:30px; }
+.stu_consulting_pricing ul { padding:0 0 10px; }
+
+
+
+/* 서비스 결과 */
+.stu_consulting_result ul { padding:10px 0; }
+.stu_consulting_result li { padding:4px 0 22px 36px; font-size:18px; }
+.stu_consulting_result li span { width:28px; height:28px; line-height:27px; }
+
+
+
+/* 서비스신청 */
+.stu_contact .btn_contact { height:51px; font-size:18px; line-height:50px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
