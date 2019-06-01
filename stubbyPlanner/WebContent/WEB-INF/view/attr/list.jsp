@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/include.jspf" %>
 
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -357,9 +358,6 @@ function logging(a,p)
 	<div class="stu_wrap">
 		<!-- 기존 헤더 영역(삭제하세요.) -->
 
-
-
-<header>
 <%-- 
 <c:forEach items="${list}" var="country">
 <li>${country.country_id}:${country.country_name}:${country.img_url}</li>
@@ -367,183 +365,9 @@ function logging(a,p)
 <li>${usercnt.key}월   ${usercnt.value}명</li>
 </c:forEach>
 </c:forEach>
-
  --%>
-			<div class="header_banner">
-				<div class="stu_inner_wrap">
-					<a href="/consulting/index.asp?from=top1">
-						<div class="header_banner_wrap">
-							<p class="txtWrap">
-								복잡한 유럽 자유여행이 처음이라면 <span>전문가 맞춤여행 의뢰 55,200원~</span>
-							</p>
-							<p class="btnWrap">자세히</p>
-						</div>
-					</a> <i class="ico_close"></i>
-				</div>
-			</div>
 
-			<div class="stu_header">
-				<div class="stu_inner_wrap">
-					<nav class="gnb_container">
-						<div class="aside_button on-mobile">
-							<a href="#" class="gnb_menu"> <i class="ico_menu"></i>
-							</a>
-						</div>
-						<h1 class="stu_logo">
-							<a href="/"> <img class="fh"
-								src="/stubbyPlanner/images2/stu_logo_mobile.png" alt="logo" />
-							</a>
-						</h1>
-						<div class="gnb_banner on-pc">
-							<div class="swiper-container swiper-gnb_banner">
-								<ul class="swiper-wrapper">
-
-									<!--
-                              <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/coupon/iceland_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB02.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>아이슬란드 특급 할인!</p>
-                                            <b><span>130,000원</span> 할인쿠폰</b>
-                                        </div>
-                                    </a>
-                                </li>
-
--->
-									<li class="swiper-slide"><a
-										href="/consulting/index.asp?from=top2"> <img class="fw"
-											src="/stubbyPlanner/images2/sample/GB03.jpg" alt="" />
-											<div class="txtWrap">
-												<p>유럽 초보자를 위한</p>
-												<b>전문가 유럽 맞춤계획 의뢰<span> </span></b>
-											</div>
-									</a></li>
-									<!--
-
-                                <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/event_1/event_1plus1.asp">
-                                        <img class="fw" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1547623875104u6XHHWT7nu.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>하나만 사도 핵이득!</p>
-                                            <b><span>1+1 할인상품</span> 총집합</b>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="swiper-slide">
-                                    <a href="http://www.stubbyplanner.com/coupon/winter_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB01.jpg" alt=""/>
-                                        <div class="txtWrap">
-                                            <p>유럽 현지투어 / 액티비티</p>
-                                            <b><span>100,000원</span> 할인쿠폰</b>
-                                        </div>
-                                    </a>
-                                </li>
-  -->
-								</ul>
-								<div class="swiper-pagination gnb_banner-pagination"></div>
-								<div class="swiper-button-prev gnb_banner-button-prev"></div>
-								<div class="swiper-button-next gnb_banner-button-next"></div>
-							</div>
-						</div>
-                    <ul class="gnb_wrap on-pc">
-                        <li class="gnb_item">
-                            <a href="/guide/reservation.asp">예약내역</a>
-                        </li>
-                        <li class="gnb_item">
-                            <a href="/coupon/index.asp">쿠폰함</a>
-                        </li>
-
-                        <li class="gnb_item sign_out">
-                            <a href="/common/login.asp">로그인</a>
-                        </li>
-                        <li class="gnb_item sign_out">
-                            <a href="/common/register.asp" class="signup">회원가입</a>
-                        </li>
-
-
-
-                    </ul>
-						
-					</nav>
-					<nav class="lnb_container">
-						<ul class="lnb_wrap">
-							<li class="lnb_item "><a href="/">홈</a></li>
-							<li class="lnb_item "><a href="/planner/index.asp">계획짜기</a>
-							</li>
-							<li class="lnb_item  "><a href="/market/index.asp">투어예약</a>
-							</li>
-							<li class="lnb_item  "><a href="/mb/index.asp">숙소예약</a></li>
-
-							<li class="lnb_item active"><a href="/exp/list.asp">여행지</a>
-							</li>
-						</ul>
-						<div class="gnb_search_wrap">
-							<a href="#" class="gnb_search"> <i class="ico_search"></i>
-							</a>
-						</div>
-					</nav>
-					<div class="side_background"></div>
-					<aside class="side_container on-mobile">
-						<ul class="side_section">
-							<li class="side_item side_logo sign_out"><a
-								href="http://stubbyplanner.com/"> <img class="fh"
-									src="/images2/stu_logo_mobile.png" alt="logo" />
-							</a></li>
-
-							<li class="side_item sign_in">
-								<div class="side_profile">
-									<a href="#" class="profile_photo"> <i> <img class="fh"
-											src="/img_v9/img_pfnull.jpg" alt="프로필 사진" />
-									</i>
-									</a>
-									<div class="profile_name">
-										<p>te1902</p>
-										<a href="/te1902" class="mng_account">마이페이지</a>
-									</div>
-								</div>
-							</li>
-
-						</ul>
-						<ul class="side_section">
-
-							<li class="side_item side_resv"><a
-								href="/guide/reservation.asp"> <i></i>예약내역
-							</a></li>
-							<!--
-                        <li class="side_item side_coupon">
-                            <a href="/coupon/index.asp"><i></i>쿠폰함</a>
-                        </li>
-                        <li class="side_item side_square">
-                            <a href="/square/index.asp"><i></i>광장</a>
-                        </li>
--->
-							<li class="side_item side_premium"><a
-								href="/selfguide/index.asp"><i></i>프리미엄</a></li>
-						</ul>
-
-
-						<ul class="side_section sign_in">
-							<li class="side_item"><a href="/qa/index.asp">1:1문의</a></li>
-							<li class="side_item"><a href="/common/memberinfo.asp">회원정보변경</a>
-							</li>
-							<li class="side_item"><a href="/common/logout.asp">로그아웃</a>
-							</li>
-						</ul>
-
-
-					</aside>
-				</div>
-			</div>
-			<a href="#" class="stu_scroll_top"><span>맨 위로 가기</span><i></i></a>
-		</header>
-
-
-
-
-
-
-
-
+<jsp:include page="/WEB-INF/layout/header_large.jsp"></jsp:include>
 
 
 		<main style="margin-top:30px">
