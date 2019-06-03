@@ -1,11 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr"> 
+<meta http-equiv="Cache-Control" content="No-Cache"> 
+<meta http-equiv="pragma" content="No-cache"> 
+<meta http-equiv="expires" content="0">
+</head>
     <header>
+
 
         <div class="header_banner">
             <div class="stu_inner_wrap">
-                <a href="/stubbyPlanner/consulting/index.do?from=top1">
+                <a href="http://www.stubbyplanner.com/consulting/index.asp">
                     <div class="header_banner_wrap">
                         <p class="txtWrap">복잡한 유럽 자유여행이 처음이라면
                             <span>전문가 맞춤여행 의뢰 55,200원~</span>
@@ -47,7 +55,7 @@
 
 -->
                                 <li class="swiper-slide">
-                                   <a href="/stubbyPlanner/consulting/index.do?from=top2">
+                                   <a href="http://www.stubbyplanner.com/consulting/index.asp">
                                         <img class="fw" src="/stubbyPlanner/externalData/images2/sample/GB03.jpg" alt=""/>
                                         <div class="txtWrap">
                                             <p>유럽 초보자를 위한</p>
@@ -86,13 +94,11 @@
                         <li class="gnb_item">
                             <a href="/stubbyPlanner/guide/reservation.do">예약내역</a>
                         </li>
-                        <li class="gnb_item">
-                            <a href="/stubbyPlanner/coupon/index.do">쿠폰함</a>
-                        </li>
 
 <c:choose>
 
-<c:when test="${authUser ne ''}">
+<c:when test="${empty sessionScope.authUser}">
+<%-- <c:when test="${authUser ne ''}"> --%>
                         <li class="gnb_item sign_out">	
                             <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>
@@ -101,7 +107,13 @@
                         </li>
 </c:when>
 <c:otherwise>
-
+ 						<li class="gnb_item sign_out">	
+                            <a href="/stubbyPlanner/common/logout.do">로그아웃</a>
+                        </li>
+                        <li class="gnb_item sign_out">
+                            <a href="/stubbyPlanner/personal/mypage.do" class="signup">마이페이지</a>
+                        </li>
+<%-- 
 						<li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
                                         <c:if test="${!empty authUser.profile_pic }">
@@ -157,15 +169,18 @@
                                 </ul>
 
                             </div>
-                        </li>
+                        </li> --%>
 </c:otherwise>
 </c:choose>
 
 
                     </ul>
                 </nav>
+                
+                
                 <nav class="lnb_container">
                     <ul class="lnb_wrap">
+       
                         <li id="common" class="lnb_item">
                             <a href="/stubbyPlanner/common/index.do">홈</a>
                         </li>
@@ -180,7 +195,7 @@
                         </li>
 
                         <li id="exp" class="lnb_item">
-                            <a href="/stubbyPlanner/exp/list.do">여행지</a>
+                            <a href="/stubbyPlanner/attr/list.do">여행지</a>
                         </li>
                         <li id="square" class="lnb_item">
                             <a href="/stubbyPlanner/square/index.do">광장</a>
@@ -202,35 +217,28 @@
                                 <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
+<c:choose>
 
+<c:when test="${empty authUser}">   
                         <li class="side_item side_btn sign_out">
                             <a href="/stubbyPlanner/common/login.do" class="btn_login">로그인</a>
                         </li>
                         <li class="side_item side_btn sign_out">
                             <a href="/stubbyPlanner/common/register.do" class="btn_signup">회원가입</a>
                         </li>
+</c:when>
+<c:otherwise>
 
+ 						<li class="side_item side_btn sign_out">	
+                            <a href="/stubbyPlanner/common/logout.do" class="btn_login">로그아웃</a>
+                        </li>
+                        <li class="side_item side_btn sign_out">
+                            <a href="/stubbyPlanner/personal/mypage.do" class="btn_signup">마이페이지</a>
+                        </li>
+
+</c:otherwise>
+</c:choose>
                     </ul>
-                    <ul class="side_section">
-
-                        <li class="side_item side_resv">
-                            <a href="/stubbyPlanner/guide/reservation.do">
-                                <i></i><span class="sign_out">비회원&nbsp;</span>예약내역
-                            </a>
-                        </li>
-<!--
-                        <li class="side_item side_coupon">
-                            <a href="/coupon/index.do"><i></i>쿠폰함</a>
-                        </li>
-                        <li class="side_item side_square">
-                            <a href="/square/index.do"><i></i>광장</a>
-                        </li>
--->
-                        <li class="side_item side_premium">
-                            <a href="/stubbyPlanner/selfguide/index.do"><i></i>프리미엄</a>
-                        </li>
-                    </ul>
-
 
 
                 </aside>

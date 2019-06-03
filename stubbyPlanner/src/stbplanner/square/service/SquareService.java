@@ -39,6 +39,23 @@ public class SquareService {
 		return result;
 	}
 	
+	public List<BoardsDTO> boardLikeSelect() {
+		
+		Connection conn = null;
+		List<BoardsDTO> result = null ;
+		try {
+			conn = ConnectionProvider.getConnection();
+			SquareDAO  dao = new SquareDAO();
+			  result = dao.boardLikeSelect(conn);
+			 
+		} catch (SQLException | NamingException e) {
+			System.out.println("XXX : " +e.toString());
+		} finally {
+			JdbcUtil.close(conn);
+		}
+		return result;
+	}
+	
 	public List<PartyDTO> partySelect() {
 		
 		Connection conn = null;

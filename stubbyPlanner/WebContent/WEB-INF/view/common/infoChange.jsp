@@ -228,7 +228,7 @@ function FSubmit()
                  <fieldset>                  
 	 				<h1 class="c">
 	 				<div style="text-align: center;">
-                        <a href="/stubbyPlanner/common/index_login.do">
+                        <a href="/stubbyPlanner/common/index.do">
                             <img class="fh" src="/stubbyPlanner/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
 	 				</div>

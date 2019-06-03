@@ -1552,7 +1552,7 @@
                             <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=189">
                                 <figure class="thumb">
 			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c_l.jpeg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c.jpeg'">
-                                   
+                              
 
                                     <div class="band bg_red">⚡️2천원</div>
 

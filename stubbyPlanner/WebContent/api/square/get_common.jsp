@@ -7,29 +7,28 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	String member_id = request.getParameter("member_id");
- 		System.out.println("ajaxPage호출"+member_id);
-%>	
+	String board_code = request.getParameter("board_code");
+ 		System.out.println("ajaxPage호출"+board_code);
+%>
 <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	JSONObject jObj = null;
 	JSONArray jArr = null;
+	
 	try {
 		conn = ConnectionProvider.getConnection();
 
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select * "
-				+ " from tbl_boards "
-				+ "where member_id = ? ";
+		String sql = "select * from (select post_seq,member_id,post_subject,post_regdate,post_hits,post_like, ROW_NUMBER() OVER (order by post_like desc) rank from tbl_boards where board_code = ?) where rank between 1 and 5";
 
 		
 		pstmt = conn.prepareStatement(sql);
-
-		pstmt.setString(1, member_id);
+		
+		pstmt.setString(1, board_code);
 
 		rs = pstmt.executeQuery();
 
@@ -37,14 +36,20 @@
 			System.out.println("if");
 			jObj = new JSONObject();
 			jArr = new JSONArray();
-			System.out.println("Object");
 			do {
-				System.out.println("do");
-				JSONObject ArticleObj = new JSONObject();
-				ArticleObj.put("POST_SUBJECT", rs.getString("POST_SUBJECT"));
-				ArticleObj.put("POST_CONTENT", rs.getString("POST_CONTENT"));
+				
+				JSONObject CommonObj = new JSONObject();
+					CommonObj.put("post_seq", rs.getInt("post_seq"));
+					CommonObj.put("member_id", rs.getString("member_id"));
+					CommonObj.put("post_subject", rs.getString("post_subject"));
+					CommonObj.put("post_regdate",   rs.getString("post_regdate".toString()));
+// 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
+					CommonObj.put("post_hits", rs.getInt("post_hits"));
+					CommonObj.put("post_like", rs.getInt("post_like"));
+					
+					System.out.println(  ">>> " +  rs.getInt("post_seq")   );
 
-				jArr.add(ArticleObj);
+				jArr.add(CommonObj);
 
 			} while (rs.next());
 		}

@@ -66,10 +66,10 @@ public class LoginHandler implements CommandHandler{
 		response.sendRedirect( (String)session.getAttribute("referer") );
 	}else {
 		System.out.println("loginhandlerelse");
-		response.sendRedirect(request.getContextPath() + "/common/index_login.do");
+		response.sendRedirect(request.getContextPath() + "/common/index.do");
 	}
 			return null;
-		} catch (LoginFailException e) {			
+		} catch (LoginFailException e) {	
 			errors.put("idOrPwNotMatch", true );
 			System.out.println(errors);
 			e.getMessage();

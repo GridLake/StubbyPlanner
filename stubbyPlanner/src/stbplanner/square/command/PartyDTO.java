@@ -5,7 +5,14 @@ public class PartyDTO {
 	private String member_id;
 	private String party_content;
 	private int party_like;
+	private String profile_pic;
 	
+	public String getProfile_pic() {
+		return profile_pic;
+	}
+	public void setProfile_pic(String profile_pic) {
+		this.profile_pic = profile_pic;
+	}
 	public int getParty_seqno() {
 		return party_seqno;
 	}

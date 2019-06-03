@@ -46,12 +46,39 @@ public class SquareDAO {
 		}
 	}
 	
+	public List<BoardsDTO> boardLikeSelect(Connection conn) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardsDTO dto = null;
+		try {
+			pstmt = conn.prepareStatement("select * from (select post_seq,member_id,post_subject,post_regdate,post_hits,post_like, ROW_NUMBER() OVER (order by post_like desc) rank from tbl_boards) where rank between 1 and 5");
+			rs = pstmt.executeQuery();
+			List<BoardsDTO> list = new ArrayList<>();
+			
+			while(rs.next()) {
+				dto = new BoardsDTO();
+					
+					dto.setPost_seq(rs.getInt("post_seq"));
+					dto.setMember_id(rs.getString("member_id"));
+					dto.setPost_subject(rs.getString("post_subject"));
+					dto.setPost_regdate(rs.getDate("post_regdate"));
+					dto.setPost_hits(rs.getInt("post_hits"));
+					dto.setPost_like(rs.getInt("post_like"));
+				list.add(dto);
+			}
+			return list;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	public List<PartyDTO> partySelect(Connection conn) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		PartyDTO dto = null;
 		try {
-			pstmt = conn.prepareStatement("select * from tbl_party");
+			pstmt = conn.prepareStatement("select * from tbl_party p join tbl_member m on p.member_id = m.member_id where p.member_id = m.member_id");
 			rs = pstmt.executeQuery();
 			List<PartyDTO> list = new ArrayList<>();
 			
@@ -62,6 +89,7 @@ public class SquareDAO {
 				dto.setMember_id(rs.getString("member_id"));
 				dto.setParty_content(rs.getString("party_content"));
 				dto.setParty_like(rs.getInt("party_like"));
+				dto.setProfile_pic(rs.getString("profile_pic"));
 
 				list.add(dto);
 			}

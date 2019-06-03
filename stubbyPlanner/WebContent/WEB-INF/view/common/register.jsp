@@ -175,7 +175,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 
 	function check(ctype)
 	{
-		v_id=$("#member_id").val();
+		member_id=$("#member_id").val();
 
 		if($("#member_id").val().length<5||$("#member_id").val().length>10)
 		{
@@ -184,51 +184,38 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 			return;
 		}
 
-		/* $.ajax({
-			   url: "/stubbyPlanner/common_ajax/checkUser_ajax.do",
-			 type: "POST",
-			  async: false,
-			  data: {id:v_id},
-			  success: function( data ) {
-
-			if($.trim(data)=="OK")
-			{
+		 $.ajax({
+			   url: '/stubbyPlanner/api/common/get_id.jsp?member_id='+member_id,
+			   	dataType: 'json',
+              	cache:false,
+              	success: function(data){
+				if(!data){
 				IDValidated=1;
 				func_alert("사용가능한 아이디입니다.");
 
 				$("#pid_btn").removeClass("btn-u-red");
 				$("#pid_btn").addClass("btn-u-default");
 				
-			}
-			else	
-			{
+			}else{
 					IDValidated=0;
 
-				$("#pid_btn").addClass("btn-u-red");
-				$("#pid_btn").removeClass("btn-u-default");
-
+					$("#pid_btn").addClass("btn-u-red");
+					$("#pid_btn").removeClass("btn-u-default");
+	
 					func_alert("이미 등록된 아이디입니다. 다른 아이디를 입력하세요.");
 					$("#member_id").val("");
 					$("#member_id").focus("");
-				
-
-				
-			}					
-
+					}					
 			}
 		});
- */
-
-
 	}
+	
 	function ferror()
 	{
 		IDValidated=0;
 		if(!$("#pid_btn").hasClass("btn-u-red"))
 			$("#pid_btn").addClass("btn-u-red");
 		$("#pid_btn").removeClass("btn-u-default");
-
-
 	}
 
 </script>
@@ -309,9 +296,9 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                         <div class="col col-8">
                                             <label class="input">
                                 <div class="input-group">
-			<input class="form-control" type="text" size="12" name="member_id" id="member_id" maxlength="12"  placeholder="영문/숫자만 사용가능, 4~12자"> 
+			<input class="form-control" type="text" size="12" name="member_id" id="member_id" maxlength="12"  placeholder="영문/숫자만 사용가능, 5~10자"> 
                                     <span class="input-group-btn">
-				<!-- <button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button> -->
+				<button onclick="javascript:check('');" class="btn-u btn-u-red" type="button" id="pid_btn">중복확인</button>
                                     </span>
                                 </div>
                                             </label>

@@ -14,10 +14,13 @@ public class SquareIndexHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		 
 		request.setAttribute("lnb_item", "square");
-		// 추천 게시글 
+		// 게시글 
 		SquareService service = SquareService.getInstance();
 		List<BoardsDTO> boardList = service.boardSelect();
 		request.setAttribute("boardList", boardList);
+		// 인기 게시글
+		List<BoardsDTO> boardLikeList = service.boardLikeSelect();
+		request.setAttribute("boardLikeList", boardLikeList);
 		// 최근 동행찾기 
 		List<PartyDTO> partyList = service.partySelect();
 		request.setAttribute("partyList", partyList);
