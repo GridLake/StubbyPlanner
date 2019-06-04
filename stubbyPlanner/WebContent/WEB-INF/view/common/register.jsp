@@ -221,33 +221,46 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 </script>
 
 
-				<script>
-				function verify()
-				{
-					if(document.getElementById("member_email").value.length>5)
-					{
+<script>
+	function verify(ctype)
+	{
+		member_email=$("#member_email").val();
+		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		
+		if(exptext.test(member_email)==false){
 
-	verifyemail();
-	func_alert("OK!");
+			func_alert("이메일 형식이 올바르지 않습니다.");
+			$("#member_email").focus();
+			return;
+		}
+		
+		 $.ajax({
+			   url: '/stubbyPlanner/api/common/get_email.jsp?member_email='+member_email,
+			   	dataType: 'json',
+             	cache:false,
+             	success: function(data){
+				if(!data){
+				vemail.value=1;
+				func_alert("사용가능한 이메일입니다.");
 
-					}
-					else
-					{func_alert("잘못된 이메일 주소입니다.");}
-				}
-				function verifyemail()
-				{
-					document.getElementById("vemail").value="1";
+				$("#btnemail").removeClass("btn-u-red");
+				$("#btnemail").addClass("btn-u-default");
+				
+			}else{
+				vemail.value=0;
 
-
-
-					$("#btnemail").removeClass("btn-u-red");
-					$("#btnemail").addClass("btn-u-default");
-					$("#btnemail").hide();
-
-					document.getElementById("member_email").style.border = "0px";
-					document.getElementById("member_email").blur();
-				}
-				</script>
+					$("#btnemail").addClass("btn-u-red");
+					$("#btnemail").removeClass("btn-u-default");
+	
+					func_alert("이미 등록된 이메일입니다. 다른 이메일을 입력하세요.");
+					$("#member_email").val("");
+					$("#member_email").focus("");
+					}					
+			}
+		});
+	}
+	
+</script>
 
 
 
@@ -341,7 +354,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 	                            <input type="text" class="form-control"  size="25" name="member_email" id="member_email" maxlength="100">
 			<input type="hidden" name="vemail" id="vemail" value="0">
                                     <span class="input-group-btn">
-                                        <button onclick="javascript:verify();"  id="btnemail"  class="btn-u btn-u-red" type="button">이메일 인증받기</button>
+                                        <button onclick="javascript:verify('');"  id="btnemail"  class="btn-u btn-u-red" type="button">이메일 인증받기</button>
                                     </span>
                                 </div>
                                             </label>

@@ -98,7 +98,6 @@
 <c:choose>
 
 <c:when test="${empty sessionScope.authUser}">
-<%-- <c:when test="${authUser ne ''}"> --%>
                         <li class="gnb_item sign_out">	
                             <a href="/stubbyPlanner/common/login.do">로그인</a>
                         </li>

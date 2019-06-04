@@ -22,6 +22,15 @@
 
 <script src="http://www.google.com/jsapi"></script>
 
+
+
+<link rel="stylesheet" href="/stubbyPlanner/externalData/mypage/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https	://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+<script src="/stubbyPlanner/externalData/mypage/js/bootstrap.min.js"></script>
+
+
+
 <script>
  google.load( "webfont", "1" );
  google.setOnLoadCallback(function() {
@@ -70,15 +79,16 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
  <!--=== Header ===-->    
 
 
+
     <header>
-        <div class="stu_gnb_container stu_clearfix" style="top: 0px;">
+        <div class="stu_gnb_container stu_clearfix">
             <div class="stu_inner_wrap">
                 <h1 class="stu_logo">
-                    <a href="/stubbyPlanner/common/index_login.do">
-                        <img class="fh" src="/stubbyPlanner/externalData/market/images/stu_logo.png" alt="">
+                    <a href="/stubbyPlanner/common/index.do">
+                        <img class="fh" src="/stubbyPlanner/externalData/market/images/stu_logo.png" alt=""/>
                     </a>
                 </h1>
-        
+
             </div>
         </div>
     </header>
@@ -91,7 +101,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 		<span style="border-bottom: 4px solid #fff;padding: 20px 60px 10px 0;">${myPage.memberInfoMap.member_id }</span>
 		<div class="box-profile" >
 			<a href="/stubbyPlanner/common/infoChange.do" style="position: relative">
-					<div><img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="회원정보변경"></div>
+					<div><img src="/stubbyPlanner/externalData/m_musinsa/emoticon_off.png" alt="회원정보변경"></div>
 			</a>
 					<div style="position: absolute; color: gray;"></div>		
 		</div>
@@ -100,42 +110,49 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 		<div class="box-link" style="background: black">
 			<a class="link-move" style="background: black">-</a>
 		</div>
-<div class="wrap-info-lev">
+<div class="wrap-info-lev"  style=" margin-bottom: 20px;">
 		<div class="box-lev">
+			<a href="/app/mypage/poin">
+					<div style="float: left; padding-top: 5px;""><img src="/stubbyPlanner/externalData/images2/common/star.PNG" alt="회원정보변경" style="width: 20px; height: 20px;"></div>
+			</a>
 			<span class="text-lev">${myPage.memberInfoMap.ms_name }</span>
 			<span class="text-nic"><button><a href="/stubbyPlanner/common/logout.do">로그아웃</a></button></span>
 		</div>
 		<span class="text-info-lev">
 			안녕하세요. 사탕보다 달콤한 남자 기기화입니다.
 		</span>
+		<div>
+
+		</div>
 	</div>
+	
 <ul class="wrap-info-ben">
 		<li style="position: relative">
-			<a href="/app/mypage/point">
+			<a href="javascript:#" id="mileage">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_won.png" alt="적립금"></div>
 				<em style="color:white">${myPage.memberInfoMap.mileage }</em>
 				<div>마일리지</div>
 			</a>
 		</li>
 		<li style="position: relative">
-			<a href="https://www.musinsa.com/index.php?mod=mypage&amp;page=point&amp;redirectCalled=1">
+			<a href="javascript:#" id="friend">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_point.png" alt="포인트"></div>
 				<em style="color: white">2,600</em>
-				<div>포인트</div>
+				<div>친구	</div>
 			</a>
 		</li>
 		<li style="position: relative">
-			<a href="/app/mypage/coupon_available">
+			<a href="javascript:#" id="coupon">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_coupon.png" alt="쿠폰"></div>
 				<em style="color: white">12</em>
 				<div>쿠폰</div>
 			</a>
 		</li>
 		<li style="position: relative">
-			<a href="/app/mypage/write_review">
+			<a href="javascript:#" id="review">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_review.png" alt="후기작성"></div>
 				<em style="color: white">12</em>
-				<div>후기작성</div>
+				<div>후기</div>
 			</a>
 		</li>
 	</ul>	
@@ -150,27 +167,27 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
         <section class="stu_category">
             <div class="stu_inner_wrap">
                 <ul class="tabArea">
-                    <li><a href="javascript:getPlanner('${myPage.memberInfoMap.member_id }')" class="list-group-item">
+                    <li><a href="javascript:getPlanner('${myPage.memberInfoMap.member_id }')">
                         <p class="planner">플래너
 <!--                             <span class="count" style="display: none;">(0)</span> -->
                         </p></a>
                     </li>
-                    <li><a href="javascript:getArticle('${myPage.memberInfoMap.member_id }')" class="list-group-item">
+                    <li><a href="javascript:getArticle('${myPage.memberInfoMap.member_id }')">
                         <p class="square">광장게시물
 <!--                             <span class="count" style="display: inline-block;">(1)</span> -->
                         </p></a>
                     </li>
-                    <li class="on"><a href="javascript:getRes('${myPage.memberInfoMap.member_id }')" class="list-group-item">
+                    <li class="on"><a href="javascript:getRes('${myPage.memberInfoMap.member_id }')">
                         <p class="reservation">예약목록
 <!--                             <span class="count" style="display: inline-block;">(1)</span> -->
                         </p></a>
                     </li>
-                      <li class="on"><a href="javascript:getMessage('${myPage.memberInfoMap.member_id }')" class="list-group-item">
+                      <li class="on"><a href="javascript:getMessage('${myPage.memberInfoMap.member_id }')">
                         <p class="message">메시지
 <!--                             <span class="count" style="display: none;">(0)</span> -->
                         </p></a>
                     </li>
-                      <li class="on"><a href="javascript:getPhoto('${myPage.memberInfoMap.member_id }')" class="list-group-item">
+                      <li class="on"><a href="javascript:getPhoto('${myPage.memberInfoMap.member_id }')">
                         <p class="gallery">갤러리
 <!--                             <span class="count" style="display: none;">(0)</span> -->
                         </p></a>
@@ -179,159 +196,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
             </div>
         </section>
         
-<script >
-
-function getPlanner(id)
-{
-
-}
-
-
-
-function getPhoto(id)
-{
-
-var member_id = id;
-	             $.ajax({
-	             	url: '/stubbyPlanner/api/mypage/get_photo.jsp?member_id='+member_id,
-	               	dataType: 'json',
-	               	cache:false,
-	               	success: function(data){
-					if(  data )
-					{
-						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
-						$.each(data.list, function( i, item ) {
-									console.log(item.POST_SUBJECT);	
-								thtml+='<li class="prd_item gallery" style="width:100%;"><div class="prd_info">';
-// 								thtml+='<li class="square"><div class="prd_info">';
-	                     		thtml+='<a href="광장 게시물페이지 주소">';
-								thtml+='<div class="name">'+item.member_id+'</div>';
-								thtml+='<div class="desc"><div><span>'+item.gal_seq+'</span></div>';
-		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
-		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
-		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
- 
-			console.log(thtml);
-						});
-						$(".mypage_message").html(thtml);
-					}else{
-						thtml='<div class="titArea"><h3 class="stu_title">내 갤러리 목록</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
-						thtml+='<p><span>갤러리가 없습니다.</span>광장에서 나만의 여행사진을 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
-
-						$(".mypage_message").html(thtml);
-					}
-
-			}
-		});
-}
-
-
-function getArticle(id)
-{
-
-var member_id = id;
-	             $.ajax({
-	             	url: '/stubbyPlanner/api/mypage/get_article.jsp?member_id='+member_id,
-	               	dataType: 'json',
-	               	cache:false,
-	               	success: function(data){
-					if(data!="")
-					{alert("True")
-						
-						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
-						$.each(data.list, function( i, item ) {
-									console.log(item.POST_SUBJECT);	
-								thtml+='<li class="prd_item square" style="width:100%;"><div class="prd_info">';
-// 								thtml+='<li class="square"><div class="prd_info">';
-	                     		thtml+='<a href="광장 게시물페이지 주소">';
-								thtml+='<div class="name">'+item.POST_SUBJECT+'</div>';
-								thtml+='<div class="desc"><div><span>'+item.POST_CONTENT+'</span></div>';
-		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
-		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
-		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
- 
-			console.log(thtml);
-						});
-						$(".mypage_message").html(thtml);
-					}else{
-						alert("false")
-						thtml='<div class="titArea"><h3 class="stu_title">내 투어 예약내역</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
-						thtml+='<p><span>게시물이 없습니다.</span>광장에서 다른 회원들과 여행정보를 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
-
-						$(".mypage_message").html(thtml);
-					}
-
-			}
-
-		});
-}
-
-
-function getRes(id)
-{
-
-}
-
-
-function getMessage(id)
-{
-
-var member_id = id;
-	             $.ajax({
-	             	url: '/stubbyPlanner/api/mypage/get_message.jsp?member_id='+member_id,
-	               	dataType: 'json',
-	               	cache:false,
-	               	success: function(data){
-						console.log(">>>>>>>>>>"+data);	
-					if(data!="")
-					{
-						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div><ul class="prd_list">';
-						$.each(data.listTake, function( i, item ) {
-									console.log(item.msg_SUBJECT);	
-								thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
-// 								thtml+='<li class="square"><div class="prd_info">';
-	                     		thtml+='<a href="광장 게시물페이지 주소">';
-								thtml+='<div class="name">'+item.msg_subject+'</div>';
-								thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
-		                        thtml+='<dl><dt>보낸 사람</dt><dd class="date"><span>'+item.member_friendid+'</span></dd></dl>';
-		                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
- 
-			console.log(thtml);
-						});
-								thtml+='</ul>';
-						
-						
-						thtml+='<div class="titArea"><h3 class="stu_title">보낸 메세지함</h3></div><ul class="prd_list">';
-						$.each(data.listGive, function( i, item ) {
-							console.log(item.msg_SUBJECT);	
-						thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
-//							thtml+='<li class="square"><div class="prd_info">';
-                 		thtml+='<a href="광장 게시물페이지 주소">';
-						thtml+='<div class="name">'+item.msg_subject+'</div>';
-						thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
-                        thtml+='<dl><dt>받는 사람</dt><dd class="date"><span>'+item.member_myid+'</span></dd></dl>';
-                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
-
-	console.log(thtml);
-				});
-						thtml+='</ul>';
-						
-						$(".mypage_message").html(thtml);
-					}else{
-						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
-						thtml='<p><span>메세지가 없습니다.</span>광장에서 다른 회원들과 소통해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
-
-						$(".mypage_message").html(thtml);
-					}
-
-			}
-		});
-}
-
-</script>
-
+        
 
         <section class="stu_prd_list stu_clearfix tour">
             <div class="stu_inner_wrap">
@@ -552,6 +417,340 @@ var member_id = id;
             return false;
         });
     });
+</script>
+
+<!-- 마일리지 모달창 -->
+<div class="mileage modal fade" id="layerpop_mileage" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;">
+		<h3>마일리지 제도</h3>
+		</div>
+<!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
+<!--       <div class="modal-header"> -->
+      <div class="modal-footer">
+<!--       </div> -->
+      <div style="text-align: left">
+      	
+      <h3>HERO.</h3>
+      <p>5000 마일리지 이상</p> 
+      <h3>MASTER.</h3>
+      <p>1500 마일리지 이상</p> 
+      <h3>EXPERT.</h3>
+      <p>500 마일리지 이상</p> 
+      <h3>MANIA.</h3>
+      <p>100 마일리지 이상</p> 
+      <h3>TRAVELER.</h3>
+      <p>20 마일리지 이상</p> 
+      <h3>BEGINNER.</h3>
+      <p>20 마일리지 미만</p> 
+      </div>
+      
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 친구 모달창 -->
+<div class="friend modal fade" id="layerpop_friend" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<a href="javascript:#" id="friend" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 목록</h3></span></a>
+		<a href="javascript:#" id="friend" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a>
+	</div>
+<!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
+<!--       <div class="modal-header"> -->
+      <div class="friend modal-footer" id="layerpop_friend_content">
+ 
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 쿠폰 모달창 -->
+<div class="coupon modal fade" id="layerpop_coupon" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;">
+		<h3>쿠폰 목록</h3>
+		</div>
+<!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
+<!--       <div class="modal-header"> -->
+      <div class="modal-footer">
+<!--       </div> -->
+
+      <div style="text-align: left">
+      	
+      <h3 style="text-align: center;"><b>서비스 준비 중 입니다</b></h3>
+
+      </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 후기 모달창 -->
+<div class="review modal fade" id="layerpop_review" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<a href="javascript:#" id="friend"><span style="float: left; width: 50%;"><h3>친구 목록</h3></span></a>
+		<a href="javascript:#" id="friend" style="color:black;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a>
+	</div>
+<!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
+<!--       <div class="modal-header"> -->
+      <div class="review modal-footer" id="layerpop_review_content">
+ 
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showFriend(id)
+{
+	
+	
+	 
+var member_id = id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/get_friend.jsp?member_id='+member_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+	               		
+
+					if(data!="")
+					{
+						thtml='<div style="text-align: left">';
+						$.each(data.list, function( i, item ) {
+									console.log(item.POST_SUBJECT);	
+	                     		thtml+='<img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
+	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
+								thtml+='<h3>'+item.member_id+'</h3>';
+								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p>'; 
+// 								thtml+='+item.gender+'</p>'; 
+			
+						});
+						thtml+='</div>';
+
+						
+						$("#layerpop_friend_content").html(thtml);
+					}else{
+						thtml='<div class="titArea"><h3 class="stu_title">내 갤러리 목록</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+						thtml+='<p><span>갤러리가 없습니다.</span>광장에서 나만의 여행사진을 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
+
+						$(".friend modal-footer").html(thtml);
+					}
+					
+					
+					 
+
+			}
+		});
+}
+
+ 
+    $("#mileage").click(function(){
+        $('#layerpop_mileage').modal();
+    })
+ 
+
+ 
+    $("#friend").click(function(){        
+    	
+    	
+    	$('#layerpop_friend').modal();
+    	
+        // ajax 처리...
+        showFriend('${myPage.memberInfoMap.member_id }');
+    })
+ 
+    
+    $("#coupon").click(function(){
+        $('#layerpop_coupon').modal();
+    })
+
+    
+    $("#review").click(function(){
+        $('#layerpop_review').modal();
+    })
+
+
+
+
+</script>      
+    
+<script >
+
+function getPlanner(id)
+{
+
+}
+
+
+
+function getPhoto(id)
+{
+
+var member_id = id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/get_photo.jsp?member_id='+member_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
+						$.each(data.list, function( i, item ) {
+									console.log(item.POST_SUBJECT);	
+								thtml+='<li class="prd_item gallery" style="width:100%;"><div class="prd_info">';
+// 								thtml+='<li class="square"><div class="prd_info">';
+	                     		thtml+='<a href="광장 게시물페이지 주소">';
+								thtml+='<div class="name">'+item.member_id+'</div>';
+								thtml+='<div class="desc"><div><span>'+item.gal_seq+'</span></div>';
+		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
+		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
+		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
+ 
+			console.log(thtml);
+						});
+						$(".mypage_message").html(thtml);
+					}else{
+						thtml='<div class="titArea"><h3 class="stu_title">내 갤러리 목록</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+						thtml+='<p><span>갤러리가 없습니다.</span>광장에서 나만의 여행사진을 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
+
+						$(".mypage_message").html(thtml);
+					}
+
+			}
+		});
+}
+
+
+function getArticle(id)
+{
+
+var member_id = id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/get_article.jsp?member_id='+member_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{alert("True")
+						
+						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
+						$.each(data.list, function( i, item ) {
+									console.log(item.POST_SUBJECT);	
+								thtml+='<li class="prd_item square" style="width:100%;"><div class="prd_info">';
+// 								thtml+='<li class="square"><div class="prd_info">';
+	                     		thtml+='<a href="광장 게시물페이지 주소">';
+								thtml+='<div class="name">'+item.POST_SUBJECT+'</div>';
+								thtml+='<div class="desc"><div><span>'+item.POST_CONTENT+'</span></div>';
+		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
+		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
+		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
+ 
+			console.log(thtml);
+						});
+						$(".mypage_message").html(thtml);
+					}else{
+						alert("false")
+						thtml='<div class="titArea"><h3 class="stu_title">내 투어 예약내역</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+						thtml+='<p><span>게시물이 없습니다.</span>광장에서 다른 회원들과 여행정보를 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
+
+						$(".mypage_message").html(thtml);
+					}
+
+			}
+
+		});
+}
+
+
+function getRes(id)
+{
+
+}
+
+
+function getMessage(id)
+{
+
+var member_id = id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/get_message.jsp?member_id='+member_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+						console.log(">>>>>>>>>>"+data);	
+					if(data!="")
+					{
+						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div><ul class="prd_list">';
+						$.each(data.listTake, function( i, item ) {
+									console.log(item.msg_SUBJECT);	
+								thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
+// 								thtml+='<li class="square"><div class="prd_info">';
+	                     		thtml+='<a href="광장 게시물페이지 주소">';
+								thtml+='<div class="name">'+item.msg_subject+'</div>';
+								thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
+		                        thtml+='<dl><dt>보낸 사람</dt><dd class="date"><span>'+item.member_friendid+'</span></dd></dl>';
+		                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
+		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
+ 
+			console.log(thtml);
+						});
+								thtml+='</ul>';
+						
+						
+						thtml+='<div class="titArea"><h3 class="stu_title">보낸 메세지함</h3></div><ul class="prd_list">';
+						$.each(data.listGive, function( i, item ) {
+							console.log(item.msg_SUBJECT);	
+						thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
+//							thtml+='<li class="square"><div class="prd_info">';
+                 		thtml+='<a href="광장 게시물페이지 주소">';
+						thtml+='<div class="name">'+item.msg_subject+'</div>';
+						thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
+                        thtml+='<dl><dt>받는 사람</dt><dd class="date"><span>'+item.member_myid+'</span></dd></dl>';
+                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
+                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
+
+	console.log(thtml);
+				});
+						thtml+='</ul>';
+						
+						$(".mypage_message").html(thtml);
+					}else{
+						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+						thtml='<p><span>메세지가 없습니다.</span>광장에서 다른 회원들과 소통해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
+
+						$(".mypage_message").html(thtml);
+					}
+
+			}
+		});
+}
+
 </script>
 
 

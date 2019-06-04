@@ -7,6 +7,14 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
+<script>
+
+history.pushState(null, null, window.location.href);
+
+window.onpopstate = function(event) {	
+history.go(1);
+}
+</script>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -63,6 +71,7 @@
 
 <script src="https://www.google.com/jsapi"></script>
 <script>
+
  google.load( "webfont", "1" );
  google	nLoadCallback(function() {
   WebFont.load({ custom: {

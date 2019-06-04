@@ -7,6 +7,7 @@ public class IndexLoginHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		return "/common/index";
 	}
 
