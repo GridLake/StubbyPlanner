@@ -50,6 +50,45 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_booking:after { content:"투어 �
 }
 
 </style>
+<style type="text/css">
+button.ok{
+  background:black;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button.ok:hover{
+  background:#fff;
+  color:gray;
+}
+button.ok:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: gray;
+  transition:400ms ease all;
+}
+button.ok:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button.ok:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+</style>
 </head>	
 <body>
 <div class="stu_wrap">
@@ -119,7 +158,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 			<span class="text-nic"><button><a href="/stubbyPlanner/common/logout.do">로그아웃</a></button></span>
 		</div>
 		<span class="text-info-lev">
-			안녕하세요. 사탕보다 달콤한 남자 기기화입니다.
+			자기소개글[회원가입에서 입력받는거 추가/테이블 추가]
 		</span>
 		<div>
 
@@ -144,7 +183,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 		<li style="position: relative">
 			<a href="javascript:#" id="coupon">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_coupon.png" alt="쿠폰"></div>
-				<em style="color: white">12</em>
+				<em style="color: white">0</em>
 				<div>쿠폰</div>
 			</a>
 		</li>
@@ -152,7 +191,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 			<a href="javascript:#" id="review">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_review.png" alt="후기작성"></div>
 				<em style="color: white">12</em>
-				<div>후기</div>
+				<div>리뷰</div>
 			</a>
 		</li>
 	</ul>	
@@ -460,8 +499,8 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
-		<a href="javascript:#" id="friend" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 목록</h3></span></a>
-		<a href="javascript:#" id="friend" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a>
+		<a href="javascript:#" id="friends" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 목록</h3></span></a>
+		<a href="javascript:#" id="friendApply" style="color:white;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a>
 	</div>
 <!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
 <!--       <div class="modal-header"> -->
@@ -509,8 +548,8 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
-		<a href="javascript:#" id="friend"><span style="float: left; width: 50%;"><h3>친구 목록</h3></span></a>
-		<a href="javascript:#" id="friend" style="color:black;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a>
+		<a href="javascript:#" id="review"><span><h3>리뷰 목록</h3></span></a>
+<!-- 		<a href="javascript:#" id="friend" style="color:black;"><span style="float: left; width: 50%;"><h3>친구 신청</h3></span></a> -->
 	</div>
 <!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
 <!--       <div class="modal-header"> -->
@@ -528,8 +567,6 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 <script>
 function showFriend(id)
 {
-	
-	
 	 
 var member_id = id;
 	             $.ajax({
@@ -537,38 +574,63 @@ var member_id = id;
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-	               		
-
 					if(data!="")
 					{
 						thtml='<div style="text-align: left">';
 						$.each(data.list, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
 	                     		thtml+='<img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
-	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
+	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button></form>';
+	                     		thtml+='<a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
 								thtml+='<h3>'+item.member_id+'</h3>';
 								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p>'; 
-// 								thtml+='+item.gender+'</p>'; 
-			
 						});
 						thtml+='</div>';
-
-						
 						$("#layerpop_friend_content").html(thtml);
 					}else{
-						thtml='<div class="titArea"><h3 class="stu_title">내 갤러리 목록</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
-						thtml+='<p><span>갤러리가 없습니다.</span>광장에서 나만의 여행사진을 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
-
-						$(".friend modal-footer").html(thtml);
+						thtml=' <div style="text-align: left"><h3 style="text-align: center;"><b>친구가 없습니다...</b></h3></div>';
+						$("#layerpop_friend_content").html(thtml);
 					}
-					
-					
-					 
-
 			}
 		});
 }
 
+
+function showFriendApply(id)
+{
+	 
+var member_id = id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/get_friend.jsp?member_id='+member_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						thtml='<div style="text-align: left">';
+						$.each(data.listApply, function( i, item ) {
+									console.log(item.POST_SUBJECT);	
+	                     		thtml+='<img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
+// 	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
+	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button></form>';
+	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button></form>';
+	                     		thtml+='<h3>'+item.member_id+'</h3>';
+								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p>'; 
+// 								thtml+='+item.gender+'</p>'; 
+						});
+						thtml+='</div>';
+						$("#layerpop_friend_content").html(thtml);
+					}else{
+						thtml=' <div style="text-align: left"><h3 style="text-align: center;"><b>친구 신청 내역이 없습니다</b></h3></div>';
+						$("#layerpop_friend_content").html(thtml);
+					}
+			}
+		});
+}
+
+	$(".ok").click(function(){
+   		$('#layerpop_mileage').modal();
+	})
  
     $("#mileage").click(function(){
         $('#layerpop_mileage').modal();
@@ -577,14 +639,23 @@ var member_id = id;
 
  
     $("#friend").click(function(){        
-    	
-    	
     	$('#layerpop_friend').modal();
     	
         // ajax 처리...
         showFriend('${myPage.memberInfoMap.member_id }');
     })
+    
+    $("#friends").click(function(){        
+    	
+        showFriend('${myPage.memberInfoMap.member_id }');
+    })
  
+    $("#friendApply").click(function(){        
+
+
+        showFriendApply('${myPage.memberInfoMap.member_id }');
+    })
+    
     
     $("#coupon").click(function(){
         $('#layerpop_coupon').modal();
@@ -716,7 +787,7 @@ var member_id = id;
 								thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
 		                        thtml+='<dl><dt>보낸 사람</dt><dd class="date"><span>'+item.member_friendid+'</span></dd></dl>';
 		                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
+		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
  
 			console.log(thtml);
 						});
@@ -733,7 +804,7 @@ var member_id = id;
 						thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
                         thtml+='<dl><dt>받는 사람</dt><dd class="date"><span>'+item.member_myid+'</span></dd></dl>';
                         thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></div></div></li>';
+                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
 
 	console.log(thtml);
 				});
