@@ -15,8 +15,8 @@ public class DBConn {
 		if (connection == null ) {
 			String className ="oracle.jdbc.driver.OracleDriver";
 			String url="jdbc:oracle:thin:@localhost:1521:xe";
-			String user="scott";
-			String password="tiger";
+			String user="STUBBYPLANNER";
+			String password="stbpro";
 			
 			try {
 				Class.forName(className);

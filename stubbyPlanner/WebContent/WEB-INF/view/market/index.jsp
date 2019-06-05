@@ -151,7 +151,7 @@
 
 
 <!-- line 374 ~ 926 경로 확인: ? 뒤 체크 -->
-<a href="<%= contextPath %>/market/index_city.do?region=111011004">파리</a>
+<a href="<%= contextPath %>/market/list.do?city_id=111011004">파리</a>
 	
 <a href="<%= contextPath %>/market/index_city.do?region=111011010">리옹</a>
 
@@ -866,7 +866,7 @@
 
 
                             <div class="prd_item">
-                               <a href="<%= contextPath %>/market/index_city.do?region=111011004">
+                               <a href="<%= contextPath %>/market/list.do?city_id=111011004">
                                     <div class="imgArea">
                                         <img class="fh" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/8dd49e94be2f1f20057849442b8f5dbf_l.jpg" alt="파리"/>
                                     </div>
@@ -1552,7 +1552,7 @@
                             <a href="<%= contextPath %>/guide/detail.do?needlogin=&serial=189">
                                 <figure class="thumb">
 			<img class="fw" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c_l.jpeg" onerror="this.src='<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/5b9b9cd6e9499ef00c058c57b4e5911c.jpeg'">
-                              
+                                   
 
                                     <div class="band bg_red">⚡️2천원</div>
 

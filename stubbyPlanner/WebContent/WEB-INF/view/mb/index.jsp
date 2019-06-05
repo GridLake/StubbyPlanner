@@ -429,7 +429,7 @@ $(this).remove();
                                     </a>
                                 </li>
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/mb/index_city.do?l=&region=111031001">
+                                    <a href="<%= contextPath %>/mb/index_city.do?l=&city_id=111031001">
                                         <div class="value">
                                             <b class="name">런던</b>
                                             <i class="category">영국</i>
