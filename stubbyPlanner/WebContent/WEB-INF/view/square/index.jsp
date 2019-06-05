@@ -189,7 +189,7 @@ table.type09 tbody td:hover{
 	<script>
 		var id = "#"+'${ lnb_item }';
 		$(".lnb_item").removeClass("active");
-		$(id).addClass("active");
+		$(id).addClass("active");	
 	</script>
 
 
@@ -804,7 +804,7 @@ table.type09 tbody td:hover{
 <!--                 <ul class="swiper-wrapper"> -->
 
                     <li class="swiper-slide">
-                        <a href="/stubbyPlanner/square/index.do">
+                        <a href="<%= contextPath %>/square/squareDetail.do">
                             <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/square.jpg);">
                                 <div class="stu_tone"></div>
                                 <div class="stu_inner_wrap">
