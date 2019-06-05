@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String member_id = request.getParameter("member_id");
- 		System.out.println("ajaxPage호출"+member_id);
+ 	System.out.println("ajaxPage호출"+member_id);
 %>	
 <%
 	Connection conn = null;
@@ -40,6 +40,7 @@
 				+ " join tbl_ms s on m.ms_code = s.ms_code "
 				+ " where f.status =2 and f.member_myid = ? ";
 		
+		
 		pstmt = conn.prepareStatement(sqlTake);
 		pstmtApply = conn.prepareStatement(sqlApplyTake);
 
@@ -48,6 +49,7 @@
 
 		rs = pstmt.executeQuery();
 		rsApply = pstmtApply.executeQuery();
+
 
 		if (rs.next()) {
 			System.out.println("if");
@@ -84,7 +86,7 @@
 
 			} while (rsApply.next());
 		}
-
+		
 		
 		jObj.put("list", jArr);
 		jObj.put("listApply", jArrApply);

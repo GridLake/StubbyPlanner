@@ -51,7 +51,7 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_booking:after { content:"투어 �
 
 </style>
 <style type="text/css">
-button.ok{
+button#good{
   background:black;
   color:#fff;
   border:none;
@@ -63,11 +63,11 @@ button.ok{
   transition:800ms ease all;
   outline:none;
 }
-button.ok:hover{
+button#good:hover{
   background:#fff;
   color:gray;
 }
-button.ok:before,button:after{
+button#good:before,button:after{
   content:'';
   position:absolute;
   top:0;
@@ -77,13 +77,13 @@ button.ok:before,button:after{
   background: gray;
   transition:400ms ease all;
 }
-button.ok:after{
+button#good:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button.ok:hover:before,button:hover:after{
+button#good:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
@@ -179,7 +179,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 				<em style="color: white">2,600</em>
 				<div>친구	</div>
 			</a>
-		</li>
+		</li>	
 		<li style="position: relative">
 			<a href="javascript:#" id="coupon">
 				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_coupon.png" alt="쿠폰"></div>
@@ -564,7 +564,107 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
   </div>
 </div>
 
+
+
+
+
+
+
+
+<div id="add_data_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>메세지 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body">
+			<form method="post" id="insert_form">
+			<label>제목</label>
+			<input type="text" name="subject" id="subject" class="form-control" />
+			<br />
+			<label>내용</label>
+			<textarea name="content" id="content" class="form-control" ></textarea>
+			<br />
+			<input type="submit" name ="insert" id="insert" value="전송" class="btn btn-success" />
+			</form>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
 <script>
+
+function messageFriend(id,content,subject,member_friendid)
+{
+	 
+var member_myid = id;
+var msg_content = content;
+var msg_subject = subject;
+var member_friendid = member_friendid;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/set_messageFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid+'&msg_subject='+msg_subject+'&msg_content='+msg_content,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						alert("메세지 전송 완료")
+					}
+			}
+		});
+}
+
+
+function updateFriend(id,friend)
+{
+	 
+var member_myid = id;
+var member_friendid = friend;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/set_updateFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						alert("친구 추가 완료")
+					}
+			}
+		});
+}
+
+
+function deleteFriend(id,friend)
+{
+	 
+var member_myid = id;
+var member_friendid = friend;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/set_deleteFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						alert("친구 삭제 완료")
+					}
+			}
+		});
+}
+
+
 function showFriend(id)
 {
 	 
@@ -579,17 +679,52 @@ var member_id = id;
 						thtml='<div style="text-align: left">';
 						$.each(data.list, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
-	                     		thtml+='<img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
-	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button></form>';
-	                     		thtml+='<a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
+	                     		thtml+='<button id ="good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
+	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
 								thtml+='<h3>'+item.member_id+'</h3>';
-								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p>'; 
+								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
 						});
 						thtml+='</div>';
-						$("#layerpop_friend_content").html(thtml);
-					}else{
-						thtml=' <div style="text-align: left"><h3 style="text-align: center;"><b>친구가 없습니다...</b></h3></div>';
-						$("#layerpop_friend_content").html(thtml);
+						$("#layerpop_friend_content").html(thtml); //
+						
+				     	$(".no").on("click",function(){
+				     			
+				     		var value = $(this).val();
+				  		    deleteFriend('${myPage.memberInfoMap.member_id }',value);
+				  		   $(this).parent().remove();
+					  	})
+					  	
+
+ 					   $(".msg").click(function(){
+ 						  var value = $(this).attr("alt") ;
+  					      $('#add_data_Modal').modal();
+ 						  $('#add_data_Modal').val(value);
+  					      alert("모달창 출력")
+ 					   })					  	
+					  
+  					   
+ 					   $('#insert_form').on('submit',function(event){
+  					      alert("메세지 전송")
+ 						  if($('#subject').val()=='')
+ 						 {
+ 						 alert("제목을 입력해주세요");
+ 						 }else if($('#content').val()=='')
+ 						 {
+ 						 alert("내용을 입력해주세요");
+ 						 }else{
+  					      alert("ajax로 가자")
+// 						  var value =$(this).val();
+						  var content =$('textarea#content').val();
+  					      alert(content)
+						  var subject =$('input#subject').val();
+  					      alert(subject)
+  					      var member_friendid = $('#add_data_Modal').val();
+  					      alert(member_friendid)
+						  messageFriend('${myPage.memberInfoMap.member_id }',content,subject,member_friendid);
+						  }
+ 					   })					  	
+ 					    
 					}
 			}
 		});
@@ -604,45 +739,63 @@ var member_id = id;
 	             	url: '/stubbyPlanner/api/mypage/get_friend.jsp?member_id='+member_id,
 	               	dataType: 'json',
 	               	cache:false,
-	               	success: function(data){
+	               	success: function(data){ // { result : 1 }
 					if(data!="")
 					{
 						thtml='<div style="text-align: left">';
 						$.each(data.listApply, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
-	                     		thtml+='<img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
+	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
 // 	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
-	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button></form>';
-	                     		thtml+='<form action="/stubbyPlanner/asp/join.do"><button class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button></form>';
+	                     		thtml+='<button id = "good" class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button>';
+	                     		thtml+='<button id = "good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button>';
 	                     		thtml+='<h3>'+item.member_id+'</h3>';
-								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p>'; 
+								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
 // 								thtml+='+item.gender+'</p>'; 
 						});
 						thtml+='</div>';
 						$("#layerpop_friend_content").html(thtml);
+				        
+				     	$(".ok").on("click",function(){
+				     		
+				     		
+				     		var value = $(this).val();
+				     		updateFriend('${myPage.memberInfoMap.member_id }',value);
+				  		   
+				  		   $(this).parent().remove();
+				 	 	})
+				 	 	
+				     	$(".no").on("click",function(){
+				     		
+				     		
+				     		var value = $(this).val();
+				  		    deleteFriend('${myPage.memberInfoMap.member_id }',value);
+				  		   
+				  		   $(this).parent().remove();
+				 	 	})				 	 	
 					}else{
 						thtml=' <div style="text-align: left"><h3 style="text-align: center;"><b>친구 신청 내역이 없습니다</b></h3></div>';
 						$("#layerpop_friend_content").html(thtml);
 					}
 			}
-		});
+		});	            	             
 }
-
-	$(".ok").click(function(){
-   		$('#layerpop_mileage').modal();
-	})
- 
+	//모달 친구신청목록
+	
+ 	//모달 마일리지
     $("#mileage").click(function(){
         $('#layerpop_mileage').modal();
     })
  
+	//친구 수락/삭제
 
- 
+	
+    //모달 친구목록
     $("#friend").click(function(){        
     	$('#layerpop_friend').modal();
     	
         // ajax 처리...
-        showFriend('${myPage.memberInfoMap.member_id }');
+	    showFriend('${myPage.memberInfoMap.member_id }');
     })
     
     $("#friends").click(function(){        
@@ -666,7 +819,7 @@ var member_id = id;
         $('#layerpop_review').modal();
     })
 
-
+    
 
 
 </script>      
@@ -728,7 +881,7 @@ var member_id = id;
 	               	cache:false,
 	               	success: function(data){
 					if(data!="")
-					{alert("True")
+					{
 						
 						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
 						$.each(data.list, function( i, item ) {
@@ -782,12 +935,12 @@ var member_id = id;
 									console.log(item.msg_SUBJECT);	
 								thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
 // 								thtml+='<li class="square"><div class="prd_info">';
-	                     		thtml+='<a href="광장 게시물페이지 주소">';
+	                     		thtml+='<a>';
 								thtml+='<div class="name">'+item.msg_subject+'</div>';
 								thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
 		                        thtml+='<dl><dt>보낸 사람</dt><dd class="date"><span>'+item.member_friendid+'</span></dd></dl>';
 		                        thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
+		                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a><img alt="'+item.member_friendid+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
  
 			console.log(thtml);
 						});
@@ -799,18 +952,47 @@ var member_id = id;
 							console.log(item.msg_SUBJECT);	
 						thtml+='<li class="prd_item message" style="width:100%;"><div class="prd_info">';
 //							thtml+='<li class="square"><div class="prd_info">';
-                 		thtml+='<a href="광장 게시물페이지 주소">';
+                 		thtml+='<a>';
 						thtml+='<div class="name">'+item.msg_subject+'</div>';
 						thtml+='<div class="desc"><div><span>'+item.msg_content+'</span></div>';
                         thtml+='<dl><dt>받는 사람</dt><dd class="date"><span>'+item.member_myid+'</span></dd></dl>';
                         thtml+='<dl><dt style="visibility: hidden;">.</dt><dd><span></span></dd></dl>';
-                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a href="#"><img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
+                        thtml+='<dl><dt>보낸 날짜</dt><dd class="date"><span style="width:100px;">'+item.msg_regdate.substring(0, 10)+'</span></dd></dl></a></div></div><a><img alt="'+item.member_myid+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a></li>';
 
 	console.log(thtml);
 				});
 						thtml+='</ul>';
 						
 						$(".mypage_message").html(thtml);
+						
+	   					      
+	    					   $(".msg").click(function(){
+	    	 						  var value = $(this).attr("alt") ;
+	    	  					      $('#add_data_Modal').modal();
+	    	 						  $('#add_data_Modal').val(value);
+	    	  					      alert("모달창 출력")
+	    	 					   })					  	
+	    	  					   
+	    	 					   $('#insert_form').on('submit',function(event){
+	    	  					      alert("메세지 전송")
+	    	 						  if($('#subject').val()=='')
+	    	 						 {
+	    	 						 alert("제목을 입력해주세요");
+	    	 						 }else if($('#content').val()=='')
+	    	 						 {
+	    	 						 alert("내용을 입력해주세요");
+	    	 						 }else{
+	    	  					      alert("ajax로 가자")
+//	    	 						  var value =$(this).val();
+	    							  var content =$('textarea#content').val();
+	    	  					      alert(content)
+	    							  var subject =$('input#subject').val();
+	    	  					      alert(subject)
+	    	  					      var member_friendid = $('#add_data_Modal').val();
+	    	  					      alert(member_friendid)
+	    							  messageFriend('${myPage.memberInfoMap.member_id }',content,subject,member_friendid);
+	    							  }
+	    	 					   })			
 					}else{
 						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
 						thtml='<p><span>메세지가 없습니다.</span>광장에서 다른 회원들과 소통해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';

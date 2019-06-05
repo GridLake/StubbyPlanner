@@ -26,7 +26,8 @@ public class MemberExitHandler implements CommandHandler{
 	private String processSubmit(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("MemberExitHandler post");
 		// 세션 정보 -> dto 저장
-		HttpSession httpSession = request.getSession();
+		HttpSession session = request.getSession();
+		session.invalidate();
 		RegisterDTO dto = new RegisterDTO();
 //		dto = (RegisterDTO)httpSession.getAttribute("authUser");
 		dto.setMember_id(request.getParameter("member_id"));

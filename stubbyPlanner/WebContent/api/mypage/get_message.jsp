@@ -35,11 +35,13 @@
 
 		String sqlTake = "select * "
 				+ " from tbl_message "
-				+ "where member_myid = ? ";
+				+ "where member_myid = ? "
+				+ " order by msg_seqno desc";
 		
 		String sqlGive = "select * "
 				+ " from tbl_message "
-				+ "where member_friendid = ? ";
+				+ "where member_friendid = ? "
+				+ " order by msg_seqno desc";
 		
 		
 		pstmtTake = conn.prepareStatement(sqlTake);
