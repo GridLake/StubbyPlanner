@@ -804,7 +804,7 @@ table.type09 tbody td:hover{
 <!--                 <ul class="swiper-wrapper"> -->
 
                     <li class="swiper-slide">
-                        <a href="<%= contextPath %>/square/squareDetail.do">
+                        <a id="squareDetail" href="<%= contextPath %>/square/squareDetail.do">
                             <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/square.jpg);">
                                 <div class="stu_tone"></div>
                                 <div class="stu_inner_wrap">
@@ -945,7 +945,7 @@ table.type09 tbody td:hover{
 <!--        <li class="swiper-slide"> -->
                <h2 style="font-size:18pt;font-weight:700;">
                   	  인기있는 플래너
-               <a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; ">
+               <a id="plannerDetail" class="plus" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; ">
                   +더 보기
                </a>
                </h2>
@@ -1043,7 +1043,7 @@ table.type09 tbody td:hover{
                 <div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>
                 <div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>
                 
-   				<a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
+   				<a id="boardDetail" class="plus" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
 
 	
 	
@@ -1141,7 +1141,7 @@ table.type09 tbody td:hover{
                 </div>
              
 
-<a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
+<a id="partyDetail" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
 
 
                 <div class="swiper-container stu_tagArea">
@@ -1307,7 +1307,7 @@ table.type09 tbody td:hover{
 <!--        <li class="swiper-slide"> -->
                <h2 style="font-size:18pt;font-weight:700;">
                   	  인기 갤러리
-               <a class="plus" href="/stubbyPlanner/square/index.do" style="float: right; margin: 15px; ">
+               <a id="galleryDetail" class="plus" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; ">
                   +더 보기
                </a>
                </h2>
@@ -3409,6 +3409,40 @@ $(document).ready(function() {
 });
 </script>
  -->
+<script type="text/javascript">
+ $('#squareDetail').click(function(event){
+	if('${authUser.member_id}'==''){
+		alert("로그인 후 이용해주세요.");
+		$(this).attr('href','/stubbyPlanner/square/index.do');
+	}							 
+ });
+ $('#plannerDetail').click(function(event){
+		if('${authUser.member_id}'==''){
+			alert("로그인 후 이용해주세요.");
+			$(this).attr('href','/stubbyPlanner/square/index.do');
+		}							 
+	 });
+ $('#boardDetail').click(function(event){
+		if('${authUser.member_id}'==''){
+			alert("로그인 후 이용해주세요.");
+			$(this).attr('href','/stubbyPlanner/square/index.do');
+		}							 
+	 }); 
+ $('#partyDetail').click(function(event){
+		if('${authUser.member_id}'==''){
+			alert("로그인 후 이용해주세요.");
+			$(this).attr('href','/stubbyPlanner/square/index.do');
+		}							 
+	 });
+ $('#galleryDetail').click(function(event){
+		if('${authUser.member_id}'==''){
+			alert("로그인 후 이용해주세요.");
+			$(this).attr('href','/stubbyPlanner/square/index.do');
+		}							 
+	 });
+</script>
+ 
+ 
 <script type="text/javascript">
 	function getCommon(code){
 		var board_code = code;

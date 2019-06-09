@@ -7,29 +7,22 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	String member_id = request.getParameter("member_id");
- 		System.out.println("ajaxPage호출"+member_id);
-%>	
-<%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	JSONObject jObj = null;
 	JSONArray jArr = null;
+	
 	try {
 		conn = ConnectionProvider.getConnection();
 
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select * "
-				+ " from tbl_boards "
-				+ "where member_id = ? ";
+		String sql = "select * from tbl_party p join tbl_member m on p.member_id = m.member_id order by party_seqno desc";
 
 		
 		pstmt = conn.prepareStatement(sql);
-
-		pstmt.setString(1, member_id);
 
 		rs = pstmt.executeQuery();
 
@@ -37,14 +30,16 @@
 			System.out.println("if");
 			jObj = new JSONObject();
 			jArr = new JSONArray();
-			System.out.println("Object");
 			do {
-				System.out.println("do");
-				JSONObject ArticleObj = new JSONObject();
-				ArticleObj.put("POST_SUBJECT", rs.getString("POST_SUBJECT"));
-				ArticleObj.put("POST_CONTENT", rs.getString("POST_CONTENT"));
+				
+				JSONObject PartyObj = new JSONObject();
+				PartyObj.put("profile_pic", rs.getInt("profile_pic"));
+				PartyObj.put("member_id", rs.getString("member_id"));
+				PartyObj.put("party_content", rs.getString("party_content"));
+				PartyObj.put("party_like", rs.getInt("party_like"));
+					
 
-				jArr.add(ArticleObj);
+				jArr.add(PartyObj);
 
 			} while (rs.next());
 		}
@@ -55,7 +50,6 @@
 		e.printStackTrace();
 	} finally {
 		pstmt.close();
-		//rs.close();
 		conn.close();
 	}
 %>

@@ -41,6 +41,13 @@
  });
 </script>
 <style>
+	#insert:hover{
+		background-color: gray;
+		color:white;
+		border: none;
+	}
+</style>
+<style>
 
 header .stu_gnb_container .stu_gnb_wrap li#ico_booking:after { content:"투어 홈"; }
 
@@ -618,10 +625,10 @@ var member_friendid = member_friendid;
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-					if(data!="")
-					{
+// 					if(data!="")
+// 					{
 						alert("메세지 전송 완료")
-					}
+// 					}
 			}
 		});
 }
@@ -700,12 +707,10 @@ var member_id = id;
  						  var value = $(this).attr("alt") ;
   					      $('#add_data_Modal').modal();
  						  $('#add_data_Modal').val(value);
-  					      alert("모달창 출력")
  					   })					  	
 					  
   					   
  					   $('#insert_form').on('submit',function(event){
-  					      alert("메세지 전송")
  						  if($('#subject').val()=='')
  						 {
  						 alert("제목을 입력해주세요");
@@ -713,7 +718,6 @@ var member_id = id;
  						 {
  						 alert("내용을 입력해주세요");
  						 }else{
-  					      alert("ajax로 가자")
 // 						  var value =$(this).val();
 						  var content =$('textarea#content').val();
   					      alert(content)

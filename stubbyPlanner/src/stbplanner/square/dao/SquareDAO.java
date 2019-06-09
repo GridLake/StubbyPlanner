@@ -19,7 +19,7 @@ public class SquareDAO {
 		ResultSet rs = null;
 		BoardsDTO dto = null;
 		try {
-			pstmt = conn.prepareStatement("select * from tbl_boards");
+			pstmt = conn.prepareStatement("select * from tbl_boards order by post_seq desc");
 			rs = pstmt.executeQuery();
 			List<BoardsDTO> list = new ArrayList<>();
 			
@@ -78,7 +78,7 @@ public class SquareDAO {
 		ResultSet rs = null;
 		PartyDTO dto = null;
 		try {
-			pstmt = conn.prepareStatement("select * from tbl_party p join tbl_member m on p.member_id = m.member_id where p.member_id = m.member_id");
+			pstmt = conn.prepareStatement("select * from tbl_party p join tbl_member m on p.member_id = m.member_id where p.member_id = m.member_id order by party_seqno desc");
 			rs = pstmt.executeQuery();
 			List<PartyDTO> list = new ArrayList<>();
 			

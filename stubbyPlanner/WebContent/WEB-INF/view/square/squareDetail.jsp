@@ -75,6 +75,25 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<link rel="stylesheet" href="/stubbyPlanner/externalData/mypage/css/bootstrap.min.css">
+<script src="/stubbyPlanner/externalData/mypage/js/bootstrap.min.js"></script>
+
+   <!-- CSS/JavaScript -->
+<%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/swiper.min.css"> --%>
+<%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/common11.css"> --%>
+<%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/header_footer11.css"> --%>
+<%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/md_select_group.css"> --%>
+<%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/tourHome11.css"> --%>
+
+
+
+<style>
+	#insert:hover{
+		background-color: gray;
+		color:white;
+		border: none;
+	}
+</style>
 <style>
 .prd_item .like.active {
 	background-position: -84px 0;
@@ -170,17 +189,17 @@ header .stu_gnb_container .stu_gnb_wrap li#ico_search {
 	line-height: 34px;
 }
 
-header .stu_gnb_container .stu_gnb_wrap li#ico_search:after {
-	content: "검색";
-	font-size: 15px;
-	font-weight: 300;
-	color: #666;
-	cursor: text;
-}
+/* header .stu_gnb_container .stu_gnb_wrap li#ico_search:after { */
+/* 	content: "검색"; */
+/* 	font-size: 15px; */
+/* 	font-weight: 300; */
+/* 	color: #666; */
+/* 	cursor: text; */
+/* } */
 
-header .stu_gnb_container .stu_gnb_wrap li#ico_planner {
-	display: none;
-}
+/* header .stu_gnb_container .stu_gnb_wrap li#ico_planner { */
+/* 	display: none; */
+/* } */
 
 header .stu_gnb_container button {
 	margin-top: -2px;
@@ -230,13 +249,13 @@ header .stu_gnb_container button.ico_planner {
 		font-weight: 400;
 		color: #222;
 	}
-	header .stu_gnb_container .stu_gnb_wrap li a {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+/* 	header .stu_gnb_container .stu_gnb_wrap li a { */
+/* 		position: absolute; */
+/* 		top: 0; */
+/* 		left: 0; */
+/* 		width: 100%; */
+/* 		height: 100%; */
+/* 	} */
 	header .stu_gnb_container .stu_gnb_wrap li#ico_search {
 		padding: 0 32px 0 10px;
 	}
@@ -258,7 +277,7 @@ header .stu_gnb_container button.ico_planner {
 	}
 }
 
-@media ( min-width :1025px) {
+ @media ( min-width :1025px) {
 	/* 헤더영역 */
 	header .stu_gnb_container .stu_inner_wrap {
 		padding: 0;
@@ -272,10 +291,89 @@ header .stu_gnb_container button.ico_planner {
 	header .stu_gnb_container .stu_gnb_wrap li#ico_search:after {
 		content: "투어 또는 국가로 검색하세요";
 	}
-}
+} 
 <%@include file="/WEB-INF/layout/css/header_large.css" %>
 
 </style>
+
+
+<style type="text/css">
+
+/* .stu_prd_category .swiper-wrapper { transform:translate3d(0px, 0px, 0px)! important; } */
+.stu_prd_category .stu_tabArea li { height:52px; }
+.stu_prd_category .stu_tabArea li a { line-height:52px; }
+.stu_prd_category .stu_tabArea li.on a { height:100% }
+.stu_prd_category .stu_tabArea li span:before { display:inline-block; margin:-2px 4px 0 0; }
+.stu_prd_category .stu_tabArea li.on span:before { margin:-2px 4px 0 0; }
+</style>
+
+
+<style>
+
+table.type09 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    width: 98%;
+    margin: 0 auto;
+
+}
+table.type09 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+    text-align: center;
+}
+
+table.type09 tbody th {
+    width: 10%;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+    text-align: center;
+}
+table.type09 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+table.type09 td.title{
+	text-align: left; width: 35%;
+}
+table.type09 tbody tr:hover{
+	background: #f3f6f7;
+}
+table.type09 tbody td:hover{
+	background: #f3f6f7;
+}
+table.type09 tbody td.ct {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #369;
+/*     border-bottom: 3px solid #036; */
+    text-align: center;
+}
+
+
+
+.stu_recent-offer .score { display:none; }
+.stu_recent-offer .score i { display:inline-block; width:15.12px; height:14.4px; margin:0 2px 0 0; background-position:0 -129.6px; background-size:230.4px; vertical-align:-1.5px; }
+.stu_recent-offer .score span.buy { margin:0 0 0 8px; font-weight:normal; color:#8f8f8f; }
+.stu_recent-offer .score { display:inline-block; position:absolute; left:12px; bottom:8px; font-size:13px; font-weight:bold; color:#222; }
+
+
+
+
+</style>
+
+
 
 </head>
 
@@ -293,59 +391,18 @@ header .stu_gnb_container button.ico_planner {
 
 
 		<section class="stu_top_banner">
+		
 			<div class="stu_bg">
 				<div class="titArea">
-					<b class="loc"> <a href="/market/list.do?city_id=1101">프랑스</a>
-					</b> <b class="current-city" id="current-city">파리
-						<div class="popover-wrap" id="popover-wrap-city">
-							<ul>
-								<li><a href="#" class="current">파리</a></li>
-
-
-
-								<li><a
-									href="/market/index_city.asp?region=111011008&tripwith=">몽생미셸</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011143&tripwith=">지베르니</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011144&tripwith=">오베르
-										쉬르 우아즈</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011141&tripwith=">퐁텐블로</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011010&tripwith=">리옹</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011120&tripwith=">생
-										말로</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011126&tripwith=">옹플뢰르</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011161&tripwith=">에트르타</a></li>
-
-								<li><a
-									href="/market/index_city.asp?region=111011098&tripwith=">루아르
-										계곡</a></li>
-
-
-
-
-							</ul>
-						</div>
-					</b> <b class="current-city" id="current-menu">투어/일정
-						<div class="popover-wrap" id="popover-wrap-menu">
+					<b class="loc"> <a><strong style="color: #666;"><b>광장</b></strong></a>
+					</b> <b>공지사항
+<!-- 						<div class="popover-wrap" id="popover-wrap-menu">
 							<ul>
 								<li><a href="#" class="current">투어/일정</a></li>
 								<li><a href="/mb/index_city.asp?region=111011004" class="">숙소</a></li>
 
 							</ul>
-						</div>
+						</div> -->
 					</b>
 
 				</div>
@@ -354,61 +411,37 @@ header .stu_gnb_container button.ico_planner {
 
 				<div class="stu_trip-type">
 					<div class="selectBtn">
-
-						<p>누구와 함께하는 여행인가요?</p>
-					</div>
-					<div class="selectBox">
-						<p>누구와 함께하는 여행인가요?</p>
-						<i class="close"></i>
-						<ul>
-							<li id="T1"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_1_1.png">
-							</i> <span>여자혼자</span></li>
-							<li id="T2"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_1_2.png">
-							</i> <span>남자혼자</span></li>
-							<li id="T3"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_1_3.png">
-							</i> <span>커플/신혼</span></li>
-							<li id="T4"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_2_1.png">
-							</i> <span>여자끼리</span></li>
-							<li id="T5"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_2_2.png">
-							</i> <span>남자끼리</span></li>
-							<li id="T6"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_2_3.png">
-							</i> <span>남녀함께</span></li>
-							<li id="T7"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_3_1.png">
-							</i> <span>아이들과</span></li>
-							<li id="T8"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_3_2.png">
-							</i> <span>부모님과</span></li>
-							<li id="T9"><i> <img class="fw"
-									src="https://www.stubbyplanner.com/img_v14/tripwith/TW_3_3.png">
-							</i> <span>부모님끼리</span></li>
-						</ul>
+						<spans class="write" style="float:left;"><p style="height: 30px; margin-top: 7px;">게시글 작성</p></spans>
+					  <select  id ="write" style="width: 15px; border: none; float: rigth">
+						<option value="none"></option>
+						<option value="board">게시판</option>
+						<option value="planner">플래너공유</option>
+						<option value="party">동행찾기</option>
+						<option value="gallery">갤러리</option>
+					  </select>
+						
 					</div>
 				</div>
 
 			</div>
+			
+			
+			<div style="text-align: left; padding-left: 20%; padding-top: 10px;">
+			<ul>
+			
+			   <h2 style="font-size:10pt;font-weight:700; color: gray; padding-top: 15px;">
+                  	  -스투비 광장은 여행의 정보와 이야기를 자유롭게 공유하는 공간입니다.
+               </h2>
+               <h2 style="font-size:10pt;font-weight:700; color: gray; padding-top: 5px;">
+                  	  -광장에서 다른 회원들과 소통하며 다양한 마일리지 혜택들도 받을 수 있습니다.
+               </h2>
+               <h2 style="font-size:10pt;font-weight:700; color: gray; padding-top: 5px;">
+                  	  -게시물 작성시 내용 및 첨부파일에 <strong style="font-size:10pt;font-weight:700; color: red">부적절한 내용</strong>이 들어있을 경우 게시물이 삭제 처리 될 수 있습니다.
+               </h2>
+			</div>
+			
+			
 		</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -420,561 +453,109 @@ header .stu_gnb_container button.ico_planner {
 					<ul class="swiper-wrapper stu_tabArea">
 						<!--전체(all),오전(am),오후(pm),야간(night),전일(oneDay)-->
 						<li class="swiper-slide all on"><a
-							href="javascript:chgTimeOption('','');"><span>전체</span></a></li>
-						<li class="swiper-slide am"><a
-							href="javascript:chgTimeOption('05001200','00000400');"><span>오전</span></a></li>
-						<li class="swiper-slide pm"><a
-							href="javascript:chgTimeOption('11001700','00000400');"><span>오후</span></a></li>
-						<li class="swiper-slide night"><a
-							href="javascript:chgTimeOption('17002400','00000400');"><span>야간</span></a></li>
-						<li class="swiper-slide oneDay"><a
-							href="javascript:chgTimeOption('00002400','03609999');"><span>1DAY</span></a></li>
+							href="javascript:getTotal();"><span>전체</span></a></li>
+						<li class="swiper-slide board"><a
+							href="javascript:getBoard();"><span>게시판</span></a></li>
+						<li class="swiper-slide planner"><a
+							href="javascript:getBoard();"><span>플래너공유</span></a></li>
+						<li class="swiper-slide party"><a
+							href="javascript:getParty();"><span>동행찾기</span></a></li>
+						<li class="swiper-slide gallery"><a
+							href="javascript:getBoard();"><span>갤러리</span></a></li>
 					</ul>
 				</div>
 			</div>
 		</section>
 
 
-
-
-		<section class="spot_filter stu_clearfix" style="background: #fff">
-			<div class="stu_inner_wrap">
-
-				<div class="filter-header">
-					<!---
-                    <h3 class="stu_title">투어시간 선택</h3>
-		<div style="margin-bottom:15px;font-size:11pt">
-
-			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('','');" checked> 전체
-&nbsp;
-			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('05001200','00000400');"> 오전
-&nbsp;
-			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('11001700','00000400');"> 오후
-&nbsp;
-			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('17002400','00000400');"> 야간
-&nbsp;
-			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('00002400','03609999');"> 1DAY
-		</div>
-
---->
-					<h3 class="stu_title">
-						투어 종류 선택<font style="font-size: 9pt;"></font> <span
-							class="spot_count"></span>
-					</h3>
-					<!--
-		<a class="stu_reset">선택 취소</a>
--->
-				</div>
-				<div class="filter-container">
-					<!--Swiper Wrap-->
-					<div class="swiper-container swiper1">
-						<ul class="swiper-wrapper">
-							<!--Swiper Item List-->
-
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2405" style="border-radius: 5px;"
-									onclick="toggleBucket('2405')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/9e57e4e0ccdefa75dfed73607119b67c_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>몽생미셀+노르망디</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2402" style="border-radius: 5px;"
-									onclick="toggleBucket('2402')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/59ff7321c9e873c15b1b9f834c158f71_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>베르사유</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2382" style="border-radius: 5px;"
-									onclick="toggleBucket('2382')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f774bd3a8ddb8092d9e5b18d8054cee4_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>필수입장권/패스</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2388" style="border-radius: 5px;"
-									onclick="toggleBucket('2388')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/756218095a5e5af48984f11391ef40c7.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>시내워킹</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2394" style="border-radius: 5px;"
-									onclick="toggleBucket('2394')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/a6c4d21bbe8e956d2ee68619744e8184.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>디즈니랜드</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2380" style="border-radius: 5px;"
-									onclick="toggleBucket('2380')">
-									<img class="lazyload fh"
-										data-src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/c47bfd5d499b88f398eb90419aec1abc.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>루브르 가이드</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2381" style="border-radius: 5px;"
-									onclick="toggleBucket('2381')">
-									<img class="lazyload fh"
-										data-src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/d61e1aa47fd181a7294646815876cd6b.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>오르세 가이드</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2389" style="border-radius: 5px;"
-									onclick="toggleBucket('2389')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f05895c8ae813c28eb31ad103770f487.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>에펠탑 티켓</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2392" style="border-radius: 5px;"
-									onclick="toggleBucket('2392')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/1cea6dd02df77397fdc9b21aa7a3fefe_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>세느강 크루즈</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2386" style="border-radius: 5px;"
-									onclick="toggleBucket('2386')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/06d8c5d81a13a7b4679ea8808f99dfe7_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>자전거투어</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2684" style="border-radius: 5px;"
-									onclick="toggleBucket('2684')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/ba43ddf73bb3a9f4f0360003fe02b430_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>픽업/샌딩</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2384" style="border-radius: 5px;"
-									onclick="toggleBucket('2384')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/9eb87da85b7bb9f21b7420000143c9ec_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>몽마르뜨 투어</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2383" style="border-radius: 5px;"
-									onclick="toggleBucket('2383')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/b721d236e8cafb40e40aafcb77e9d2c4_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>시내차량</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2685" style="border-radius: 5px;"
-									onclick="toggleBucket('2685')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/95ea7c1922a20beca2e0e2843b05e376_l.jpg
-">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>스냅</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2391" style="border-radius: 5px;"
-									onclick="toggleBucket('2391')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/1cea6dd02df77397fdc9b21aa7a3fefe.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>에펠탑+크루즈</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2403" style="border-radius: 5px;"
-									onclick="toggleBucket('2403')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/6f57cf2f8b58ff496a5b2c12b7a13e3a_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>지베르니</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2398" style="border-radius: 5px;"
-									onclick="toggleBucket('2398')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/aa5faf17d0a7417877471db28d465813_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>리도쇼</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2406" style="border-radius: 5px;"
-									onclick="toggleBucket('2406')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/aba0e46a8f07dc7c1117407a4ac3f173_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>몽생미셀+지베르니</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2407" style="border-radius: 5px;"
-									onclick="toggleBucket('2407')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/db5f6e28dc50c26dbb96771e2b423efb_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>몽생미셀 1박2일</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2399" style="border-radius: 5px;"
-									onclick="toggleBucket('2399')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/0998c9c6beadeb652d8eb3e28c7e0083_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>디저트</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2411" style="border-radius: 5px;"
-									onclick="toggleBucket('2411')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/76551e121971fe2fae42867cdd7cd79f_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>벨기에 당일치기</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2385" style="border-radius: 5px;"
-									onclick="toggleBucket('2385')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/72ca6286552ba199f872ccc9eb1037f3_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>입장권/시티패스</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2393" style="border-radius: 5px;"
-									onclick="toggleBucket('2393')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/98d78d9a614d7f67a058e043c7e74e03_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>시내버스투어</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2397" style="border-radius: 5px;"
-									onclick="toggleBucket('2397')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2d6aada1860e8c94cd2bc3778f40980b_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>물랑루즈쇼</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2404" style="border-radius: 5px;"
-									onclick="toggleBucket('2404')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/845a5f4afcfe97c89e8f85c27db64409_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>오베르쉬즈우아즈</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2410" style="border-radius: 5px;"
-									onclick="toggleBucket('2410')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/262082cb1d65222848ac61570f841774_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>퐁텐플로(나폴레옹왕궁)</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2408" style="border-radius: 5px;"
-									onclick="toggleBucket('2408')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/4ecd85ad3a883efe775b883f35cf36c4_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>보르도 와인투어</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2390" style="border-radius: 5px;"
-									onclick="toggleBucket('2390')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c648707711d9a712b26cc8235d577aa1_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>에펠탑 레스토랑</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2396" style="border-radius: 5px;"
-									onclick="toggleBucket('2396')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/4d81ca4af52bedd702ddc83a088decc6_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>파리 아쿠아리움</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2387" style="border-radius: 5px;"
-									onclick="toggleBucket('2387')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/bced572e10cf4e2f9406f6e32a613882_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>크루즈+저녁식사</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2395" style="border-radius: 5px;"
-									onclick="toggleBucket('2395')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/ce583231fade65f603c13d8c3f45033b_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>파크 아스테릭스</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2400" style="border-radius: 5px;"
-									onclick="toggleBucket('2400')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/51e3924a307571895fb8d325f69a4577_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>와인/샴페인</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2409" style="border-radius: 5px;"
-									onclick="toggleBucket('2409')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/a8827e0cf22c640228aacb0ab3e8d564_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>루아르 고성지대</p>
-								</div>
-							</li>
-
-							<li class="swiper-slide">
-								<div class="img-wrap" id="B2401" style="border-radius: 5px;"
-									onclick="toggleBucket('2401')">
-									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/bd746ed3baf22d44f96bdae6bcb2a5e6_l.jpg">
-									<div class="checkmark draw d-n"></div>
-								</div>
-								<div class="txt-wrap">
-									<p>쿠킹 클래스</p>
-								</div>
-							</li>
-
-						</ul>
-						<!--scrollbar-->
-						<div class="swiper-scrollbar"></div>
-					</div>
-				</div>
-
-				<div class="filter-footer">
-					<div class="btn_apply">
-						<button type="button">확인</button>
-					</div>
-					<div class="btn_spot_toggle">
-						<button type="button"></button>
-					</div>
-				</div>
-
-
-			</div>
-		</section>
-
-
-
-
-
 		<section class="prd_filter">
+		
+            	   
 			<div class="stu_inner_wrap">
 
 
 
 
-				<div class="btn_prd_filter">
+<!-- 				<div class="btn_prd_filter"> -->
 
-					<button type="button">
-						필터 <span class="select_count"></span>
-					</button>
-
-
-				</div>
+<!-- 					<button type="button"> -->
+<!-- 						필터 <span class="select_count"></span> -->
+<!-- 					</button> -->
 
 
+<!-- 				</div> -->
 
 
 
 
-				<div class="filter-header">
-					<h3 class="stu_title"></h3>
-					<a class="stu_reset">모두 지우기</a>
-				</div>
+
+
+<!-- 				<div class="filter-header"> -->
+<!-- 					<h3 class="stu_title"></h3> -->
+<!-- 					<a class="stu_reset">모두 지우기</a> -->
+<!-- 				</div> -->
+				
+				
 				<div class="filter-container">
 					<ul>
+					<li class="filter-section stu_clearfix" style="padding-top: 20px;">
+		          	 <div class="stu_square_search" style=" bottom:0; height: 40px; width: 200px;">   
+		         	 <input class="search_input" id="search_input" placeholder="제목, 내용, 작성자로 검색" style="border: solid 1px gray; width: 68%;">
+
+		          	  <select  id ="a_such" style="width: 10%;" onchange="document.getElementById('search_input').placeholder =this.options[this.selectedIndex].value">
+						<option id="subject" value="제목">제목</option>
+						<option id="content" value="내용">내용</option>
+						<option id="member_id" value="작성자">작성자</option>
+					  </select>
+									  
+		         	 <input type="button" value="검색" id="search" onclick="" style="width: 18%;"/>
+            	 	 </div>
+            	 	</li>
 						<li class="filter-section stu_clearfix">
 							<h4 class="stu_title">상품 정렬</h4>
 							<ul class="filter-wrap sorting">
 
-								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('recom')">추천순</div>
-								</li>
 								<li class="filter-list table  default on ">
-									<div class="filter-item" onclick="update_orderby('hot')">인기순</div>
+									<div class="filter-item" onclick="update_orderby('recom')">최신순</div>
 								</li>
 								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('review')">후기순</div>
+									<div class="filter-item" onclick="update_orderby('hot')">추천순</div>
+								</li>
+								<li class="filter-list table">
+									<div class="filter-item" onclick="update_orderby('review')">댓글순</div>
 								</li>
 
 							</ul>
 						</li>
 
-						<li class="filter-section">
-							<h4 class="stu_title">상품 카테고리</h4>
-							<ul class="filter-wrap category">
-								<li class="filter-list default on">
-									<div class="filter-item" onclick="select_thema_code(0)">전체</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('시내투어')">시내투어</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('근교투어')">근교투어</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('액티비티')">액티비티</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('스냅촬영')">스냅촬영</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('티켓/교통패스')">티켓/교통패스</div>
-								</li>
-								<li class="filter-list">
-									<div class="filter-item" onclick="select_thema_code('여행편의')">여행편의</div>
-								</li>
+<!-- 						<li class="filter-section"> -->
+<!-- 							<h4 class="stu_title">상품 카테고리</h4> -->
+<!-- 							<ul class="filter-wrap category"> -->
+<!-- 								<li class="filter-list default on"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code(0)">전체</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('시내투어')">시내투어</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('근교투어')">근교투어</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('액티비티')">액티비티</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('스냅촬영')">스냅촬영</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('티켓/교통패스')">티켓/교통패스</div> -->
+<!-- 								</li> -->
+<!-- 								<li class="filter-list"> -->
+<!-- 									<div class="filter-item" onclick="select_thema_code('여행편의')">여행편의</div> -->
+<!-- 								</li> -->
 
 
-							</ul>
-						</li>
+<!-- 							</ul> -->
+<!-- 						</li> -->
 
 
 					</ul>
@@ -988,11 +569,17 @@ header .stu_gnb_container button.ico_planner {
 		</section>
 
 
-		<section class="stu_prd_list  stu_clearfix">
+
+
+
+
+
+		<section class="stu_prd_list  stu_clearfix" style="width: 950px; padding-top: 10px;">
 			<div class="stu_inner_wrap">
+		<!-- 	
 				<div class="filter_header">
 					<div class="titArea">
-						<h3 class="stu_title">상품</h3>
+						<h3 class="stu_title">게시물</h3>
 
 
 						<span class="prd_count"></span>
@@ -1000,8 +587,357 @@ header .stu_gnb_container button.ico_planner {
 
 					</div>
 				</div>
+ -->
+ 				<ul class="prd_list stu_clearfix paginated" id="tourlist">
 
-				<ul class="prd_list stu_clearfix paginated" id="tourlist">
+
+
+
+       <section class="stu_regions">
+                <div class="stu_inner_wrap" style="">
+
+<!--        <li class="swiper-slide"> -->
+               <h2 style="font-size:18pt;font-weight:700;">
+                  	  최근 플래너
+               </h2>
+<!--        </li> -->
+
+                
+
+                        <div class="swiper-container swiper3">
+                            <ul class="swiper-wrapper" style="padding: 5px;">
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px; padding:5px;">
+                                  <!-- 경로 & 파라미터 변경 필요 -->
+                                  <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+					</div>
+            </section>
+
+				
+       <section class="stu_swiper-section stu_recent-offer" >
+            <div class="stu_inner_wrap" style="padding-right: 5%;">
+                <div class="titArea" style="display: inline-block; padding-top: 20px;">
+               <h2 style="font-size:18pt;font-weight:700;">
+                  	  최근 게시판
+               </h2>
+                </div>
+                
+	
+<!--                 <div class="swiper-container swiper-items"> -->
+<!--                     <ul class="swiper-wrapper"> -->
+
+<table class="type09">
+         <caption>테이블 설명</caption>
+        <thead>
+            <tr>
+            	<th scope="cols">글번호</th>
+                <th scope="cols">아이디</th>
+                <th scope="cols">제목</th>
+                <th scope="cols">날짜</th>
+                <th scope="cols">조회</th>
+                <th scope="cols">추천</th>
+            </tr>
+        </thead>
+        <tbody>
+        <c:set var="boardEmpty" value="false"/>
+        <c:forEach var="boardList" items="${boardList}" varStatus="status">
+        	<c:if test="${not boardEmpty}">
+        		<c:if test="${status.last}">
+        			<c:set var="boardEmpty" value="true"/>
+        		</c:if>      		
+        		<c:if test="${status.count==5}">
+        			<c:set var="boardEmpty" value="true"/>
+        		</c:if>    
+            <tr>
+                <th scope="row">${boardList.post_seq}</th>
+                <td>${boardList.member_id}</td>
+                <td class="title">${boardList.post_subject}</td>
+                <td>${boardList.post_regdate}</td>
+                <td>${boardList.post_hits}</td>
+                <td>${boardList.post_like}</td>
+            </tr>
+            <tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">${boardList.post_content}</td><td></td></tr>
+        	</c:if>
+        </c:forEach>
+        </tbody>
+    </table>
+
+<!--                     </ul>
+                </div> -->
+            </div>
+        </section>
+        
+
+
+ <section class="stu_swiper-section stu_recent-offer"">
+            <div class="stu_inner_wrap">
+                <div class="titArea" style="display: inline-block;  padding-top: 20px; ">
+               <h2 style="font-size:18pt;font-weight:700;">
+                  	  최근 동행 찾기
+               </h2>
+                </div>
+
+                <div class="swiper-container stu_tagArea"">
+                    <ul class="swiper-wrapper">
+
+
+                        <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
+                                <figure class="thumb">
+                                        <c:if test="${!empty partyList[0].profile_pic }">
+                                            <img class="fh" src="${partyList[0].profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty partyList[0].profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
+                                </figure>
+                                
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                    </div>
+                                    <div class="name">
+                                        <span>${partyList[0].party_content}</span>
+                                    </div>
+
+                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
+                                        ${partyList[0].member_id}
+                                    </div>
+                                    
+                                    <div class="score" style="display:inline-block">
+                                        <span>${partyList[0].party_like}</span>
+                                    </div>
+                   			   </figcaption>
+                            </a>
+                        </li>
+
+        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
+                                <figure class="thumb">
+                                        <c:if test="${!empty partyList[1].profile_pic }">
+                                            <img class="fh" src="${partyList[1].profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty partyList[1].profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
+                                </figure>
+                                
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                    </div>
+                                    <div class="name">
+                                        <span>${partyList[1].party_content}</span>
+                                    </div>
+
+                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
+                                        ${partyList[1].member_id}
+                                    </div>
+                                    
+                                    <div class="score" style="display:inline-block">
+                                        <span>${partyList[1].party_like}</span>
+                                    </div>
+                   			   </figcaption>
+                            </a>
+                        </li>
+
+        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
+                                <figure class="thumb">
+                                        <c:if test="${!empty partyList[2].profile_pic }">
+                                            <img class="fh" src="${partyList[2].profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty partyList[2].profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
+                                </figure>
+                                
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                    </div>
+                                    <div class="name">
+                                        <span>${partyList[2].party_content}</span>
+                                    </div>
+
+                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
+                                        ${partyList[2].member_id}
+                                    </div>
+                                    
+                                    <div class="score" style="display:inline-block">
+                                        <span>${partyList[2].party_like}</span>
+                                    </div>
+                   			   </figcaption>
+                            </a>
+                        </li>
+
+        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
+                                <figure class="thumb">
+                                        <c:if test="${!empty partyList[3].profile_pic }">
+                                            <img class="fh" src="${partyList[3].profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty partyList[3].profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
+                                </figure>
+                                
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                    </div>
+                                    <div class="name">
+                                        <span>${partyList[3].party_content}</span>
+                                    </div>
+
+                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
+                                        ${partyList[3].member_id}
+                                    </div>
+                                    
+                                    <div class="score" style="display:inline-block">
+                                        <span>${partyList[3].party_like}</span>
+                                    </div>
+                   			   </figcaption>
+                            </a>
+                        </li>
+
+        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
+                                <figure class="thumb">
+                                        <c:if test="${!empty partyList[4].profile_pic }">
+                                            <img class="fh" src="${partyList[4].profile_pic}" alt="프로필 사진"/>
+                                        </c:if>
+                                        <c:if test="${empty partyList[4].profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        </c:if>
+                                </figure>
+                                
+                                <figcaption class="prd_info">
+                                    <div class="cpn">
+                                    </div>
+                                    <div class="name">
+                                        <span>${partyList[4].party_content}</span>
+                                    </div>
+
+                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
+                                        ${partyList[4].member_id}
+                                    </div>
+                                    
+                                    <div class="score" style="display:inline-block">
+                                        <span>${partyList[4].party_like}</span>
+                                    </div>
+                   			   </figcaption>
+                            </a>
+                        </li>
+
+                </div>
+            </div>
+        </section>
+
+
+
+    <section class="stu_regions";">
+                <div class="stu_inner_wrap" style="padding-top: 20px;">
+
+<!--        <li class="swiper-slide"> -->
+               <h2 style="font-size:18pt;font-weight:700;">
+                  	  최근 갤러리
+               </h2>
+<!--        </li> -->
+
+                
+
+                        <div class="swiper-container swiper3">
+                            <ul class="swiper-wrapper" style="padding: 5px;">
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px; padding:5px;">
+                                  <!-- 경로 & 파라미터 변경 필요 -->
+                                  <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                 <!-- 경로 & 파라미터 변경 필요 -->
+								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+
+                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                	<!-- 경로 & 파라미터 변경 필요 -->
+                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
+                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
+                                        <div class="tone-down"></div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+					</div>
+            </section>
+
 
 
 				</ul>
@@ -1013,29 +949,6 @@ header .stu_gnb_container button.ico_planner {
 
 
 		<div style="clear: both"></div>
-
-		<section style="width: 100%; text-align: center; margin: 0 auto;">
-			<div
-				style="padding-top: 20px; font-size: 18px; font-weight: 700; color: #444;">
-				투어선택이 어렵다면? <span
-					style="padding-top: 6px; display: block; font-size: 26px; color: #222;">스투비
-					무료 투어상담</span>
-			</div>
-			<div style="display: block; width: 60%; margin: 6px auto;">
-				<a href="tel:02-886-0982"><img
-					src="/market/images/ico_phonecall.jpg"
-					style="display: inline-block; max-width: 260px; width: 100%; padding: 5px 7px;"></a>
-				<a href="http://pf.kakao.com/_QwGUM/chat" target="_blank"
-					style="display: inline-block;"><img
-					src="/market/images/ico_kakaotalk.jpg"
-					style="display: inline-block; max-width: 260px; width: 100%; padding: 5px 7px;"></a>
-
-			</div>
-			<div
-				style="clear: both; font-size: 16px; font-weight: normal; color: #888;">상담시간(한국)
-				10:00 ~ 19:00, 주말/공휴일 휴무</div>
-		</section>
-
 
 		</main>
 		<!--//메인영역_End-->
@@ -1049,6 +962,65 @@ header .stu_gnb_container button.ico_planner {
 
 	$(document).ready(function() {
 		
+		//게시물 내용 출력
+		$('tr').click(function(){
+			
+		});
+		
+		//게시물 작성
+		$('.write').click(function(){
+			
+		if($('#write option:selected').val()=='board'){
+			$('#write_board_Modal').modal();
+			}else if($('#write option:selected').val()=='party'){
+			$('#write_party_Modal').modal();	
+			}
+		});
+		
+		   $('#insert_form_board').on('submit',function(event){
+				  var board_code = $('#write_category option:selected').attr('id');
+				  if($('#writeSubject').val()=='')
+				 {
+				 $('#writeSubject').focus();
+				 alert("제목을 입력해주세요");
+				 }else if($('#writeContent').val()=='')
+				 {
+				 alert("내용을 입력해주세요");
+				 }else if(board_code==null){
+				 alert("카테고리를 선택해주세요");	 
+				 }else{
+				  var content =$('textarea#writeContent').val();
+				  var subject =$('input#writeSubject').val();
+				  writeBoard('${authUser.member_id}',content,subject,board_code);
+				  }
+		   })
+		   
+		   $('#insert_form_party').on('submit',function(event){
+				  if($('#writeParty').val()=='')
+					 {
+					 $('#writeParty').focus();
+					 alert("내용을 입력해주세요");
+					 }else{
+						  var content =$('textarea#writeParty').val();
+						  writeParty('${authUser.member_id}',content);
+						  }
+		   })	
+		
+		
+
+		//검색
+		$('#search').click(function(event){
+			var option = $('#a_such option:selected').attr('id');
+			var search = $('#search_input').val();
+			if(search==''){
+				alert("검색어를 입력해주세요.");
+			}
+			else if($('.swiper-slide.all').hasClass('on')) getSearchAll(option,search);
+			else if($('.swiper-slide.board').hasClass('on')) getSearchBoard(option,search);
+			else if($('.swiper-slide.planner').hasClass('on')) getSearchPlanner(option,search);
+			else if($('.swiper-slide.party').hasClass('on')) getSearchParty(option,search);
+			else if($('.swiper-slide.gallery').hasClass('on')) getSearchGallery(option,search);
+		});
 		
 		// 도시 이동 메뉴(토글)
 	    $('#current-city').click(function(event) {
@@ -1090,6 +1062,29 @@ header .stu_gnb_container button.ico_planner {
         $('.category .filter-list').on('click', function() {
             $('.category .filter-list').removeClass('on');
             $(this).addClass('on');
+        });
+
+        //메인 카테고리
+        $('.stu_prd_category .swiper-slide').on('click', function() {
+            $('.stu_prd_category .swiper-slide').removeClass('on');
+            $(this).addClass('on');
+			if($('.swiper-slide.planner').hasClass('on')){
+				$('#a_such').children('#subject').show();
+				$('#a_such').children('#content').hide();
+				$('#a_such').children('#member_id').show();
+			}else if($('.swiper-slide.party').hasClass('on')){
+				$('#a_such').children('#subject').hide();
+				$('#a_such').children('#content').show();
+				$('#a_such').children('#member_id').show();
+			}else if($('.swiper-slide.gallery').hasClass('on')){
+				$('#a_such').children('#subject').show();
+				$('#a_such').children('#content').hide();
+				$('#a_such').children('#member_id').show();				
+			}else{
+				$('#a_such').children('#subject').show();
+				$('#a_such').children('#content').show();
+				$('#a_such').children('#member_id').show();						
+			}
         });
 
         // 상품(필터) 선택 - 테마
@@ -1154,9 +1149,6 @@ header .stu_gnb_container button.ico_planner {
 	 	
 	 	
 	 	// 여행 타입 선택
-	    $('.stu_trip-type .selectBtn').click(function() {
-            $(this).next('.selectBox').addClass('on');
-        });
 
         $('.selectBox li').click(function() {
 	 	window.location=""+$(this).attr("id").replace("T","")+"&l=";
@@ -1310,7 +1302,7 @@ header .stu_gnb_container button.ico_planner {
 		updateTours();
 
 	}//function update_orderby
-	
+/* 	
 	function updateTripwith(cur_page){
 		if(!cur_page) cur_page="1"
 		Xthema_code="r"
@@ -1383,378 +1375,378 @@ header .stu_gnb_container button.ico_planner {
 		});//ajax
 	} //function updateTripwith(cur_page)
 	
-	
+	 */
 
-	var thema_code=0;	
+// 	var thema_code=0;	
 	
-	var orderby = 'hot';
+// 	var orderby = 'hot';
 	
-	function updateBuckets(cur_page){
-		if(!cur_page)
-			cur_pager="1";
-		Xthema_code="r";
+// 	function updateBuckets(cur_page){
+// 		if(!cur_page)
+// 			cur_pager="1";
+// 		Xthema_code="r";
 		
-		$.ajax({
-			url:'/api/planning/GetBucketRecomms2.asp?tripwith=&cate='+Xthema_code+'&subcate='+subcatelist+'&city_id=${param.city_id}&bucketlist='+bucketlist+"&orderby="+orderby+"&page="+cur_page,
-			dataType:'json',
-			success: function(data){
-				if(data!=""){
-					thtml='';
+// 		$.ajax({
+// 			url:'/api/planning/GetBucketRecomms2.asp?tripwith=&cate='+Xthema_code+'&subcate='+subcatelist+'&city_id=${param.city_id}&bucketlist='+bucketlist+"&orderby="+orderby+"&page="+cur_page,
+// 			dataType:'json',
+// 			success: function(data){
+// 				if(data!=""){
+// 					thtml='';
 					
-					$.each(data.list, function( i, item ) {
-						thtml+='<li class="prd_item">';
+// 					$.each(data.list, function( i, item ) {
+// 						thtml+='<li class="prd_item">';
 
-						thtml+='	<a href="" class="prd out line lock-off">';
+// 						thtml+='	<a href="" class="prd out line lock-off">';
 
-						thtml+='		<figure class="thumb">';
-						//thtml+='			<img class="fh lazyload"  data-src="'" onerror=""/>';
-						thtml+='		</figure>';
+// 						thtml+='		<figure class="thumb">';
+// 						//thtml+='			<img class="fh lazyload"  data-src="'" onerror=""/>';
+// 						thtml+='		</figure>';
 
-						thtml+='		<div class="prd_info">';
+// 						thtml+='		<div class="prd_info">';
 
-						thtml+='			<div class="name">';
-						thtml+='				<span>'+item.title+'</span>';
-						thtml+='			</div>';
-						thtml+='			<div class="tag">';
-						thtml+='				<span> </span>'; //+item.sdesc+
-						thtml+='			</div>';
-						thtml+='			<div class="score">';
-						thtml+='				<span>'+item.hot+'</span>';
-						thtml+='			</div>';
-						thtml+='		</div>';
-						thtml+='	</a>';
+// 						thtml+='			<div class="name">';
+// 						thtml+='				<span>'+item.title+'</span>';
+// 						thtml+='			</div>';
+// 						thtml+='			<div class="tag">';
+// 						thtml+='				<span> </span>'; //+item.sdesc+
+// 						thtml+='			</div>';
+// 						thtml+='			<div class="score">';
+// 						thtml+='				<span>'+item.hot+'</span>';
+// 						thtml+='			</div>';
+// 						thtml+='		</div>';
+// 						thtml+='	</a>';
 						
-						if (item.stimelist) {
-							thtml+='<ul class="prd_info_bottom outline">';
-							thtml+='<li class="start">';
-							thtml+='<span>09:00</span>';
-							thtml+='<div class="set_time">';
-							thtml+='<ul>';
+// 						if (item.stimelist) {
+// 							thtml+='<ul class="prd_info_bottom outline">';
+// 							thtml+='<li class="start">';
+// 							thtml+='<span>09:00</span>';
+// 							thtml+='<div class="set_time">';
+// 							thtml+='<ul>';
 							
-							for(i=0;i<item.stimelist.length;i++)
-								thtml+='<li class="current"> </li>';//+item.stimelist[i].stime+
+// 							for(i=0;i<item.stimelist.length;i++)
+// 								thtml+='<li class="current"> </li>';//+item.stimelist[i].stime+
 							
-							thtml+='</ul>';
-							thtml+='</div>';
-							thtml+='</li>';
-							thtml+='<li class="duration">';
-							thtml+='<span>20 H</span>';
-						    thtml+='<div class="set_time">';
-						    thtml+='<ul>';
-						    thtml+='<li class="current">16 H</li>';
-						    thtml+='<li>18 H</li>';
-						    thtml+='<li>20 H</li>';
-						    thtml+='<li>22 H</li>';
-						    thtml+='</ul>';
-						    thtml+='</div>';
-							thtml+='</li>';
-							thtml+='<li class="plus">';
-							thtml+='<span>담기<i></i></span>';
-							thtml+='</li>';
-							thtml+='</ul>';
-						}//if (item.stimelist)
+// 							thtml+='</ul>';
+// 							thtml+='</div>';
+// 							thtml+='</li>';
+// 							thtml+='<li class="duration">';
+// 							thtml+='<span>20 H</span>';
+// 						    thtml+='<div class="set_time">';
+// 						    thtml+='<ul>';
+// 						    thtml+='<li class="current">16 H</li>';
+// 						    thtml+='<li>18 H</li>';
+// 						    thtml+='<li>20 H</li>';
+// 						    thtml+='<li>22 H</li>';
+// 						    thtml+='</ul>';
+// 						    thtml+='</div>';
+// 							thtml+='</li>';
+// 							thtml+='<li class="plus">';
+// 							thtml+='<span>담기<i></i></span>';
+// 							thtml+='</li>';
+// 							thtml+='</ul>';
+// 						}//if (item.stimelist)
 
-						thtml+='</li>';
-					});//$.each
+// 						thtml+='</li>';
+// 					});//$.each
 					
-					$("#tourlist").html(thtml);
+// 					$("#tourlist").html(thtml);
 					
-					curGuidebookList=data.list;
+// 					curGuidebookList=data.list;
 
-					$('.prd_count').text(data.totalcnt);
+// 					$('.prd_count').text(data.totalcnt);
 					
-					// Item 시간 선택(토글)
-					$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
-			            event.stopPropagation();
-			            $('.set_time').not($(this).next()).removeClass('on');
-			            $(this).next().toggleClass('on');
-			        });//	$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event)
+// 					// Item 시간 선택(토글)
+// 					$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
+// 			            event.stopPropagation();
+// 			            $('.set_time').not($(this).next()).removeClass('on');
+// 			            $(this).next().toggleClass('on');
+// 			        });//	$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event)
 					
-					$('.prd_list.paginated').each(function(){
-						var currentPage = 0;
-			            var numPerPage = 12;
-			            var $prd_list = $(this);
-			            $prd_list.bind('repaginate', function() {
-			                $prd_list.find('li.prd_item').hide()
-			                .slice(currentPage * numPerPage,
-			                    (currentPage + 1) * numPerPage)
-			                .show();
+// 					$('.prd_list.paginated').each(function(){
+// 						var currentPage = 0;
+// 			            var numPerPage = 12;
+// 			            var $prd_list = $(this);
+// 			            $prd_list.bind('repaginate', function() {
+// 			                $prd_list.find('li.prd_item').hide()
+// 			                .slice(currentPage * numPerPage,
+// 			                    (currentPage + 1) * numPerPage)
+// 			                .show();
 
-						}); //$prd_list.bind('repaginate', function()
+// 						}); //$prd_list.bind('repaginate', function()
 						
-			            var numRows = data.totalcnt;
-			            var numPages = Math.ceil(numRows / numPerPage);
+// 			            var numRows = data.totalcnt;
+// 			            var numPages = Math.ceil(numRows / numPerPage);
 			            
-			            $('.pager').remove();
+// 			            $('.pager').remove();
 
-			            var $pager = $('<div class="pager"></div>');
+// 			            var $pager = $('<div class="pager"></div>');
 			            
-			            for (var page = 0; page < numPages; page++) {
-			            	if(eval(page+1)==data.curpage)
-			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
-			            	else
-			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
+// 			            for (var page = 0; page < numPages; page++) {
+// 			            	if(eval(page+1)==data.curpage)
+// 			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
+// 			            	else
+// 			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
 			            	
-			            }//for
-			            $pager.insertAfter($prd_list);
-			            if(parseInt($('a.page_number:last').text()) == 1){
-			            	$('.pager').hide();
-			            } else {
-			            	$('.pager').show();
-			            }
+// 			            }//for
+// 			            $pager.insertAfter($prd_list);
+// 			            if(parseInt($('a.page_number:last').text()) == 1){
+// 			            	$('.pager').hide();
+// 			            } else {
+// 			            	$('.pager').show();
+// 			            }
 
-					}); //$('.prd_list.paginated').each(function()
+// 					}); //$('.prd_list.paginated').each(function()
 				
-				}//if(data!=)
-			}//success
+// 				}//if(data!=)
+// 			}//success
 		
-		});// ajax
-	}//function updateBuckets(cur_page)
+// 		});// ajax
+// 	}//function updateBuckets(cur_page)
 
 	
 
 	
 
-	function updateTours(cur_page) {
+// 	function updateTours(cur_page) {
 
-		if (!cur_page)
-			cur_page = "1";
-		$.ajax({
-					url :'/stubbyPlanner/market/get_list.jsp?city_id=${param.city_id}&bucketlist='+ bucketlist +'&orderby='+orderby+'&page='+cur_page+'&thema_code='+thema_code,
-					dataType : 'json',
-					success : function(data) {
-						if (data != "") {
-							thtml = '';
-							$.each(data.list, function( i, item ) {
-								thtml+='<li class="prd_item">';
-								if(item.is_like)
-								 	thtml+='<div class="like active" id="'+item.serial+'"></div>';
-								else
-								 	thtml+='<div class="like" id="'+item.serial+'"></div>';
+// 		if (!cur_page)
+// 			cur_page = "1";
+// 		$.ajax({
+// 					url :'/stubbyPlanner/market/get_list.jsp?city_id=${param.city_id}&bucketlist='+ bucketlist +'&orderby='+orderby+'&page='+cur_page+'&thema_code='+thema_code,
+// 					dataType : 'json',
+// 					success : function(data) {
+// 						if (data != "") {
+// 							thtml = '';
+// 							$.each(data.list, function( i, item ) {
+// 								thtml+='<li class="prd_item">';
+// 								if(item.is_like)
+// 								 	thtml+='<div class="like active" id="'+item.serial+'"></div>';
+// 								else
+// 								 	thtml+='<div class="like" id="'+item.serial+'"></div>';
 
-								if(item.useoutlink==1)
-									thtml+='<a href="'+item.linkurl+'" target="_blank" class="prd outline lock-off">';
-								else
-									thtml+='<a href="/guide/detail.asp?needlogin=&serial='+item.serial+'" class="prd outline lock-off">';
+// 								if(item.useoutlink==1)
+// 									thtml+='<a href="'+item.linkurl+'" target="_blank" class="prd outline lock-off">';
+// 								else
+// 									thtml+='<a href="/guide/detail.asp?needlogin=&serial='+item.serial+'" class="prd outline lock-off">';
 
 
-									thtml+='<figure class="thumb">';
-									thtml+='<img class="fh lazyloaded" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2e535464041209877c8a7cc9372b673d_l.jpeg">';
+// 									thtml+='<figure class="thumb">';
+// 									thtml+='<img class="fh lazyloaded" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2e535464041209877c8a7cc9372b673d_l.jpeg">';
 									
 								
-								if(item.coupon_txt!="")
-									thtml+='<div class="band bg_red">'+item.coupon_txt+'</div>';
+// 								if(item.coupon_txt!="")
+// 									thtml+='<div class="band bg_red">'+item.coupon_txt+'</div>';
 								
-								if(item.useoutlink==0) {
-										if(item.is_lowest_price==1)
-										{	
-											thtml+='<div class="band2 bg_orange" style="font-size:9pt;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">최저가 보장제</div>';
-										}
-									} else {
+// 								if(item.useoutlink==0) {
+// 										if(item.is_lowest_price==1)
+// 										{	
+// 											thtml+='<div class="band2 bg_orange" style="font-size:9pt;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">최저가 보장제</div>';
+// 										}
+// 									} else {
 										
-										thtml+='<div class="band2 bg_gray"><p></p>제휴예약</div>';
-									}
+// 										thtml+='<div class="band2 bg_gray"><p></p>제휴예약</div>';
+// 									}
 
 								
 								
-								tcomname=item.com_name;
-								if(tcomname.length>17)
-									tcomname=tcomname.substring(0,17)+'..';
+// 								tcomname=item.com_name;
+// 								if(tcomname.length>17)
+// 									tcomname=tcomname.substring(0,17)+'..';
 
-								thtml+='</figure>';
+// 								thtml+='</figure>';
 
-								thtml+='<div class="prd_info" style="height:97px">';
-								thtml+='<div class="cpn">';
-								thtml+='<span>'+tcomname+'</span>';
-					            thtml+='</div>';
-					            thtml+='<div class="name">';
+// 								thtml+='<div class="prd_info" style="height:97px">';
+// 								thtml+='<div class="cpn">';
+// 								thtml+='<span>'+tcomname+'</span>';
+// 					            thtml+='</div>';
+// 					            thtml+='<div class="name">';
 					            
-					            thtml+='<span>'+item.title+'</span>';
+// 					            thtml+='<span>'+item.title+'</span>';
 					            
-					            thtml+='</div>';
-					            thtml+='<div class="tag">';
-					            //thtml+='<span>'+item.sale_tag+'</span>';
-					            thtml+='</div>';
+// 					            thtml+='</div>';
+// 					            thtml+='<div class="tag">';
+// 					            //thtml+='<span>'+item.sale_tag+'</span>';
+// 					            thtml+='</div>';
 					            
-					            if(item.useoutlink==1){
-					        		thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
+// 					            if(item.useoutlink==1){
+// 					        		thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
 
-					        		thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.review_cnt+'개 리뷰</span></div>';
-					        	} else {
-					        			if(item.review_cnt>0&&item.review>3.9){
-					        			 	thtml+='<div class="score">';
-					        				thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.hot+'명 예약</span></div>';
-					        			} else {
-					        					thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
-					        					if(item.planner_cnt>0)
-					        					thtml+='❤️<span style="color:#8f8f8f;font-size:9pt">최근 플래너 '+item.planner_cnt+'명 선택</span>';
-					        					thtml+='</div>';
-					        			}// else	
-					        	}
-					        	if(!item.price_sale)
-					        		item.price_sale="";
+// 					        		thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.review_cnt+'개 리뷰</span></div>';
+// 					        	} else {
+// 					        			if(item.review_cnt>0&&item.review>3.9){
+// 					        			 	thtml+='<div class="score">';
+// 					        				thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.hot+'명 예약</span></div>';
+// 					        			} else {
+// 					        					thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
+// 					        					if(item.planner_cnt>0)
+// 					        					thtml+='❤️<span style="color:#8f8f8f;font-size:9pt">최근 플래너 '+item.planner_cnt+'명 선택</span>';
+// 					        					thtml+='</div>';
+// 					        			}// else	
+// 					        	}
+// 					        	if(!item.price_sale)
+// 					        		item.price_sale="";
 					        		
-					        	thtml+='<div class="price"><span>KRW</span> '+ item.price_sale;
+// 					        	thtml+='<div class="price"><span>KRW</span> '+ item.price_sale;
 					        		
-					        	thtml+='</div>';
-					            thtml+='</div>';
+// 					        	thtml+='</div>';
+// 					            thtml+='</div>';
 
-					            thtml+='</a>';
+// 					            thtml+='</a>';
 					           	
-					            if(item.stimelist){
-					            	thtml+='<ul class="prd_info_bottom outline">';
-					          	  	thtml+='<li class="start" style="width:50%">';
+// 					            if(item.stimelist){
+// 					            	thtml+='<ul class="prd_info_bottom outline">';
+// 					          	  	thtml+='<li class="start" style="width:50%">';
 					          	  	
-					          	  if(item.stimelist.length==1){
-					          		if(item.stimelist[0].stime=="99:99")
-					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
-					        		else
-					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].stime+'</div>';
-					          	  } else if (item.stimelist.length>0) {
-					          			thtml+='<span>선택가</span>';
-					          	  } else {
-					          			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
-					          	  }
+// 					          	  if(item.stimelist.length==1){
+// 					          		if(item.stimelist[0].stime=="99:99")
+// 					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
+// 					        		else
+// 					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].stime+'</div>';
+// 					          	  } else if (item.stimelist.length>0) {
+// 					          			thtml+='<span>선택가</span>';
+// 					          	  } else {
+// 					          			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
+// 					          	  }
 					          	  
-					          	  if(item.stimelist.length>1){
-					          		 thtml+='<div class="set_time">';
-					          		 thtml+='<ul>';
+// 					          	  if(item.stimelist.length>1){
+// 					          		 thtml+='<div class="set_time">';
+// 					          		 thtml+='<ul>';
 					          		 
-					          		 for(i=0;i<item.stimelist.length;i++)
-					          			thtml+='<li class="current">'+item.stimelist[i].stime+'</li>';
+// 					          		 for(i=0;i<item.stimelist.length;i++)
+// 					          			thtml+='<li class="current">'+item.stimelist[i].stime+'</li>';
 					          			
-					          		 thtml+='</ul>';
-					          	 	 thtml+='</div>';
-					          	  }
-					          	thtml+='</li>';
-					      	  	thtml+='<li class="duration" style="width:50%">';
+// 					          		 thtml+='</ul>';
+// 					          	 	 thtml+='</div>';
+// 					          	  }
+// 					          	thtml+='</li>';
+// 					      	  	thtml+='<li class="duration" style="width:50%">';
 					      	  	
-					      	  	if(item.stimelist.length==1)
-					      	  		thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].duration+'</div>';
+// 					      	  	if(item.stimelist.length==1)
+// 					      	  		thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].duration+'</div>';
 
-					      	 	else if(item.stimelist.length>0)
-					      			thtml+='<span>'+item.stimelist[0].duration+'</span>';
-					      	 	else
-					      			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
+// 					      	 	else if(item.stimelist.length>0)
+// 					      			thtml+='<span>'+item.stimelist[0].duration+'</span>';
+// 					      	 	else
+// 					      			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
 								
-					      		if(item.stimelist.length>1) {
-					      			thtml+='<div class="set_time">';
-					                thtml+='<ul>';
+// 					      		if(item.stimelist.length>1) {
+// 					      			thtml+='<div class="set_time">';
+// 					                thtml+='<ul>';
 
-					                for(i=0;i<item.stimelist.length;i++)
-					                	thtml+='<li class="current">'+item.stimelist[i].duration+'</li>';
+// 					                for(i=0;i<item.stimelist.length;i++)
+// 					                	thtml+='<li class="current">'+item.stimelist[i].duration+'</li>';
 
-					              	 	thtml+='</ul>';
-					            	  	thtml+='</div>';
+// 					              	 	thtml+='</ul>';
+// 					            	  	thtml+='</div>';
 
-					      		}
-					      		thtml+='</li>';
+// 					      		}
+// 					      		thtml+='</li>';
 					      		
-					      		thtml+='</ul>';
+// 					      		thtml+='</ul>';
 
-					            }//if(item.stimelist)
-					            else{
-					            	thtml+='<ul class="prd_info_bottom outline">';
+// 					            }//if(item.stimelist)
+// 					            else{
+// 					            	thtml+='<ul class="prd_info_bottom outline">';
 					          	  	
-					            	thtml+='<li class="start" style="width:50%">';
-					          	  	thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.duration+'</div>';
-					          	  	thtml+='</li>';
+// 					            	thtml+='<li class="start" style="width:50%">';
+// 					          	  	thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.duration+'</div>';
+// 					          	  	thtml+='</li>';
 					          	  	
-					          	  	thtml+='<li class="duration" style="width:50%">';
-					          	  	thtml+='<span>'+item.duration+'</span>';
-					          	  	thtml+='</li>';
+// 					          	  	thtml+='<li class="duration" style="width:50%">';
+// 					          	  	thtml+='<span>'+item.duration+'</span>';
+// 					          	  	thtml+='</li>';
 					          	  	
-					          	  	thtml+='</li>';
-						      		thtml+='</ul>';
-					            }
+// 					          	  	thtml+='</li>';
+// 						      		thtml+='</ul>';
+// 					            }
 
 					            	
-					            thtml+='</li>';
+// 					            thtml+='</li>';
 
-							}); //$.each(data.list, function( i, item )
+// 							}); //$.each(data.list, function( i, item )
 
-							$("#tourlist").html(thtml);
+// 							$("#tourlist").html(thtml);
 
 
-					        // Item 시간 선택(토글)
-					        $('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
-					            event.stopPropagation();
-					            $('.set_time').not($(this).next()).removeClass('on');
-					            $(this).next().toggleClass('on');
-					        });
+// 					        // Item 시간 선택(토글)
+// 					        $('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
+// 					            event.stopPropagation();
+// 					            $('.set_time').not($(this).next()).removeClass('on');
+// 					            $(this).next().toggleClass('on');
+// 					        });
 					        
 
-					     	// 리스트 찜하기(토글)
-					     	$('.prd_item .like').on('click', function(){
-					     		tid=$(this).attr("id");
-					     		$(this).toggleClass('active');
-					     		console.log(tid);
-					     		$.ajax({
-					     			url: '/stubbyPlanner/market/tour_like.jsp?city_id=${param.city_id}&tour_id='+tid,
+// 					     	// 리스트 찜하기(토글)
+// 					     	$('.prd_item .like').on('click', function(){
+// 					     		tid=$(this).attr("id");
+// 					     		$(this).toggleClass('active');
+// 					     		console.log(tid);
+// 					     		$.ajax({
+// 					     			url: '/stubbyPlanner/market/tour_like.jsp?city_id=${param.city_id}&tour_id='+tid,
 					             	
 
-					     			dataType: 'json',
-					     			success: function(data){
-					     				if(data!=""){
-					     					thtml='';
-					     				}
-					     			}
-					     		});
+// 					     			dataType: 'json',
+// 					     			success: function(data){
+// 					     				if(data!=""){
+// 					     					thtml='';
+// 					     				}
+// 					     			}
+// 					     		});
 
-					     	});
+// 					     	});
 					     	
-					     	$('.prd_count').text(data.totalcnt);
+// 					     	$('.prd_count').text(data.totalcnt);
 					     	
-					     	$('.prd_list.paginated').each(function() {
-					     		 var currentPage = 0;
-					             var numPerPage = 12;
-					             var $prd_list = $(this);
-					             $prd_list.bind('repaginate', function() {
-					            	 $prd_list.find('li.prd_item').hide()
-					            	 .slice(currentPage * numPerPage,
-					            			 (currentPage + 1) * numPerPage)
-					                         .show();
-					             });
+// 					     	$('.prd_list.paginated').each(function() {
+// 					     		 var currentPage = 0;
+// 					             var numPerPage = 12;
+// 					             var $prd_list = $(this);
+// 					             $prd_list.bind('repaginate', function() {
+// 					            	 $prd_list.find('li.prd_item').hide()
+// 					            	 .slice(currentPage * numPerPage,
+// 					            			 (currentPage + 1) * numPerPage)
+// 					                         .show();
+// 					             });
 					             
-					             var numRows = data.totalcnt;
-					             var numPages = Math.ceil(numRows / numPerPage);
+// 					             var numRows = data.totalcnt;
+// 					             var numPages = Math.ceil(numRows / numPerPage);
 								
-					             $('.pager').remove();
+// 					             $('.pager').remove();
 					             
-					             var $pager = $('<div class="pager"></div>');
+// 					             var $pager = $('<div class="pager"></div>');
 					             
-					             cPage=data.curpage;
+// 					             cPage=data.curpage;
 					             
-					             sPage=5*parseInt((cPage-1)/5)+1;
+// 					             sPage=5*parseInt((cPage-1)/5)+1;
 					             
-					             ePage=sPage+5;
-									if(ePage>(numPages+1))
-										ePage=numPages+1;
-								if(sPage>5)
-									 $('<a href="javascript:updateTours('+eval(sPage-5)+')" class="page_number"></a>').text("<").appendTo($pager);
+// 					             ePage=sPage+5;
+// 									if(ePage>(numPages+1))
+// 										ePage=numPages+1;
+// 								if(sPage>5)
+// 									 $('<a href="javascript:updateTours('+eval(sPage-5)+')" class="page_number"></a>').text("<").appendTo($pager);
 								
-								for (var page = sPage; page < ePage; page++) {
-									if(eval(page)==data.curpage)
-										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number active"></a>').text(page).appendTo($pager);
-									else
-										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number"></a>').text(page).appendTo($pager);
-								}
-								if(numPages>ePage)
-									 $('<a href="javascript:updateTours('+eval(ePage)+')" class="page_number"></a>').text(">").appendTo($pager);
-								$pager.insertAfter($prd_list);
+// 								for (var page = sPage; page < ePage; page++) {
+// 									if(eval(page)==data.curpage)
+// 										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number active"></a>').text(page).appendTo($pager);
+// 									else
+// 										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number"></a>').text(page).appendTo($pager);
+// 								}
+// 								if(numPages>ePage)
+// 									 $('<a href="javascript:updateTours('+eval(ePage)+')" class="page_number"></a>').text(">").appendTo($pager);
+// 								$pager.insertAfter($prd_list);
 								
-								if(parseInt($('a.page_number:last').text()) == 1) {
-            					    $('.pager').hide();
-            					} else {
-            					    $('.pager').show();
-            					};
+// 								if(parseInt($('a.page_number:last').text()) == 1) {
+//             					    $('.pager').hide();
+//             					} else {
+//             					    $('.pager').show();
+//             					};
 
-					     	});
-						} //if(data)
+// 					     	});
+// 						} //if(data)
 							
-					}//success
-				});//ajax
-	}//function
+// 					}//success
+// 				});//ajax
+// 	}//function
 			
 	function formatNumber(num) {
 		  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -1763,6 +1755,434 @@ header .stu_gnb_container button.ico_planner {
 
 </script>
 
+<!-- getParty() -->
+<script type="text/javascript">
 
+
+function writeBoard(id,content,subject,board_code)
+{
+var post_content = content.replace(/(\n|\r\n)/g, '<br>')	 
+var member_id = id;
+var post_subject = subject;
+// var post_content = content;
+var board_code = board_code;
+	             $.ajax({
+	 
+	             	url: '/stubbyPlanner/api/square/set_writeBoard.jsp?member_id='+member_id+'&post_subject='+post_subject+'&post_content='+post_content+'&board_code='+board_code,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+						alert("게시글 작성 완료")
+			}
+		});
+}
+
+function writeParty(id,content)
+{
+	 
+var member_id = id;
+var party_content = content;
+	             $.ajax({
+	 
+	             	url: '/stubbyPlanner/api/square/set_writeParty.jsp?member_id='+member_id+'&party_content='+party_content,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+						alert("게시글 작성 완료")
+			}
+		});
+}
+
+
+// function getTotal()
+function getSearchAll(option,search){
+	var option = option;
+	var search = search;
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_search.jsp?category='+category+'&option='+option+'&search='+search,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+       	//	alert(data.list);
+		if(data!="")
+		{					
+			thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+			thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+			thtml+='<tbody>';
+			
+			$.each(data.list, function( i, item ) {
+				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+			});
+			
+			thtml+='</tbody></table></div></section>';
+			$('#tourlist').html(thtml)
+			
+		}
+	}
+});
+}
+
+
+function getSearchBoard(option,search){
+	var option = option;
+	var search = search;
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_searchBoard.jsp?search='+search+'&option='+option,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+       	//	alert(data.list);
+       	if(!data){
+			thtml=' <section class="stu_regions"><div style="text-align: left"><h3 style="text-align: center;"><b>검색 결과가 없습니다.</b></h3></div></section>';
+			$("#tourlist").html(thtml);
+       	}else if(data!="")
+		{			
+			thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">검색 결과</h2></div>';
+// 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+// 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+// 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+// 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+			thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+			thtml+='<tbody>';
+		if(option=='content'){
+			$.each(data.listContent, function( i, item ) {
+				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+			});
+		}else if(option=='subject'){
+			$.each(data.listSubject, function( i, item ) {
+				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+			});
+		}else{
+			$.each(data.listId, function( i, item ) {
+				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+			});
+		}	
+			
+			thtml+='</tbody></table></div></section>';
+			$('#tourlist').html(thtml)
+			
+		}
+	}
+});
+}
+                                                                                                                               
+
+function getSearchParty(option,search){
+	var option = option;
+	var search = search;
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_searchParty.jsp?search='+search+'&option='+option,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+       	if(!data){
+    		thtml=' <section class="stu_regions"><div style="text-align: left"><h3 style="text-align: center;"><b>검색 결과가 없습니다.</b></h3></div></section>';
+    		$("#tourlist").html(thtml);
+        }else if(data!="")
+		{					
+			thtml='<section class="stu_swiper-section stu_recent-offer"">                                ';
+			thtml+='   <div class="stu_inner_wrap">                                                      ';
+			thtml+='       <div class="titArea" style="display: inline-block;  padding-top: 20px;">      ';
+			thtml+='      <h2 style="font-size:18pt;font-weight:700;">동행 찾기</h2>                     ';
+			thtml+='       </div>                                                                        ';
+			thtml+='                                                                                     ';
+			thtml+='       <div class="swiper-container stu_tagArea"">                                   ';
+			thtml+='           <ul class="swiper-wrapper">                                               ';
+		if(option=='content'){
+			$.each(data.listContent, function( i, item ) {
+				if(i%5==0){
+					thtml+='</ul><br/><ul class="swiper-wrapper">';	
+					}
+					thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+					thtml+='     <a href="#" style="width:100%; height: 100%;">                                                           ';
+					thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+					if(item.profile_pic==''){
+					thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+					}else{
+					thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+					}                                                                                  
+					thtml+='         </figure>                                                                                           ';
+					thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+					thtml+='             <div class="name"><span>'+item.party_content+'}</span></div>';
+					thtml+='      		<div class="price"  style="line-height:100%;text-align:right;2px;">'+item.member_id+'</div>';
+					thtml+='             <div class="score" style="display:inline-block"><span>'+item.party_like+'</span></div></figcaption></a></li>';
+			});
+		}else{
+			$.each(data.listId, function( i, item ) {
+				if(i%5==0){
+					thtml+='</ul><br/><ul class="swiper-wrapper">';	
+					}
+					thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+					thtml+='     <a href="#" style="width:100%; height: 100%;">                                                           ';
+					thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+					if(item.profile_pic==''){
+					thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+					}else{
+					thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+					}                                                                                  
+					thtml+='         </figure>                                                                                           ';
+					thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+					thtml+='             <div class="name"><span>'+item.party_content+'}</span></div>';
+					thtml+='      		<div class="price"  style="line-height:100%;text-align:right;2px;">'+item.member_id+'</div>';
+					thtml+='             <div class="score" style="display:inline-block"><span>'+item.party_like+'</span></div></figcaption></a></li>';
+			});
+		}	
+			
+		thtml+='</div></div></section>';
+		$('#tourlist').html(thtml)
+			
+		}
+	}
+});
+}
+
+
+function getParty(){
+//		var board_code = code;
+		$.ajax({
+         	url: '/stubbyPlanner/api/square/get_party.jsp',
+           	dataType: 'json',
+           	cache:false,
+           	success: function(data){
+           	//	alert(data.list);
+			if(data!="")
+			{					
+				thtml='<section class="stu_swiper-section stu_recent-offer"">                                ';
+				thtml+='   <div class="stu_inner_wrap">                                                      ';
+				thtml+='       <div class="titArea" style="display: inline-block;  padding-top: 20px;">      ';
+				thtml+='      <h2 style="font-size:18pt;font-weight:700;">동행 찾기</h2>                     ';
+				thtml+='       </div>                                                                        ';
+				thtml+='                                                                                     ';
+				thtml+='       <div class="swiper-container stu_tagArea"">                                   ';
+				thtml+='           <ul class="swiper-wrapper">                                               ';
+				
+				$.each(data.list, function( i, item ) {
+					if(i%5==0){
+					thtml+='</ul><br/><ul class="swiper-wrapper">';	
+					}
+					thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+					thtml+='     <a href="#" style="width:100%; height: 100%;">                                                           ';
+					thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+					if(item.profile_pic==''){
+					thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+					}else{
+					thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+					}                                                                                  
+					thtml+='         </figure>                                                                                           ';
+					thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+					thtml+='             <div class="name"><span>'+item.party_content+'}</span></div>';
+					thtml+='      		<div class="price"  style="line-height:100%;text-align:right;2px;">'+item.member_id+'</div>';
+					thtml+='             <div class="score" style="display:inline-block"><span>'+item.party_like+'</span></div></figcaption></a></li>';
+				});
+				
+				thtml+='</div></div></section>';
+				$('#tourlist').html(thtml)
+				
+			}
+	}
+});
+}
+
+	function getBoard(){
+// 		var board_code = code;
+			$.ajax({
+             	url: '/stubbyPlanner/api/square/get_board.jsp',
+               	dataType: 'json',
+               	cache:false,
+               	success: function(data){
+               	//	alert(data.list);
+				if(data!="")
+				{					
+					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">전체 게시판</h2></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+					thtml+='<tbody>';
+					
+					$.each(data.list, function( i, item ) {
+						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+					});
+					
+					thtml+='</tbody></table></div></section>';
+					$('#tourlist').html(thtml)
+					
+				}
+		}
+	});
+}
+
+	
+	function getCommon(code){
+ 		var board_code = code;
+			$.ajax({
+             	url: '/stubbyPlanner/api/square/get_common.jsp?board_code='+board_code,
+               	dataType: 'json',
+               	cache:false,
+               	success: function(data){
+               	//	alert(data.list);
+				if(data!="")
+				{					
+					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+					thtml+='<tbody>';
+					
+					$.each(data.listTotal, function( i, item ) {
+						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+					});
+					
+					thtml+='</tbody></table></div></section>';
+					$('#tourlist').html(thtml)
+					
+				}
+		}
+	});
+}	
+	
+	
+	function getQuestion(code){
+ 		var board_code = code;
+			$.ajax({
+             	url: '/stubbyPlanner/api/square/get_question.jsp?board_code='+board_code,
+               	dataType: 'json',
+               	cache:false,
+               	success: function(data){
+				if(data!="")
+				{					
+					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">질문 게시판</h2></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+					thtml+='<tbody>';
+					
+					$.each(data.listTotal, function( i, item ) {
+						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+					});
+					
+					thtml+='</tbody></table></div></section>';
+					$('#tourlist').html(thtml)
+					
+				}
+		}
+	});
+}
+
+	
+	function getInformation(code){
+ 		var board_code = code;
+			$.ajax({
+             	url: '/stubbyPlanner/api/square/get_information.jsp?board_code='+board_code,
+               	dataType: 'json',
+               	cache:false,
+               	success: function(data){
+				if(data!="")
+				{					
+					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">여행정보 게시판</h2></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
+					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
+					thtml+='<tbody>';
+					
+					$.each(data.listTotal, function( i, item ) {
+						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+					});
+					
+					thtml+='</tbody></table></div></section>';
+					$('#tourlist').html(thtml)
+					
+				}
+		}
+	});
+}
+
+</script>
+<div id="write_board_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>게시판 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body">
+			<form method="post" id="insert_form_board">
+				<select  id ="write_category" style="width: 15px; border: none; float: rigth">
+						<option value="none"></option>
+						<option id="1" value="common">일반</option>
+						<option id="2" value="question">질문</option>
+						<option id="3" value="information">여행정보</option>
+				</select>
+			<label>제목</label>
+			<input type="text" name="writeSubject" id="writeSubject" class="form-control" />
+			<br />
+			<label>내용</label>
+			<textarea name="writeContent" id="writeContent" class="form-control" ></textarea>
+			<br />
+			<input type="submit" name ="insert" id="insert" value="작성" class="btn btn-success" />
+			</form>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+<div id="write_party_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>동행 찾기 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body">
+			<form method="post" id="insert_form_party">
+			<label>내용</label>
+			<br />
+			<textarea name="writeParty" id="writeParty" class="form-control" ></textarea>
+			<br />
+			<input type="submit" name ="insert" id="insert" value="작성" class="btn btn-success" />
+			</form>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
 </body>
 </html>

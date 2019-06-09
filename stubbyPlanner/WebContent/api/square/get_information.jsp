@@ -13,9 +13,12 @@
 <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
+	PreparedStatement pstmtTotal = null;
 	ResultSet rs = null;
+	ResultSet rsTotal = null;
 	JSONObject jObj = null;
 	JSONArray jArr = null;
+	JSONArray jArrTotal = null;
 	
 	try {
 		conn = ConnectionProvider.getConnection();
@@ -25,53 +28,68 @@
 
 		String sql = "select * from (select post_seq,member_id,post_subject,post_regdate,post_hits,post_like, ROW_NUMBER() OVER (order by post_like desc) rank from tbl_boards where board_code = ?) where rank between 1 and 5";
 
+		String sqlTotal ="select * from tbl_boards where board_code = ? order by post_seq desc";
 		
 		pstmt = conn.prepareStatement(sql);
+		pstmtTotal = conn.prepareStatement(sqlTotal);
 		
 		pstmt.setString(1, board_code);
-
+		pstmtTotal.setString(1, board_code);
+		
 		rs = pstmt.executeQuery();
-
+		rsTotal = pstmtTotal.executeQuery();
+		
 		if (rs.next()) {
 			System.out.println("if");
 			jObj = new JSONObject();
 			jArr = new JSONArray();
 			do {
 				
-				JSONObject PhotoObj = new JSONObject();
-					PhotoObj.put("post_seq", rs.getInt("post_seq"));
-					PhotoObj.put("member_id", rs.getString("member_id"));
-					PhotoObj.put("post_subject", rs.getString("post_subject"));
-					PhotoObj.put("post_regdate",   rs.getString("post_regdate".toString()));
-// 					PhotoObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
-					PhotoObj.put("post_hits", rs.getInt("post_hits"));
-					PhotoObj.put("post_like", rs.getInt("post_like"));
+				JSONObject CommonObj = new JSONObject();
+					CommonObj.put("post_seq", rs.getInt("post_seq"));
+					CommonObj.put("member_id", rs.getString("member_id"));
+					CommonObj.put("post_subject", rs.getString("post_subject"));
+					CommonObj.put("post_regdate",   rs.getString("post_regdate".toString()));
+// 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
+					CommonObj.put("post_hits", rs.getInt("post_hits"));
+					CommonObj.put("post_like", rs.getInt("post_like"));
 					
 					System.out.println(  ">>> " +  rs.getInt("post_seq")   );
 
-				jArr.add(PhotoObj);
+				jArr.add(CommonObj);
 
 			} while (rs.next());
 		}
 
-		/* 		while (rs.next()) {
-					JSONObject countryObj = new JSONObject();
-					countryObj.put("country_name", rs.getString("country_name"));
-					countryObj.put("country_id", rs.getInt("country_id"));
-					countryObj.put("img_url", rs.getString("img_url"));
-					countryObj.put("item_cnt", rs.getInt("item_cnt"));
-		
-					jArr.add(countryObj);
-		
-				} */
+		if (rsTotal.next()) {
+			System.out.println("if");
+			jObj = new JSONObject();
+			jArrTotal = new JSONArray();
+			do {
+				
+				JSONObject CommonObj = new JSONObject();
+					CommonObj.put("post_seq", rsTotal.getInt("post_seq"));
+					CommonObj.put("member_id", rsTotal.getString("member_id"));
+					CommonObj.put("post_subject", rsTotal.getString("post_subject"));
+					CommonObj.put("post_regdate",   rsTotal.getString("post_regdate".toString()));
+					CommonObj.put("post_hits", rsTotal.getInt("post_hits"));
+					CommonObj.put("post_like", rsTotal.getInt("post_like"));
+					
+					System.out.println(  ">>> " +  rsTotal.getInt("post_seq")   );
+
+					jArrTotal.add(CommonObj);
+
+			} while (rsTotal.next());
+		}
 
 		jObj.put("list", jArr);
+		jObj.put("listTotal", jArrTotal);
 
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
 		pstmt.close();
-		//rs.close();
+		pstmtTotal.close();
 		conn.close();
 	}
 %>
