@@ -49,7 +49,7 @@
 		 trsobj = new JSONObject();
 		 
 		 String trstype = rs.getString("trstype");
-		 int rate = rs.getInt("rate");
+		 float rate = rs.getFloat("rate");
 		 String duration = rs.getString("traveltime").trim();
 		 
 		 trsobj.put("trstype", trstype);

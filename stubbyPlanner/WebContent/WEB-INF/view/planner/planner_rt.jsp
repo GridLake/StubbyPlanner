@@ -3299,7 +3299,7 @@ function loadTrsInfo(idx,depCityId,desCityId)
 		  url: "/stubbyPlanner/model1/getTrsRecomm.jsp",
 		
 		  data: {
-// 		    trstype:trstype,		// 교통편 (??)
+ 		    trstype:trstype,		// 교통편 (??)
 		    depCityId:depCityId,	// 출발도시
 		    desCityId:desCityId		// 도착도시
 		 // ,thedate:thedate		// 일수
@@ -3309,16 +3309,14 @@ function loadTrsInfo(idx,depCityId,desCityId)
 //			$(".cityblock .trsinfo").eq(idx).html(data);
 			
 			trstype=data.trstype;
-			
-
 
 			trstype_txt="기타";
 			if(trstype=="1")
 				trstype_txt="기차";
-			if(trstype=="3"||trstype=="5")
-				trstype_txt="항공";
 			if(trstype=="2")
 				trstype_txt="버스";
+			if(trstype=="3"||trstype=="5")
+				trstype_txt="항공";
 			if(trstype=="4")
 				trstype_txt="페리";
 			if(trstype=="X")

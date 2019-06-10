@@ -212,9 +212,17 @@ function gotoHome()
 
 function gotoResv()
 {
-	
-			window.location='/stubbyPlanner/planner/planner_resv.do?trip_id='+trip_id;
-		
+	window.location='/stubbyPlanner/planner/planner_resv_air.do?trip_id='+trip_id;
+}
+
+function gotoRoute()
+{
+	window.location='/stubbyPlanner/planner/planner_rt.do?trip_id='+trip_id;
+}
+
+function gotoSchd()
+{
+	window.location='/stubbyPlanner/planner/planner_schd.do?trip_id='+trip_id;
 }
 </script>
 <div style="padding-bottom:0px;background:#3ad195;">
@@ -224,9 +232,9 @@ function gotoResv()
 		</div>
 	</div>
 	<div id="topControllerRight" style="width:80%;float:left;">
-		<div class="top_menu" id="menu1" onclick="window.location='/stubbyPlanner/planner/planner_rt.do?trip_id='+trip_id"><font style="color:#fff;font-size:12pt;">루트</font></div>
-		<div class="top_menu" id="menu2" onclick="window.location='/stubbyPlanner/planner/planner_schd.do?trip_id=+trip_id'" ><font style="font-size:12pt;color:#fff;">일정</font></div>
-		<div class="top_menu" id="menu3" onclick="gotoResv()" style="border-bottom:5px solid gray"><font style="font-size:12pt;color:#fff;"  >예약 <i class="fa fa-lock"></i></font></div>
+		<div class="top_menu" id="menu1" onclick="gotoRoute()"><font style="color:#fff;font-size:12pt;">루트</font></div>
+		<div class="top_menu" id="menu2" onclick="gotoSchd()" ><font style="font-size:12pt;color:#fff;">일정</font></div>
+		<div class="top_menu" id="menu3" onclick="gotoResv()" style="border-bottom:5px solid gray"><font style="font-size:12pt;color:#fff;" >예약 <i class="fa fa-lock"></i></font></div>
 		<div style="float:left;width:25%;text-align:center;padding-top:8px;">
 
 
@@ -257,6 +265,7 @@ function toggleTRMenu()
 
 	}
 }
+<%-- 미구현 기능
 function login()
 {
 	window.location="'<%= contextPath %>'/common/login.do?h_url=%2Fplan%2Fplanner%5Frt4%2Easp%3Ftrip%5Fid%3D"+trip_id;
@@ -265,6 +274,7 @@ function register()
 {
 	window.location="/stubbyPlanner/common/register.do?h_url=%2Fplan%2Fplanner%5Frt4%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
+ --%>
 function complete()
 {
 	window.location="/stubbyPlanner/planner/detail.do?tid="+trip_id;

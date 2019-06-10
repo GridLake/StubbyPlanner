@@ -771,7 +771,7 @@ function tmp_tGetTax_StateChange()
 					</tr>
 					<tr>
 						<td width="400">
-								
+					<!-- foreach -->
 					<div id="input_RT_ToCitySerial_1" style="display:block;">
 						<span id="input_RT_ToCitySerial_1_span"  style="font-size:10pt;color:#000000;font-family:Tahoma">Seoul,Korea(South)</span> <a href="javascript:showCitySelect('des');">[<u>변경</u>]</a>
 					</div>
