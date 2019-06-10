@@ -1821,6 +1821,7 @@ function boardComment(post_seq)
 			$.each(data.list, function( i, item ) {
 				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
 			});
+			$('.com').remove('.com');
 			$('.'+post_seq+'').after(thtml);
 			
 		}
@@ -2124,11 +2125,26 @@ function getParty(){
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
 						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
-						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div><input id="commentInput" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" id="comments" style="width: 10%;"/></div></td><td class="love">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml)
+					
+					
+					//댓글 작성
+// 					$("#comments").on("click",function(){
+					$('.setComment').click(function(){
+						var post_seq = $(this).parent().attr('id');
+						var cmt_detail =  $(this).prev().val();
+						if(cmt_detail==''){
+							alert("댓글을 입력해주세요.");
+						}else{
+							writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
+							boardComment(post_seq);
+						}
+					});
+					
 					
 					//댓글 출력
 					$('.comment').click(function(){
@@ -2164,17 +2180,7 @@ function getParty(){
 					
 					
 					
-					//댓글 작성
-// 					$("#comments").on("click",function(){
-					$('#comments').click(function(){
-						alert("댓글");
-						var post_seq = $(this).next().next().attr('id');
-						var cmt_detail = $('#commentInput').val();
-						if(cmt_detail==''){
-							alert("댓글을 입력해주세요.");
-						}
-						writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
-					});
+
 					
 					
 				}
