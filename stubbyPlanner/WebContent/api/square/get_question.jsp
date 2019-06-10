@@ -26,7 +26,7 @@
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select * from (select post_seq,member_id,post_subject,post_regdate,post_hits,post_like, ROW_NUMBER() OVER (order by post_like desc) rank from tbl_boards where board_code = ?) where rank between 1 and 5";
+		String sql = "select * from (select post_seq,member_id,post_subject,post_content,post_regdate,post_hits,post_like, ROW_NUMBER() OVER (order by post_like desc) rank from tbl_boards where board_code = ?) where rank between 1 and 5";
 
 		String sqlTotal ="select * from tbl_boards where board_code = ? order by post_seq desc";
 		
@@ -49,6 +49,7 @@
 					PhotoObj.put("post_seq", rs.getInt("post_seq"));
 					PhotoObj.put("member_id", rs.getString("member_id"));
 					PhotoObj.put("post_subject", rs.getString("post_subject"));
+					PhotoObj.put("post_content", rs.getString("post_content"));
 					PhotoObj.put("post_regdate",   rs.getString("post_regdate".toString()));
 // 					PhotoObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
 					PhotoObj.put("post_hits", rs.getInt("post_hits"));
@@ -71,6 +72,7 @@
 					CommonObj.put("post_seq", rsTotal.getInt("post_seq"));
 					CommonObj.put("member_id", rsTotal.getString("member_id"));
 					CommonObj.put("post_subject", rsTotal.getString("post_subject"));
+					CommonObj.put("post_content", rsTotal.getString("post_content"));
 					CommonObj.put("post_regdate",   rsTotal.getString("post_regdate".toString()));
 					CommonObj.put("post_hits", rsTotal.getInt("post_hits"));
 					CommonObj.put("post_like", rsTotal.getInt("post_like"));

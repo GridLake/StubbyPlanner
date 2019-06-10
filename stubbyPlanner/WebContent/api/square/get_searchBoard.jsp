@@ -59,6 +59,7 @@
 					CommonObj.put("post_seq", rsSubject.getInt("post_seq"));
 					CommonObj.put("member_id", rsSubject.getString("member_id"));
 					CommonObj.put("post_subject", rsSubject.getString("post_subject"));
+					CommonObj.put("post_content", rsSubject.getString("post_content"));
 					CommonObj.put("post_regdate",   rsSubject.getString("post_regdate".toString()));
 // 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
 					CommonObj.put("post_hits", rsSubject.getInt("post_hits"));
@@ -80,6 +81,7 @@
 					CommonObj.put("post_seq", rsContent.getInt("post_seq"));
 					CommonObj.put("member_id", rsContent.getString("member_id"));
 					CommonObj.put("post_subject", rsContent.getString("post_subject"));
+					CommonObj.put("post_content", rsContent.getString("post_content"));
 					CommonObj.put("post_regdate",   rsContent.getString("post_regdate".toString()));
 // 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
 					CommonObj.put("post_hits", rsContent.getInt("post_hits"));
@@ -101,6 +103,7 @@
 					CommonObj.put("post_seq", rsId.getInt("post_seq"));
 					CommonObj.put("member_id", rsId.getString("member_id"));
 					CommonObj.put("post_subject", rsId.getString("post_subject"));
+					CommonObj.put("post_content", rsId.getString("post_content"));
 					CommonObj.put("post_regdate",   rsId.getString("post_regdate".toString()));
 // 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
 					CommonObj.put("post_hits", rsId.getInt("post_hits"));

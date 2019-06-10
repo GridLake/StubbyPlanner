@@ -615,9 +615,8 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 
 function messageFriend(id,content,subject,member_friendid)
 {
-	 
 var member_myid = id;
-var msg_content = content;
+var msg_content = content.replace(/(\n|\r\n)/g, '<br>');
 var msg_subject = subject;
 var member_friendid = member_friendid;
 	             $.ajax({
@@ -696,7 +695,6 @@ var member_id = id;
 						$("#layerpop_friend_content").html(thtml); //
 						
 				     	$(".no").on("click",function(){
-				     			
 				     		var value = $(this).val();
 				  		    deleteFriend('${myPage.memberInfoMap.member_id }',value);
 				  		   $(this).parent().remove();
@@ -711,23 +709,20 @@ var member_id = id;
 					  
   					   
  					   $('#insert_form').on('submit',function(event){
- 						  if($('#subject').val()=='')
- 						 {
- 						 alert("제목을 입력해주세요");
- 						 }else if($('#content').val()=='')
- 						 {
- 						 alert("내용을 입력해주세요");
- 						 }else{
-// 						  var value =$(this).val();
-						  var content =$('textarea#content').val();
-  					      alert(content)
-						  var subject =$('input#subject').val();
-  					      alert(subject)
-  					      var member_friendid = $('#add_data_Modal').val();
-  					      alert(member_friendid)
-						  messageFriend('${myPage.memberInfoMap.member_id }',content,subject,member_friendid);
-						  }
- 					   })					  	
+	 						  if($('#subject').val()=='')
+	 						 {
+	 						 alert("제목을 입력해주세요");
+	 						 }else if($('#content').val()=='')
+	 						 {
+	 						 alert("내용을 입력해주세요");
+	 						 }else{
+//	 						  var value =$(this).val();
+							  var content =$('textarea#content').val();
+							  var subject =$('input#subject').val();
+	  					      var member_friendid = $('#add_data_Modal').val();
+							  messageFriend('${myPage.memberInfoMap.member_id }',content,subject,member_friendid);
+							  }
+	 					   })					  	
  					    
 					}
 			}
@@ -978,7 +973,6 @@ var member_id = id;
 	    	 					   })					  	
 	    	  					   
 	    	 					   $('#insert_form').on('submit',function(event){
-	    	  					      alert("메세지 전송")
 	    	 						  if($('#subject').val()=='')
 	    	 						 {
 	    	 						 alert("제목을 입력해주세요");
@@ -986,14 +980,10 @@ var member_id = id;
 	    	 						 {
 	    	 						 alert("내용을 입력해주세요");
 	    	 						 }else{
-	    	  					      alert("ajax로 가자")
 //	    	 						  var value =$(this).val();
 	    							  var content =$('textarea#content').val();
-	    	  					      alert(content)
 	    							  var subject =$('input#subject').val();
-	    	  					      alert(subject)
 	    	  					      var member_friendid = $('#add_data_Modal').val();
-	    	  					      alert(member_friendid)
 	    							  messageFriend('${myPage.memberInfoMap.member_id }',content,subject,member_friendid);
 	    							  }
 	    	 					   })			

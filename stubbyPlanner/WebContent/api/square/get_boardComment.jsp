@@ -7,6 +7,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
+	String post_seq = request.getParameter("post_seq");
+ 		System.out.println("ajaxPage호출"+post_seq);
+%>
+<%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
@@ -16,37 +20,31 @@
 	try {
 		conn = ConnectionProvider.getConnection();
 
-		//jObj = new JSONObject();
-		//JSONArray jArr = new JSONArray();
-
-		String sql = "select * from tbl_boards order by post_seq desc";
-
+		String sql = "select * from tbl_comment where post_seq =?";
 		
 		pstmt = conn.prepareStatement(sql);
-
+		
+		pstmt.setString(1, post_seq);
+		
 		rs = pstmt.executeQuery();
-
+		
 		if (rs.next()) {
 			System.out.println("if");
 			jObj = new JSONObject();
 			jArr = new JSONArray();
 			do {
 				
-				JSONObject CommonObj = new JSONObject();
-					CommonObj.put("post_seq", rs.getInt("post_seq"));
-					CommonObj.put("member_id", rs.getString("member_id"));
-					CommonObj.put("post_subject", rs.getString("post_subject"));
-					CommonObj.put("post_content", rs.getString("post_content"));
-					CommonObj.put("post_regdate",   rs.getString("post_regdate".toString()));
-// 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
-					CommonObj.put("post_hits", rs.getInt("post_hits"));
-					CommonObj.put("post_like", rs.getInt("post_like"));
-					
+				JSONObject CommentObj = new JSONObject();
+				CommentObj.put("cmt_seq", rs.getInt("cmt_seq"));
+				CommentObj.put("member_id", rs.getString("member_id"));
+				CommentObj.put("cmt_detail", rs.getString("cmt_detail"));
+				CommentObj.put("cmt_regdate",   rs.getString("cmt_regdate".toString()));
 
-				jArr.add(CommonObj);
+				jArr.add(CommentObj);
 
 			} while (rs.next());
 		}
+
 
 		jObj.put("list", jArr);
 
@@ -54,7 +52,6 @@
 		e.printStackTrace();
 	} finally {
 		pstmt.close();
-		//rs.close();
 		conn.close();
 	}
 %>

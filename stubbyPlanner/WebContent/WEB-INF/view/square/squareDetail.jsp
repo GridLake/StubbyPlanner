@@ -352,7 +352,7 @@ table.type09 tbody tr:hover{
 table.type09 tbody td:hover{
 	background: #f3f6f7;
 }
-table.type09 tbody td.ct {
+table.type09 tbody td.ct{
     padding: 10px;
     font-weight: bold;
     vertical-align: middle;
@@ -360,8 +360,22 @@ table.type09 tbody td.ct {
 /*     border-bottom: 3px solid #036; */
     text-align: center;
 }
-
-
+table.type09 tbody td.love{
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #369;
+/*     border-bottom: 3px solid #036; */
+    text-align: center;
+}
+table.type09 tbody td.comment{
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #369;
+/*     border-bottom: 3px solid #036; */
+    text-align: center;
+}
 
 .stu_recent-offer .score { display:none; }
 .stu_recent-offer .score i { display:inline-block; width:15.12px; height:14.4px; margin:0 2px 0 0; background-position:0 -129.6px; background-size:230.4px; vertical-align:-1.5px; }
@@ -691,7 +705,7 @@ table.type09 tbody td.ct {
         		<c:if test="${status.count==5}">
         			<c:set var="boardEmpty" value="true"/>
         		</c:if>    
-            <tr>
+            <tr name="noshow">
                 <th scope="row">${boardList.post_seq}</th>
                 <td>${boardList.member_id}</td>
                 <td class="title">${boardList.post_subject}</td>
@@ -699,7 +713,8 @@ table.type09 tbody td.ct {
                 <td>${boardList.post_hits}</td>
                 <td>${boardList.post_like}</td>
             </tr>
-            <tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">${boardList.post_content}</td><td></td></tr>
+            <tr class="con" style="display: none"><td class="ct">내용</td><td colspan="4">${boardList.post_content}</td><td></td></tr>
+            <tr class="con" style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>
         	</c:if>
         </c:forEach>
         </tbody>
@@ -961,10 +976,34 @@ table.type09 tbody td.ct {
 
 
 	$(document).ready(function() {
+
+		
+		//댓글 작성
+		$('#comment').on("click",function(event){
+			alert("댓글");
+			var post_seq = $(this).next().next().attr('id');
+			var cmt_detail = $('#commentInput').val();
+			if(cmt_detail==''){
+				alert("댓글을 입력해주세요.");
+			}
+			writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
+		});
+		
+		
 		
 		//게시물 내용 출력
 		$('tr').click(function(){
-			
+			if($(this).attr('name')=='noshow'){
+				$('.con').css({display:'none'});
+				$(this).next().css({display:''});
+				$(this).next().next().css({display:''});
+				$(this).attr('name','show');
+			}
+			else if($(this).attr('name')=='show'){
+				$(this).next().css({display:'none'});
+				$(this).next().next().css({display:'none'});
+				$(this).attr('name','noshow');
+			}
 		});
 		
 		//게시물 작성
@@ -1022,6 +1061,8 @@ table.type09 tbody td.ct {
 			else if($('.swiper-slide.gallery').hasClass('on')) getSearchGallery(option,search);
 		});
 		
+		   
+/*  */		   
 		// 도시 이동 메뉴(토글)
 	    $('#current-city').click(function(event) {
 	        event.stopPropagation();
@@ -1064,6 +1105,9 @@ table.type09 tbody td.ct {
             $(this).addClass('on');
         });
 
+/*  */	 
+	 
+	 
         //메인 카테고리
         $('.stu_prd_category .swiper-slide').on('click', function() {
             $('.stu_prd_category .swiper-slide').removeClass('on');
@@ -1086,6 +1130,8 @@ table.type09 tbody td.ct {
 				$('#a_such').children('#member_id').show();						
 			}
         });
+
+/*  */
 
         // 상품(필터) 선택 - 테마
         $('.theme .filter-list').on('click', function() {
@@ -1147,22 +1193,6 @@ table.type09 tbody td.ct {
 	    });
 	 	
 	 	
-	 	
-	 	// 여행 타입 선택
-
-        $('.selectBox li').click(function() {
-	 	window.location=""+$(this).attr("id").replace("T","")+"&l=";
-
-        });
-
-        $('.selectBox .close').click(function() {
-            $(this).parent('.selectBox').removeClass('on');
-        });//
-        
-        //
-        $(document).click(function() {
-            $('.popover-wrap, .set_time').removeClass('on');
-        });
         
         // 맨 위로 가기
         $(window).scroll(function() {
@@ -1759,9 +1789,49 @@ table.type09 tbody td.ct {
 <script type="text/javascript">
 
 
+function writeBoardComment(id,post_seq,cmt_detail)
+{
+	var member_id = id;
+	var post_seq = post_seq;
+	var cmt_detail = cmt_detail;
+    $.ajax({
+   	 
+     	url: '/stubbyPlanner/api/square/set_writeBoardComment.jsp?member_id='+member_id+'&post_seq='+post_seq+'&cmt_detail='+cmt_detail,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+			alert("댓글 작성 완료")
+		}
+	});
+}	
+
+
+//게시판 댓글
+function boardComment(post_seq)
+{
+	var post_seq = post_seq;	
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_boardComment.jsp?post_seq='+post_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+		if(data!="")
+		{							
+       		thtml='';
+			$.each(data.list, function( i, item ) {
+				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
+			});
+			$('.'+post_seq+'').after(thtml);
+			
+		}
+	}
+ });
+}
+
+
 function writeBoard(id,content,subject,board_code)
 {
-var post_content = content.replace(/(\n|\r\n)/g, '<br>')	 
+var post_content = content.replace(/(\n|\r\n)/g, '<br>');	 
 var member_id = id;
 var post_subject = subject;
 // var post_content = content;
@@ -1815,17 +1885,33 @@ function getSearchAll(option,search){
 			thtml+='<tbody>';
 			
 			$.each(data.list, function( i, item ) {
-				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+				thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+				thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 			});
 			
 			thtml+='</tbody></table></div></section>';
 			$('#tourlist').html(thtml)
 			
+			//게시물 내용 출력
+			$('tr').click(function(){
+				if($(this).attr('name')=='noshow'){
+					$(this).next().css({display:''});
+					$(this).next().next().css({display:''});
+					$(this).attr('name','show');
+				}
+				else if($(this).attr('name')=='show'){
+					$(this).next().css({display:'none'});
+					$(this).next().next().css({display:'none'});
+					$(this).attr('name','noshow');
+				}
+			});
+			
 		}
 	}
-});
+ });
 }
 
 
@@ -1852,26 +1938,46 @@ function getSearchBoard(option,search){
 			thtml+='<tbody>';
 		if(option=='content'){
 			$.each(data.listContent, function( i, item ) {
-				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+				thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+				thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 			});
 		}else if(option=='subject'){
 			$.each(data.listSubject, function( i, item ) {
-				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+				thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+				thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 			});
 		}else{
 			$.each(data.listId, function( i, item ) {
-				thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+				thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 				thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 				thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+				thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+				thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 			});
 		}	
 			
 			thtml+='</tbody></table></div></section>';
 			$('#tourlist').html(thtml)
+			
+			//게시물 내용 출력
+			$('tr').click(function(){
+				if($(this).attr('name')=='noshow'){
+					$(this).next().css({display:''});
+					$(this).next().next().css({display:''});
+					$(this).attr('name','show');
+				}
+				else if($(this).attr('name')=='show'){
+					$(this).next().css({display:'none'});
+					$(this).next().next().css({display:'none'});
+					$(this).attr('name','noshow');
+				}
+			});
 			
 		}
 	}
@@ -2014,13 +2120,62 @@ function getParty(){
 					thtml+='<tbody>';
 					
 					$.each(data.list, function( i, item ) {
-						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div><input id="commentInput" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" id="comments" style="width: 10%;"/></div></td><td class="love">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml)
+					
+					//댓글 출력
+					$('.comment').click(function(){
+						var post_seq = $(this).attr('id');
+						if($(this).parent().next().hasClass('com')){
+							$(this).text("댓글▼");
+							$('.com').remove('.com');
+						} 
+						else {
+						$(this).text("댓글▲");
+						boardComment(post_seq);
+						}
+					});
+					
+					
+					//게시물 내용 출력
+					$('tr').click(function(){
+						if($(this).attr('name')=='noshow'){
+							$('.con').css({display:'none'});
+							$(this).next().css({display:''});
+							$(this).next().next().css({display:''});
+							$(this).attr('name','show');
+							
+							
+						}
+						else if($(this).attr('name')=='show'){
+							$('.con').css({display:'none'});
+							$(this).next().css({display:'none'});
+							$(this).next().next().css({display:'none'});
+							$(this).attr('name','noshow');
+						}
+					});
+					
+					
+					
+					//댓글 작성
+// 					$("#comments").on("click",function(){
+					$('#comments').click(function(){
+						alert("댓글");
+						var post_seq = $(this).next().next().attr('id');
+						var cmt_detail = $('#commentInput').val();
+						if(cmt_detail==''){
+							alert("댓글을 입력해주세요.");
+						}
+						writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
+					});
+					
 					
 				}
 		}
@@ -2047,13 +2202,29 @@ function getParty(){
 					thtml+='<tbody>';
 					
 					$.each(data.listTotal, function( i, item ) {
-						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+						thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+						thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml)
+					
+					//게시물 내용 출력
+					$('tr').click(function(){
+						if($(this).attr('name')=='noshow'){
+							$(this).next().css({display:''});
+							$(this).next().next().css({display:''});
+							$(this).attr('name','show');
+						}
+						else if($(this).attr('name')=='show'){
+							$(this).next().css({display:'none'});
+							$(this).next().next().css({display:'none'});
+							$(this).attr('name','noshow');
+						}
+					});
 					
 				}
 		}
@@ -2079,13 +2250,29 @@ function getParty(){
 					thtml+='<tbody>';
 					
 					$.each(data.listTotal, function( i, item ) {
-						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+						thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+						thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml)
+					
+					//게시물 내용 출력
+					$('tr').click(function(){
+						if($(this).attr('name')=='noshow'){
+							$(this).next().css({display:''});
+							$(this).next().next().css({display:''});
+							$(this).attr('name','show');
+						}
+						else if($(this).attr('name')=='show'){
+							$(this).next().css({display:'none'});
+							$(this).next().next().css({display:'none'});
+							$(this).attr('name','noshow');
+						}
+					});
 					
 				}
 		}
@@ -2111,13 +2298,29 @@ function getParty(){
 					thtml+='<tbody>';
 					
 					$.each(data.listTotal, function( i, item ) {
-						thtml+='<tr><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
+						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+						thtml+='<tr style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+						thtml+='<tr style="display: none"><td></td><td colspan="3"><input placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:100%;"></td><td class="love">추천</td><td class="comment">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml)
+					
+					//게시물 내용 출력
+					$('tr').click(function(){
+						if($(this).attr('name')=='noshow'){
+							$(this).next().css({display:''});
+							$(this).next().next().css({display:''});
+							$(this).attr('name','show');
+						}
+						else if($(this).attr('name')=='show'){
+							$(this).next().css({display:'none'});
+							$(this).next().next().css({display:'none'});
+							$(this).attr('name','noshow');
+						}
+					});
 					
 				}
 		}

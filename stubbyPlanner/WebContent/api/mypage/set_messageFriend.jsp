@@ -32,8 +32,8 @@
 		
 	 	pstmtMsgFriend =conn.prepareStatement(sqlMsgFriend);
 	 			
-	 	pstmtMsgFriend.setString(1, member_myid);
-	 	pstmtMsgFriend.setString(2, member_friendid);
+	 	pstmtMsgFriend.setString(1, member_friendid);
+	 	pstmtMsgFriend.setString(2, member_myid);
 	 	pstmtMsgFriend.setString(3, msg_subject);
 	 	pstmtMsgFriend.setString(4, msg_content);
 		
