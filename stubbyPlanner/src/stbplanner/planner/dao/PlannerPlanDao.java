@@ -42,7 +42,7 @@ public class PlannerPlanDao {
 
 		//		 	String sql = "select city_id, city_name, city_x, city_y, city_level,city_info, city_img from tbl_city";
 
-		String sql = "select city_id, city_name, city_x, city_y, city_level, city_info, city_img from tbl_city "
+		String sql = "select city_id, city_name, city_x, city_y, city_level, city_info, city_img, recommSlp, slpRates from tbl_city "
 				+ " where city_x between ? and ? " 
 				+ " and city_y between ? and ? and city_level <= ? ";
 
@@ -69,6 +69,8 @@ public class PlannerPlanDao {
 				int city_level = rs.getInt("city_level");
 				String city_info = rs.getString("city_info");
 				String city_img  = rs.getString("city_img");
+				int recommSlp = rs.getInt("recommSlp");
+				int slpRates = rs.getInt("slpRates");
 
 				JSONObject jsonCity = new JSONObject();
 				jsonCity.put("city_id", city_id);
@@ -78,6 +80,8 @@ public class PlannerPlanDao {
 				jsonCity.put("city_level", city_level);
 				jsonCity.put("city_info", city_info);
 				jsonCity.put("city_img", city_img);
+				jsonCity.put("recommSlp", recommSlp);
+				jsonCity.put("slpRates", slpRates);
 
 				jsonArray.add(jsonCity);
 			}

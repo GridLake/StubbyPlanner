@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/include.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@ fbq('track', 'Planner');
 <link rel="stylesheet" href="//photoswipe.com/dist/default-skin/default-skin.css?v=4.1.1-1.0.4"> 
 
 <!-- Core JS file -->
-<script src="/js/photoswipe.min.js"></script> 
+<script src="<%= contextPath %>/externalData/js/photoswipe.min.js"></script> 
 
 <!-- UI JS file -->
 <script src="/stubbyPlanner/externalData/js/photoswipe-ui-default.min.js"></script> 
@@ -699,20 +700,20 @@ Schd = function(id,dayofcity,stime,duration) {
 	this.stime=stime;
 	this.duration=duration;
 }
-Route = function(cityserial,cityname,nights,trstype,is_night_move,lat,lng,date_in,date_out) {
-	this.cityserial = cityserial;
-	this.name = cityname;
+Route = function(city_id,city_name,nights,trstype,is_night_move,city_x,city_y,date_in,date_out) {
+	this.city_id = city_id;
+	this.city_name = city_name;
 	this.nights=nights;
 	this.trstype=trstype;
 	this.is_night_move=is_night_move;
-	this.lat = lat;
-	this.lng = lng;
+	this.city_x = city_x;
+	this.city_y = city_y;
 	this.date_in=date_in;
 	this.date_out=date_out;
 	this.schdlist=[];
 	
 }
-function openInfoWindow(lat,lng,se,title,thumb,sdesc,airpricecity)
+function openInfoWindow(city_x,city_y,se,title,thumb,sdesc,airpricecity)
 {
 	if(prv_infowindow)
 		prv_infowindow.close();
@@ -731,18 +732,18 @@ function openInfoWindow(lat,lng,se,title,thumb,sdesc,airpricecity)
 		thtml=thtml+'<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="planner_step1_infowindow2.asp?lang=ko&s='+se+'"></iframe>';
 		
 	infowindow.setContent(thtml);
-	infowindow.setPosition(new google.maps.LatLng(lat, lng));
+	infowindow.setPosition(new google.maps.LatLng(city_x, city_y));
 	infowindow.open(map);
 	getCityPhotos(se);
 	prv_infowindow=infowindow;
 
 }
-function openInfoWindow2(lat,lng,se)
+function openInfoWindow2(city_x,city_y,se)
 {
 		if(prv_infowindow)
 			prv_infowindow.close();
 
-		var myLatlng = new google.maps.LatLng(lat,lng);
+		var myLatlng = new google.maps.LatLng(city_x,city_y);
 		infowindow = new google.maps.InfoWindow();
 		thedate=$("#thedate").val();
 		/* 경로 재설정 필요 */
@@ -808,9 +809,6 @@ function saveCookie(is_sync)
 	if(is_sync)
 		is_async=false;
 
-
-
-
 	tg=getTripgene();
 	sd=$("#thedate").val();
 
@@ -821,8 +819,8 @@ function saveCookie(is_sync)
 	plan_term=$("#plan_term").html();
 	$.ajax({
 		  /* 경로 수정 필요 */
-		  url: "/api/planning/saveCookieX.asp",
-		 type: "POST",
+		  url: "/stubbyPlanner/model1/saveCookieX.jsp",
+		  type: "POST",
 		  async: is_async,
 		  data: {
 			tripgene:tg,
@@ -830,11 +828,12 @@ function saveCookie(is_sync)
 			tid:trip_id,
 			tripwith:tripwith,
 			term:plan_term,
-			arr_nextday:arr_nextday,
+			arr_nextday:arr_nextday, // +1
 			r_trip_id:''
 		  },
 		  success: function( data ) {
 			trip_id=data;
+			console.log("data:" + data);
 		}
 	});
 
@@ -879,11 +878,11 @@ function getTripgene()
 	var rtstring="";
 	for(i=0;i<routelist.length;i++)
 	{
-		cityserial=routelist[i].cityserial;
+		city_id=routelist[i].city_id;
 		if(rtstring=="")
-			rtstring=cityserial;
+			rtstring=city_id;
 		else
-			rtstring=rtstring+","+cityserial;
+			rtstring=rtstring+","+city_id;
 
 		if(routelist[i].nights!="")
 			rtstring=rtstring+":"+routelist[i].nights;
@@ -942,6 +941,111 @@ var stockholm = new google.maps.LatLng(45, 10);
   var myMarkers=[];
   var recommMarkers=[];
   var prv_infowindow;
+  
+  var styles=[
+	  {
+	    "elementType": "geometry",
+	    "stylers": [
+	      {
+	        "color": "#ffffff"
+	      }
+	    ]
+	  },
+	  {
+	    "elementType": "labels.icon",
+	    "stylers": [
+	      {
+	        "color": "#e5e5e5"
+	      },
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "elementType": "labels.text.fill",
+	    "stylers": [
+	      {
+	        "color": "#c3c3c3"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "administrative",
+	    "elementType": "geometry",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "administrative.land_parcel",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "administrative.locality",
+	    "stylers": [
+	      {
+	        "visibility": "simplified"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "administrative.neighborhood",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "poi",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "road",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "transit",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "water",
+	    "elementType": "geometry",
+	    "stylers": [
+	      {
+	        "color": "#c8f3f9"
+	      }
+	    ]
+	  },
+	  {
+	    "featureType": "water",
+	    "elementType": "labels.text",
+	    "stylers": [
+	      {
+	        "visibility": "off"
+	      }
+	    ]
+	  }
+	];
 
 
 
@@ -980,246 +1084,109 @@ function resized()
 
 }
 var isfirst=true;
+var markers = []; // 전체마커
+var mymarkers = []; // 내가찍은마커
+var map;
+
 function initialize() {
 
 	resized();
-	var mapOptions = {
-	      zoom: 4,
-	      mapTypeId: google.maps.MapTypeId.ROADMAP,
-	      center: stockholm,
-	      streetViewControl: false,
-	  mapTypeControl: true,
-	  mapTypeControlOptions: {
-	        position: google.maps.ControlPosition.RIGHT_TOP
-	    },
-	      panControl: true,
-	  panControlOptions: {
-	        position: google.maps.ControlPosition.RIGHT_TOP
-	    },
-	      zoomControl: true,
-	    zoomControlOptions: {
-	        style: google.maps.ZoomControlStyle.SMALL,
-	        position: google.maps.ControlPosition.RIGHT_TOP
-	    },
-	      scaleControl: true
-	};
- 
- 	map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-
-	google.maps.event.addListener(map, 'tilesloaded', function() {
-
-//	google.maps.event.addListener(map, 'idle', function() {
+	
+	var styledMap = new google.maps.StyledMapType(styles,
+		        {name: "Styled Map"});
 		
-		SWlongitude=map.getBounds().getSouthWest().lng();
-		SWlatitude=map.getBounds().getSouthWest().lat();
-		NElongitude=map.getBounds().getNorthEast().lng();
-		NElatitude=map.getBounds().getNorthEast().lat();
-		zoomLevel=map.getZoom();
+	    	map = new google.maps.Map(document.getElementById('map_canvas'), {
+	    	zoom : 4, // 첫 구글맵 화면 줌크키
+			center : new google.maps.LatLng(45, 10) // 중심
+	    });
+	    
+	  map.mapTypes.set('map_style', styledMap);
+	  map.setMapTypeId('map_style');
+	  
+	var zoom = map.getZoom();
+	var infowindow = new google.maps.InfoWindow();
+	
+	google.maps.event.addListener(map, 'tilesloaded', function(){
+	SWlongitude=map.getBounds().getSouthWest().lng();
+	SWlatitude=map.getBounds().getSouthWest().lat();
+	NElongitude=map.getBounds().getNorthEast().lng();
+	NElatitude=map.getBounds().getNorthEast().lat();
+	zoomLevel=map.getZoom();
+	
+	var params = {
+			SWlongitude:SWlongitude,
+			SWlatitude:SWlatitude,
+			NElongitude:NElongitude,
+			NElatitude:NElatitude,
+			zoomLevel:zoomLevel
+		};
+	 
+	clearMarker();
+		
+ 	 $.ajax({
+			url:"/stubbyPlanner/ajax/getSMarkers.do" 
+			,dataType:"json"
+			,type:"get"
+			,cache:false 
+			,data : params
+			,success:function(data){
+				$(data).each(
+						function(index, e) {
+							// id, type,name, lng,lat,address
+							var city_id = e.city_id;
+							var city_name = e.city_name;
+							var city_x = e.city_x;
+							var city_y = e.city_y;
+							var city_level = e.city_level;
+							var city_info = e.city_info;
+							var city_img = e.city_img;
+							var recommSlp = e.recommSlp;
+							var slpRates = e.slpRates;
+							
+							var image = '/stubbyPlanner/externalData/img_v8/selectcityICON_red.png';					
+							var city_point = new google.maps.LatLng(parseFloat(e.city_x), parseFloat(e.city_y)); // 마커 포인트
 
-		$.ajax({
-			  /* 경로 수정 필요 */
-			  url:"ajax/GetSMarkers.asp",
-			  data: {
-				lang:"ko",
-				SMKey:SWlongitude+"|"+zoomLevel,
-				SiteType:"city",
-				SWlongitude:SWlongitude,
-				SWlatitude:SWlatitude,
-				NElongitude:NElongitude,
-				NElatitude:NElatitude,
-				zoomLevel:zoomLevel
-			  },
-			  success: function( data ) {
-				var strv = data;
-				if(strv!=null)
-				{
-					clearMarkers();
-
-					var RcvData=decodeURIComponent(strv).replace(/\+/g, ' ');
-					var MarkerA=RcvData.split("@");	
-
-					for(i=0;i<MarkerA.length-1;i++) //0:serial,1:markerName,2:longitude,3:latitude,4:taxSerial,5:SiteLevel,6:sitetax,7:sitename_eng
-					{
-						var R=MarkerA[i+1].split("#");
+//							addMarker(city_point, image);
 						
-						var imgurl="/stubbyPlanner/externalData/img_v8/selectcityICON_red.png";
-//						var imgurl = "//www.stubbyplanner.com/images/is/flag/"+R[0].substring(0,5)+"_s.gif";
-
-						var title = R[1];
-						var zIdx= 10/(eval(R[5])+1);
-						
-						var posn = new google.maps.LatLng(R[3],R[2]);
-						var marker = createMarker(posn,R[0], title, imgurl,zIdx);
-						marker.setMap(map);
-						allMarkers.push(marker);
-
-						if(isfirst)
-						{
-
-							if(prv_infowindow)
-								prv_infowindow.close();
-							var myLatlng = new google.maps.LatLng(posn.lat(),posn.lng());
-							infowindow = new google.maps.InfoWindow();
-							var thedate=$("#thedate").val();
-							/* 경로 확인: ? 뒤 체크 */
-							thtml='<iframe width="330px"  scrolling="no" height="110px" frameborder="0" src="planner_step1_infowindow2.do?lastcity=&lang=ko&s='+R[0]+'&d='+thedate+'"></iframe>';
-							infowindow.setContent(thtml);
-							infowindow.setPosition(myLatlng);
-							infowindow.open(map);
-							prv_infowindow=infowindow;
-							getHighlights(R[0]);
-
-							google.maps.event.addListener(infowindow,'closeclick',function(){
-							if(R[0].substring(0,2)=="11"||R[0].substring(0,2)=="12"||R[0].substring(0,2)=="13"||R[0].substring(0,2)=="14")
-								getHighlights('1[1-4]');
-							else if(R[0].substring(0,5)=="16102")
-								getHighlights(R[0].substring(0,5));
-							else
-								getHighlights(R[0].substring(0,2));
+							var marker = new google.maps.Marker({
+								map : map,
+								position : city_point,		// 마커 위치
+								icon: image,				// 빨콩
+								zoomControl: false
 							});
-							//showIntro();
-							isfirst=false;
-						}
-
-					}
-
-		  		}
+							
+							var infowincontent = $("<div>");
+//							infowincontent.append("<div style='width:180px;float:left;height:130px;position:relative;overflow:hidden;''><div><img src="+city_img+" width='180px'></div><div style='position:relative;top:-18px;background:#333;color:#fff;text-align:center'><font style='color:#fff'></font></div></div>");
+//							infowincontent.append("<div style='width:300px;height:130px;padding-left:5px;float:left;overflow-y:auto;''><h5>"+city_name+"</h5>");
+//							infowincontent.append("<p>"+city_info+"</p></div>");
+//							infowincontent.after("<div class='clearfix'></div>");
+							
+							
+							// 클릭했을 때 나오는 창
+							infowincontent.append('<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_infowindow2.jsp?lang=ko&city_name='+city_name+'&city_id='+city_id+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_info='+city_info+'"></iframe>');
+							// infowincontent.append('<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_infowindow2.jsp?lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_id='+city_id+'"></iframe>');
+							marker.addListener('click', function() {
+								infowindow.setContent(infowincontent.html());
+								infowindow.open(map,marker);
+							});
+							
+							markers.push(marker);
+						}); // each
 			}
-		});
-	  });
-	//document.getElementById("if_citylist").src="planner_step1_citylist.asp?lang=ko&srcserial=11";
+		}); // ajax   
+	
+});
 	for(iii=0;iii<routelist.length;iii++)
 	{
 		if(iii==routelist.length-1)
-			addCityBase(routelist[iii].name,routelist[iii].cityserial,routelist[iii].lat,routelist[iii].lng,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].cityserial]);
+			addCityBase(routelist[iii].name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
 		else
-			tAddCityBase(routelist[iii].name,routelist[iii].cityserial,routelist[iii].lat,routelist[iii].lng,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].cityserial]);
+			tAddCityBase(routelist[iii].name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
 		
 		$("#span_schd_cnt_"+iii).html("버킷 "+routelist[iii].schdlist.length);
 
-//		for(j=0;j<routelist[iii].schdlist.length;j++)
-//		{
-//			imgurl=routelist[iii].schdlist[j].imgurl;
-//			if(imgurl=="")
-//				imgurl='/img_v9/citymap.png';
-//
-//			addSpotBase(routelist[iii].cityserial,routelist[iii].name,routelist[iii].schdlist[j].name ,routelist[iii].schdlist[j].spotserial,routelist[iii].schdlist[j].lat,routelist[iii].schdlist[j].lng,imgurl);
-//		}
 	}
 
-	
-//	var styles=[{"stylers":[{"hue":"#00ffe6"},{"saturation":-20}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"lightness":-10},{"saturation":-50}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"lightness":70}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"lightness":60}]},{"featureType":"poi.business","stylers":[{"visibility":"off"}]},{"featureType":"poi.school","stylers":[{"visibility":"off"}]},{"featureType":"poi.place_of_worship","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"visibility":"simplified"},{"lightness":100}]},{"featureType":"transit","stylers":[{"visibility":"off"}]}];
-//	var styles=[{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#FFBB00"},{"saturation":43.4},{"lightness":37.6},{"gamma":1}]},{"featureType":"poi","elementType":"all","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989012},{"lightness":11.2},{"gamma":1}]},{"featureType":"road.highway","elementType":"all","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.6},{"gamma":1}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.2},{"gamma":1}]},{"featureType":"road.local","elementType":"all","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#00b8ff"},{"saturation":-13.2},{"lightness":2.4},{"gamma":1}]}];
-
-//var styles=[{"featureType": "administrative","elementType": "labels.text.fill","stylers": [{"color": "#6195a0"}]},{"featureType": "administrative.province","elementType": "geometry.stroke","stylers": [{"visibility": "off"}]},{"featureType": "landscape","elementType": "geometry","stylers": [{"lightness": "0"},{"saturation": "0"},{"color": "#f5f5f2"},{"gamma": "1"}]},{"featureType": "landscape.man_made","elementType": "all","stylers": [{"lightness": "-3"},{"gamma": "1.00"}]},{"featureType": "landscape.natural.terrain","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "poi","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "geometry.fill","stylers": [{"color": "#bae5ce"},{"visibility": "on"}]},{"featureType": "road","elementType": "all","stylers": [{"saturation": -100},{"lightness": 45},{"visibility": "simplified"}]},{"featureType": "road.highway","elementType": "all","stylers": [{"visibility": "simplified"}]},{"featureType": "road.highway","elementType": "geometry.fill","stylers": [{"color": "#fac9a9"},{"visibility": "simplified"}]},{"featureType": "road.highway","elementType": "labels.text","stylers": [{"color": "#4e4e4e"}]},{"featureType": "road.arterial","elementType": "labels.text.fill","stylers": [{"color": "#787878"}]},{"featureType": "road.arterial","elementType": "labels.icon","stylers": [{"visibility": "off"}]},{"featureType": "transit","elementType": "all","stylers": [{"visibility": "simplified"}]},{"featureType": "transit.station.airport","elementType": "labels.icon","stylers": [{"hue": "#0a00ff"},{"saturation": "-77"},{"gamma": "0.57"},{"lightness": "0"}]},{"featureType": "transit.station.rail","elementType": "labels.text.fill","stylers": [{"color": "#43321e"}]},{"featureType": "transit.station.rail","elementType": "labels.icon","stylers": [{"hue": "#ff6c00"},{"lightness": "4"},{"gamma": "0.75"},{"saturation": "-68"}]},{"featureType": "water","elementType": "all","stylers": [{"color": "#eaf6f8"},{"visibility": "on"}]},{"featureType": "water","elementType": "geometry.fill","stylers": [{"color": "#c7eced"}]},{"featureType": "water","elementType": "labels.text.fill","stylers": [{"lightness": "-49"},{"saturation": "-53"},{"gamma": "0.79"}]}];
-
-
-//var styles=[{"featureType": "administrative","elementType": "geometry.stroke","stylers": [{"color": "#b8b8b8"},{"visibility": "on"},{"weight": 1}]},{"featureType": "administrative","elementType": "labels.text.fill","stylers": [{"color": "#6195a0"}]},{"featureType": "administrative.province","elementType": "geometry.stroke","stylers": [{"visibility": "off"}]},{"featureType": "landscape","elementType": "geometry","stylers": [{"color": "#ffffff"}]},{"featureType": "landscape.man_made","stylers": [{"lightness": -5}]},{"featureType": "landscape.natural.terrain","stylers": [{"visibility": "off"}]},{"featureType": "poi","stylers": [{"visibility": "off"}]},{"featureType": "poi.park","elementType": "geometry.fill","stylers": [{"color": "#bae5ce"},{"visibility": "on"}]},{"featureType": "road","stylers": [{"saturation": -100},{"lightness": 45},{"visibility": "simplified"}]},{"featureType": "road.arterial","stylers": [{"visibility": "off"}]},{"featureType": "road.highway","stylers": [{"visibility": "off"}]},{"featureType": "transit","stylers": [{"visibility": "simplified"}]},{"featureType": "water","stylers": [{"color": "#c2f1f5"},{"saturation": 35},{"lightness": 40},{"gamma": 0.42},{"visibility": "on"}]},{"featureType": "water","elementType": "labels.text.fill","stylers": [{"color": "#adadad"},{"visibility": "on"}]}];
-var styles=[
-  {
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#ffffff"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "color": "#e5e5e5"
-      },
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#c3c3c3"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.locality",
-    "stylers": [
-      {
-        "visibility": "simplified"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.neighborhood",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#c8f3f9"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  }
-];
-	map.setOptions({styles: styles});
 
 
 
@@ -1243,23 +1210,25 @@ var styles=[
 
 
 updateTerm();
-  }
-
+}
+//마커 생성시에 있던 마커 clear 해주는 코딩
+function clearMarker() {
+	  for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(null);
+		}
+}
+		
+//########스케줄 삭제코딩, 루트리스트[루트_id] 
 function delSchd(r_id,schd_id) 
 {
 	for(i=0;i<routelist[r_id].schdlist.length;i++)
 	{
 		if(routelist[r_id].schdlist[i].id==schd_id)
 		{
-			
 			routelist[r_id].schdlist.splice(i,1);
-			
-
-			
 		}
 	}
 	$("#span_schd_cnt_"+r_id).html("버킷 "+routelist[r_id].schdlist.length);
-	
 
 	schd_cnt=$("#span_schd_cnt").html();
 	schd_cnt--;
@@ -1267,8 +1236,9 @@ function delSchd(r_id,schd_id)
 
 	//alert("일정이 삭제되었습니다.");
 	saveCookie();
-
 }
+
+//#########스케줄 추가 코당[]
 function addSchd(r_id,schd_id) 
 {
 
@@ -1281,13 +1251,7 @@ function addSchd(r_id,schd_id)
 	saveCookie();
 
 }
-function clearMarkers()
-{
-	for(i=0;i<allMarkers.length;i++)
-		allMarkers[i].setMap(null);
-	allMarkers=[];
-
-}
+// 내가여행지로 찍은 마커 지우는 코딩
 function clearMyMarkers()
 {
 	for(i=0;i<myMarkers.length;i++)
@@ -1295,11 +1259,11 @@ function clearMyMarkers()
 	myMarkers=[];
 }
 
-
+// 내마커 선택후 추천마커 만드는 코딩
 function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 
 		 	 var image = {
-			    url: "/stubbyPlanner/externalData/img_v13/marker/mycity_recomm.png",
+			    url: "/stubbyPlanner/externalData/img_v13/marker/mycity_recomm.png", // 개마크
 			    size: new google.maps.Size(57, 57),
 			    origin: new google.maps.Point(0, 0),
 			    anchor: new google.maps.Point(12, 25),
@@ -1310,14 +1274,11 @@ function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 	    position: posn,
 	    title: "그 다음에 많이 가는 도시: "+title,
 	    icon: image,
-	    anchorPoint:new google.maps.Point(0, -17),
+	    anchorPoint:new google.maps.Point(0, -17), //찍은마커밑에 infoWindow 끝까지의 오프셋.
 	    zIndex:sitelevel
 	  };
 
 	  var marker = new google.maps.Marker(markerOptions);
-	  google.maps.event.addListener(marker, 'dblclick', function() {
-//	//	addCity(title,se,posn.lat(),posn.lng());
-	  });
 
 	  google.maps.event.addListener(marker, 'click', function() {
 		if(prv_infowindow)
@@ -1325,12 +1286,12 @@ function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 
 		infowindow = new google.maps.InfoWindow();
 		/* 경로 확인: ? 뒤 체크 */
-		thtml='<iframe width="350px"  scrolling="no" height="130px" frameborder="0" src="planner_step1_infowindow2.do?recomm=1&lastcity='+lastcity.serial+'&lang=ko&s='+se+'"></iframe>';
+		thtml='<iframe width="350px"  scrolling="no" height="130px" frameborder="0" src="planner_step1_infowindow2.do?recomm=1&lastcity='+lastcity.city_id+'&lang=ko&s='+se+'"></iframe>';
 		infowindow.setContent(thtml);
 		infowindow.open(map,marker);
 
 		prv_infowindow=infowindow;
-//		getCityPhotos(se);
+
 		google.maps.event.addListener(infowindow,'closeclick',function(){
 			if(se.substring(0,2)=="11"||se.substring(0,2)=="12"||se.substring(0,2)=="13"||se.substring(0,2)=="14")
 				getHighlights('1[1-4]');
@@ -1340,13 +1301,13 @@ function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 				getHighlights(se.substring(0,2));
 		});
 
-		getHighlights(se);
-
+		//getHighlights(se);
 
 	  });
   	return marker;
 }
 
+// 마커만드는 코딩 - 내코딩에는 필요없음.
  function createMarker(posn,se, title, imgurl,sitelevel) {
   var image = {
     url: imgurl
@@ -1385,10 +1346,11 @@ function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 		infowindow = new google.maps.InfoWindow();
 		thedate=$("#thedate").val();
 		/* 경로 확인: ? 뒤 체크 */
+				//일단 핸들러안거치고  그냥 바로 띄우기
 		if(routelist.length==0)
-			thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="planner_step1_infowindow2.do?lang=ko&s='+se+'&d='+thedate+'"></iframe>';
+			thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="planner_step1_infowindow2.jsp?lang=ko&s='+se+'&d='+thedate+'"></iframe>';
 		else
-			thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="planner_step1_infowindow2.do?lang=ko&s='+se+'&d='+thedate+'"></iframe>';
+			thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="planner_step1_infowindow2.jsp?lang=ko&s='+se+'&d='+thedate+'"></iframe>';
 
 		infowindow.setContent(thtml);
 		infowindow.setPosition(myLatlng);
@@ -1415,6 +1377,7 @@ function createMarkerWithoutSize(posn,se, title, imgurl,sitelevel) {
 	  });
   	return marker;
 }
+//도시 사진 가져오는 코딩인듯. - 나는 그냥 직접경로로 가져오는 코딩으로 바꿔놈 iframe - planner_step1_infowindow2.do
 function getCityPhotos(se)
 {
 
@@ -1432,7 +1395,7 @@ function getCityPhotos(se)
 			if(data!="")
 			{
 				thtml='';
-				
+				// 사진경로 가져오는 코딩.
 				$.each(data.photos, function( i, item ) {
 					var thumb=item.photo.replace(".jpg","_m.jpg").replace(".JPG","_m.JPG").replace(".gif","_m.gif").replace(".GIF","_m.GIF").replace(".JPEG","_m.JPEG").replace(".jpeg","_m.jpeg");
 					thtml=thtml+'<a href="'+item.photo+'" title="'+item.title+'" data-gallery><img width="100px"  height="75px" src="'+thumb+'" alt="'+item.title+'"></a>';
@@ -1444,50 +1407,45 @@ function getCityPhotos(se)
 				$("#highlight_container").html(thtml);
 				$("#highlight_container").show('slow');
 			}
-			else
-			{
-
-
-			}
-			
 	  	}
 	});
 }
-
-function getHighlights(cityserials,optType)
+//############## city_id 값에 따라 가이드북 눌럿을 때 하이라이트(사진) 가져오는 코딩
+function XXXXgetHighlights(city_id,optType)
 {
 
 	return;
 
 	if(!optType)
 		optType="";
-	if(!cityserials)
+	if(!city_id)
 	{
-		cityserials="";
+		city_id="";
 	}
-	if(cityserials=="")
+	if(city_id=="") // 도시가 없을때?
 	{
 		txt_citylist="";
 		for(i=0;i<citylist.length;i++)
 		{
+// 			txt_citylist = txt_citylist,시티리스트들을 넣는다. 왜?
 			txt_citylist=txt_citylist+","+citylist[i];
 		}
 		if(txt_citylist!="")
 			txt_citylist=txt_citylist.substring(1);
 		
-		cityserials=txt_citylist;
-		cityserials=cityserials.substring(cityserials.length-9);
+		city_id=txt_citylist;
+		city_id=city_id.substring(city_id.length-9);
 	}
 
 
-	lastHighlight=cityserials;
-	var cityserial=cityserials;
+	lastHighlight=city_id;
+	var city_id=city_id;
 	thedate=$("#thedate").val();
 
-	if(cityserials=="1[1-4]")
-		cityserials="";
+	if(city_id=="1[1-4]")
+		city_id="";
 	else
-		cityserials=cityserials.substring(0,5);
+		city_id=city_id.substring(0,5);
 
 	$.ajax({
 		  /* 경로 수정 필요  */
@@ -1496,7 +1454,7 @@ function getHighlights(cityserials,optType)
 		data: {
 		    thedate:thedate,
 		    lang:"ko",
-		   region_id:cityserials
+		   region_id:city_id
 		  },
 		  success: function( data ) {
 			if(data!="")
@@ -1546,16 +1504,16 @@ function getHighlights(cityserials,optType)
 }
 
 
-function XXXXgetHighlights(cityserials,optType)
+function getHighlights(city_ids,optType)
 {
 
 	if(!optType)
 		optType="";
-	if(!cityserials)
+	if(!city_ids)
 	{
-		cityserials="";
+		city_ids="";
 	}
-	if(cityserials=="")
+	if(city_ids=="")
 	{
 		txt_citylist="";
 		for(i=0;i<citylist.length;i++)
@@ -1565,17 +1523,17 @@ function XXXXgetHighlights(cityserials,optType)
 		if(txt_citylist!="")
 			txt_citylist=txt_citylist.substring(1);
 		
-		cityserials=txt_citylist;
-		cityserials=cityserials.substring(cityserials.length-9);
+		city_ids=txt_citylist;
+		city_ids=city_ids.substring(city_ids.length-9);
 	}
 
 
-	lastHighlight=cityserials;
+	lastHighlight=city_ids;
 
 var noCityhighlight=false;
-//if(cityserials=='111011004'||cityserials=='111021002'||cityserials=='111031001'||cityserials=='111041001'||cityserials=='111041003'||cityserials=='111041004'||cityserials=='111041006'||cityserials=='111041009'||cityserials=='111041036'||cityserials=='111061003'||cityserials=='111061006'||cityserials=='111061008'||cityserials=='111061071'||cityserials=='111071001'||cityserials=='111071002'||cityserials=='111081001'||cityserials=='121011002'||cityserials=='121011003'||cityserials=='121021001'||cityserials=='121021003'||cityserials=='121021008'||cityserials=='121031001'||cityserials=='121041001'||cityserials=='121041003'||cityserials=='121041028'||cityserials=='121041030'||cityserials=='121041035'||cityserials=='131011001'||cityserials=='131011003'||cityserials=='131021001'||cityserials=='131041001'||cityserials=='131041002'||cityserials=='131041032'||cityserials=='131061001'||cityserials=='131061002'||cityserials=='131061009'||cityserials=='161011023'||cityserials=='161021039'||cityserials=='161021063'||cityserials=='161021080'||cityserials=='161171002'||cityserials=='161241015'||cityserials=='161251011')
+//if(city_ids=='111011004'||city_ids=='111021002'||city_ids=='111031001'||city_ids=='111041001'||city_ids=='111041003'||city_ids=='111041004'||city_ids=='111041006'||city_ids=='111041009'||city_ids=='111041036'||city_ids=='111061003'||city_ids=='111061006'||city_ids=='111061008'||city_ids=='111061071'||city_ids=='111071001'||city_ids=='111071002'||city_ids=='111081001'||city_ids=='121011002'||city_ids=='121011003'||city_ids=='121021001'||city_ids=='121021003'||city_ids=='121021008'||city_ids=='121031001'||city_ids=='121041001'||city_ids=='121041003'||city_ids=='121041028'||city_ids=='121041030'||city_ids=='121041035'||city_ids=='131011001'||city_ids=='131011003'||city_ids=='131021001'||city_ids=='131041001'||city_ids=='131041002'||city_ids=='131041032'||city_ids=='131061001'||city_ids=='131061002'||city_ids=='131061009'||city_ids=='161011023'||city_ids=='161021039'||city_ids=='161021063'||city_ids=='161021080'||city_ids=='161171002'||city_ids=='161241015'||city_ids=='161251011')
 {
-	var cityserial=cityserials;
+	var city_id=city_ids;
 	thedate=$("#thedate").val();
 	$.ajax({
 		  /* 경로 수정 필요  */
@@ -1585,7 +1543,7 @@ var noCityhighlight=false;
 		    thedate:thedate,
 		    lang:"ko",
 		    sked_type:optType,
-		    cityserial:cityserials
+		    city_id:city_ids
 		  },
 		  success: function( data ) {
 
@@ -1599,26 +1557,26 @@ var noCityhighlight=false;
 				thtml='';
 				if(data.buckets.length==0&&optType=="")
 				{	
-					getGuideHighlight(cityserial);
+					getGuideHighlight(city_id);
 				}
 				else
 				{
 
-					if(cityserial.length<9)
+					if(city_id.length<9)
 					{
 
 						thtml=thtml+'<div style="float:left;width:60px">';
-						if(cityserials=="1[1-4]")
+						if(city_ids=="1[1-4]")
 							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'1[1-4]\');">유럽 </a></div>';
 						else
 							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\'1[1-4]\');">유럽 </a></div>';
 	
-						if(cityserials=="16")
+						if(city_ids=="16")
 							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'16\');"> 아시아 </a></div>';
 						else
 							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\'16\');"> 아시아 </a></div>';
 
-						if(cityserials=="16102")
+						if(city_ids=="16102")
 							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'16102\');"> 일본 </a></div>';
 						else
 							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\'16102\');"> 일본 </a></div>';
@@ -1630,8 +1588,8 @@ var noCityhighlight=false;
 
 
 							thtml=thtml+'<div class="photoonmap" style="width:90px;overflow:hidden;height:120px;margin-right:5px;margin-bottom:25px;float:left">';
-							if(cityserials=="1[1-4]"||cityserials=="16"||cityserials=="16102")
-								thtml=thtml+'<div style="position:relative;height:120px;overflow:hidden"><a href="javascript:getHighlightItems(\''+item.serial+'\',\''+cityserials+'\');"><img style="top:-10px;position:relative;" src="'+item.imgurl_v+'" height="140px"></a></div>';
+							if(city_ids=="1[1-4]"||city_ids=="16"||city_ids=="16102")
+								thtml=thtml+'<div style="position:relative;height:120px;overflow:hidden"><a href="javascript:getHighlightItems(\''+item.serial+'\',\''+city_ids+'\');"><img style="top:-10px;position:relative;" src="'+item.imgurl_v+'" height="140px"></a></div>';
 							else
 								thtml=thtml+'<div style="position:relative;height:120px;overflow:hidden"><a href="javascript:showBucket(\''+item.serial+'\');"><img style="top:-10px;position:relative;" src="'+item.imgurl_v+'" height="140px"></a></div>';
 		
@@ -1647,38 +1605,38 @@ var noCityhighlight=false;
 					
 						thtml=thtml+'<div style="float:left;width:60px">';
 						if(optType==""||optType==null)
-							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'\');">인기</a></div>';
+							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'\');">인기</a></div>';
 						else
-							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'\');">인기</a></div>';
+							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'\');">인기</a></div>';
 			
 						if(optType=="SEE")
-							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'SEE\');">관광</a></div>';
+							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'SEE\');">관광</a></div>';
 						else
-							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'SEE\');">관광</a></div>';
+							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'SEE\');">관광</a></div>';
 
 						if(optType=="EAT")
-							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'EAT\');">맛집</a></div>';
+							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'EAT\');">맛집</a></div>';
 						else
-							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'EAT\');">맛집</a></div>';
+							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'EAT\');">맛집</a></div>';
 
 						if(optType=="BUY")
-							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'BUY\');">쇼핑</a></div>';
+							thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'BUY\');">쇼핑</a></div>';
 						else
-							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'BUY\');">쇼핑</a></div>';
-						if(cityserial=="121011003"||cityserial=="111041004"||cityserial=="111041006"||cityserial=="111041003")
+							thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'BUY\');">쇼핑</a></div>';
+						if(city_id=="121011003"||city_id=="111041004"||city_id=="111041006"||city_id=="111041003")
 						{
 							if(optType=="SLP")
-								thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'SLP\');">호스텔</a></div>';
+								thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'SLP\');">호스텔</a></div>';
 							else
-								thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'SLP\');">호스텔</a></div>';
+								thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'SLP\');">호스텔</a></div>';
 
 						}
 						else
 						{
 							if(optType=="TSL")
-								thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+cityserial+'\',\'TSL\');">숙소</a></div>';
+								thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\''+city_id+'\',\'TSL\');">숙소</a></div>';
 							else
-								thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+cityserial+'\',\'TSL\');">숙소</a></div>';
+								thtml=thtml+'<div class="highlightblock"><a href="javascript:getHighlights(\''+city_id+'\',\'TSL\');">숙소</a></div>';
 						}
 						thtml=thtml+'</div>';
 
@@ -1713,8 +1671,8 @@ var noCityhighlight=false;
 }
 }
 
-
-function getHighlightItems(hserial,cityserials)
+// ###########가이드북 하이라이트 아이템 가져오는 코딩
+function getHighlightItems(hserial,city_ids)
 {
 	return;
 	$.ajax({
@@ -1738,11 +1696,11 @@ function getHighlightItems(hserial,cityserials)
 				else
 				{
 					/* src 뒤 경로 변경 안함 - 소스에 이미지 없음 */
-					if(cityserials=='1[1-4]')
+					if(city_ids=='1[1-4]')
 						thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'1[1-4]\');"><u>유럽</u></a> > '+data.title+'&nbsp;&nbsp;<a href="javascript:getHighlights(\'1[1-4]\');"><img src="/img_v8/btn_delete.png"></a></div>';
-					if(cityserials=='16')
+					if(city_ids=='16')
 						thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'16\');"><u>아시아</u></a> > '+data.title+'&nbsp;&nbsp;<a href="javascript:getHighlights(\'16\');"><img src="/img_v8/btn_delete.png"></a></div>';
-					if(cityserials=='16102')
+					if(city_ids=='16102')
 						thtml=thtml+'<div class="highlightblock_selected"><a href="javascript:getHighlights(\'16102\');"><u>일본</u></a> > '+data.title+'&nbsp;&nbsp;<a href="javascript:getHighlights(\'16102\');"><img src="/img_v8/btn_delete.png"></a></div>';
 					
 					thtml=thtml+'<div style="width:100%;height:100px;overflow-x:auto;overflow-y:hidden">'
@@ -1752,9 +1710,9 @@ function getHighlightItems(hserial,cityserials)
 					//	var thumb=item.imgurl_v.replace(".jpg","_m.jpg").replace(".JPG","_m.JPG").replace(".gif","_m.gif").replace(".GIF","_m.GIF").replace(".JPEG","_m.JPEG").replace(".jpeg","_m.jpeg");
 
 						thtml=thtml+'<div class="photoonmap" style="width:120px;overflow:hidden;height:90px;margin-right:5px;margin-bottom:25px;float:left">';
-						thtml=thtml+'<div style="position:relative;width:120px;height:90px;overflow:hidden"><a href="javascript:openInfoWindow(\''+item.lat+'\',\''+item.lng+'\',\''+item.cityserial.substring(0,9)+'\',\''+item.title_s.replace(/\'/g, "\\\'")+'\',\''+item.imgurl_v+'\',\''+item.sdesc.replace(/\'/g, "\\\'")+'\',\''+item.airpricecity+'\');"><img style="top:0px;position:relative;" src="'+item.imgurl_v+'" height="90px"></a></div>';
+						thtml=thtml+'<div style="position:relative;width:120px;height:90px;overflow:hidden"><a href="javascript:openInfoWindow(\''+item.city_x+'\',\''+item.city_y+'\',\''+item.city_id.substring(0,9)+'\',\''+item.title_s.replace(/\'/g, "\\\'")+'\',\''+item.imgurl_v+'\',\''+item.sdesc.replace(/\'/g, "\\\'")+'\',\''+item.airpricecity+'\');"><img style="top:0px;position:relative;" src="'+item.imgurl_v+'" height="90px"></a></div>';
 						thtml=thtml+'<div style="position:relative;width:120px;top:-30px;height:30px;overflow:hidden;padding-left:3px;padding-top:0px;">';
-						thtml=thtml+'<a href="javascript:openInfoWindow(\''+item.lat+'\',\''+item.lng+'\',\''+item.cityserial.substring(0,9)+'\',\''+item.title_s.replace(/\'/g, "\\\'")+'\',\''+item.imgurl_v+'\',\''+item.sdesc.replace(/\'/g, "\\\'")+'\');"><font class="photochar" style="font-size: 9pt;">'+item.title_s+'</font></a>';
+						thtml=thtml+'<a href="javascript:openInfoWindow(\''+item.city_x+'\',\''+item.city_y+'\',\''+item.city_id.substring(0,9)+'\',\''+item.title_s.replace(/\'/g, "\\\'")+'\',\''+item.imgurl_v+'\',\''+item.sdesc.replace(/\'/g, "\\\'")+'\');"><font class="photochar" style="font-size: 9pt;">'+item.title_s+'</font></a>';
 						thtml=thtml+'</div>';
 						thtml=thtml+'</div>';
 					});
@@ -1781,8 +1739,8 @@ function getHighlightItems(hserial,cityserials)
 	});
 }
 
-
-function getGuideHighlight(cityserials)
+//## 가이트 하이라이트 가져오는 코딩
+function getGuideHighlight(city_ids)
 {
 	return;
 
@@ -1795,7 +1753,7 @@ function getGuideHighlight(cityserials)
 		 dataType: 'json',		  data: {
 		    thedate:thedate,
 		    lang:"ko",
-		    cityserials:cityserials
+		    city_ids:city_ids
 		  },
 		  success: function( data ) {
 			if(data!="")
@@ -1835,22 +1793,22 @@ function getGuideHighlight(cityserials)
 							thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0;"><a href="javascript:openGuideBook(\''+item.serial+'\',\''+data.city+'\')" title="'+item.reason+'(by '+item.by+')"><img width="100px"  height="75px" src="'+thumb+'" alt="'+item.title+'" style="margin-left:0px;margin-right:0px;"></a><div style="position:relative;top:-20px;background:#a1a1a1;width:100px;padding-top:1px;padding-bottom:2px;color:#fff;text-align:center">'+item.title+'</div></div>';
 						}
 					});
-					thtml=thtml+'<div style="float:left;width:100px;height:95px;overflow:hidden;position:relative;margin-left:4px;"><div><a href="javascript:openGuideBookExt(\''+data.cityserial+'\',\''+data.city+'\',\'map\')" title="'+data.city+'시내지도"><img width="100px"  height="75px" src="/img_v9/citymap.png" alt="'+data.city+'지도" style="margin-right:0px;"></a></div><div style="position:relative;top:-20px;background:#a1a1a1;width:100px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center">시내지도</div></div>';
+					thtml=thtml+'<div style="float:left;width:100px;height:95px;overflow:hidden;position:relative;margin-left:4px;"><div><a href="javascript:openGuideBookExt(\''+data.city_id+'\',\''+data.city+'\',\'map\')" title="'+data.city+'시내지도"><img width="100px"  height="75px" src="/img_v9/citymap.png" alt="'+data.city+'지도" style="margin-right:0px;"></a></div><div style="position:relative;top:-20px;background:#a1a1a1;width:100px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center">시내지도</div></div>';
 
-//					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><a href="javascript:openGuideBookExt(\''+data.cityserial+'\',\''+data.city+'\',\'site_slp\')" title="'+data.city+'숙소예약 로그"><img width="100px"  height="75px" src="/img_v9/trend_slp.png"  style="margin-right:0px;"></a></div>';
-//					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><a href="javascript:openGuideBookExt(\''+data.cityserial+'\',\''+data.city+'\',\'course\')" title="'+data.city+'투어예약 로그"><img width="100px"  height="75px" src="/img_v9/trend_tor.png" style="margin-right:0px;"></a></div>';
+//					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><a href="javascript:openGuideBookExt(\''+data.city_id+'\',\''+data.city+'\',\'site_slp\')" title="'+data.city+'숙소예약 로그"><img width="100px"  height="75px" src="/img_v9/trend_slp.png"  style="margin-right:0px;"></a></div>';
+//					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><a href="javascript:openGuideBookExt(\''+data.city_id+'\',\''+data.city+'\',\'course\')" title="'+data.city+'투어예약 로그"><img width="100px"  height="75px" src="/img_v9/trend_tor.png" style="margin-right:0px;"></a></div>';
 
 
 				thtml=thtml+'</div>';
 
 				if(data.evtserial!='')
-					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><div style="padding-top:7px;height:75px;"><a href="javascript:showEvent(\''+data.city+'\',\''+data.cityserial+'\',\''+thedate+'\',\''+data.evtserial+'\');" title="'+data.city+'축제"><img width="100px"  height="75px" src="'+data.evtimg+'" style="margin-right:0px;"></a></div><div style="position:relative;top:-20px;background:#a1a1a1;width:100px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움">'+data.evtname+'</div></div>';
+					thtml=thtml+'<div style="float:left;width:100px;height:85px;overflow:hidden;position:relative;margin-left:4px;"><div style="padding-top:7px;height:75px;"><a href="javascript:showEvent(\''+data.city+'\',\''+data.city_id+'\',\''+thedate+'\',\''+data.evtserial+'\');" title="'+data.city+'축제"><img width="100px"  height="75px" src="'+data.evtimg+'" style="margin-right:0px;"></a></div><div style="position:relative;top:-20px;background:#a1a1a1;width:100px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움">'+data.evtname+'</div></div>';
 
 
 				thtml=thtml+'<div style="float:left;width:75px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0"><div style="background:#fff;padding-top:17px;width:100%;height:75px;text-align:center" id="hotdealhotel">HOT DEAL</div><div style="position:relative;top:-22px;background:#ee5a3e;width:75px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:NanumGothic"><span class="glyphicon glyphicon-bell"></span> 특가호텔</div></div>';
-				thtml=thtml+'<div style="float:left;width:75px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0"><div style="background:#fff;padding-top:7px;width:100%;height:75px;"><a href="javascript:showWthr(\''+data.city+'\',\''+data.cityserial+'\',\''+thedate+'\')" title="'+data.city+'예상기온"><h4 style="text-align:center;color:#333">'+data.temp+'°C</h4></a></div><div style="position:relative;top:-22px;background:#a1a1a1;width:75px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움"><span class="glyphicon glyphicon-stats"></span> 예상기온</div></div>';
+				thtml=thtml+'<div style="float:left;width:75px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0"><div style="background:#fff;padding-top:7px;width:100%;height:75px;"><a href="javascript:showWthr(\''+data.city+'\',\''+data.city_id+'\',\''+thedate+'\')" title="'+data.city+'예상기온"><h4 style="text-align:center;color:#333">'+data.temp+'°C</h4></a></div><div style="position:relative;top:-22px;background:#a1a1a1;width:75px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움"><span class="glyphicon glyphicon-stats"></span> 예상기온</div></div>';
 				if(data.cnt>0)
-					thtml=thtml+'<div style="float:left;width:75px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0"><div style="background:#fff;padding-top:7px;width:100%;height:75px;"><a href="javascript:showTripFriends(\''+data.city+'\',\''+data.cityserial+'\',\''+thedate+'\')" title="'+data.city+'동행추천"><h4 style="text-align:center;color:#333">'+data.cnt+'명+</h4></a></div><div style="position:relative;top:-22px;background:#a1a1a1;width:75px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움"><span class="glyphicon glyphicon-user"></span> 동행추천</div></div>';
+					thtml=thtml+'<div style="float:left;width:75px;height:85px;overflow:hidden;position:relative;margin-left:4px;border:1px solid #c0c0c0"><div style="background:#fff;padding-top:7px;width:100%;height:75px;"><a href="javascript:showTripFriends(\''+data.city+'\',\''+data.city_id+'\',\''+thedate+'\')" title="'+data.city+'동행추천"><h4 style="text-align:center;color:#333">'+data.cnt+'명+</h4></a></div><div style="position:relative;top:-22px;background:#a1a1a1;width:75px;padding-top:2px;padding-bottom:2px;color:#fff;text-align:center;font-family:돋움"><span class="glyphicon glyphicon-user"></span> 동행추천</div></div>';
 
 				thtml=thtml+'<div style="clear:both"></div>';
 
@@ -1877,6 +1835,8 @@ function getGuideHighlight(cityserials)
 
 
 }
+
+// #### 마지막에 선택한 도시에따라 다음도시 마커찍는 코딩
   function getNextCities(lastcity)
   {
 
@@ -1889,8 +1849,8 @@ function getGuideHighlight(cityserials)
 			txt_citylist=txt_citylist.substring(1);
 		$.ajax({
 			   /* 경로 수정 필요 */
-			   url:"ajax/recommnext.asp",
-			  data: {
+			   url:"/stubbyPlanner/model1/recommnext.jsp",
+			   data: {
 				lang:"ko",
 				lastcity:lastcity,
 				citylist:txt_citylist
@@ -1919,11 +1879,12 @@ function getGuideHighlight(cityserials)
 						marker.setMap(map);
 						recommMarkers.push(marker);
 					}
-
 		  		}
 			}
 		});
   }
+  
+  // 다음여행지 추천마크 삭제하는 코딩.
   function clearNextMarkers()
   {
 	for(i=0;i<recommMarkers.length;i++)
@@ -1931,6 +1892,7 @@ function getGuideHighlight(cityserials)
 		recommMarkers[i].setMap(null);
 	}
   }
+  // 마커 애니메이션 주는 코딩같은데 쓰는곳이 없는듯.
   function toggleBounce() {
  
     if (marker.getAnimation() != null) {
@@ -1940,8 +1902,9 @@ function getGuideHighlight(cityserials)
     }
   }
 
+  // cityroute 왼쪽 루트탭 에 도시div 마우스로끌어서 위치변경할때 정렬하는 코딩 
   $(function() {
-    $( "#cityroute" ).sortable({
+    $( "#cityroute" ).sortable({ 
       items: ".cityblock",
        start: function(event, ui) {
                 var start_pos = ui.item.index();
@@ -1976,6 +1939,7 @@ function getGuideHighlight(cityserials)
     });
   });
 
+ // ######333무슨코딩인지는 모르겟으나 현재 사용하지 않음.
 function selCity(t)
 {
 	var is_chrome = window.chrome;
@@ -2006,9 +1970,10 @@ function selCity(t)
 }
 
 /* 경로 확인 */
+//## 무슨코딩인지는 모르겠으나 사용하지 않는듯?
 function setcities(serials)
 {
-	window.location="/plan/planner_step1.asp?cityserials="+serials;
+	window.location="/plan/planner_step1.asp?city_ids="+serials;
 }
   </script>
 
@@ -2049,6 +2014,7 @@ ga('send','event','planner','webview','');
 
 </script>
 <script>
+//  ############ cityLIst 보여주는 코딩 이지만 사용하지 않는듯?
 prv_menuregion="11";
 function showCityList(srcserial)
 {
@@ -2073,6 +2039,8 @@ function showCityList(srcserial)
 	{
 		$( "#dialog-addcity" ).dialog( "destroy" );
 	}
+	
+	//###+####### modal-intro 에사 사용  - 처음 가이드 해주는 부분인듯.
 	function onselectchanged(latlng)
 	{
 		latlng=latlng.split(",");
@@ -2084,7 +2052,9 @@ function showCityList(srcserial)
 </script>
 
 
-<SCRIPT> 
+<SCRIPT>
+	
+	//쓰는 곳은 없음. - 아마 왼쪽 루트탭의 값들 체크하는 코딩?
 	function fsubmit()
 	{
 		startdate=$("#thedate").val();
@@ -2098,19 +2068,22 @@ function showCityList(srcserial)
 		}
 		else
 			alert("입력된 도시가 없습니다.");
-
 	}
+	
+	//로딩 될때 input 태그의 submit, a, button 과 demo의 버튼의 아이콘 기본값 설정
 	$(function() {
 		$( "input:submit, a, button", ".demo" ).button({ icons: {primary:'ui-icon-circle-plus'} });
 		//$( "a", ".demo" ).click(function() { return false; }); 
 	});
-
-	function moveTo(lat,lng)
+	
+	// 맵의 중심을 지정된 값으로 변경하는 코딩 - 아마 마커 선택했을때 가지않을까 싶음.
+	function moveTo(city_x,city_y)
 	{
-		var center = new google.maps.LatLng(lat, lng);
+		var center = new google.maps.LatLng(city_x, city_y);
 		map.panTo(center);
 	}
 
+	//##일단 미사용 - div 부분이 주석처리 되어 있음.
 function showBottomBar()
 {
 	if($("#mapbottom_container").css("height")=="27px")
@@ -2194,16 +2167,10 @@ function showBottomBar()
 </div>
 
 
-
-
-
-
 <div id="daylist" style="display:none;border-top:1px solid #bec2c4;padding-top:1px;width:100%;height:36px;overflow-x:auto;overflow-y:hidden"></div>
 
-
-
-
 <script>
+// @@ 교통편선택시에 창나오는 코딩.
 function compareAirTicket(tt)
 {
 	FirstCity=citylist[0];
@@ -2228,6 +2195,7 @@ function compareAirTicket(tt)
 	outdate_nobar=outdate.replace(/-/g,'');
 
 	/* 경로 확인: ? 뒤 체크  */
+	// 출발 : 
 	if(tt=="F")
 		window.open("/plan/trs_deeplink.do?lang=ko&date_all="+indate_nobar+"&TRSType=3&depserial=161031001&desserial="+FirstCity);
 	else if(tt=="R")
@@ -2235,17 +2203,14 @@ function compareAirTicket(tt)
 	else
 		window.open("/plan/trs_deeplink.do?lang=ko&date_all="+indate_nobar+"&rt_date_all="+outdate_nobar+"&TRSType=5&depserial=161031001&desserial="+FirstCity);
 
-
 }
+
 var air_price_sum=0;
+// @@ 교통편 가격가져오는 코딩.
 function getAirPrice()
+
 {
 	return;
-
-
-
-
-
 
 	var incity=citylist[0];
 	var outcity=citylist[citylist.length-1];
@@ -2269,7 +2234,7 @@ function getAirPrice()
 	var thedate_out=new Date(xx.getTime() + term * 24 * 60 * 60 * 1000 - 30* 24 * 60 * 60 * 1000);
 	var outdate = getFormattedDate(thedate_out);
 
-
+	//@@ 이게 무슨 용도로 쓰는 ajax 인지는 모르겠음.	
 	var txt_cur="만원";
 	if(incity==outcity)
 	{
@@ -2341,6 +2306,7 @@ function getAirPrice()
 
 <script>
 var lastHighlight='';
+//## 각 루트마다 끝나는 날짜 update? - 정보를 웹호스팅업체에 update 해주는듯.
 function updateDateSilent(theidx)
 {
 	return;
@@ -2349,7 +2315,6 @@ function updateDateSilent(theidx)
 	var des;
 	var lastIdx=0;
 	
-
 	$(".cityblock .trsinfo").each(function( idx ) {
 		if(idx>0)
 		{
@@ -2358,16 +2323,6 @@ function updateDateSilent(theidx)
 			dep=citylist[idx-1];
 			des=citylist[idx];
 			thedate=getFormattedDate(routelist[idx-1].date_out);
-
-
-//			$(".cityblock .trsinfo").eq(idx).find(".check_train").html("시간표");
-//			$(".cityblock .trsinfo").eq(idx).find(".check_train_div").css("background","#a1a1a1");
-//			$(".cityblock .trsinfo").eq(idx).find(".check_train").attr("href","javascript:trslink('1','"+dep+"','"+des+"','"+thedate+"')");
-
-//			$(".cityblock .trsinfo").eq(idx).find(".check_air").html("시간표");
-//			$(".cityblock .trsinfo").eq(idx).find(".check_air_div").css("background","#a1a1a1");
-//			$(".cityblock .trsinfo").eq(idx).find(".check_air").attr("href","javascript:trslink('2','"+dep+"','"+des+"','"+thedate+"')");
-
 		}
 		}
 	});
@@ -2379,33 +2334,24 @@ function updateDateSilent(theidx)
 //		var thedate_out_str = getFormattedDate(thedate_out);
 
 	$(".cityblock .trsinfo").each(function( idx ) {
-
-
 		if(idx>0)
 		{
 		if(idx>=theidx)
 		{
-
 			dep=citylist[idx-1];
 			des=citylist[idx];
-
 			if(idx==1)
 			{
-
 				loadTrsInfo(idx,dep,des);
-
 			}
 			else
 			{
-
-
 			lastIdx=idx;
 			var txt_cur="만원";
 
 			thedate=getFormattedDate(routelist[idx-1].date_out);
 
-
-	                	$.ajax({
+	            $.ajax({
 	                		/* 의미 파악이 필요한 경로 */
 	                		 url: 'http://www.tripgene.com/api/getbestprice.php?thedate='+thedate+'&lang=ko&trstype=rail&dep='+dep+'&des='+des,
 	               		     dataType: 'jsonp',
@@ -2446,18 +2392,19 @@ function updateDateSilent(theidx)
 	});
 
 }
-
+//@@ date들을 update 해주는 코딩
 function updateDate()
 {
-	getAirPrice();
+//	getAirPrice();
 //	showLoading(thedate);
-	getHighlights(lastHighlight);
+//	getHighlights(lastHighlight);
 	saveCookie();
 //	drawDayList();
-	updateDateInOut();
-	updateDateSilent(0);
+	updateDateInOut(); // 야간이동일시 +1
+//	updateDateSilent(0);
 
 }
+// 캘린더 날짜 업데이트 해주는 듯
 function getFormattedDate(date) {
   var year = date.getFullYear();
   var month = (1+ date.getMonth()).toString();
@@ -2471,13 +2418,16 @@ if (month>12)
   day = day.length > 1 ? day : '0' + day;
   return year + '-' + month + '-' + day;
 }
+
+// 교통 예약/시간표 링크
+/* 
 function trslink(trstype,dep,des,date_str)
 {
 	var thedate=date_str;
 	thedate_nobar=thedate.replace("-","").replace("-","");
-	/* 경로 확인: ? 뒤 체크 */
 	window.open('/plan/trs_deeplink.do?lang=ko&date_all='+thedate_nobar+'&TRSType='+trstype+'&depserial='+dep+'&desserial='+des);
 }
+ */
 function showinfo(t)
 {
 	//$("#cityroute").hide();
@@ -2489,7 +2439,7 @@ function hideinfo(t)
 	//$("#cityroute").show();
 }
 
-
+// 여행타입 
 var tripwith_isopen=false;
 var tripwith_txt=[];
 tripwith_txt[1]="여자혼자";
@@ -2501,7 +2451,7 @@ tripwith_txt[6]="남녀함께";
 tripwith_txt[7]="아이들과";
 tripwith_txt[8]="부모님과";
 tripwith_txt[9]="부모님끼리";
-
+//@@여행타입 선택
 function toggleSelectTripWith()
 {
 	if(tripwith_isopen)
@@ -2533,7 +2483,7 @@ function toggleSelectTripWith()
 	}
 }
 
-
+// 고른 여행타입
 function selectTripwith(x,y)
 {
 	thei=(x-1)*3+y*1;
@@ -2542,15 +2492,15 @@ function selectTripwith(x,y)
 	$("#tripwith_txt").html(tripwith_txt[thei]);
 	tripwith=thei;
 	
-	saveCookie();
-	toggleSelectTripWith();
+	saveCookie();	toggleSelectTripWith();
 }
+//#스투비플래너 누를시 홈페이지로 이동
 function gotoHome()
 {
 	if(confirm('저장하지 않고 이 페이지를 나가려고 합니다.'))
-		window.location='/';	
+		window.location='/stubbyPlanner/main.do';	
 }
-
+// 일장텝으로 이동
 function gotoCalendar()
 {
 
@@ -2563,13 +2513,29 @@ function gotoCalendar()
 	if(!trip_id)
 		saveCookie(1);
 	
-	/* 경로 확인: ? 뒤 체크 */
+	/* ####################### 경로 확인: ? 뒤 체크 */
 	window.location='/stubbyPlanner/plan/planner_schd.do?trip_id='+trip_id;
 }
+// 예약탭으로 이동
 function gotoResv()
 {
 	
-		window.location="/stubbyPlanner/common/login.do"
+/* 
+	if(routelist.length==0)
+	{
+		alert("1개 이상의 도시가 추가되어야 예약정보 관리가 가능합니다.");
+	}
+	else		
+	{
+
+		if(!trip_id)
+			saveCookie(1);
+		window.location='planner_resv.do?trip_id='+trip_id;
+
+	}
+	 */
+	window.location="/stubbyPlanner/planner/planner_resv_air.do"
+	// window.location="/stubbyPlanner/common/login.do"
 	
 }
 </script>
@@ -2588,7 +2554,7 @@ function gotoResv()
 					<div style="padding-right:20px;padding-left:5px;padding-top:1px;">
 						<div style="border-radius:2;border:1px solid #efefef;padding-left:10px;background:#fff">
 						 	<span style="padding-left:0px;padding-right:0px;color:#696969;font-size:9pt;"><i class="fa fa-calendar"></i> 출국</span>
-							<input style="width:95px;font-size:11pt;background:#fff;margin-left:0px;padding-left:5px;padding-top:2px;padding-bottom:2px;color:#c0c0c0;border:0px solid #c0c0c0" id="thedate"  type="text"   onchange="updateDate()">
+							<input style="width:95px;font-size:11pt;background:#fff;margin-left:0px;padding-left:5px;padding-top:2px;padding-bottom:2px;color:#c0c0c0;border:0px solid #c0c0c0" id="thedate"  type="text"   onchange="updateDate()" >
 							<input onclick="update_arr_nextday()" type="checkbox" id="arr_nextday" ><font style="color:#696969;font-size:8pt">+1 도착</font>
 						</div>
 					</div>
@@ -2630,7 +2596,9 @@ function gotoResv()
 
 			</div>
 <script>
+
 var is_TRMenu_displayed=0;
+// 우측상단 비회원 회원 등등 선택 메뉴
 function toggleTRMenu()
 {
 
@@ -2651,6 +2619,7 @@ function toggleTRMenu()
 
 	}
 }
+//로그인 페이지
 function login()
 {
 	if(!trip_id)
@@ -2658,6 +2627,7 @@ function login()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/login.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
+//저장
 function register()
 {
 	if(!trip_id)
@@ -2665,6 +2635,7 @@ function register()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/register.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
+//완료
 function complete()
 {
 	if(!trip_id)
@@ -2676,8 +2647,6 @@ function complete()
 		return;
 	}
 
-	
-
 
 thtml="";
 	thtml+='<div style="margin-bottom:7px;">';
@@ -2685,9 +2654,6 @@ thtml="";
 	thtml+='<div style="width:70%;float:left;"><input class="form-control" type="text" id="planname" name="planname" value=""></div>';
 	thtml+='<div style="clear:both"></div>';
 	thtml+='</div>';
-
-
-
 
 	thtml+='<div style="margin-bottom:7px;">';
 	thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">인원</div>';
@@ -2779,13 +2745,16 @@ thtml="";
 </div>
 <div style="clear:both"></div>
 <script>
+
 $('#thedate').datepicker();
 $('#thedate').datepicker( "option", "dateFormat", "yy-mm-dd" );
-$('#thedate').val('2019-06-27')
+$('#thedate').val('${defaultDate}'); // '2019-07-03'
+// 이메일 체크
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+//작업완료후 디테일 페이지로 이동 location 고쳐야한다.
 function saveandmove()
 {
 
@@ -2806,7 +2775,7 @@ function saveandmove()
 
 	$.ajax({
 		  /* 경로 수정 필요 */
-		  url: "/api/planning/saveTripgeneInfo.asp",
+		  url: "/stubbyPlanner/model1/saveTripgeneInfo.jsp",
 		
 		  data: {
 			trip_id:trip_id,
@@ -2824,10 +2793,11 @@ function saveandmove()
 	
 }
 
+// 링크 추출.
 function getLink()
 {
 	/* 경로 확인: ? 뒤 체크 */
-	var turl="/stubbyPlanner/plan/planner_step1.do?cityserials=";
+	var turl="/stubbyPlanner/plan/planner_step1.do?city_ids=";
 	for(i=0;i<citylist.length;i++)
 	{
 		se=citylist[i];
@@ -2875,30 +2845,31 @@ function getLink()
 	}
 	window.location=turl;
 }
-Spot = function(spotname,spotserial,lat,lng,imgurl) {
+// 여행지_id, 여행지_id, 좌표, 이미지 경로
+Spot = function(spotname,spotserial,city_x,city_y,imgurl) {
         this.name =spotname;
         this.serial = spotserial;
-        this.lat = lat;
-        this.lng = lng;
+        this.city_x = city_x;
+        this.city_y = city_y;
         this.imgurl=imgurl;
 }
-City = function(cityname,cityserial,lat,lng,recommSlp,slpRates){
-        this.name = cityname;
-        this.serial = cityserial;
-        this.lat = lat;
-        this.lng = lng;
+// 도시이름, 도시_id , 좌표 , 숙박일수, ?
+City = function(city_name,city_id,city_x,city_y,recommSlp,slpRates){
+        this.city_name = city_name;
+        this.city_id = city_id;
+        this.city_x = city_x;
+        this.city_y = city_y;
         this.spots=[];
         this.recommSlp=recommSlp;
         this.slpRates=slpRates;
 }
-
-
 
 cities=[];
 citylist=[];
 lines=[];
 
 var lastcity=0;
+// @@ 마커찍은곳과 마크를 선으로 이어주는 코딩
 function redrawMapMarkers()
 {
 	clearLines();
@@ -2911,7 +2882,7 @@ function redrawMapMarkers()
 		tcity=cities[se];
 		cities[se]=tcity;
 
-		var marker=createMyMarker(tcity.name,tcity.serial,tcity.lat,tcity.lng,i,routelist[i].nights);		
+		var marker=createMyMarker(tcity.city_name,tcity.city_id,tcity.city_x,tcity.city_y,i,routelist[i].nights);		
 		
 		if(routelist[i].is_night_move=="1")
 			XstrokeColor="#ee685a";
@@ -2923,15 +2894,13 @@ function redrawMapMarkers()
 			s=citylist[i-1];
 			lastcity=cities[s];
 			 var lineCoordinates = [
-			      new google.maps.LatLng(lastcity.lat, lastcity.lng),
-			      new google.maps.LatLng(tcity.lat, tcity.lng)
+			      new google.maps.LatLng(lastcity.city_x, lastcity.city_y),
+			      new google.maps.LatLng(tcity.city_x, tcity.city_y)
 			  ];
 
 			 var lineSymbol = {
 			    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
 			  };
-
-
 
 			  var linePath = new google.maps.Polyline({
 			    path: lineCoordinates,
@@ -2949,10 +2918,10 @@ function redrawMapMarkers()
 
 		}
 
-
 	}
 	lastcity=cities[citylist[citylist.length-1]];
 }
+// 선 지워주는 코딩
 function clearLines()
 {
 	for(i=0;i<lines.length;i++)
@@ -2961,13 +2930,16 @@ function clearLines()
 	}
 	lines=[];
 }
+// 도착 +1 누를시 1일추가 
 function updateDateInOut()
 {
 	var arr_nextday=0;
 	if($("#arr_nextday").is( ":checked" ))
 		arr_nextday=1;
 	term=arr_nextday;
+	
 	startdate=new Date($("#thedate").val().replace("-","/").replace("-","/"));
+	
 	for(i=0;i<routelist.length;i++)
 	{
 		
@@ -2999,6 +2971,7 @@ function updateDateInOut()
 	
 	
 }
+// 왼쪽 루트탭에 대한 정보 출력 같은데?
 function reOrder()
 {
 
@@ -3006,37 +2979,36 @@ function reOrder()
 		
 		$(this).attr("id","cityblock"+idx);
 
-		$("#cityblock"+idx+" .a_mngSlp").attr("href","javascript:mngSlp('"+routelist[idx].name+"','"+routelist[idx].cityserial+"',0,"+idx+")");
-		$("#cityblock"+idx+" .div_mngSlp").attr("onclick","mngSlp('"+routelist[idx].name+"','"+routelist[idx].cityserial+"',0,"+idx+")");
+		$("#cityblock"+idx+" .a_mngSlp").attr("href","javascript:mngSlp('"+routelist[idx].name+"','"+routelist[idx].city_id+"',0,"+idx+")");
+		$("#cityblock"+idx+" .div_mngSlp").attr("onclick","mngSlp('"+routelist[idx].name+"','"+routelist[idx].city_id+"',0,"+idx+")");
 
 		if(idx>0)
 		{
 			var thedate=getFormattedDate(routelist[idx].date_in);
-			$("#cityblock"+idx+" .div_btnTrsTool").attr("onclick","showTrsTool('"+routelist[idx-1].cityserial+"','"+routelist[idx].cityserial+"','"+ thedate+"',"+idx+")");
+			$("#cityblock"+idx+" .div_btnTrsTool").attr("onclick","showTrsTool('"+routelist[idx-1].city_id+"','"+routelist[idx].city_id+"','"+ thedate+"',"+idx+")");
 		}
 		$("#cityblock"+idx+" .btnDel").attr("href","javascript:delCity("+idx+")");
 		$("#cityblock"+idx+" .daySelector").attr("onchange","chgNights('"+idx+"',this.value)");
-
 
 	});
 
 }
 
-
-
-function XXXXXXXXXXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates)
+// 왼쪽 루트탭 div태그 이동하는 코딩? - 위에 생각 겹치는거 있엇는데
+function XXXXXXXXXXaddCity(city_name, city_id, city_x, city_y, recommSlp, slpRates)
 {	
+		 
 	thtml="";
 	if(routelist.length<3)
 	{
-		XXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates);
+		addCity(city_name, city_id, city_x, city_y, recommSlp, slpRates);
 		
 		return;
 	}
-	thtml+='<div style="padding-top:10px;padding-bottom:40px;"><font style="font-size:12pt;color:#fff"> 제일 뒤에 <a href="javascript:XXaddCity(\''+cityname+'\',\''+cityserial+'\',\''+lat+'\',\''+lng+'\',\''+recommSlp+'\',\''+slpRates+'\');closeMyModal();" class="btn-u btn-u-lg btn-u-green"><i class="fa fa-plus-circle" aria-hidden="true"></i>추가하기</font></a></div>';	
+	thtml+='<div style="padding-top:10px;padding-bottom:40px;"><font style="font-size:12pt;color:#fff"> 제일 뒤에 <a href="javascript:addCity(\''+city_name+'\',\''+city_id+'\',\''+city_x+'\',\''+city_y+'\',\''+recommSlp+'\',\''+slpRates+'\');closeMyModal();" class="btn-u btn-u-lg btn-u-green"><i class="fa fa-plus-circle" aria-hidden="true"></i>추가하기</font></a></div>';	
 	thtml+='<div style="padding-top:20px;padding-bottom:20px;"><font style="font-size:12pt;color:#fff">OR</font></div>';
 
-	thtml+='<div style="padding-top:10px;padding-bottom:40px;"><font style="font-size:12pt;color:#fff"> 좌우로 스크롤 하며 선택 도시['+cityname+']를 넣을 위치를 찾아 <i class="fa fa-plus-circle" aria-hidden="true"></i>를 선택하세요.</font></div>';
+	thtml+='<div style="padding-top:10px;padding-bottom:40px;"><font style="font-size:12pt;color:#fff"> 좌우로 스크롤 하며 선택 도시['+city_name+']를 넣을 위치를 찾아 <i class="fa fa-plus-circle" aria-hidden="true"></i>를 선택하세요.</font></div>';
 	thtml+='<div style="overflow-x:auto;overflow-y:hidden;height:90px;margin-top:10px;padding-top:10px;border-top:1px solid #fff;border-bottom:1px solid #fff">';
 	thtml+='<div style="width:'+eval(routelist.length*110+100)+'px">';
 	for(i=0;i<routelist.length;i++)
@@ -3044,7 +3016,7 @@ function XXXXXXXXXXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates)
 		
 		{
 			thtml+='<div style="width:43px;float:left;line-height:100%;height:70px;overflow-y:hidden;margin-bottom:20px;">';
-			thtml+='<a href="javascript:addAndMoveCityAndReload(\''+cityname+'\',\''+cityserial+'\',\''+lat+'\',\''+lng+'\',\''+recommSlp+'\',\''+slpRates+'\','+i+')"><font style="font-size:30pt;color:#fff"><i class="fa fa-plus-circle" aria-hidden="true"></i></font></a>';
+			thtml+='<a href="javascript:addAndMoveCityAndReload(\''+city_name+'\',\''+city_id+'\',\''+city_x+'\',\''+city_y+'\',\''+recommSlp+'\',\''+slpRates+'\','+i+')"><font style="font-size:30pt;color:#fff"><i class="fa fa-plus-circle" aria-hidden="true"></i></font></a>';
 			
 			thtml+='</div>';
 		}
@@ -3065,8 +3037,8 @@ function XXXXXXXXXXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates)
 		thtml+='</div>';
 
 		thtml+='<div style="position:relative;top:-60px;text-align:center">';
-		/* 경로 확인 */
-		thtml+='<img src="/stubbyPlanner/externalData/images/is/flag/'+routelist[i].cityserial.substring(0,5)+'.gif" height="16px" style="border-radius:8px">';
+		// 경로 확인  
+		thtml+='<img src="/stubbyPlanner/externalData/images/is/flag/'+routelist[i].city_id.substring(0,5)+'.gif" height="16px" style="border-radius:8px">';
 
 		thtml+='</div>';
 		thtml+='</div>'
@@ -3076,7 +3048,7 @@ function XXXXXXXXXXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates)
 	thtml+='</div>';
 	thtml+='</div>';
 
-	xtitle=cityname+" 추가될 위치 선택";
+	xtitle=city_name+" 추가될 위치 선택";
 	$("#my_modal_title").html(xtitle);
 	$("#my_modal_desc").html(thtml);
 	openMyModal();
@@ -3132,7 +3104,7 @@ function showMoveCityTool(idx)
 		else
 		{
 			thtml+='<div style="position:relative;top:-60px;text-align:center">';
-			thtml+='<img src="/stubbyPlanner/externalData/images/is/flag/'+routelist[i].cityserial.substring(0,5)+'.gif" height="16px" style="border-radius:8px">';
+			thtml+='<img src="/stubbyPlanner/externalData/images/is/flag/'+routelist[i].city_id.substring(0,5)+'.gif" height="16px" style="border-radius:8px">';
 		}
 		thtml+='</div>';
 		thtml+='</div>'
@@ -3158,9 +3130,9 @@ function showMoveCityTool(idx)
 	openMyModal();
 
 }
-function addAndMoveCityAndReload(cityname, cityserial, lat, lng, recommSlp, slpRates, eidx)
+function addAndMoveCityAndReload(city_name, city_id, city_x, city_y, recommSlp, slpRates, eidx)
 {
-	XXaddCity(cityname, cityserial, lat, lng, recommSlp, slpRates);
+	addCity(city_name, city_id, city_x, city_y, recommSlp, slpRates);
 	sidx=routelist.length-1;
 	moveCityAndReload(sidx,eidx);
 }
@@ -3308,12 +3280,12 @@ function reloadCostNPeriod()
 
 }
 
-function loadTrsInfo(idx,depserial,desserial)
+// tbl_route_info
+function loadTrsInfo(idx,depCityId,desCityId)
 {
-	var A=cities[depserial];
-	var B=cities[desserial];
-	var thedate=getFormattedDate(routelist[idx].date_in);
-
+	// var A =cities[depserial];
+	// var B =cities[desserial];
+	// var thedate=getFormattedDate(routelist[idx].date_in);
 	var trstype="";
 	if(routelist[idx].trstype=="X")
 		trstype="";
@@ -3324,20 +3296,20 @@ function loadTrsInfo(idx,depserial,desserial)
 
 	$.ajax({
 		/* 경로 수정 필요 */
-		  url: "/api/planning/GetTrsRecommS.asp",
+		  url: "/stubbyPlanner/model1/getTrsRecomm.jsp",
 		
 		  data: {
-		   trstype:trstype,
-		    dep:depserial,
-		    des:desserial,
-		     thedate:thedate
+// 		    trstype:trstype,		// 교통편 (??)
+		    depCityId:depCityId,	// 출발도시
+		    desCityId:desCityId		// 도착도시
+		 // ,thedate:thedate		// 일수
 		  },
 		 dataType: 'json',
 		  success: function( data ) {
 //			$(".cityblock .trsinfo").eq(idx).html(data);
 			
-
 			trstype=data.trstype;
+			
 
 
 			trstype_txt="기타";
@@ -3362,47 +3334,15 @@ function loadTrsInfo(idx,depserial,desserial)
 
 
 
-			thtml+='<div style="float:left;width:150px;height:40px;padding-top:10px;margin-left:-25px;"><div style="border-radius:3px;display:inline-block;text-align:center;padding-top:2px;padding-bottom:2px;margin-right:3px;width:50px;background:#3ad195;cursor:pointer;" class="div_btnTrsTool" onclick="showTrsTool(\''+depserial+'\',\''+desserial+'\',\''+thedate+'\','+idx+')"><font style="font-size:9pt;color:#fff" id="trstype_txt_'+idx+'">'+trstype_txt+' <i class="fa fa-chevron-circle-down"></i></font></div>&nbsp;<font style="font-size:8pt;color:#c0c0c0">'+traveltime+'</font></div>';
-if(is_night_move=="1")
+			// thtml+='<div style="float:left;width:150px;height:40px;padding-top:10px;margin-left:-25px;"><div style="border-radius:3px;display:inline-block;text-align:center;padding-top:2px;padding-bottom:2px;margin-right:3px;width:50px;background:#3ad195;cursor:pointer;" class="div_btnTrsTool" onclick="showTrsTool(\''+depCityId+'\',\''+desCityId+'\',\''+thedate+'\','+idx+')"><font style="font-size:9pt;color:#fff" id="trstype_txt_'+idx+'">'+trstype_txt+' <i class="fa fa-chevron-circle-down"></i></font></div>&nbsp;<font style="font-size:8pt;color:#c0c0c0">'+traveltime+'</font></div>';
+			thtml+='<div style="float:left;width:150px;height:40px;padding-top:10px;margin-left:-25px;"><div style="border-radius:3px;display:inline-block;text-align:center;padding-top:2px;padding-bottom:2px;margin-right:3px;width:50px;background:#3ad195;cursor:pointer;" class="div_btnTrsTool" onclick="showTrsTool(\''+depCityId+'\',\''+desCityId+'\','+idx+')"><font style="font-size:9pt;color:#fff" id="trstype_txt_'+idx+'">'+trstype_txt+' <i class="fa fa-chevron-circle-down"></i></font></div>&nbsp;<font style="font-size:8pt;color:#c0c0c0">'+traveltime+'</font></div>';
+	
+			if(is_night_move=="1")
 			thtml+='<div style="float:left;width:95px;height:40px;padding-top:10px;text-align:right;font-size:8pt;font-weight:600;color:#ee685a">야간이동</div>';
 
 			thtml+='<div style="clear:both"></div>';
 			thtml+='</div>';
 			$(".cityblock .trsinfo").eq(idx).html(thtml);
-
-//			$("#cityblock"+idx+" .trsinfo").html(data);
-
-//			var txt_cur="만원";
-//			var thedate=$("#thedate").val();
-			
-//	                	$.ajax({
-//	               		     url: '//www.tripgene.com/api/getbestprice.php?thedate='+thedate+'&lang=ko&trstype=rail&dep='+A.serial+'&des='+B.serial,
-//	               		     dataType: 'jsonp',
-//	               		     success: function(data){
-//				if(data!="")
-//					if(data>0)
-//					{
-//						$(".cityblock .trsinfo").eq(idx).find(".check_train").html(data+txt_cur+"~");
-//						$(".cityblock .trsinfo").eq(idx).find(".check_train").attr("href","javascript:trslink('1','"+depserial+"','"+desserial+"','"+thedate+"')");
-//						$(".cityblock .trsinfo").eq(idx).find(".check_train_div").css("background","#e45d44");
-//					}
-//			      }
-//			 });
-
-//	                	$.ajax({
-//	               		     url: '//www.tripgene.com/api/getbestprice.php?thedate='+thedate+'&lang=ko&trstype=air&dep='+A.serial+'&des='+B.serial,
-//	               		     dataType: 'jsonp',
-//	               		     success: function(data){
-//				if(data!="")
-//					if(data>0)
-//					{
-//						$(".cityblock .trsinfo").eq(idx).find(".check_air").html(data+txt_cur+"~");
-//						$(".cityblock .trsinfo").eq(idx).find(".check_air").attr("href","javascript:trslink('2','"+depserial+"','"+desserial+"','"+thedate+"')");
-//						$(".cityblock .trsinfo").eq(idx).find(".check_air_div").css("background","#e45d44");
-//					}
-//			      }
-//			 });
-
 
 	  	}
 	});
@@ -3447,6 +3387,8 @@ function delCity(idx)
 	saveCookie();
 
 }
+
+//###########박수 바뀌는 코딩
 function chgNights(i,nights)
 {
 
@@ -3463,12 +3405,10 @@ function chgNights(i,nights)
 	updateDateSilent(i);
 }
 var plannercitylist=",121011002,121011003,121041001,121021001,121031001,131011001,131041001,131021001,131061001,141051001,141031001,141021001,141041002,111011004,111031001,111021002,111041004,111041006,111041003,111071001,111081001,111061006,111061005,111061008,111011001";
-function createMyMarker(cityname,cityserial,lat,lng,i,night) 
+function createMyMarker(city_name,city_id,city_x,city_y,i,night) 
 {
 	var zidx=1000+i;
-
-
-
+	
 	if(i==0)
 	{
 		if(night==0)
@@ -3568,7 +3508,7 @@ function createMyMarker(cityname,cityserial,lat,lng,i,night)
 			    size: new google.maps.Size(53, 53),
 			    origin: new google.maps.Point(0, 0),
 			    anchor: new google.maps.Point(12, 25),
-			     scaledSize: new google.maps.Size(25, 25)
+			    scaledSize: new google.maps.Size(25, 25)
 			  };
 
 		}
@@ -3576,13 +3516,13 @@ function createMyMarker(cityname,cityserial,lat,lng,i,night)
 		//icoimg="//www.stubbyplanner.com/img_v13/marker/mycity_night"+night+".png";
 	}
 
-	var myLatlng = new google.maps.LatLng(tcity.lat,tcity.lng);
+	var myLatlng = new google.maps.LatLng(tcity.city_x,tcity.city_y);
 	var marker = new google.maps.Marker({
 	      icon:icoimg,
 	      position: myLatlng,
-	     anchorPoint:new google.maps.Point(0, -13),
+	      anchorPoint:new google.maps.Point(0, -13),
 	      map: map,
-	      title: tcity.name+'('+night+'박)',
+	      title: tcity.city_name+'('+night+'박)',
 	      zindex:zidx
 	});
             	
@@ -3621,7 +3561,7 @@ function createMyMarker(cityname,cityserial,lat,lng,i,night)
 
 	}
 	btnGroup=btnGroup+'</select>';
-	btnGroup2='<a class="a_mngSlp" href="javascript:mngSlp(\''+cityname+'\',\''+cityserial+'\','+tcity.recommSlp+','+i+')"><font style="color:#696969;font-size:10pt;font-weight:bold" class="nights">'+tcity.recommSlp+'박  <i class="fa fa-angle-down"></i></font></a>';
+	btnGroup2='<a class="a_mngSlp" href="javascript:mngSlp(\''+city_name+'\',\''+city_id+'\','+tcity.recommSlp+','+i+')"><font style="color:#696969;font-size:10pt;font-weight:bold" class="nights">'+tcity.recommSlp+'박  <i class="fa fa-angle-down"></i></font></a>';
 
 	zzhtml="<div id=\"cityblock"+citylist.length+"\" class=\"cityblock\" style=\"position:relative\">";
 		zzhtml+="<p class=\"trsinfo\"></p>";
@@ -3633,20 +3573,20 @@ function createMyMarker(cityname,cityserial,lat,lng,i,night)
 //			else
 				zzhtml+='<div style="width:29px;border-right:3px solid #3ad195;height:7px;"> </div>';
 
-			zzhtml+="<input type=\"hidden\" class=\"cityserial\" value=\""+tcity.serial+"\">";
+			zzhtml+="<input type=\"hidden\" class=\"city_id\" value=\""+tcity.city_id+"\">";
 			zzhtml+="<div width=\"100%;overflow-x:hidden\">";
 
-				zzhtml+="<div style=\"float:left;width:53px;height:53px;padding-left:7px;background:#fff;padding-top:13px;border-radius:100px;border:3px solid #3ad195;cursor:pointer\"  class=\"div_mngSlp\" onclick=\"mngSlp(\'"+cityname+"\',\'"+cityserial+"\',"+tcity.recommSlp+","+i+")\">"+btnGroup2+"</div>";
+				zzhtml+="<div style=\"float:left;width:53px;height:53px;padding-left:7px;background:#fff;padding-top:13px;border-radius:100px;border:3px solid #3ad195;cursor:pointer\"  class=\"div_mngSlp\" onclick=\"mngSlp(\'"+city_name+"\',\'"+city_id+"\',"+tcity.recommSlp+","+i+")\">"+btnGroup2+"</div>";
 				zzhtml+="<div style=\"float:left;width:215px;padding-left:10px;padding-top:7px;\"> ";
-					zzhtml+="<div style=\"float:left;width:148px\"><div><font class=\"stubby_s_black\"> "+tcity.name+"</font>&nbsp;<a class=\"btnDel\" href=\"javascript:delCity("+citylist.length+")\"><font style=\"font-size:9pt;color:#c0c0c0\"><i class=\"fa fa-times-circle\"></i></font></a></div><div class=\"date_in_out\"></div></div>";
+					zzhtml+="<div style=\"float:left;width:148px\"><div><font class=\"stubby_s_black\"> "+tcity.city_name+"</font>&nbsp;<a class=\"btnDel\" href=\"javascript:delCity("+citylist.length+")\"><font style=\"font-size:9pt;color:#c0c0c0\"><i class=\"fa fa-times-circle\"></i></font></a></div><div class=\"date_in_out\"></div></div>";
 
 
 hascityplanner=0;
-if(plannercitylist.indexOf(cityserial)>-1)
+if(plannercitylist.indexOf(city_id)>-1)
 	hascityplanner=1;
 
 					zzhtml+="<div style=\"float:left;padding-right:5px;width:57px;\">";
-						zzhtml+='<div id="cp_'+i+'" style="height:52px;margin-top:-8px;text-align:center;padding-top:3px;padding-bottom:3px;border:1px solid #efefef;background:#fff;border-radius:8px;" onclick="showBucketList(\''+i+'\',\''+tcity.name+'\',\''+cityserial+'\','+hascityplanner+')"><div><font style="font-size:19pt;color:#3ad195" id="cp_heart_'+i+'">';
+						zzhtml+='<div id="cp_'+i+'" style="height:52px;margin-top:-8px;text-align:center;padding-top:3px;padding-bottom:3px;border:1px solid #efefef;background:#fff;border-radius:8px;" onclick="showBucketList(\''+i+'\',\''+tcity.city_name+'\',\''+city_id+'\','+hascityplanner+')"><div><font style="font-size:19pt;color:#3ad195" id="cp_heart_'+i+'">';
 
 
 					
@@ -3685,7 +3625,7 @@ if(hascityplanner==0)
 		infowindow = new google.maps.InfoWindow();
 		
 		/* 경로 확인: ? 뒤 체크 */
-		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/planner/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&s='+cityserial+'"></iframe>';
+		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/planner/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&s='+city_id+'"></iframe>';
 		infowindow.setContent(thtml);
 
 		google.maps.event.addListener(infowindow,'closeclick',function(){
@@ -3695,7 +3635,7 @@ if(hascityplanner==0)
 
 		infowindow.open(map,marker);
 		prv_infowindow=infowindow;
-		getHighlights(cityserial);
+		getHighlights(city_id);
 	  });
 	return zzhtml;
 }
@@ -3890,7 +3830,7 @@ function closeRecommCities()
 	$("#div_recomm_cities").hide();
 	recomm_cities_displaying=0;
 }
-function showBucketList(idx,cityname,city_id,hascityplanner)
+function showBucketList(idx,city_name,city_id,hascityplanner)
 {
 
 	if(!trip_id)
@@ -3920,15 +3860,15 @@ function showBucketList(idx,cityname,city_id,hascityplanner)
 
 if(hascityplanner==0)
 {
-		thtml='<div style="background:#ee685a"><div style="float:left;width:85%;font-size:11pt;color:#fff;padding-top:5px;"><b>'+cityname+'</b> 여행정보</div><div style="float:left;width:15%;cursor:pointer;text-align:right;padding-right:4px;" onclick="closeBucketlist()"><font style="font-size:23pt;color:#fff"><i class="fa fa-times-circle"></i></font></div><div style="clear:both"></div></div>';
-		thtml+='<iframe frameborder="0" width="100%" height="'+(newMapHeight-50)+'px" src="/bucket_detail.asp?fromplanner=1&cityserial='+city_id+'"></iframe>';
+		thtml='<div style="background:#ee685a"><div style="float:left;width:85%;font-size:11pt;color:#fff;padding-top:5px;"><b>'+city_name+'</b> 여행정보</div><div style="float:left;width:15%;cursor:pointer;text-align:right;padding-right:4px;" onclick="closeBucketlist()"><font style="font-size:23pt;color:#fff"><i class="fa fa-times-circle"></i></font></div><div style="clear:both"></div></div>';
+		thtml+='<iframe frameborder="0" width="100%" height="'+(newMapHeight-50)+'px" src="/bucket_detail.asp?fromplanner=1&city_id='+city_id+'"></iframe>';
 		$("#div_bucketlist").html(thtml);
 		$("#div_bucketlist").show();
 }
 else
 {
 
-		$("#div_bucketlist").html('<div style="padding-top:50px;text-align:center;">'+cityname+' 경험 로딩중...</div>');
+		$("#div_bucketlist").html('<div style="padding-top:50px;text-align:center;">'+city_name+' 경험 로딩중...</div>');
 		$("#div_bucketlist").show();
 
 	             $.ajax({
@@ -3937,7 +3877,7 @@ else
 	               	success: function(data){
 					if(data!="")
 					{
-						thtml='<div style="background:#ee685a"><div style="float:left;width:85%;font-size:11pt;color:#fff;padding-top:5px;"><b>'+cityname+'</b>에서 경험하고 싶은 것들을 선택해 보세요.</div><div style="float:left;width:15%;cursor:pointer;text-align:right;padding-right:4px;" onclick="closeBucketlist()"><font style="font-size:23pt;color:#fff"><i class="fa fa-times-circle"></i></font></div><div style="clear:both"></div></div>';
+						thtml='<div style="background:#ee685a"><div style="float:left;width:85%;font-size:11pt;color:#fff;padding-top:5px;"><b>'+city_name+'</b>에서 경험하고 싶은 것들을 선택해 보세요.</div><div style="float:left;width:15%;cursor:pointer;text-align:right;padding-right:4px;" onclick="closeBucketlist()"><font style="font-size:23pt;color:#fff"><i class="fa fa-times-circle"></i></font></div><div style="clear:both"></div></div>';
 						thtml+='<div style="height:'+bucketlist_inside_h+'px;padding-left:15px;padding-top:10px;padding-right:15px;overflow-y:auto;">';
 						for(i=0;i<data.bucket_group.length;i++)
 						{
@@ -4169,10 +4109,11 @@ function openTrsLink()
 	/* 경로 확인: ? 뒤 체크 */
 	window.open("/stubbyPlanner/plan/trs_deeplink.do?lang=ko&date_all="+thedateTxt+"&TRSType="+curtrstype+"&depserial="+curdep+"&desserial="+curdes);
 }
-function showTrsTool(depid,desid,xthedate,rt_i)
+// function showTrsTool(depid,desid,xthedate,rt_i)
+function showTrsTool(depid,desid,rt_i)
 {
-	depname=routelist[rt_i-1].name;
-	desname=routelist[rt_i].name;
+	depname=routelist[rt_i-1].city_name;
+	desname=routelist[rt_i].city_name;
 
 	trstype=routelist[rt_i].trstype;
 	is_night_move=routelist[rt_i].is_night_move;
@@ -4181,23 +4122,39 @@ function showTrsTool(depid,desid,xthedate,rt_i)
 	
 	curdep=depid;
 	curdes=desid;
-	curthedate=xthedate;
+	// curthedate=xthedate;
 	/* 경로 재설정 필요 */
-	var xurl="/api/planning/GetTrsRecommV3.asp?dep="+depid+"&des="+desid+"&thedate="+xthedate;
+	// var xurl="/api/planning/GetTrsRecommV3.asp?dep="+depid+"&des="+desid+"&thedate="+xthedate;
+	var xurl="/stubbyPlanner/model1/getTrsRecommV3.jsp?dep="+depid+"&des="+desid;
 
 		$.ajax({
 			url:xurl,
 			dataType: 'json',
 			data: {},
 			success: function( data) {
+				
+				// [ JSON 표기법 ]
+				// { "trslist": [{"trstype":v,"rate":v, "duration":v},{"trstype":v,???},{"trstype":v,???}]  
+				//	 ,"trsdesc"
+				//	 ,"history": [{"title":v, "cost_txt":v, "dep":v, "des":v, "time_txt":v},{},{}] 
+				// }
+				 
+			
+				
 				if(data!="")
 				{
 
 					thtml='';
 					thtml+='<div>';
-					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[0].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[0].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-train"></i></font><br><b>기차</b><div style="font-size:8pt;">'+data.trslist[0].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[0].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'1\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
-					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[1].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[1].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-plane"></i></font><br><b>항공</b><div style="font-size:8pt;">'+data.trslist[1].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[1].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'3\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
-					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[2].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[2].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-bus"></i></font><br><b>버스</b><div style="font-size:8pt;">'+data.trslist[2].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[2].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'2\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
+					// thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[0].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[0].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-train"></i></font><br><b>기차</b><div style="font-size:8pt;">'+data.trslist[0].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[0].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'1\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
+					// thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[1].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[1].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-plane"></i></font><br><b>항공</b><div style="font-size:8pt;">'+data.trslist[1].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[1].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'3\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
+					// thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[2].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[2].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-bus"></i></font><br><b>버스</b><div style="font-size:8pt;">'+data.trslist[2].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[2].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" onclick="javascript:trslink(\'2\',\''+depid+'\',\''+desid+'\',\''+xthedate+'\')">예약/시간표</div></div>';
+					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[0].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[0].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-train"></i></font><br><b>기차</b><div style="font-size:8pt;">'+data.trslist[0].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[0].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" >예약/시간표</div></div>';
+					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[1].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[1].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-plane"></i></font><br><b>항공</b><div style="font-size:8pt;">'+data.trslist[1].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[1].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" >예약/시간표</div></div>';
+					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[2].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[2].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-bus"></i></font><br><b>버스</b><div style="font-size:8pt;">'+data.trslist[2].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[2].duration+'</div></div><div style="margin-left:15px;margin-right:15px;margin-top:5px;border-radius:2px;background:#3ad195;color:#fff;font-size:9pt;padding-top:3px;padding-bottom:3px;cursor:pointer" >예약/시간표</div></div>';
+					
+					
+					
 					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[3].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[3].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-ship"></i></font><br><b>페리</b><div style="font-size:8pt;">'+data.trslist[3].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[3].duration+'</div></div></div>';
 					thtml+='<div class="trs_selector_container"><div id="div_trstype_'+data.trslist[4].trstype+'" onclick="setTrsToolTab('+rt_i+','+data.trslist[4].trstype+')" class="trs_selector"><font style="font-size:17pt"><i class="fa fa-question"></i></font><br><b>기타</b><div style="font-size:8pt;">'+data.trslist[4].rate+'%</div><div style="font-size:8pt;padding-top:4px;">'+data.trslist[4].duration+'</div></div></div>';
 					thtml+='<div style="clear:both"></div></div>';
@@ -4291,8 +4248,8 @@ function selNightMoveTab(id_idx,rt_i)
 	updateDateInOut();
 
 	redrawMapMarkers();
-	dep=routelist[rt_i-1].serial;
-	des=routelist[rt_i].serial;
+	dep=routelist[rt_i-1].city_id;
+	des=routelist[rt_i].city_id;
 	loadTrsInfo(rt_i,dep,des);
 	updateTerm();
 
@@ -4323,10 +4280,10 @@ function showTrsInfo()
 function chgTrsType(i,trstype)
 {
 	routelist[i].trstype=trstype;
-	saveCookie();
-	redrawMapMarkers();
-	depserial=routelist[i-1].cityserial;
-	desserial=routelist[i].cityserial;
+	//saveCookie(); //
+	redrawMapMarkers(); //
+	depserial=routelist[i-1].city_id;
+	desserial=routelist[i].city_id;
 	loadTrsInfo(i,depserial,desserial);
 
 	//showRoute(0);
@@ -4337,26 +4294,26 @@ function addCitySimple(serial)
 
 	        $.ajax({
 			/* 경로 확인: ? 뒤 체크 */
-	        url: '/api/planning/getcityinfo.asp?cityserial='+serial,
+	        url: '/api/planning/getcityinfo.asp?city_id='+serial,
 			dataType: 'json',
 			async: false,
 			success: function(data){
 				if(data!="")
 				{
-					addCity(data.city.cityname,serial,data.city.lat,data.city.lng,data.city.nights,data.city.slpRates);
+					addCity(data.city.city_name,data.city.city_id,data.city.city_x,data.city.city_y,data.city.nights,data.city.slpRates);
 				}
 			}
 		});
 
 }
-function tAddCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRates)
+function tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
 {
 
-	tcity=new City(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRates);
+	tcity=new City(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
 
-	cities[cityserial]=tcity;
+	cities[city_id]=tcity;
 	
-	var thtml=createMyMarker(cityname,cityserial,lat,lng,citylist.length,recommSlp);
+	var thtml=createMyMarker(city_name,city_id,city_x,city_y,citylist.length,recommSlp);
 //	if(citylist.length>=0)
 //		thtml=thtml+'<div>'+eval(routelist[citylist.length].date_in.getMonth()+1)+'월 '+routelist[citylist.length].date_in.getDate()+'일~'+eval(routelist[citylist.length].date_out.getMonth()+1)+'월 '+routelist[citylist.length].date_out.getDate()+'일</div>';
 
@@ -4490,8 +4447,8 @@ function tAddCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRat
 	if(lastcity!=0)
 	{
 		 var lineCoordinates = [
-		      new google.maps.LatLng(lastcity.lat, lastcity.lng),
-		      new google.maps.LatLng(tcity.lat, tcity.lng)
+		      new google.maps.LatLng(lastcity.city_x, lastcity.city_y),
+		      new google.maps.LatLng(tcity.city_x, tcity.city_y)
 		  ];
 			 var lineSymbol = {
 			    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
@@ -4522,18 +4479,18 @@ function tAddCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRat
 //		var xmarker = createMarker(xposn,lastcity.serial+'_'+tcity.serial, xtitle, ximgurl,xzIdx);
 //		xmarker.setMap(map);
 
-		loadTrsInfo(idx,lastcity.serial,tcity.serial);
+		loadTrsInfo(idx,lastcity.city_id,tcity.city_id);
 	}
-	citylist[citylist.length]=cityserial;
+	citylist[citylist.length]=city_id;
 	lastcity=tcity;
 
 	var tidx=citylist.length-1;
 
 
 }
-function addCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRates)
+function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
 {
-	tAddCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRates);
+	tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
 	getNextCities(lastcity.serial);
 	if(prv_infowindow)
 	{
@@ -4542,7 +4499,7 @@ function addCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRate
 	}
 
 	$( ".cityblock .cityinfo" ).bind( "click", function() {
-		var se=$(this).children(".cityserial").val();
+		var se=$(this).children(".city_id").val();
 		var idx=$(this).parent().attr("id").replace(/cityblock/g, '');;
 
 		if(prv_infowindow)
@@ -4551,7 +4508,7 @@ function addCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRate
 		infowindow = new google.maps.InfoWindow();
 		
 		/* 경로 확인: ? 뒤 체크 */
-		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/planner/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&s='+se+'"></iframe>';
+		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_id='+city_id+'"></iframe>';
 		infowindow.setContent(thtml);
 		
 		getHighlights(se);
@@ -4583,14 +4540,15 @@ function addCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRate
 	getAirPrice();
 	reloadCostNPeriod();
 
-	var se=cityserial;
+	var se=city_id;
+	/* 
 	if(se.substring(0,2)=="11"||se.substring(0,2)=="12"||se.substring(0,2)=="13"||se.substring(0,2)=="14")
 		getHighlights('1[1-4]');
 	else if(se.substring(0,5)=="16102")
 		getHighlights(se.substring(0,5));
 	else
 		getHighlights(se.substring(0,2));
-
+ 	*/
 	
 	if(isfirst)
 	{
@@ -4599,47 +4557,29 @@ function addCityBase(cityname,cityserial,lat,lng,recommSlp,is_night_move,slpRate
 		for(i=0;i<citylist.length;i++)
 		{
 			var tcity=cities[citylist[i]];
-			tLatlng= new google.maps.LatLng(tcity.lat,tcity.lng);
+			tLatlng= new google.maps.LatLng(tcity.city_x,tcity.city_y);
 			bounds.extend(tLatlng);
-			xlat=tcity.lat;
-			xlng=tcity.lng;
+			xlat=tcity.city_x;
+			xlng=tcity.city_y;
 		}
+		console.log(xlat + "/" + xlng);
 		if(i>1)
 			map.fitBounds(bounds);
 		if(i==1)
 		{
 			moveTo(xlat,xlng);
-			map.setZoom(7);
+// 			map.setZoom(7);
 		}
 
 		isfirst=false;
 	}
 	else
 	{
-		moveTo(lat,lng);
+		moveTo(city_x,city_y);
 	}
 }
-function addSpotBase(cityserial,cityname,spotname,spotserial,lat,lng,imgurl)
-{
-
-
-	xxx=cityserial;
-	tcity=cities[xxx];
-	if(!tcity)
-		addCity(cityname,cityserial,lat,lng,'','');
-	tcity=cities[xxx];
-	cities[xxx].spots[tcity.spots.length]=new Spot(spotname,spotserial,lat,lng,imgurl);
-
-	$(".cityblock").each(function(idx) {
-		if($(this).find(".cityserial").val()==xxx)
-		{
-//			$(this).find(".spotbox").append("<div style='height:30px;overflow:hidden;margin-right:1px;float:left;position:relative;'><a href='javascript:moveToCityMap(\""+idx+"\")' title='"+spotname+"'><img   src='"+imgurl+"' width='34px'/></a></div>");
-
-//			$(this).find(".spotbox").show();
-		}
-	});
-}
-function addCity(cityname,cityserial,lat,lng,recommSlp,slpRates)
+// 0:serial,1:markerName,2:longitude,3:latitude,4:taxSerial,5:SiteLevel,6:sitetax,7:sitename_eng
+function addCity(city_name,city_id,city_x,city_y,recommSlp,slpRates)
 {
 
 	if(routelist.length==0)
@@ -4667,39 +4607,39 @@ function addCity(cityname,cityserial,lat,lng,recommSlp,slpRates)
 		
 	}
 
-	routelist[routelist.length]=new Route(cityserial,cityname,recommSlp,'X',0,lat,lng,date_in,date_out);
-	addCityBase(cityname,cityserial,lat,lng,recommSlp,0,slpRates);
+	routelist[routelist.length]=new Route(city_id,city_name,recommSlp,'X',0,city_x,city_y,date_in,date_out);
+	addCityBase(city_name,city_id,city_x,city_y,recommSlp,0,slpRates);
 //	drawDayList();
 	updateTerm();
 
 	saveCookie();
 
 }
-function tAddCity(cityname,cityserial,lat,lng)
+function tAddCity(city_name,city_id,city_x,city_y)
 {
-	tAddCityBase(cityname,cityserial,lat,lng);
+	tAddCityBase(city_name,city_id,city_x,city_y);
 }
 function drawCities()
 {}
-function showWthr(cityname,srcserial,thedate)
+function showWthr(city_name,srcserial,thedate)
 {
 	/* 경로 재설정 필요 */
 	document.getElementById("if_Wthr").src="if_ShowWthr.asp?srcserial="+srcserial+"&thedate="+thedate;
-	$('#title-Wthr').html(cityname+" 예상기온");	
+	$('#title-Wthr').html(city_name+" 예상기온");	
 	$('#modal-Wthr').modal();
 }
-function showTripFriends(cityname,srcserial,thedate)
+function showTripFriends(city_name,srcserial,thedate)
 {
 	/* 경로 재설정 필요 */
 	document.getElementById("if_tripfriend").src="if_tripfriend.asp?srcserial="+srcserial+"&thedate="+thedate;
-	$('#title-tripfriend').html(cityname+" 동행추천");	
+	$('#title-tripfriend').html(city_name+" 동행추천");	
 	$('#modal-tripfriend').modal();
 }
-function showEvent(cityname,srcserial,thedate,se)
+function showEvent(city_name,srcserial,thedate,se)
 {
 	/* 경로 재설정 필요 */
 	document.getElementById("if_event").src="if_eventdetail.asp?serial="+se+"&srcserial="+srcserial+"&thedate="+thedate;
-	$('#title-event').html(cityname+" 축제");	
+	$('#title-event').html(city_name+" 축제");	
 	$('#modal-event').modal();
 }
 
@@ -4772,7 +4712,7 @@ function showBucket(se)
 							}
 							else
 							{
-								thtml=thtml+"<a style=\"margin-right:3px;margin-bottom:2px;\" class=\"btn btn-default\" href=\"javascript:addSpot('"+item.cityserial+"','"+item.cityname+"','"+item.spotname+"','"+item.spotserial+"','"+item.latitude+"','"+item.longitude+"','"+item.spotimg+"')\">"+item.spotname+" 일정담기</a>";
+								thtml=thtml+"<a style=\"margin-right:3px;margin-bottom:2px;\" class=\"btn btn-default\" href=\"javascript:addSpot('"+item.city_id+"','"+item.city_name+"','"+item.spotname+"','"+item.spotserial+"','"+item.latitude+"','"+item.longitude+"','"+item.spotimg+"')\">"+item.spotname+" 일정담기</a>";
 							}
 						if(item.links.length>0)
 						{
@@ -5098,7 +5038,7 @@ function share()
 			document.getElementById("if_guidebook").src="if_planner_guidebook_detail.asp?srcserial="+s;
 		else
 			/* 경로 재설정 필요 */
-			document.getElementById("if_guidebook").src="if_planner_guidebook.asp?cityserial="+s;
+			document.getElementById("if_guidebook").src="if_planner_guidebook.asp?city_id="+s;
 
 		$('#modal-Guide').modal();
 
@@ -5108,7 +5048,7 @@ function share()
 
 		$("#title-Guide").html(t+" 가이드북");
 			/* 경로 재설정 필요 */
-			document.getElementById("if_guidebook").src="if_planner_guidebook.asp?tbl="+tbl+"&cityserial="+s;
+			document.getElementById("if_guidebook").src="if_planner_guidebook.asp?tbl="+tbl+"&city_id="+s;
 
 		$('#modal-Guide').modal();
 
@@ -5125,7 +5065,7 @@ function share()
 	{
 		$("#title-Guide").html(t);
 		/* 경로 재설정 필요 */
-		document.getElementById("if_guidebook").src="/bucket_detail.asp?fromplanner=1&cityserial="+s;
+		document.getElementById("if_guidebook").src="/bucket_detail.asp?fromplanner=1&city_id="+s;
 
 		$('#modal-Guide').modal();
 
@@ -5257,7 +5197,7 @@ var weekdays = ['일','월','화','수','목','금','토'];
 		startdate=new Date($("#thedate").val());
 		for (i=0;i<routelist.length;i++)
 		{
-			xxhtml=xxhtml+'<div class="tabblock"><div><a href="javascript:moveToCityMap('+i+')"><img src="/images/is/flag/'+routelist[i].cityserial.substring(0,5)+'_s.gif"> '+routelist[i].name+' '+routelist[i].nights+'박</a></div>';
+			xxhtml=xxhtml+'<div class="tabblock"><div><a href="javascript:moveToCityMap('+i+')"><img src="/images/is/flag/'+routelist[i].city_id.substring(0,5)+'_s.gif"> '+routelist[i].name+' '+routelist[i].nights+'박</a></div>';
 
 
 //			date_in=new Date(startdate.getFullYear(),startdate.getMonth(),startdate.getDate()+term-1);
@@ -5454,333 +5394,331 @@ function openMyModal()
 
 }
 
-
-function mngSlp(tt,cityserial,xxxxxxx,rt_idx)
+function mngSlp(tt,city_id,xxxxxxx,rt_idx)
 {
-		cur_nights=routelist[rt_idx].nights;
-		/* 경로 재설정 필요 */
-		xurl="/api/planning/getCitySchd.asp?cityserial="+cityserial;
-		$.ajax({
-			url:xurl,
-			dataType: 'json',
-			data: {},
-			success: function( data ) {
-				if(data!="")
-				{
-
-
+   alert(city_id);
+      cur_nights=routelist[rt_idx].nights;
+      /* 경로 재설정 필요 */
+      xurl="/stubbyPlanner/model1/getCitySchd.jsp?city_id="+city_id;
+      $.ajax({
+         url:xurl,
+         dataType: 'json',
+         data: {},
+         // data  JSON 객체 구성...
+         success: function( data ) {
+            console.log(data);
+            // ajax 요청의해서 웹페이지 어떤 동작(일)
+            if(data!="")
+            {
+// data = 0:tip, 1:info, 2:subtitle, 3:slprate, 4:schd_day, 5:schd_info
+console.log("data.schd::" + data.schd);
+console.log("data.schd.length::" + data.schd.length);
 if(data.schd.length<1)
 {
-	
-					thtml='<div style="margin-bottom:20px;text-align:center;padding-left:45px;padding-right:25px;text-align:center">';
-					for(i=0;i<10;i++)
-					{
+   
+               thtml='<div style="margin-bottom:20px;text-align:center;padding-left:45px;padding-right:25px;text-align:center">';
+               for(i=0;i<10;i++)
+               {
 
-						val_schd_slp_rate=0;
-						if(i<5)
-						{
-							val_schd_slp_rate=data.slprate[i];
-							if(val_schd_slp_rate=="")
-								val_schd_slp_rate=0;
-						}
+                  val_schd_slp_rate=0;
+                  if(i<5)
+                  {
+                     val_schd_slp_rate=data.schd[i].slprate;
+                     if(val_schd_slp_rate=="")
+                        val_schd_slp_rate=0;
+                  }
 
-						i_txt=i;
-						if(i_txt==0)
-							i_txt="무";
-						if(i==cur_nights)
-							thtml+='<div  id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
-						else
-							thtml+='<div id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector"  onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
-						if(val_schd_slp_rate>0)
-							thtml+='<font style="font-size:10pt;">'+val_schd_slp_rate+'%</font>';
+                  i_txt=i;
+                  if(i_txt==0)
+                     i_txt="무";
+                  if(i==cur_nights)
+                     thtml+='<div  id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
+                  else
+                     thtml+='<div id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector"  onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
+                  if(val_schd_slp_rate>0)
+                     thtml+='<font style="font-size:10pt;">'+val_schd_slp_rate+'%</font>';
 
-						thtml+='</div>';
-						if(i==4)
-							thtml+='<div style="clear:both"></div>';
-					}
-					thtml+='<div style="clear:both"></div>';
-					thtml+='</div>';
+                  thtml+='</div>';
+                  if(i==4)
+                     thtml+='<div style="clear:both"></div>';
+               }
+               thtml+='<div style="clear:both"></div>';
+               thtml+='</div>';
 
 }
 else
 {
 
-					x_memo=data.memo;
-					x_night_tip=data.night_tip;
+               x_memo=data.scity_tip;
+               x_night_tip=data.scity_info;
 
-					val_schd_desc_1=data.schd[0].desc;
-					if(!val_schd_desc_1)
-						val_schd_desc_1="";
-					val_schd_desc_1_Arr=val_schd_desc_1.split("@");
+               val_schd_desc_1=data.schd[0].schd_info;
+               if(!val_schd_desc_1)
+                  val_schd_desc_1="";
+               val_schd_desc_1_Arr=val_schd_desc_1.split("@");
 
-
-
-					val_schd_full_1='<div class="p_schd">';
-				if(data.schd[0].night>0)
-					val_schd_full_1+='<div style="font-size:13pt;font-weight:bold;">'+data.schd[0].night+'박 '+eval(data.schd[0].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[0].subtitle+'></font></div>';
-				else
-					val_schd_full_1+='<div style="font-size:13pt;font-weight:bold;">당일치기 추천코스 <font style="font-size:11pt"><'+data.schd[0].subtitle+'></font></div>';
+               val_schd_full_1='<div class="p_schd">';
+            if(data.schd[0].night>0)
+               val_schd_full_1+='<div style="font-size:13pt;font-weight:bold;">'+data.schd[0].night+'박 '+eval(data.schd[0].night+1)+'일 추천코스 <font style="font-size:/11pt"><'+data.schd[0].subtitle+'></font></div>';
+            else
+               val_schd_full_1+='<div style="font-size:13pt;font-weight:bold;">당일치기 추천코스 <font style="font-size:11pt"><'+data.schd[0].subtitle+'></font></div>';
 
 
+               val_schd_full_1+='<div style="float:left;width:75%;padding-left:10px;padding-top:0px">';
+               for(i=0;i<val_schd_desc_1_Arr.length;i++)
+               {
+                  theday=i+1;
+                  val_schd_full_1+='<div class="day_small">DAY '+theday+'</div>';
 
-					val_schd_full_1+='<div style="float:left;width:75%;padding-left:10px;padding-top:0px">';
-					for(i=0;i<val_schd_desc_1_Arr.length;i++)
-					{
-						theday=i+1;
-						val_schd_full_1+='<div class="day_small">DAY '+theday+'</div>';
+                  val_schd_desc_1_Arr_DayArr=val_schd_desc_1_Arr[i].split("|");
+                  for(j=0;j<val_schd_desc_1_Arr_DayArr.length;j++)
+                  {
+                     if(j==0)
+                        val_schd_full_1+=val_schd_desc_1_Arr_DayArr[j];
+                     else
+                        val_schd_full_1+='<br>'+val_schd_desc_1_Arr_DayArr[j];
+                  }
+               }
+               val_schd_full_1+='</div>';
+               val_schd_full_1+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[0].img_url+'" width="90%"></div>';
 
-						val_schd_desc_1_Arr_DayArr=val_schd_desc_1_Arr[i].split("|");
-						for(j=0;j<val_schd_desc_1_Arr_DayArr.length;j++)
-						{
-							if(j==0)
-								val_schd_full_1+=val_schd_desc_1_Arr_DayArr[j];
-							else
-								val_schd_full_1+='<br>'+val_schd_desc_1_Arr_DayArr[j];
-						}
-					}
-					val_schd_full_1+='</div>';
-					val_schd_full_1+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[0].imgurl.replace('.jpg','_m.jpg')+'" width="90%"></div>';
-
-					val_schd_full_1+='<div style="clear:both"></div>';
-					val_schd_full_1+='</div>';
-
-
+               val_schd_full_1+='<div style="clear:both"></div>';
+               val_schd_full_1+='</div>';
 
 if(data.schd[1])
 {
-					val_schd_desc_2=data.schd[1].desc;
-					if(!val_schd_desc_2)
-						val_schd_desc_2="";
-					val_schd_desc_2_Arr=val_schd_desc_2.split("@");
+               val_schd_desc_2=data.schd[1].schd_info;
+               if(!val_schd_desc_2)
+                  val_schd_desc_2="";
+               val_schd_desc_2_Arr=val_schd_desc_2.split("@");
 
-					val_schd_full_2='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[1].night+'박 '+eval(data.schd[1].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[1].subtitle+'></font></div>';
-					val_schd_full_2+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
+               val_schd_full_2='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[1].night+'박 '+eval(data.schd[1].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[1].subtitle+'></font></div>';
+               val_schd_full_2+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
 
-					for(i=0;i<val_schd_desc_2_Arr.length;i++)
-					{
-						theday=i+1;
-						val_schd_full_2+='<div class="day_small">DAY '+theday+'</div>';
+               for(i=0;i<val_schd_desc_2_Arr.length;i++)
+               {
+                  theday=i+1;
+                  val_schd_full_2+='<div class="day_small">DAY '+theday+'</div>';
 
-						val_schd_desc_2_Arr_DayArr=val_schd_desc_2_Arr[i].split("|");
-						for(j=0;j<val_schd_desc_2_Arr_DayArr.length;j++)
-						{
-							if(j==0)
-								val_schd_full_2+=val_schd_desc_2_Arr_DayArr[j];
-							else
-								val_schd_full_2+='<br>'+val_schd_desc_2_Arr_DayArr[j];
-						}
-					}
-					val_schd_full_2+='</div>';
-					val_schd_full_2+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[1].imgurl.replace('.jpg','_m.jpg')+'" width="90%"></div>';
+                  val_schd_desc_2_Arr_DayArr=val_schd_desc_2_Arr[i].split("|");
+                  for(j=0;j<val_schd_desc_2_Arr_DayArr.length;j++)
+                  {
+                     if(j==0)
+                        val_schd_full_2+=val_schd_desc_2_Arr_DayArr[j];
+                     else
+                        val_schd_full_2+='<br>'+val_schd_desc_2_Arr_DayArr[j];
+                  }
+               }
+               val_schd_full_2+='</div>';
+               val_schd_full_2+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[1].img_url+'" width="90%"></div>';
 
-					val_schd_full_2+='</div>';
+               val_schd_full_2+='</div>';
 
 }
 else
 {
-	val_schd_full_2="";
+   val_schd_full_2="";
 }
 
 if(data.schd[2])
 {
-					val_schd_desc_3=data.schd[2].desc;
-					if(!val_schd_desc_3)
-						val_schd_desc_3="";
-					val_schd_desc_3_Arr=val_schd_desc_3.split("@");
+               val_schd_desc_3=data.schd[2].schd_info;
+               if(!val_schd_desc_3)
+                  val_schd_desc_3="";
+               val_schd_desc_3_Arr=val_schd_desc_3.split("@");
 
-					val_schd_full_3='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[2].night+'박 '+eval(data.schd[2].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[2].subtitle+'></font></div>';
-					val_schd_full_3+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
+               val_schd_full_3='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[2].night+'박 '+eval(data.schd[2].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[2].subtitle+'></font></div>';
+               val_schd_full_3+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
 
-					for(i=0;i<val_schd_desc_3_Arr.length;i++)
-					{
-						theday=i+1;
-						val_schd_full_3+='<div class="day_small">DAY '+theday+'</div>';
+               for(i=0;i<val_schd_desc_3_Arr.length;i++)
+               {
+                  theday=i+1;
+                  val_schd_full_3+='<div class="day_small">DAY '+theday+'</div>';
 
-						val_schd_desc_3_Arr_DayArr=val_schd_desc_3_Arr[i].split("|");
-						for(j=0;j<val_schd_desc_3_Arr_DayArr.length;j++)
-						{
-							if(j==0)
-								val_schd_full_3+=val_schd_desc_3_Arr_DayArr[j];
-							else
-								val_schd_full_3+='<br>'+val_schd_desc_3_Arr_DayArr[j];
-						}
-					}
-					val_schd_full_3+='</div>';
-					val_schd_full_3+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[2].imgurl.replace('.jpg','_m.jpg')+'" width="90%"></div>';
+                  val_schd_desc_3_Arr_DayArr=val_schd_desc_3_Arr[i].split("|");
+                  for(j=0;j<val_schd_desc_3_Arr_DayArr.length;j++)
+                  {
+                     if(j==0)
+                        val_schd_full_3+=val_schd_desc_3_Arr_DayArr[j];
+                     else
+                        val_schd_full_3+='<br>'+val_schd_desc_3_Arr_DayArr[j];
+                  }
+               }
+               val_schd_full_3+='</div>';
+               val_schd_full_3+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[2].img_url+'" width="90%"></div>';
 
-					val_schd_full_3+='</div>';
+               val_schd_full_3+='</div>';
 }
 else
 {
-	val_schd_full_3="";
+   val_schd_full_3="";
 }
 
 if(data.schd[3])
 {
-					val_schd_desc_4=data.schd[3].desc;
-					if(!val_schd_desc_4)
-						val_schd_desc_4="";
-					val_schd_desc_4_Arr=val_schd_desc_4.split("@");
+               val_schd_desc_4=data.schd[3].schd_info;
+               if(!val_schd_desc_4)
+                  val_schd_desc_4="";
+               val_schd_desc_4_Arr=val_schd_desc_4.split("@");
 
-					val_schd_full_4='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[3].night+'박 '+eval(data.schd[3].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[3].subtitle+'></font></div>';
-					val_schd_full_4+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
+               val_schd_full_4='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[3].night+'박 '+eval(data.schd[3].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[3].subtitle+'></font></div>';
+               val_schd_full_4+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
 
-					for(i=0;i<val_schd_desc_4_Arr.length;i++)
-					{
-						theday=i+1;
-						val_schd_full_4+='<div class="day_small">DAY '+theday+'</div>';
+               for(i=0;i<val_schd_desc_4_Arr.length;i++)
+               {
+                  theday=i+1;
+                  val_schd_full_4+='<div class="day_small">DAY '+theday+'</div>';
 
-						val_schd_desc_4_Arr_DayArr=val_schd_desc_4_Arr[i].split("|");
-						for(j=0;j<val_schd_desc_4_Arr_DayArr.length;j++)
-						{
-							if(j==0)
-								val_schd_full_4+=val_schd_desc_4_Arr_DayArr[j];
-							else
-								val_schd_full_4+='<br>'+val_schd_desc_4_Arr_DayArr[j];
-						}
-					}
-					val_schd_full_4+='</div>';
-					val_schd_full_4+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[3].imgurl.replace('.jpg','_m.jpg')+'" width="90%"></div>';
+                  val_schd_desc_4_Arr_DayArr=val_schd_desc_4_Arr[i].split("|");
+                  for(j=0;j<val_schd_desc_4_Arr_DayArr.length;j++)
+                  {
+                     if(j==0)
+                        val_schd_full_4+=val_schd_desc_4_Arr_DayArr[j];
+                     else
+                        val_schd_full_4+='<br>'+val_schd_desc_4_Arr_DayArr[j];
+                  }
+               }
+               val_schd_full_4+='</div>';
+               val_schd_full_4+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[3].img_url+'" width="90%"></div>';
 
-					val_schd_full_4+='</div>';
+               val_schd_full_4+='</div>';
 }
 else
 {
-	val_schd_full_4="";
+   val_schd_full_4="";
 }
 
 
 if(data.schd[4])
 {
-					val_schd_desc_5=data.schd[4].desc;
-					if(!val_schd_desc_5)
-						val_schd_desc_5="";
-					val_schd_desc_5_Arr=val_schd_desc_5.split("@");
+               val_schd_desc_5=data.schd[4].schd_info;
+               if(!val_schd_desc_5)
+                  val_schd_desc_5="";
+               val_schd_desc_5_Arr=val_schd_desc_5.split("@");
 
-					val_schd_full_5='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[4].night+'박 '+eval(data.schd[4].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[4].subtitle+'></font></div>';
-					val_schd_full_5+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
+               val_schd_full_5='<div class="p_schd"><div style="font-size:11pt;font-weight:bold;">'+data.schd[4].night+'박 '+eval(data.schd[4].night+1)+'일 추천코스 <font style="font-size:11pt"><'+data.schd[4].subtitle+'></font></div>';
+               val_schd_full_5+='<div style="float:left;width:75%;padding-left:10px;padding-top:10px">';
 
-					for(i=0;i<val_schd_desc_5_Arr.length;i++)
-					{
-						theday=i+1;
-						val_schd_full_5+='<div class="day_small">DAY '+theday+'</div>';
+               for(i=0;i<val_schd_desc_5_Arr.length;i++)
+               {
+                  theday=i+1;
+                  val_schd_full_5+='<div class="day_small">DAY '+theday+'</div>';
 
-						val_schd_desc_5_Arr_DayArr=val_schd_desc_5_Arr[i].split("|");
-						for(j=0;j<val_schd_desc_5_Arr_DayArr.length;j++)
-						{
-							if(j==0)
-								val_schd_full_5+=val_schd_desc_5_Arr_DayArr[j];
-							else
-								val_schd_full_5+='<br>'+val_schd_desc_5_Arr_DayArr[j];
-						}
-					}
-					val_schd_full_5+='</div>';
-					val_schd_full_5+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[2].imgurl.replace('.jpg','_m.jpg')+'" width="90%"></div>';
+                  val_schd_desc_5_Arr_DayArr=val_schd_desc_5_Arr[i].split("|");
+                  for(j=0;j<val_schd_desc_5_Arr_DayArr.length;j++)
+                  {
+                     if(j==0)
+                        val_schd_full_5+=val_schd_desc_5_Arr_DayArr[j];
+                     else
+                        val_schd_full_5+='<br>'+val_schd_desc_5_Arr_DayArr[j];
+                  }
+               }
+               val_schd_full_5+='</div>';
+               val_schd_full_5+='<div style="float:left;width:25%;padding-top:5px;padding-right:15px;"><img style="border-radius:5px" src="'+data.schd[2].img_url+'" width="90%"></div>';
 
-					val_schd_full_5+='</div>';
+               val_schd_full_5+='</div>';
 }
 else
 {
-	val_schd_full_5="";
+   val_schd_full_5="";
 }
-					thtml='<div style="text-align:center;font-size:9pt;"><div style="padding-bottom:10px;display:inline-block;width:100%;">';
+               thtml='<div style="text-align:center;font-size:9pt;"><div style="padding-bottom:10px;display:inline-block;width:100%;">';
 
 
 lastSchdData=data.schd;
 
-					thtml+='<div style="margin-bottom:20px;text-align:center;padding-left:45px;">';
-					for(i=0;i<10;i++)
-					{
-
-						val_schd_slp_rate=0;
-						val_schd_img="";
-						val_schd_subtitle="";
-						val_schd_title="";
-						for(j=0;j<data.schd.length;j++)
-						{
-							if(data.schd[j].night==i)
-							{
-								val_schd_slp_rate=data.schd[j].slp_rate;
-								val_schd_subtitle=data.schd[j].subtitle;
-								val_schd_title=data.schd[j].title;
-								val_schd_title=val_schd_title.replace('<'+i+'박>','');
-								val_schd_img=data.schd[j].imgurl;
-							}
-									
-						}
-						i_txt=i;
-						if(i_txt==0)
-							i_txt="무";
-						if(i==cur_nights)
-							thtml+='<div  id="circle_night_selector_'+i+'" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
-						else
-							thtml+='<div id="circle_night_selector_'+i+'" class="circle_night_selector" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
-						if(val_schd_slp_rate>0)
-							thtml+='<font style="font-size:9pt;">'+val_schd_slp_rate+'%</font>';
-						thtml+='</div>';
-						if(i==4)
-							thtml+='<div style="clear:both"></div>';
-					}
-					thtml+='<div style="clear:both"></div>';
-//					thtml+='<div style="margin-top:20px;border:2px solid #fff;color:#fff;padding-top:5px;padding-bottom:5px;text-align:center;font-size:12pt;border-radius:5px;">직접입력</div>';
-					thtml+='</div>';
-
-
-					thtml+='<div>';
-					thtml+='<div class="banner" style="border-radius:5px;background:#fff;color:#696969;border:5px solid #3ad195">';
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;color:#696969">';
-						thtml=thtml+'<div style="font-size:13pt"><b>체류기간 선택 TIP</b></div>';
-						thtml=thtml+'<div><ul><li>'+x_night_tip.replace(/\r/g, "</li><li>")+'</il></ul></div>';
-						thtml+='<div style="margin-top:10px;font-size:13pt"><b>Why '+tt+'?</b></div>';
-						thtml+='<div><ul>'+x_memo.replace(/\r/g, "</li><li>")+'</il></ul></div>';
-					thtml+='</div>';
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_1+'</div>';
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_2+'</div>';
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_3+'</div>';
-				if(val_schd_full_4!="")
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_4+'</div>';
-				if(val_schd_full_5!="")
-					thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_5+'</div>';
-
-					thtml+='</div>';
-					thtml+='</div>';
+               thtml+='<div style="margin-bottom:20px;text-align:center;padding-left:45px;">';
+               for(i=0;i<10;i++)
+               {
+                  val_schd_slp_rate=0;
+                  val_schd_img="";
+                  val_schd_subtitle="";
+                  val_schd_title="";
+                  for(j=0;j<data.schd.length;j++)
+                  {
+                     if(data.schd[j].night==i)
+                     {
+                        val_schd_slp_rate=data.schd[j].slprate;
+                        val_schd_subtitle=data.schd[j].subtitle;
+                        val_schd_title=data.schd[j].title;
+                        val_schd_title=val_schd_title.replace('<'+i+'박>','');
+                        val_schd_img=data.schd[j].img_url;
+                     }
+                           
+                  }
+                  i_txt=i;
+                  if(i_txt==0)
+                     i_txt="무";
+                  if(i==cur_nights)
+                     thtml+='<div  id="circle_night_selector_'+i+'" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
+                  else
+                     thtml+='<div id="circle_night_selector_'+i+'" class="circle_night_selector" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
+                  if(val_schd_slp_rate>0)
+                     thtml+='<font style="font-size:9pt;">'+val_schd_slp_rate+'%</font>';
+                  thtml+='</div>';
+                  if(i==4)
+                     thtml+='<div style="clear:both"></div>';
+               }
+               thtml+='<div style="clear:both"></div>';
+//               thtml+='<div style="margin-top:20px;border:2px solid #fff;color:#fff;padding-top:5px;padding-bottom:5px;text-align:center;font-size:12pt;border-radius:5px;">직접입력</div>';
+               thtml+='</div>';
 
 
+               thtml+='<div>';
+               thtml+='<div class="banner" style="border-radius:5px;background:#fff;color:#696969;border:5px solid #3ad195">';
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;color:#696969">';
+               thtml=thtml+'<div style="font-size:13pt"><b>체류기간 선택 TIP</b></div>';
+               thtml=thtml+'<div><ul><li>'+x_night_tip.replace(/\r/g, "</li><li>")+'</il></ul></div>';
+               thtml+='<div style="margin-top:10px;font-size:13pt"><b>Why '+tt+'?</b></div>';
+               thtml+='<div><ul>'+x_memo.replace(/\r/g, "</li><li>")+'</il></ul></div>';
+               thtml+='</div>';
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_1+'</div>';
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_2+'</div>';
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_3+'</div>';
+            if(val_schd_full_4!="")
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_4+'</div>';
+            if(val_schd_full_5!="")
+               thtml+='<div class="item" style="height:270px;overflow:auto;text-align:left;padding-left:10px;padding-right:10px;padding-top:10px;margin-top:0px;margin-bottom:0px;border-top:1px solid #fff;border-bottom:1px solid #fff;font-size:11pt;">'+val_schd_full_5+'</div>';
+               
+               thtml+='</div>';
+               thtml+='</div>';
 
-					thtml=thtml+'</div>';
 
-					thtml=thtml+'</div></div>';
+
+               thtml=thtml+'</div>';
+               thtml=thtml+'</div></div>';
 
 }
 
 
 
-	xtitle=tt+" 체류기간 선택 ";
-	$("#my_modal_title").html(xtitle);
-	$("#my_modal_desc").html(thtml);
-	openMyModal();
+   xtitle=tt+" 체류기간 선택 ";
+   $("#my_modal_title").html(xtitle);   // (나라이름) 체류기간 선택
+   $("#my_modal_desc").html(thtml);   // (전체 모달창)
+   openMyModal();
 
-	$('.banner').owlCarousel({
-	    loop:false,
-	    items:1,
-	    margin:3,
-	    nav:true,
-    navText: [
-      "<i class='fa fa-chevron-left'></i>",
+   $('.banner').owlCarousel({
+       loop:false,
+       items:1, // 윈도우의 width 에 맞는 화면에 한번에 보여야 할 아이템의 최대량을 세팅할수 있게 해요.
+       margin:3, 
+       nav:true,   // 다음,준비 버튼 표시
+    navText: [ // 왼쪽 오른쪽 이동 아이콘
+      "<i class='fa fa-chevron-left'></i>",         
       "<i class='fa fa-chevron-right'></i>"
     ],
-	    dots:true
-	});
+       dots:true   // 점 탐색 표시
+   });
 
 
 
 
-				}
-		  	}
-		});
+            }
+           }
+      });
 
 
 }
+
 var lastSchdData;
 function showSchdDetail(nights)
 {
@@ -5828,7 +5766,7 @@ function nightSelect(i,nights)
       minLength:1,
       select: function( event, ui ) {
 	//addCity(ui.item.label,ui.item.id,ui.item.lat,ui.item.lng);
-	var myLatlng = new google.maps.LatLng(ui.item.lat,ui.item.lng);
+	var myLatlng = new google.maps.LatLng(ui.item.city_x,ui.item.city_y);
 
 	if(prv_infowindow)
 		prv_infowindow.close();

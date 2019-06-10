@@ -1,0 +1,472 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+i, .titArea h3:before, .tab_item .imgWrap:before, .txtWrap label:after, .btn_apply.active:before, .txt_agree label:after { background-image:url(https://d3b39vpyptsv01.cloudfront.net/0/0/15495165317522p9G1M1j2Q.png); background-repeat:no-repeat; vertical-align:middle; }
+main { margin:0; padding:0; }
+p { margin:0; font-size:16px; font-weight:300; line-height:24px; color:#222; }
+h3.stu_h3_title { font-size:17px; font-weight:bold; line-height:26px; text-align:left; }
+h4.stu_h4_title { font-size:16px; font-weight:bold; line-height:26px; text-align:left; }
+select::-ms-expand { display:none; }
+::-webkit-input-placeholder { color:#ccc; } :-moz-placeholder { color:#ccc; } ::-moz-placeholder { color:#ccc; } :-ms-input-placeholder { color:#ccc! important; } ::placeholder { color:#ccc; opacity:1; }
+.form-disabled::-webkit-input-placeholder { color:#f5f5f7; } .form-disabled:-moz-placeholder { color:#f5f5f7; } .form-disabled::-moz-placeholder { color:#f5f5f7; } .form-disabled:-ms-input-placeholder { color:#f5f5f7! important; } .form-disabled::placeholder { color:#f5f5f7; opacity:1; }
+.on-pc { display:none; }
+
+/* swiper */
+.swiper-button-next, .swiper-button-prev { display:none; }
+.swiper-scrollbar { position:absolute; left:50%; bottom:2px; width:calc(100% - 32px); height:4px; -webkit-transform:translateX(-50%); transform:translateX(-50%); -webkit-border-radius:10px; border-radius:10px; background:rgba(0,0,0,.05); z-index:0; }
+.swiper-scrollbar-drag { top:0; left:0; height:100%; -webkit-border-radius:10px; border-radius:10px; background:rgba(0,0,0,.3); }
+
+
+
+/* 메인로고 */
+.stu_logo_container { display:none; }
+
+
+
+/* 예약영역 */
+.stu_charge { display:block; position:fixed; top:0; left:0; right:0; bottom:0; margin:0; padding:0!important; background:#f5f5f5; }
+
+
+
+/* 헤더영역 */
+.stu_charge_header { position:relative; width:100%; height:50px; border-bottom:1px solid #e5e5e5; background:#fff; text-align:center; }
+.stu_charge_header a { display:block; position:absolute; top:0; right:0; padding:12.25px 16px; font-size:0; }
+.stu_charge_header a i.ico_back { display:block; width:25.5px; height:25.5px; background-position:-4.25px -4.25px; background-size:136px; }
+.stu_charge_header p { display:inline-block; margin:0; font-size:19px; font-weight:bold; line-height:50px; color:#4a4a4a; }
+.stu_charge_header span { display:none; }
+
+/* 본문영역 */
+
+.stu_charge_container { display:block; height:calc(100% - 94px); overflow-y:auto; }
+.stu_charge_container .charge_item { margin:10px 0 0; border-bottom:1px solid #e5e5e5; background:#fff; }
+.stu_charge_container .titArea { position:relative; padding:17px 0; border-bottom:1px solid #e5e5e5; }
+.stu_charge_container .titArea h3 { margin:0; padding:0 0 0 16px; }
+.stu_charge_container .titArea h3:before { content:""; display:inline-block; width:26px; height:26px; margin:0 4px 0 0; background-size:104px; vertical-align:-7px; }
+.stu_charge_container .titArea .sub_title { display:inline-block; position:relative; height:30px; margin:5px 0 0 20px; padding:0 12px 0 0; -webkit-border-radius:3px; border-radius:3px; background:#f1f1f3; font-size:15px; font-weight:normal; line-height:28px; color:#666; overflow:hidden; }
+.stu_charge_container .titArea .sub_title span { display:inline-block; height:30px; margin:0 10px 0 0; padding:0 12px 0 10px; -webkit-border-radius:3px; border-radius:3px; background:#3ad195; font-weight:bold; font-style:italic; color:#fff; }
+.stu_charge_container .titArea .sub_title span:before { content:"#"; margin:0 3px 0 0; }
+.stu_charge_container .form-control { display:block; width:100%; height:40px; margin:8px 0; padding:0 10px; outline:none; border:1px solid #e5e5e5; -webkit-border-radius:4px; border-radius:4px; background-color:#fff; -webkit-appearance:none; -moz-appearance:none; appearance:none; font-size:14px; font-weight:normal; line-height:20px; letter-spacing:-.5px; color:#4a4a4a; }
+.stu_charge_container .form-control:focus { border:1px solid #3ad195; }
+.stu_charge_container select.form-control { padding:0 21px 0 6px; background:#fff url(http://d3b39vpyptsv01.cloudfront.net/0/0/1550556030902xqEk7ogJmV.png) right center no-repeat; }
+.stu_charge_container textarea.form-control { height:auto; padding:10px; }
+.stu_charge_container .form-disabled { background:#fafafc! important; }
+.stu_charge_container .form-group { overflow:hidden; }
+.stu_charge_container .form-group:after { content:""; display:table; clear:both; }
+.stu_charge_container .form-group select.form-control { float:left; width:66.66%; }
+.stu_charge_container .form-group .form-submit { float:left; width:calc(33.34% - 10px); margin:0 0 0 10px; cursor:pointer; }
+.stu_charge_container .form-group .btn_submit { display:block; width:100%; height:40px; margin:8px 0; padding:0 10px; outline:none; border:1px solid #8f8f8f; -webkit-border-radius:4px; border-radius:4px; background-color:#8f8f8f; font-size:14px; font-weight:normal; line-height:38px; letter-spacing:-.5px; text-align:center; color:#fff; }
+.stu_charge_container .form-group .btn_submit:hover { border:1px solid #6f6f6f; background-color:#6f6f6f; }
+.stu_charge_container .panel { padding:10px 16px; }
+.stu_charge_container .panel .title { display:block; font-size:15px; line-height:21px; color:#4a4a4a; }
+.stu_charge_container .panel ul + ul, .stu_charge_container .panel li + li { border-top:1px solid #f5f5f5; }
+.stu_charge_container .panel dl { display:table; width:100%; font-size:14px; font-weight:normal; line-height:26px; word-break:keep-all; color:#4a4a4a; }
+.stu_charge_container .panel dt { display:table-cell; width:100px; padding:15px 0 0; vertical-align:top; }
+.stu_charge_container .panel dt.multi-select:after { content:"(복수 선택 가능)"; display:block; font-size:14px; font-weight:normal; line-height:1; color:#4a4a4a; }
+.stu_charge_container .panel dt span { display:inline-block; margin:0 0 0 2px; color:red; }
+.stu_charge_container .panel dd { display:table-cell; width:calc(100% - 100px); vertical-align:top; }
+.stu_charge_container .panel p.txt { display:block; margin:-5px 0 10px 100px; font-size:12.5px; font-weight:normal; line-height:18px; color:#aaa; }
+.stu_charge_container .panel dd p.txt { margin:-5px 0 10px; color:#4a4a4a; }
+.stu_charge_container .panel .count { color:#3ad195; }
+.stu_charge_container .panel .dpt { float:left; display:block; }
+.stu_charge_container .panel .dpt.year { width:36%; }
+.stu_charge_container .panel .dpt.month, .stu_charge_container .panel .dpt.date { width:calc(32% - 8px); margin-left:8px; }
+
+
+
+/* 이전/다음단계 */
+.btn_step { position:fixed; left:0; right:0; bottom:0; padding:16px 12px 30px; border-top:1px solid #e5e5e5; background:#f5f5f5; }
+.btn_step .btn_wrap { float:left; display:inline-block; padding:0 4px; }
+.btn_step a { -webkit-border-radius:4px; border-radius:4px; height:48px; font-size:16px; font-weight:bold; line-height:48px; text-align:center; }
+.btn_step a.btn_prev { background:#fff; color:#4a4a4a; }
+.btn_step a.btn_next { background:#3ad195; color:#fff; }
+.btn_step a.btn_next:hover { background:#37c68d; }
+
+
+/* 예약-진행상황 */
+.charge_step { padding:35px 0; border-bottom:1px solid #e5e5e5; background:#fff; overflow:hidden; }
+.charge_step ol { position:relative; }
+.charge_step li { float:left; position:relative; width:33.33%; margin:0; padding:0; white-space:nowrap; text-align:center; }
+.charge_step li .step_number { display:inline-block; width:30px; height:30px; margin:0 0 17px; -webkit-border-radius:50%; border-radius:50%; background:#e5e5e5; font-size:14px; font-weight:bold; line-height:29px; color:#fff; }
+.charge_step li .step_name { display:block; font-size:14px; font-weight:300; color:#ddd; }
+.charge_step li.current .step_number { background:#3ad195; }
+.charge_step li.current .step_name { font-weight:normal; color:#4a4a4a; }
+.charge_step li:before, .charge_step li:after { content:""; position:absolute; top:14px; width:calc(100% - 60px); height:1px; background:#eaeaea; }
+.charge_step li:before { left:0; -webkit-transform:translateX(-50%); transform:translateX(-50%); }
+.charge_step li:after { right:0; -webkit-transform:translateX(50%); transform:translateX(50%); }
+.charge_step li:first-child:before, .charge_step li:last-child:after { display:none; }
+
+
+/* STEP1-여행정보 입력 */
+.basic_info .titArea h3:before { background-position:-78px -52px; }
+.basic_info p.txtWrap { display:block; position:relative; margin:-5px 0 10px 100px; padding:0 0 0 20px; }
+.basic_info p.txtWrap input { position:absolute; top:5px; width:20px; height:20px; margin:0 0 0 -20px; opacity:0; cursor:pointer; z-index:1; }
+.basic_info p.txtWrap label { display:inline-block; position:relative; margin:0; padding:0 0 0 8px; vertical-align:middle; font-size:14px; font-weight:normal; line-height:20px; color:#4a4a4a; cursor:pointer; }
+.basic_info p.txtWrap label:before { content:""; display:inline-block; position:absolute; top:0; left:0; width:20px; height:20px; margin:0 0 0 -20px; border:1px solid #bbb; -webkit-border-radius:2px; border-radius:2px; background:#fff; box-sizing:border-box; }
+.basic_info p.txtWrap input:checked + label:before { border-color:#3ad195; background:#3ad195; }
+.basic_info p.txtWrap input:checked + label:after { content:""; display:inline-block; position:absolute; top:0; left:0; width:20px; height:20px; margin:0 0 0 -20px; background-position:-20px -40px; background-size:80px; }
+.basic_info p.txtWrap.row { height:40px; margin:8px 0; }
+.basic_info p.txtWrap.row input, .basic_info p.txtWrap.row label:before, .basic_info p.txtWrap.row input:checked + label:after { top:50%; -webkit-transform:translateY(-50%); transform:translateY(-50%); }
+.basic_info p.txtWrap.row label { line-height:39px; }
+
+
+
+/* STEP2-희망 국가 선택 */
+.country .titArea h3:before, .tab.spot .titArea h3:before { background-position:-78px -78px; }
+.country .panel { padding:10px 13px; background:#f5f5f7; font-size:0; }
+.country .panel > p { display:block; position:relative; height:40px; padding:0 3px; font-size:15.5px; font-weight:normal; line-height:40px; color:#4a4a4a; }
+.country .ctry_reset { display:inline-block; position:absolute; top:0; right:0; font-size:14px; color:#8f8f8f; cursor:pointer; }
+.country .ctry_reset i { display:inline-block; width:20px; height:20px; margin:0 0 0 4px; background-position:-95px -120px; background-size:160px; vertical-align:-4px; opacity:.6; }
+.country .panel li { display:inline-block; position:relative; width:calc(20% - 6px); margin:0 3px 6px; padding:4px 0 8px; -webkit-border-radius:3px; border-radius:3px; background:#fff; text-align:center; white-space:nowrap; cursor:pointer; }
+.country .panel li + li { border:none; }
+.country .panel li img { display:block; width:76%; margin:0 auto 4px; }
+.country .panel li .name { font-size:12.5px; font-weight:normal; line-height:1; color:#4a4a4a; }
+.country .panel li .icon { position:absolute; top:4px; right:4px; }
+.country .panel li .icon i { display:block; width:18px; height:18px; background-repeat:no-repeat; background-size:cover; }
+.country .panel li .icon i.rising { background-image:url(https://d3b39vpyptsv01.cloudfront.net/0/0/15505471707667QHat9il4s.gif); }
+.country .panel li .icon i.star { background-image:url(https://d3b39vpyptsv01.cloudfront.net/0/0/1550487203759dJz8fg5LTc.gif); }
+.country .panel li.selected { background:#646867; }
+.country .panel li.selected .name { font-weight:bold; color:#fff; }
+.country .panel li.selected .icon { display:none; }
+
+
+
+/* STEP4-버킷리스트 선택 */
+.tab.bucket .titArea h3:before { background-position:-52px 0; }
+
+
+/* 공통-아코디언 메뉴 */
+.tab .tab_group + .tab_group { margin:-1px 0 0; border-top:1px solid #eaeaea; }
+.tab .tab_title { position:relative; min-height:48px; padding:14px 16px; cursor:pointer; }
+.tab .tab_title h4 { display:inline-block; height:20px; margin:0; line-height:20px; }
+.tab .tab_title .item_count { display:inline-block; margin:0 0 0 8px; padding:0 7px 0 5px; -webkit-border-radius:2px; border-radius:2px; background:#3ad195; font-size:13px; line-height:20px; vertical-align:2px; color:#fff; }
+.tab .tab_title p { display:block; width:calc(100% - 40px); margin:3px 0 0; font-size:13px; font-weight:normal; line-height:18px; word-break:keep-all; color:#8f8f8f; }
+.tab .tab_title i { position:absolute; top:50%; right:16px; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:21px; height:14px;  background-position:-42px -98px; background-size:112px; }
+.tab .tab_group.active .tab_title i { background-position:-42px -84px; }
+.tab .panel { position:relative; height:0; padding:0; overflow:hidden; }
+.tab .tab_group.active .panel { height:auto; padding:16px 12px; border-top:1px solid #eaeaea; border-bottom:1px solid #eaeaea; background:#f5f5f7; }
+.tab .tab_group.active:last-child .panel { border-bottom:0; }
+.tab .panel > b { display:block; margin:0; padding:0 4px; font-size:16px; font-weight:bold; line-height:20px; }
+.tab .panel > p { display:block; position:relative; height:40px; padding:0 4px; font-size:15.5px; font-weight:normal; line-height:40px; color:#4a4a4a; }
+.tab .panel > p .item_count { display:inline-block; margin:0 0 0 2px; }
+.tab .panel .item_reset, .tab .panel .bucket_reset { display:inline-block; position:absolute; top:0; right:0; font-size:14px; color:#8f8f8f; cursor:pointer; }
+.tab .panel .item_reset i, .tab .panel .bucket_reset i { display:inline-block; width:20px; height:20px; margin:0 0 0 4px; background-position:-95px -120px; background-size:160px; vertical-align:-4px; opacity:.6; }
+.tab .item_wrap { font-size:0; }
+.tab .item_wrap + .item_wrap { margin:14px 0 0; }
+.tab .tab_item { float:left; position:relative; width:calc(25% - 8px); margin:0 4px 8px; padding:18% 0 0; -webkit-border-radius:3px; border-radius:3px; background:#fff; overflow:hidden; cursor:pointer; }
+.tab .tab_item .imgWrap:after { content:""; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.15); }
+.tab .tab_item i { display:block; position:absolute; top:0; left:0; width:32px; height:32px; background-size:256px; }
+.tab .tab_item i.rank1 { background-position:-64px -256px; }
+.tab .tab_item i.rank2 { background-position:-96px -256px; }
+.tab .tab_item i.rank3 { background-position:-64px -288px; }
+.tab .txtWrap { display:inline-block; position:absolute; top:50%; -webkit-transform:translateY(-50%); transform:translateY(-50%); width:100%; padding:0 3px; text-align:center; }
+.tab .txtWrap .name { display:block; font-size:13px; line-height:16px; color:#4a4a4a; }
+.tab .txtWrap .sub { display:inline-block; font-size:12px; font-weight:300; line-height:16px; color:#8f8f8f; }
+.tab .tab_item.selected { background:#646867; }
+.tab .tab_item.selected * { color:#fff; }
+
+/* type-bucket */
+.type-bucket .tab_title { padding:16px; }
+.type-bucket .tab_item { float:none; display:inline-block; width:calc(33.33% - 8px); padding:0; -webkit-border-radius:0; border-radius:0; background:transparent; vertical-align:top; }
+.type-bucket .tab_item .imgWrap { position:relative; width:100%; padding:62% 0 0; -webkit-border-radius:3px; border-radius:3px; overflow:hidden; }
+.type-bucket .tab_item .imgWrap:after { background:transparent; }
+.type-bucket .txtWrap { position:relative; top:auto; -webkit-transform:none; transform:none; padding:3px 0 0; text-align:left; }
+.type-bucket .txtWrap .name, .type-bucket .txtWrap .sub { display:-webkit-box; max-height:16px; word-wrap:break-word; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+.type-bucket .txtWrap .sub { max-height:30px; margin:2px 0 0; line-height:15px; -webkit-line-clamp:2; }
+.type-bucket .tab_item.selected { background:inherit; }
+.type-bucket .tab_item.selected * { color:inherit; }
+.type-bucket .tab_item.selected .imgWrap:before { content:""; position:absolute; top:50%; left:50%; -webkit-transform:translate(-50%, -50%); transform:translate(-50%, -50%); width:44px; height:44px; background-position:-44px -88px; background-size:176px; z-index:1; }
+.type-bucket .tab_item.selected .imgWrap:after { background:rgba(0,0,0,.5); }
+
+/* type-bucket-swiper */
+.tab_group.active.type-swiper .panel { padding:16px 0; }
+.type-swiper .panel > b { padding:0 0 0 16px; }
+.type-swiper .panel > p { padding:0 0 0 16px; }
+.type-swiper .panel .bucket_reset { right:12px; }
+.type-swiper .tab_item { width:calc(30.5% - 8px); margin:0 4px; }
+.type-swiper .tab_item + .tab_item { border:none; }
+.type-swiper .tab_item:first-child { margin-left:16px; }
+.type-swiper .tab_item:last-child { margin-right:16px; }
+.type-swiper .tab_item.selected .imgWrap:before { content:""; }
+
+
+
+/* 공통-직접입력 */
+.direct .titArea h3:before { background-position:0 -104px; }
+.direct .panel { padding:16px; }
+.direct .panel .title { font-weight:normal; }
+
+
+
+/* STEP5-서비스 선택 */
+.service .stu_inner_wrap { max-width:710px; margin:0; }
+.service .titArea h3:before { background-position:-54px -52px; }
+.service .panel { padding:20px 24px; }
+.service .panel li + li { border:none; }
+.service .svc_item { display:block; position:relative; width:100%; margin:0 0 30px; -webkit-border-radius:2px; border-radius:2px; text-align:center; word-break:keep-all; overflow:hidden; }
+.service .svc_item:before { content:""; position:absolute; top:0; left:0; right:0; bottom:0; box-shadow:inset 0 0 0 1px rgba(0,0,0,.12); pointer-events:none; }
+.service .svc_header { background:#3ad195; }
+.service .svc_plan { display:table; width:100%; padding:12px 16px; background:rgba(0,0,0,.1); font-size:16px; font-weight:normal; line-height:20px; color:#fff; }
+.service .svc_plan p { display:inline-block; position:absolute; top:10px; left:-29px; -webkit-transform:rotate(-45deg); transform:rotate(-45deg); width:100px; box-shadow:0 2px 0 0 rgba(0,0,0,.1); background:#ffd565; font-size:13px; font-weight:bold; line-height:22px; text-shadow:0 1px 0 rgba(255,255,255,.5); color:#7b683c; }
+.service .svc_plan span { display:table-cell; vertical-align:middle; }
+.service .svc_price { height:80px; border-top:1px solid rgba(255,255,255,.2); font-size:32px; font-weight:bold; line-height:78px; text-shadow:1px 1px 0 rgba(0,0,0,.2); color:#fff; }
+.service .svc_price span { margin:0 0 0 3px; font-size:16px; font-weight:normal; }
+.service .svc_features { background:#fff; }
+.service .svc_features li { display:block; padding:12px 6px; font-size:14px; font-weight:normal; line-height:18px; color:#4a4a4a; }
+.service .svc_features li:nth-child(odd) { background:#fafafc; }
+.service .svc_features li span { color:#2196f3; }
+.service .btn_wrap { padding:20px 30px; background:#fff; }
+.service .btn_apply { display:block; height:44px; -webkit-border-radius:3px; border-radius:3px; background:#f1f1f3; font-size:15px; font-weight:bold; line-height:43px; color:#4a4a4a; cursor:pointer; }
+.service .btn_apply:hover { background:#eaeaea; }
+.service .btn_apply.active { background:#6f6f6f; color:#fff; }
+.service .btn_apply.active:before { content:""; display:inline-block; width:24px; height:24px; background-position:-25px -48px; background-size:96px; vertical-align:-6px; }
+
+
+
+/* STEP6-상품정보 */
+.resv_detail { display:none; }
+.resv_detail.on-pc { display:block! important; }
+.resv_detail .panel { padding:16px; }
+.resv_detail .panel > p.txt { position:relative; margin:20px 0 0; padding:16px; -webkit-border-radius:6px; border-radius:6px; background:#f1f1f3; font-size:14px; color:#4a4a4a; }
+.resv_detail .panel > p.txt:after { content:""; position:absolute; top:-20px; left:50%; -webkit-transform:translateX(-50%); transform:translateX(-50%); border:10px solid transparent; border-bottom-color:#f1f1f3; }
+.resv_detail .txtWrap { border:2px solid #3ad195; -webkit-border-radius:6px; border-radius:6px; }
+.resv_detail .txtWrap b { display:block; padding:16px; border-bottom:2px solid #3ad195; font-size:17px; line-height:20px; }
+.resv_detail ol { padding:6px 0; }
+.resv_detail li { padding:10px 16px; }
+.resv_detail dl { color:#8f8f8f; }
+.resv_detail dt { padding:0! important; }
+.resv_detail dd { text-align:right; }
+.resv_detail dd span { margin:0 0 0 4px; }
+.resv_detail li.price dl { font-size:16px; color:#222; }
+.resv_detail li.discount dd { color:#3ad195; }
+.resv_detail li.result { border-color:#4a4a4a; }
+.resv_detail li.result dt { font-size:17px; font-weight:500; line-height:40px; color:#222; }
+.resv_detail li.result dd { font-size:20px; font-weight:bold; line-height:40px; color:#3ad195; }
+
+
+
+/* STEP6-신청자정보 */
+.customer_detail .titArea h3:before { background-position:0 -26px; }
+.customer_detail .panel { padding:16px; }
+
+
+
+/* STEP6-서비스약관 */
+.terms_container .titArea h3:before { background-position:-52px -26px; }
+.terms_container .panel { padding:16px; }
+.terms_container .terms { height:94px; margin:10px 0 0; padding:10px; -webkit-border-radius:2px; border-radius:2px; border:1px solid #e5e5e5; background:#fafafc; -webkit-overflow-scrolling:touch; overflow-y:auto; }
+.terms_container .terms p { font-size:12px; font-weight:300; line-height:18px; letter-spacing:-.5px; color:#aaa; }
+.terms_container p.txt_agree { display:block; position:relative; padding:10px 0 10px 20px; font-size:14px; font-weight:normal; line-height:20px; color:#4a4a4a; }
+.terms_container p.txt_agree span { display:inline-block; margin:0 0 0 2px; color:red; }
+.terms_container p.txt_agree label { display:inline-block; position:relative; margin:0; padding:0 0 0 10px; vertical-align:middle; font-size:15px; font-weight:normal; line-height:20px; color:#4a4a4a; cursor:pointer; }
+.terms_container p.txt_agree label:before { content:""; display:inline-block; position:absolute; left:0; width:20px; height:20px; margin:0 0 0 -20px; border:1px solid #bbb; -webkit-border-radius:2px; border-radius:2px; background:#fff; box-sizing:border-box; }
+.terms_container p.txt_agree input { position:absolute; width:20px; height:20px; margin:0 0 0 -20px; opacity:0; cursor:pointer; z-index:1; }
+.terms_container p.txt_agree input:checked + label:before { border-color:#3ad195; background:#3ad195; }
+.terms_container p.txt_agree input:checked + label:after { content:""; display:inline-block; position:absolute; top:0; left:0; width:20px; height:20px; margin:0 0 0 -20px; background-position:-20px -40px; background-size:80px; }
+.terms_container p.txt_agree a { display:inline-block; font-size:15px; font-weight:normal; line-height:20px; text-decoration:underline; color:#3ad195; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1025px){
+
+
+/* 공통 */
+body { background-color:#eeecec; }
+p { font-size:18px; }
+h3.stu_h3_title { font-size:20px; line-height:34px; margin-bottom:14px; }
+h4.stu_h4_title { font-size:17px; }
+.stu_inner_wrap { min-width:auto; background:#fff; }
+.titArea { padding:25px 0 16px; }
+.on-pc { display:block; }
+
+/* swiper */
+.swiper-scrollbar { display:none; }
+
+
+
+/* 메인로고 */
+.stu_logo_container { display:block; margin:0; padding:40px 0 0; text-align:center; }
+.stu_logo_container .stu_inner_wrap { margin:0 auto; background:none; }
+.stu_logo_container .stu_logo { display:inline-block; position:relative; width:192px; height:39.81px; }
+
+
+
+/* 예약영역 */
+.stu_charge { position:static; background:none; z-index:0; }
+
+/* 헤더영역 */
+.stu_charge_header { max-width:1100px; min-width:960px; height:60px; margin:20px auto 0; padding:0; border:none; word-break:keep-all; line-height:90px; vertical-align:middle; overflow:hidden; }
+.stu_charge_header a { top:20px; right:30px; padding:8px 16px; -webkit-border-radius:4px; border-radius:4px; background:#f1f1f3; font-size:16px; font-weight:bold; line-height:24px; color:#4a4a4a; }
+.stu_charge_header a:hover { background:#eaeaec; }
+.stu_charge_header a i.ico_back { display:none; }
+.stu_charge_header p { font-size:20px; line-height:30px; }
+.stu_charge_header span { display:inline-block; }
+.stu_charge_header span:before { content:":"; margin:0 8px 0 4px; }
+
+/* 본문영역 */
+.stu_charge_container { position:static; max-width:1100px; min-width:960px; height:auto; margin:0 auto; overflow:hidden; }
+.stu_charge_container .charge_item { margin:30px 0 0; border:none; background:none; }
+.stu_charge_container .titArea { padding:30px 0 0; border:none; }
+.stu_charge_container .titArea h3 { padding:0 0 0 36px; }
+.stu_charge_container .titArea h3:before { vertical-align:-6px; }
+.stu_charge_container .titArea .sub_title { height:36px; margin:5px 0 0 40px; padding:0 18px 0 0; font-size:16px; line-height:34px; }
+.stu_charge_container .titArea .sub_title span { height:36px; padding:0 18px 0 16px; }
+.stu_charge_container .titArea .sub_title span:before {  }
+.stu_charge_container .form-control { margin:12px 0; }
+.stu_charge_container select.form-control { padding:0 40px 0 10px; background-image:url(http://d3b39vpyptsv01.cloudfront.net/0/0/1547205569553wDKe0HkXR9.png); }
+.stu_charge_container .form-group select.form-control { width:74%; }
+.stu_charge_container .form-group .form-submit { width:calc(26% - 12px); }
+.stu_charge_container .form-group .btn_submit { margin:12px 0; font-size:15px; }
+.stu_charge_container .panel { padding:20px 40px; }
+.stu_charge_container .panel ul + ul, .stu_charge_container .panel li + li { border:none; }
+.stu_charge_container .panel .title { font-size:16px; }
+.stu_charge_container .panel dl { font-size:15px; }
+.stu_charge_container .panel dt { width:120px; padding:19px 0 0; }
+.stu_charge_container .panel dd { width:calc(100% - 120px); }
+.stu_charge_container .panel p.txt { margin:-8px 0 14px 120px; font-size:13px; }
+.stu_charge_container .panel .dpt.month, .stu_charge_container .panel .dpt.date { width:calc(32% - 10px); margin-left:10px; }
+
+/* 이전/다음단계 */
+.btn_step { position:relative; left:-195px; max-width:710px; min-width:auto; margin:0 auto 60px; padding:16px 32px 40px; border:none; background:#fff; text-align:center; }
+.btn_step.first { left:auto; max-width:1100px; min-width:960px; }
+.btn_step .btn_wrap { padding:0 8px; }
+.step1 .btn_step .btn_wrap { float:none; width:360px; }
+.btn_step a.btn_prev { background:#f1f1f3; }
+.btn_step a.btn_prev:hover { background:#eaeaec; }
+
+/* 예약-진행상황 */
+.charge_step { float:none; padding:0; border:none; background:none; }
+.charge_step .stu_inner_wrap { padding:35px 40px; }
+.charge_step li { width:16.6%; }
+.charge_step li.current .step_name { font-size:15px; }
+
+
+
+/* STEP1-여행정보 입력 */
+.basic_info .panel ul { float:left; width:50%; padding:0 25px 0 0; }
+.basic_info .panel ul + ul { padding:0 0 0 25px; }
+.basic_info .panel li + li { border:none; }
+.basic_info p.txtWrap { margin:-5px 0 10px 120px; }
+.basic_info p.txtWrap.row { margin:16px 0 0; }
+.basic_info p.txtWrap.row + p.txtWrap.row { margin:8px 0 0; }
+
+
+
+/* STEP2-여행지 선택 */
+.country .titArea h3:before, .tab.spot .titArea h3:before { background-position:-78px -78px; }
+.country .panel { padding:10px 13px; background:#f5f5f7; font-size:0; }
+.country .panel > p { display:block; position:relative; height:40px; padding:0 4px; font-size:15.5px; font-weight:normal; line-height:40px; color:#4a4a4a; }
+
+.country .ctry_reset { display:inline-block; position:absolute; top:0; right:0; font-size:14px; color:#8f8f8f; cursor:pointer; }
+.country .ctry_reset i { display:inline-block; width:20px; height:20px; margin:0 0 0 4px; background-position:-95px -120px; background-size:160px; vertical-align:-4px; opacity:.6; }
+
+.country .panel li { display:inline-block; position:relative; width:calc(16.6% - 6px); margin:0 3px 6px; padding:4px 0 8px; -webkit-border-radius:3px; border-radius:3px; background:#fff; text-align:center; white-space:nowrap; cursor:pointer; }
+
+
+
+/* STEP2-여행지 선택 */
+.tab.spot .stu_inner_wrap { max-width:710px; margin:0; }
+.tab.spot .tab_container { padding:20px 40px 40px; }
+
+
+
+/* STEP3-버킷리스트 선택 */
+.tab.bucket .stu_inner_wrap { max-width:710px; margin:0; }
+.tab.bucket .tab_container { padding:20px 40px 40px; }
+
+
+
+/* 공통-아코디언 메뉴*/
+.tab .tab_group { border:1px solid #e5e5e5; -webkit-border-radius:3px; border-radius:3px; -webkit-box-shadow:0 2px 4px 0 rgba(0,0,0,.1); box-shadow:0 2px 4px 0 rgba(0,0,0,.1); }
+.tab .tab_group + .tab_group { margin:16px 0 0; }
+.tab .tab_title p { font-size:14px; }
+.tab .panel { padding:0; }
+.tab .tab_group.active .panel { padding:16px 15px; border-bottom:none; }
+.tab .panel > b { padding:6px 0 0 5px; font-size:17px; }
+.tab .panel > p { padding:0 5px; }
+.tab .tab_item { width:calc(20% - 10px); margin:0 5px 10px; padding:14.4% 0 0; }
+.tab .txtWrap .name { font-size:14px; }
+.tab .txtWrap .sub { margin:2px 0 0; font-size:13px; }
+
+/* type-bucket */
+.type-bucket .tab_title { padding:20px 16px; }
+.type-bucket .tab_item { width:calc(25% - 10px); padding:0; }
+.type-bucket .txtWrap { padding:5px 0; }
+
+/* type-bucket-swiper */
+.type-swiper .panel .bucket_reset { right:0; }
+.type-swiper .swiper-wrapper { flex-flow:row wrap; -webkit-transform:translate3d(0,0,0)! important; transform:translate3d(0,0,0)! important; }
+.type-swiper .tab_item:first-child, .type-swiper .tab_item:last-child { margin:0 5px 10px; }
+
+
+
+/* 공통-직접입력 */
+.direct .stu_inner_wrap { max-width:710px; margin:0; }
+.direct .panel .title { font-size:15px; }
+
+
+
+/* STEP4-서비스 선택 */
+.service .stu_inner_wrap { max-width:710px; margin:0; }
+.service .titArea h3:before { background-position:-54px -54px; }
+.service .svc_item { float:left; width:calc(33.33% - 1px); }
+.service .svc_plan { height:82.8px; padding:0 16px; }
+.service .svc_plan p { top:8px; left:-22px; width:80px; }
+.service .svc_price { height:48px; font-size:22px; line-height:46px; }
+.service .svc_features li { padding:14px 6px; }
+.service .svc_item.focused { width:calc(33.33% + 4px); margin:0 -1px; z-index:1; }
+
+
+
+/* STEP5-상품정보 */
+.charge_item.resv_detail { display:block; }
+.charge_item.resv_detail { position:absolute; top:0; right:50%; margin:332px -550px 0 0; }
+.charge_item.resv_detail .stu_inner_wrap { max-width:360px; padding:30px; }
+.charge_item.resv_detail .panel { padding:0; }
+.charge_item.resv_detail .panel > p.txt { margin:20px 0 0; font-size:14px; }
+.charge_item.resv_detail li + li { border-top:1px solid #f5f5f5; }
+.charge_item.resv_detail dl { font-size:14px; line-height:22px; }
+
+
+/* STEP3-예약자정보 */
+.customer_detail .stu_inner_wrap { max-width:710px; margin:0; }
+
+
+
+/* STEP3-여행자약관 */
+.terms_container { margin:0! important; }
+.terms_container .stu_inner_wrap { max-width:710px; margin:0; }
+.terms_container .terms { height:120px; margin:10px 0; }
+.terms_container .terms p { font-size:13px; line-height:21px; }
+.terms_container p.txt_agree { padding:8px 0 8px 20px; }
+
+
+
+
+
+
+
+
+}

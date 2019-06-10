@@ -10,6 +10,8 @@ public class PlannerPlanDTO {
 	private String city_img;
 	private String city_info;
 	private int city_level;
+	private int recommSlp;
+	private int slpRates;
 	private String SWlongitude;
 	private String SWlatitude;
 	private String NElongitude;
@@ -18,6 +20,18 @@ public class PlannerPlanDTO {
 	
 	
 	
+	public int getRecommSlp() {
+		return recommSlp;
+	}
+	public void setRecommSlp(int recommSlp) {
+		this.recommSlp = recommSlp;
+	}
+	public int getSlpRates() {
+		return slpRates;
+	}
+	public void setSlpRates(int slpRates) {
+		this.slpRates = slpRates;
+	}
 	public String getSWlongitude() {
 		return SWlongitude;
 	}

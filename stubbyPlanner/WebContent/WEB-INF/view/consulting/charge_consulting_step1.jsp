@@ -114,132 +114,18 @@
                                             <div class="dpt month">
                                                 <select class="form-control" title="출국월" id="startdate_mm">
                                                     <option disabled>월</option>
-
-
-                                                    <option value="01" >1월</option>
-
-                                                    <option value="02" >2월</option>
-
-                                                    <option value="03" >3월</option>
-
-                                                    <option value="04" >4월</option>
-
-                                                    <option value="05" >5월</option>
-
-                                                    <option value="06" >6월</option>
-
-                                                    <option value="07" >7월</option>
-
-                                                    <option value="08" >8월</option>
-
-                                                    <option value="09" >9월</option>
-
-                                                    <option value="10" >10월</option>
-
-                                                    <option value="11" >11월</option>
-
-                                                    <option value="12" >12월</option>
-
+													<c:forEach var="i" begin="1" end="12">
+													<option value="${i}" >${i}</option>
+													</c:forEach>
                                                 </select>
                                             </div>
                                             <div class="dpt date">
                                                 <select class="form-control" title="출국일" id="startdate_dd">
                                                     <option disabled>일</option>
-				<option value="" >미정</option>
-
-
-                                                    <option value="01" >1일</option>
-
-
-                                                    <option value="02" >2일</option>
-
-
-                                                    <option value="03" >3일</option>
-
-
-                                                    <option value="04" >4일</option>
-
-
-                                                    <option value="05" >5일</option>
-
-
-                                                    <option value="06" >6일</option>
-
-
-                                                    <option value="07" >7일</option>
-
-
-                                                    <option value="08" >8일</option>
-
-
-                                                    <option value="09" >9일</option>
-
-
-                                                    <option value="10" >10일</option>
-
-
-                                                    <option value="11" >11일</option>
-
-
-                                                    <option value="12" >12일</option>
-
-
-                                                    <option value="13" >13일</option>
-
-
-                                                    <option value="14" >14일</option>
-
-
-                                                    <option value="15" >15일</option>
-
-
-                                                    <option value="16" >16일</option>
-
-
-                                                    <option value="17" >17일</option>
-
-
-                                                    <option value="18" >18일</option>
-
-
-                                                    <option value="19" >19일</option>
-
-
-                                                    <option value="20" >20일</option>
-
-
-                                                    <option value="21" >21일</option>
-
-
-                                                    <option value="22" >22일</option>
-
-
-                                                    <option value="23" >23일</option>
-
-
-                                                    <option value="24" >24일</option>
-
-
-                                                    <option value="25" >25일</option>
-
-
-                                                    <option value="26" >26일</option>
-
-
-                                                    <option value="27" >27일</option>
-
-
-                                                    <option value="28" >28일</option>
-
-
-                                                    <option value="29" >29일</option>
-
-
-                                                    <option value="30" >30일</option>
-
-
-                                                    <option value="31" >31일</option>
-
+													<option value="">미정</option>
+													<c:forEach var="i" begin="1" end="31">	
+                                                    <option value="${i}">${i}일</option>
+													</c:forEach>
                                                 </select>
                                             </div>
                                         </dd>
@@ -253,179 +139,9 @@
 
                                             <select class="form-control" title="" name="term" id="term">
                                                 <option disabled selected>여행기간을 선택하세요.</option>
-
-                                                <option value="5" >5일</option>
-
-                                                <option value="6" >6일</option>
-
-                                                <option value="7" >7일</option>
-
-                                                <option value="8" >8일</option>
-
-                                                <option value="9" >9일</option>
-
-                                                <option value="10" >10일</option>
-
-                                                <option value="11" >11일</option>
-
-                                                <option value="12" >12일</option>
-
-                                                <option value="13" >13일</option>
-
-                                                <option value="14" >14일</option>
-
-                                                <option value="15" >15일</option>
-
-                                                <option value="16" >16일</option>
-
-                                                <option value="17" >17일</option>
-
-                                                <option value="18" >18일</option>
-
-                                                <option value="19" >19일</option>
-
-                                                <option value="20" >20일</option>
-
-                                                <option value="21" >21일</option>
-
-                                                <option value="22" >22일</option>
-
-                                                <option value="23" >23일</option>
-
-                                                <option value="24" >24일</option>
-
-                                                <option value="25" >25일</option>
-
-                                                <option value="26" >26일</option>
-
-                                                <option value="27" >27일</option>
-
-                                                <option value="28" >28일</option>
-
-                                                <option value="29" >29일</option>
-
-                                                <option value="30" >30일</option>
-
-                                                <option value="31" >31일</option>
-
-                                                <option value="32" >32일</option>
-
-                                                <option value="33" >33일</option>
-
-                                                <option value="34" >34일</option>
-
-                                                <option value="35" >35일</option>
-
-                                                <option value="36" >36일</option>
-
-                                                <option value="37" >37일</option>
-
-                                                <option value="38" >38일</option>
-
-                                                <option value="39" >39일</option>
-
-                                                <option value="40" >40일</option>
-
-                                                <option value="41" >41일</option>
-
-                                                <option value="42" >42일</option>
-
-                                                <option value="43" >43일</option>
-
-                                                <option value="44" >44일</option>
-
-                                                <option value="45" >45일</option>
-
-                                                <option value="46" >46일</option>
-
-                                                <option value="47" >47일</option>
-
-                                                <option value="48" >48일</option>
-
-                                                <option value="49" >49일</option>
-
-                                                <option value="50" >50일</option>
-
-                                                <option value="51" >51일</option>
-
-                                                <option value="52" >52일</option>
-
-                                                <option value="53" >53일</option>
-
-                                                <option value="54" >54일</option>
-
-                                                <option value="55" >55일</option>
-
-                                                <option value="56" >56일</option>
-
-                                                <option value="57" >57일</option>
-
-                                                <option value="58" >58일</option>
-
-                                                <option value="59" >59일</option>
-
-                                                <option value="60" >60일</option>
-
-                                                <option value="61" >61일</option>
-
-                                                <option value="62" >62일</option>
-
-                                                <option value="63" >63일</option>
-
-                                                <option value="64" >64일</option>
-
-                                                <option value="65" >65일</option>
-
-                                                <option value="66" >66일</option>
-
-                                                <option value="67" >67일</option>
-
-                                                <option value="68" >68일</option>
-
-                                                <option value="69" >69일</option>
-
-                                                <option value="70" >70일</option>
-
-                                                <option value="71" >71일</option>
-
-                                                <option value="72" >72일</option>
-
-                                                <option value="73" >73일</option>
-
-                                                <option value="74" >74일</option>
-
-                                                <option value="75" >75일</option>
-
-                                                <option value="76" >76일</option>
-
-                                                <option value="77" >77일</option>
-
-                                                <option value="78" >78일</option>
-
-                                                <option value="79" >79일</option>
-
-                                                <option value="80" >80일</option>
-
-                                                <option value="81" >81일</option>
-
-                                                <option value="82" >82일</option>
-
-                                                <option value="83" >83일</option>
-
-                                                <option value="84" >84일</option>
-
-                                                <option value="85" >85일</option>
-
-                                                <option value="86" >86일</option>
-
-                                                <option value="87" >87일</option>
-
-                                                <option value="88" >88일</option>
-
-                                                <option value="89" >89일</option>
-
-                                                <option value="90" >90일</option>
-
+												<c:forEach var="i" begin="5" end="90">
+												<option value="${i}" >${i}일</option>
+												</c:forEach>
                                                 <option value="91" >91일이상</option>
 
                                             </select>
@@ -438,11 +154,9 @@
                                         <dd>
                                             <select class="form-control" title="연령대" name="agegroup">
                                                 <option disabled selected>연령대를 선택하세요.</option>
-                                                <option value="10" >10대</option>
-                                                <option value="20" >20대</option>
-                                                <option value="30" >30대</option>
-                                                <option value="40" >40대</option>
-                                                <option value="50" >50대</option>
+                                                <c:forEach var="i" begin="10" end="50" step="10">
+                                                <option value="${i}" >${i}대</option>
+                                                </c:forEach>
                                                 <option value="60" >60대 이상</option>
                                             </select>
                                         </dd>
@@ -464,27 +178,9 @@
                                         <dd>
                                             <select class="form-control" title="여행인원" name="member_cnt" id="member_cnt">
                                                 <option disabled selected>여행인원을 선택하세요.</option>
-
-                                                <option value="1" >1명</option>
-
-                                                <option value="2" >2명</option>
-
-                                                <option value="3" >3명</option>
-
-                                                <option value="4" >4명</option>
-
-                                                <option value="5" >5명</option>
-
-                                                <option value="6" >6명</option>
-
-                                                <option value="7" >7명</option>
-
-                                                <option value="8" >8명</option>
-
-                                                <option value="9" >9명</option>
-
-                                                <option value="10" >10명</option>
-
+												<c:forEach var="i" begin="1" end="10">
+                                                <option value="${i}" >${i}명</option>
+												</c:forEach>
                                                 <option value="11" >11명 이상</option>
                                             </select>
                                         </dd>
