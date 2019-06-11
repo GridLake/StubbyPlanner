@@ -212,7 +212,8 @@ function ClickSearchAdrs()
 <!-------------예약완료인때 시작--------------->
 
 <!---왼쪽 시작--->
-<form target="_parent" action="<%= contextPath %>/planner/add_resv_info.do?t=air&planserial=10286254&rs=&region=&startdate=" method="post">
+<!-- &region=&startdate= -->
+<form target="_parent" action="<%= contextPath %>/planner/add_resv_info.do?t=air&trip_id=10286254&rs=96768" method="post">
 
 <input type="hidden" name="FromCitySerial" id="FromCitySerial" value="161031002">
 <input type="hidden" name="ToCitySerial" value="111011004">

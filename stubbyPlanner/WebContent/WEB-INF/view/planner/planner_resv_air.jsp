@@ -295,11 +295,13 @@ function complete()
 
 			<a href="<%= contextPath %>/planner/planner_resv_air.do?trip_id=${trip_id}" class="lmenu_title selected"><i class="fa fa-plane"></i> 항공권 <i class="fa fa-check-circle-o" aria-hidden="true"></i></a>
 		</div>
+		<%-- 		
 		<div class="leftmenu">
 
 
 			<a href="<%= contextPath %>/planner/planner_resv_pass.do?trip_id=${trip_id}" class="lmenu_title "><i class="fa fa-ticket"></i> 유레일패스 </a>
 		</div>
+		 --%>
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-arrow-right"></i> 교통</div>
 
@@ -358,7 +360,7 @@ function complete()
 </h4>
 	<div style="padding-left:15px;padding-right:15px;background:#efefef;padding-top:10px;padding-bottom:10px;">
 
-		<!-- foreach -->
+		<!-- c:if test= -->
 		<div style="padding-top:10px;">
 			<div style="float:left;width:50%;">
 				<div style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;margin-bottom:3px;background:#c0c0c0;color:#fff">출국편</div>
@@ -378,8 +380,30 @@ function complete()
 		<!-- 날짜 변수 -->
 			유럽항공권 가격비교 싸이트, 스카이스캐너에서 내 조건에 맞는 <a target="_blank" href="https://www.skyscanner.co.kr/transport/d/sela/2019-07-09/pari/lond/2019-07-15/sela?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&ref=day-view&associateid_proc=true&utm_campaign=flights&utm_medium=b2b&rtn=False&currency=KRW&ucy=KR&utm_source=StubbyPlanner&lang=ko&associateid=API_B2B_00175_00001#results" style="border-radius:20px;background:#ee685a" class="btn-u btn-u-dark">항공권 비교하기 <i class="fa fa-external-link" aria-hidden="true"></i></a>
 		</p>
+<!-- 
+		<div style="padding-top:5px;padding-bottom:10px;font-size:14pt;font-weight:bold">
+			대한항공&nbsp;&nbsp; 100만원
+		</div>
 
+		<div style="padding-top:10px;">
+			<div style="float:left;width:50%;">
+				<div style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;margin-bottom:3px;background:#c0c0c0;color:#fff">출국편</div>
+				<div>출발: 인천국제공항 &nbsp;&nbsp;2019/7/11&nbsp;09:00</div>
+				<div>도착: 파리-샤를드골 공항&nbsp;&nbsp;2019/7/11&nbsp;18:00</div>
+			</div>
+			<div style="float:left;width:50%;">
+				<div style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;margin-bottom:3px;background:#c0c0c0;color:#fff">귀국편</div>
+				<div>출발: 히드로 공항&nbsp;&nbsp;2019/7/17&nbsp;10:00</div>
+				<div>도착: 인천국제공항 &nbsp;&nbsp;2019/7/17&nbsp;22:00</div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
 
+		<hr style="border:1px solid #fff">
+		<p>
+			1111
+		</p>
+		 -->
 
 
 	</div>

@@ -833,7 +833,7 @@ function saveCookie(is_sync)
 		  },
 		  success: function( data ) {
 			trip_id=data;
-			console.log("data:" + data);
+			//console.log("data:" + data);
 		}
 	});
 
