@@ -896,7 +896,7 @@ function getTripgene()
 
 		if(routelist[i].is_night_move!="")
 			rtstring=rtstring+":"+routelist[i].is_night_move;
-
+		/* 
 		for(j=0;j<routelist[i].schdlist.length;j++)
 		{
 			rtstring=rtstring+"|"+routelist[i].schdlist[j].id;
@@ -919,6 +919,7 @@ function getTripgene()
 			else
 				rtstring=rtstring+":X";
 		}
+		*/
 	}
 	return rtstring;
 }
@@ -2520,23 +2521,19 @@ function gotoCalendar()
 function gotoResv()
 {
 	
-/* 
-	if(routelist.length==0)
-	{
-		alert("1개 이상의 도시가 추가되어야 예약정보 관리가 가능합니다.");
+	if('${authUser.member_id}'==''){
+		alert("로그인 후 이용해주세요.");
+		window.location="/stubbyPlanner/common/login.do"
+	} else{
+		if(routelist.length==0)	{
+			alert("1개 이상의 도시가 추가되어야 예약정보 관리가 가능합니다.");
+		} else {
+			if(!trip_id)
+				saveCookie(1);
+		// window.location='planner_resv.do?trip_id='+trip_id;
+				window.location='/stubbyPlanner/planner/planner_resv_air.do?trip_id='+trip_id;
+		}
 	}
-	else		
-	{
-
-		if(!trip_id)
-			saveCookie(1);
-		window.location='planner_resv.do?trip_id='+trip_id;
-
-	}
-	 */
-	window.location="/stubbyPlanner/planner/planner_resv_air.do"
-	// window.location="/stubbyPlanner/common/login.do"
-	
 }
 </script>
 
@@ -2591,9 +2588,15 @@ function gotoResv()
 			<div class="top_menu"  id="menu2" onclick="gotoCalendar()"><font style="font-size:12pt;color:#fff;">일정</font> <span id="menu_label_schd" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;"><span id="span_schd_cnt">0</span>개</span></div>
 			<div class="top_menu"  id="menu3" onclick="gotoResv()" ><font style="font-size:12pt;color:#fff;">예약 <span id="menu_label_resv" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;">만원</span></div>
 			<div style="float:left;width:25%;text-align:center;padding-top:8px;">
+<c:choose>
 
+<c:when test="${empty sessionScope.authUser}">
 				<div id="btnStart" style="display:inline-block;border-radius:5px;border:0px solid #fff;background:gray;width:70%;text-align:center;padding-top:6px;padding-bottom:6px;cursor:pointer;text-decoration:none;color:#FFF;font-size:10pt;font-weight:bold"" onclick="toggleTRMenu();" > GUEST로 작업중 <i id="guest_btn_icon" class="fa fa-angle-down"></i></div>
-
+</c:when>
+<c:otherwise>				
+				<div id="btnStart" style="display:inline-block;border-radius:5px;border:0px solid #fff;background:gray;width:70%;text-align:center;padding-top:6px;padding-bottom:6px;cursor:pointer;text-decoration:none;color:#FFF;font-size:10pt;font-weight:bold"" onclick="complete();" > 작업완료 </div>
+</c:otherwise>
+</c:choose>				
 			</div>
 <script>
 
@@ -2638,86 +2641,100 @@ function register()
 //완료
 function complete()
 {
-	if(!trip_id)
-		saveCookie(1);
+	if('${authUser.member_id}'!=''){
+		if(!trip_id)
+			saveCookie(1);
 
-	if(!trip_id)
-	{
-		alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
-		return;
+		if(!trip_id)
+		{
+			alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
+			return;
+		}
+	
+		window.location="/planner/detail.do?tid="+trip_id;
+	
+	} else {
+		if(!trip_id)
+			saveCookie(1);
+
+		if(!trip_id)
+		{
+			alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
+			return;
+		}
+		thtml="";
+		thtml+='<div style="margin-bottom:7px;">';
+		thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">여행명</div>';
+		thtml+='<div style="width:70%;float:left;"><input class="form-control" type="text" id="planname" name="planname" value=""></div>';
+		thtml+='<div style="clear:both"></div>';
+		thtml+='</div>';
+
+		thtml+='<div style="margin-bottom:7px;">';
+		thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">인원</div>';
+		thtml+='<div style="width:70%;float:left;"><select name="member_cnt" id="member_cnt" class="form-control">';
+
+			thtml+='<option value="0" >0명</option>';
+
+			thtml+='<option value="1" >1명</option>';
+
+			thtml+='<option value="2" >2명</option>';
+
+			thtml+='<option value="3" >3명</option>';
+
+			thtml+='<option value="4" >4명</option>';
+
+			thtml+='<option value="5" >5명</option>';
+
+			thtml+='<option value="6" >6명</option>';
+
+			thtml+='<option value="7" >7명</option>';
+
+			thtml+='<option value="8" >8명</option>';
+
+			thtml+='<option value="9" >9명</option>';
+
+			thtml+='<option value="10" >10명</option>';
+
+			thtml+='<option value="11" >11명</option>';
+
+			thtml+='<option value="12" >12명</option>';
+
+			thtml+='<option value="13" >13명</option>';
+
+			thtml+='<option value="14" >14명</option>';
+
+			thtml+='<option value="15" >15명</option>';
+
+			thtml+='<option value="16" >16명</option>';
+
+			thtml+='<option value="17" >17명</option>';
+
+			thtml+='<option value="18" >18명</option>';
+
+			thtml+='<option value="19" >19명</option>';
+
+			thtml+='<option value="20" >20명</option>';
+
+		thtml+='</select></div><div style="clear:both"></div>';
+		thtml+='</div>';
+
+		thtml+='<div style="margin-bottom:7px;">';
+		thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">이메일주소</div>';
+		thtml+='<div style="width:70%;float:left;"><input class="form-control" type="text" id="email" name="email" value=""></div>';
+		thtml+='<div style="clear:both"></div>';
+		thtml+='</div>';
+
+		thtml+='<div style="padding-top:10px"><a href="javascript:saveandmove()" style="text-align:center" class="btn-lg btn-success btn-block">저장하기</a></div>';
+		thtml+='<div style="clear:both"></div>';
+		thtml+='<p style="font-size:8pt;color:#fff;padding-top:5px;">비회원 플래너는 누구나 접근 가능하며 임의로 수정 될 수 있습니다.</p>';
+
+		xtitle="비회원 플래너 저장";
+		$("#my_modal_title").html(xtitle);
+		$("#my_modal_desc").html(thtml);
+		openMyModal();
+
 	}
 
-
-thtml="";
-	thtml+='<div style="margin-bottom:7px;">';
-	thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">여행명</div>';
-	thtml+='<div style="width:70%;float:left;"><input class="form-control" type="text" id="planname" name="planname" value=""></div>';
-	thtml+='<div style="clear:both"></div>';
-	thtml+='</div>';
-
-	thtml+='<div style="margin-bottom:7px;">';
-	thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">인원</div>';
-	thtml+='<div style="width:70%;float:left;"><select name="member_cnt" id="member_cnt" class="form-control">';
-
-		thtml+='<option value="0" >0명</option>';
-
-		thtml+='<option value="1" >1명</option>';
-
-		thtml+='<option value="2" >2명</option>';
-
-		thtml+='<option value="3" >3명</option>';
-
-		thtml+='<option value="4" >4명</option>';
-
-		thtml+='<option value="5" >5명</option>';
-
-		thtml+='<option value="6" >6명</option>';
-
-		thtml+='<option value="7" >7명</option>';
-
-		thtml+='<option value="8" >8명</option>';
-
-		thtml+='<option value="9" >9명</option>';
-
-		thtml+='<option value="10" >10명</option>';
-
-		thtml+='<option value="11" >11명</option>';
-
-		thtml+='<option value="12" >12명</option>';
-
-		thtml+='<option value="13" >13명</option>';
-
-		thtml+='<option value="14" >14명</option>';
-
-		thtml+='<option value="15" >15명</option>';
-
-		thtml+='<option value="16" >16명</option>';
-
-		thtml+='<option value="17" >17명</option>';
-
-		thtml+='<option value="18" >18명</option>';
-
-		thtml+='<option value="19" >19명</option>';
-
-		thtml+='<option value="20" >20명</option>';
-
-	thtml+='</select></div><div style="clear:both"></div>';
-	thtml+='</div>';
-
-	thtml+='<div style="margin-bottom:7px;">';
-	thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">이메일주소</div>';
-	thtml+='<div style="width:70%;float:left;"><input class="form-control" type="text" id="email" name="email" value=""></div>';
-	thtml+='<div style="clear:both"></div>';
-	thtml+='</div>';
-
-	thtml+='<div style="padding-top:10px"><a href="javascript:saveandmove()" style="text-align:center" class="btn-lg btn-success btn-block">저장하기</a></div>';
-	thtml+='<div style="clear:both"></div>';
-	thtml+='<p style="font-size:8pt;color:#fff;padding-top:5px;">비회원 플래너는 누구나 접근 가능하며 임의로 수정 될 수 있습니다.</p>';
-
-	xtitle="비회원 플래너 저장";
-	$("#my_modal_title").html(xtitle);
-	$("#my_modal_desc").html(thtml);
-	openMyModal();
 
 
 	

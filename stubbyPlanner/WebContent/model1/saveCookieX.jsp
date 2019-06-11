@@ -1,4 +1,3 @@
-<%@page import="net.sf.json.JSONObject"%>
 <%@page import="com.util.ConnectionProvider"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -9,6 +8,7 @@
 
 <%
 	String tripgene = request.getParameter("tripgene"); // 기본데이터들 집합. rtstring
+	System.out.println("tripgene:" + tripgene);
 	String startdate = request.getParameter("startdate"); //출국일
 	String tid = request.getParameter("tid"); // trip_id
 	System.out.println("tid:" + tid);
@@ -22,7 +22,6 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	JSONObject jobj = null;
 	
 	if (tid == "") {
 		String sql = " insert into tbl_planner(trip_id, triptype, startdate, terms) "
@@ -37,7 +36,17 @@
 			
 			rs = pstmt.executeQuery();
 			
+			rs.close();
+			pstmt.close();
 			
+			sql = " select seq_planner.currval as trip_id from dual ";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				tid = rs.getString("trip_id");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,7 +78,6 @@
 			conn.close();
 		}
 	}
-	//쿠키 생성코딩 해야됨.
-	//    Cookie info = new Cookie("stubbytour",);
+	
 %>
-<%=tid%>
+<%= tid %>
