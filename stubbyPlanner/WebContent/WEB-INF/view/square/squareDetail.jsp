@@ -295,7 +295,112 @@ header .stu_gnb_container button.ico_planner {
 <%@include file="/WEB-INF/layout/css/header_large.css" %>
 
 </style>
+<!-- 갤러리 -->
+<style type="text/css">
 
+.snip1384:hover {
+  color: #ffffff; 
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000; 
+}
+.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+.snip1384:after,
+.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+.snip1384 figcaption {
+  z-index: 1;
+  padding: 20px;
+}
+.snip1384 h2,
+.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+.snip1384 h2 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: x-large;
+  text-transform: uppercase;
+  opacity: 0;
+}
+.snip1384 p {
+  font-size: large;
+  font-weight: 300;
+/*   letter-spacing: 1px; */
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+.snip1384 i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px 25px;
+  font-size: 34px;
+  opacity: 0;
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.snip1384:hover img,
+.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+.snip1384:hover:after,
+.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.snip1384:hover h2,
+.snip1384.hover h2,
+.snip1384:hover p,
+.snip1384.hover p,
+.snip1384:hover i,
+.snip1384.hover i {
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+</style>
 
 <style type="text/css">
 
@@ -1846,34 +1951,10 @@ function writeBoardComment(id,post_seq,cmt_detail)
        	dataType: 'json',
        	cache:false,
        	success: function(data){
-			alert("댓글 작성 완료");
+// 			alert("댓글 작성 완료");
 		}
 	});
 }	
-
-
-//게시판 댓글
-function boardComment(post_seq)
-{
-	var post_seq = post_seq;	
-	$.ajax({
-     	url: '/stubbyPlanner/api/square/get_boardComment.jsp?post_seq='+post_seq,
-       	dataType: 'json',
-       	cache:false,
-       	success: function(data){
-		if(data!="")
-		{							
-       		thtml='';
-			$.each(data.list, function( i, item ) {
-				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
-			});
-			$('.com').remove('.com');
-			$('.'+post_seq+'').after(thtml);
-			
-		}
-	}
- });
-}
 
 
 function writeBoard(id,content,subject,board_code)
@@ -2113,12 +2194,15 @@ function getGallery(){
 			thtml='<section class="stu_regions";"><div class="stu_inner_wrap" style="padding-top: 20px;">';
 			thtml+='<h2 style="font-size:18pt;font-weight:700;">갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">';
 			$.each(data.list, function( i, item ) {
-				if(i%5==0){
+				if(i%4==0){
 				thtml+='</ul><br/><ul class="swiper-wrapper">';	
 				}
-				thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">';
-				thtml+='<a href="http://www.stubbyplanner.com">';                                                          
-				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'"></a></li>';
+				thtml+=' <li class="swiper-slide snip1384" style="width: 200px; height: 200px; margin: 5px;">';
+				thtml+='<a href="http://www.stubbyplanner.com" style="width:100%; height:100%;">';                                                          
+// 				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'" style="width:100%; height:100%;"></a></li>';
+				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'" style="width:100%; height:100%;">';
+				thtml+='<figcaption><h2 style="color:white;">'+item.member_id+'.</h2><p style="color:white; text-align:left;">'+item.gal_subject+'</p><i class="ion-ios-arrow-right"><div class="score" style="display:inline-block; color:white;"><span>♥ '+item.post_like+'</span></div></i></figcaption>';
+				thtml+='</a></li>';
 			});
 			thtml+='</ul></div></div></section>';
 			$('#tourlist').html(thtml);
@@ -2126,6 +2210,9 @@ function getGallery(){
 	}
 });
 }
+
+
+
 
 
 function getParty(){
@@ -2197,7 +2284,7 @@ function getParty(){
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
 						thtml+='<td>'+item.post_hits+'</td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
 						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
-						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love" id="'+item.post_seq+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
@@ -2214,8 +2301,8 @@ function getParty(){
 						}else{
 							writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
 							$(this).prev().val(null);
+							alert("댓글 작성 완료");
 						}
-							
 							boardComment(post_seq);
 					});
 					
@@ -2237,28 +2324,17 @@ function getParty(){
 					//추천수 증가
 					$('.love').click(function(){
 						var post_seq = $(this).attr('id');
+						var post_like = Number($(this).attr('name'));
 						$.ajax({
 			             	url: '/stubbyPlanner/api/square/set_like.jsp?post_seq='+post_seq,
 			               	dataType: 'json',
 			               	cache:false,
 			               	success: function(data){
-			               		$.ajax({
-			               			url: '/stubbyPlanner/api/square/set_like.jsp?post_seq='+post_seq,
-					               	dataType: 'json',
-					               	cache:false,
-					               	success: function(data){
 					               		if(data!="")
 					    				{			
-					               			$.each(data.listLike, function( i, item ) {
 					               				alert("come here");
-					               			
-					               				thtml=item.post_like;
-					    					});
-					    					$('.like'+post_seq+'').html($('.like'+post_seq+'').html()+1);
-// 					    					$("ests").html($("ests").html()+1);
+					    					$('.like'+post_seq+'').html(post_like+1);
 					    				}
-					               	}
-			               		});
 			               	}
 						});
 					});
@@ -2288,7 +2364,31 @@ function getParty(){
 	});
 }
 
-	
+
+//게시판 댓글
+function boardComment(post_seq)
+{
+	var post_seq = post_seq;	
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_boardComment.jsp?post_seq='+post_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+		if(data!="")
+		{							
+       		thtml='';
+			$.each(data.list, function( i, item ) {
+				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
+			});
+			$('.com').remove('.com');
+			$('.'+post_seq+'').after(thtml);
+			
+		}
+	}
+ });
+}			
+			
+			
 	function getCommon(code){
  		var board_code = code;
 			$.ajax({

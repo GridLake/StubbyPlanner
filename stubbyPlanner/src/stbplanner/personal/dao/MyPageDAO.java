@@ -11,6 +11,29 @@ import stbplanner.personal.model.MyPageDTO;
 
 public class MyPageDAO {
 
+	
+	public int countFriend(Connection conn, String member_id) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int countFriend =0;
+		try {
+			pstmt=conn.prepareStatement("select count(member_myid) countFriend from tbl_friendlist where member_myid=?");
+			pstmt.setString(1, member_id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				countFriend = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			
+		}finally {
+			pstmt.close();
+			conn.close();
+		}
+		return countFriend;
+	}
+	
+	
+	
 	public MyPageDTO selectMyPage(Connection conn, String member_id) throws SQLException {
 		
 		MyPageDTO myPage = new MyPageDTO();

@@ -14,7 +14,7 @@
 	Connection conn = null;
 	
 	PreparedStatement pstmt = null;
-	PreparedStatement pstmtLike = null;
+// 	PreparedStatement pstmtLike = null;
 	
 	JSONObject jObj = null;
 
@@ -24,22 +24,23 @@
 		conn = ConnectionProvider.getConnection();
 		String sql = "update tbl_boards set post_like= (select nvl(max(post_like),0)+1 from tbl_boards where post_seq = ?) where post_seq = ?";
 		
-	 	String sqlLike = "select post_like from tbl_boards where post_seq=?";		
+// 	 	String sqlLike = "select post_like from tbl_boards where post_seq=?";		
 	 			
 	 	pstmt =conn.prepareStatement(sql);
-	 	pstmtLike =conn.prepareStatement(sqlLike);
+// 	 	pstmtLike =conn.prepareStatement(sqlLike);
 	 			
 	 	pstmt.setString(1, post_seq);
 	 	pstmt.setString(2, post_seq);
 	 			
-	 	pstmtLike.setString(1,post_seq);		
+// 	 	pstmtLike.setString(1,post_seq);		
 		
-	 	System.out.println("pstmtLike");
+// 	 	System.out.println("pstmtLike"+pstmtLike);
 	 
 		int rs = pstmt.executeUpdate();		
-		int rsLike = pstmtLike.executeUpdate();		
+// 		int rsLike = pstmtLike.executeUpdate();		
 	 			
 	 		System.out.println(rs);
+// 	 		System.out.println(rsLike);
 		if(rs !=0){
 	 		System.out.println("if");
 			jObj = new JSONObject();
@@ -50,21 +51,21 @@
 			jObj.put("list", rs);
 		}
 		
-		if(rsLike !=0){
-	 		System.out.println("if");
-			jObj = new JSONObject();
-			jObj.put("listLike", rsLike);
-		}else{
-	 		System.out.println("else");
-			jObj = new JSONObject();
-			jObj.put("listLike", rsLike);
-		}
+// 		if(rsLike !=0){
+// 	 		System.out.println("if");
+// 			jObj = new JSONObject();
+// 			jObj.put("listLike", rsLike);
+// 		}else{
+// 	 		System.out.println("else");
+// 			jObj = new JSONObject();
+// 			jObj.put("listLike", rsLike);
+// 		}
 
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
 		pstmt.close();
-		pstmtLike.close();
+// 		pstmtLike.close();
 		conn.close();
 	}
 %>
