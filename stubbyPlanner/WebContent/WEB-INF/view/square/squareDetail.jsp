@@ -425,7 +425,7 @@ table.type09 tbody td.comment{
 
 				<div class="stu_trip-type">
 					<div class="selectBtn">
-						<spans class="write" style="float:left;"><p style="height: 30px; margin-top: 7px;">게시글 작성</p></spans>
+						<spans class="write" style="float:left;"><p style="height: 30px; margin-top: 9px;">게시글 작성</p></spans>
 					  <select  id ="write" style="width: 15px; border: none; float: rigth">
 						<option value="none"></option>
 						<option value="board">게시판</option>
@@ -475,7 +475,7 @@ table.type09 tbody td.comment{
 						<li class="swiper-slide party"><a
 							href="javascript:getParty();"><span>동행찾기</span></a></li>
 						<li class="swiper-slide gallery"><a
-							href="javascript:getBoard();"><span>갤러리</span></a></li>
+							href="javascript:getGallery();"><span>갤러리</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -618,7 +618,7 @@ table.type09 tbody td.comment{
 
                 
 
-                        <div class="swiper-container swiper3">
+                        <div class="swiper-container swiper4">
                             <ul class="swiper-wrapper" style="padding: 5px;">
 
 
@@ -909,7 +909,6 @@ table.type09 tbody td.comment{
                                 	<!-- 경로 & 파라미터 변경 필요 -->
                                     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
-                                        <div class="tone-down"></div>
                                     </a>
                                 </li>
 
@@ -976,20 +975,13 @@ table.type09 tbody td.comment{
 
 
 	$(document).ready(function() {
-
 		
-		//댓글 작성
-		$('#comment').on("click",function(event){
-			alert("댓글");
-			var post_seq = $(this).next().next().attr('id');
-			var cmt_detail = $('#commentInput').val();
-			if(cmt_detail==''){
-				alert("댓글을 입력해주세요.");
-			}
-			writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
+		
+		var i =2;
+		$('#galleryPlus').click(function(){
+			$('#writeGallery').after('<input type="file" class="writeGallery" name="writeGallery'+i+'" style="border: none;"/><br />');
+			i++;
 		});
-		
-		
 		
 		//게시물 내용 출력
 		$('tr').click(function(){
@@ -1013,9 +1005,12 @@ table.type09 tbody td.comment{
 			$('#write_board_Modal').modal();
 			}else if($('#write option:selected').val()=='party'){
 			$('#write_party_Modal').modal();	
+			}else if($('#write option:selected').val()=='gallery'){
+			$('#write_gallery_Modal').modal();
 			}
 		});
 		
+		//게시판
 		   $('#insert_form_board').on('submit',function(event){
 				  var board_code = $('#write_category option:selected').attr('id');
 				  if($('#writeSubject').val()=='')
@@ -1034,7 +1029,8 @@ table.type09 tbody td.comment{
 				  }
 		   })
 		   
-		   $('#insert_form_party').on('submit',function(event){
+		   //동행 찾기
+		   $('#insert_form_party').on('submit',function(	event){
 				  if($('#writeParty').val()=='')
 					 {
 					 $('#writeParty').focus();
@@ -1045,7 +1041,56 @@ table.type09 tbody td.comment{
 						  }
 		   })	
 		
-		
+		   //갤러리
+		   $('#insert_form_gallery').on('submit',function(event){
+					   event.preventDefault();
+					   
+				 if($('#gallerySubject').val()=='')
+				 {
+				 $('#gallerySubject').focus();
+				 alert("제목을 입력해주세요");
+				 }else if($('#writeGallery').val()==''){
+				 alert("사진을 선택해주세요");
+				 }else{					 
+// 					   var form = $('#writeGallery')[0];
+// 					   for (var i = 0; i < 2 ; i++) {
+// 					   }
+					   var formData = new FormData();
+					   formData.append("subject",$('#gallerySubject').val());
+					   for (var i = 1; i <= $('input[class=writeGallery]').length ; i++) {
+					   formData.append("picture"+i+"",$('input[name=writeGallery'+i+']')[0].files[0]);
+					   }
+// 					   var subject =$('input#gallerySubject').val();
+                     
+// 						 var formData = new FormData();
+			         
+// 					    for(var i=0; i<$('#writeGallery')[0].files.length; i++){
+// 					        formData.append('writeGallery', $('#writeGallery')[0].files[i]);
+// 					    }
+
+					   var member_id = '${authUser.member_id}';
+					   $.ajax({
+ 				            url: '/stubbyPlanner/api/square/set_writeGallery.jsp?member_id='+member_id,
+				            type: "POST",
+				            enctype: 'multipart/form-data',
+				            data:formData,
+				            processData: false,
+				            contentType: false,
+				            cache: false,
+//		 		            timeout: 600000,
+				            success: function (data) {
+				                alert("갤러리 작성이 완료되었습니다.");
+				                $('#gallerySubject').val(null);
+				                $('#writeGallery').val(null);
+				                $('#write_gallery_Modal').modal("hide");
+				            },
+				            error: function (e) {
+				                alert("갤러리 작성이 실패하였습니다.");
+				            }
+				        });
+					 }
+				  });	   		   
+		   
 
 		//검색
 		$('#search').click(function(event){
@@ -1059,6 +1104,7 @@ table.type09 tbody td.comment{
 			else if($('.swiper-slide.planner').hasClass('on')) getSearchPlanner(option,search);
 			else if($('.swiper-slide.party').hasClass('on')) getSearchParty(option,search);
 			else if($('.swiper-slide.gallery').hasClass('on')) getSearchGallery(option,search);
+			$('#search_input').val(null);
 		});
 		
 		   
@@ -1609,7 +1655,7 @@ table.type09 tbody td.comment{
 // 					        			} else {
 // 					        					thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
 // 					        					if(item.planner_cnt>0)
-// 					        					thtml+='❤️<span style="color:#8f8f8f;font-size:9pt">최근 플래너 '+item.planner_cnt+'명 선택</span>';
+// 					        					thtml+='??<span style="color:#8f8f8f;font-size:9pt">최근 플래너 '+item.planner_cnt+'명 선택</span>';
 // 					        					thtml+='</div>';
 // 					        			}// else	
 // 					        	}
@@ -1800,7 +1846,7 @@ function writeBoardComment(id,post_seq,cmt_detail)
        	dataType: 'json',
        	cache:false,
        	success: function(data){
-			alert("댓글 작성 완료")
+			alert("댓글 작성 완료");
 		}
 	});
 }	
@@ -1862,7 +1908,7 @@ var party_content = content;
 						alert("게시글 작성 완료")
 			}
 		});
-}
+}	
 
 
 // function getTotal()
@@ -2056,6 +2102,32 @@ function getSearchParty(option,search){
 }
 
 
+function getGallery(){
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_gallery.jsp',
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+		if(data!="")
+		{					
+			thtml='<section class="stu_regions";"><div class="stu_inner_wrap" style="padding-top: 20px;">';
+			thtml+='<h2 style="font-size:18pt;font-weight:700;">갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">';
+			$.each(data.list, function( i, item ) {
+				if(i%5==0){
+				thtml+='</ul><br/><ul class="swiper-wrapper">';	
+				}
+				thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">';
+				thtml+='<a href="http://www.stubbyplanner.com">';                                                          
+				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'"></a></li>';
+			});
+			thtml+='</ul></div></div></section>';
+			$('#tourlist').html(thtml);
+		}
+	}
+});
+}
+
+
 function getParty(){
 //		var board_code = code;
 		$.ajax({
@@ -2123,13 +2195,13 @@ function getParty(){
 					$.each(data.list, function( i, item ) {
 						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
 						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
-						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
+						thtml+='<td>'+item.post_hits+'</td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
 						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
-						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love" id="'+item.post_seq+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
 					});
 					
 					thtml+='</tbody></table></div></section>';
-					$('#tourlist').html(thtml)
+					$('#tourlist').html(thtml);
 					
 					
 					//댓글 작성
@@ -2141,8 +2213,10 @@ function getParty(){
 							alert("댓글을 입력해주세요.");
 						}else{
 							writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
-							boardComment(post_seq);
+							$(this).prev().val(null);
 						}
+							
+							boardComment(post_seq);
 					});
 					
 					
@@ -2158,6 +2232,37 @@ function getParty(){
 						boardComment(post_seq);
 						}
 					});
+					
+					
+					//추천수 증가
+					$('.love').click(function(){
+						var post_seq = $(this).attr('id');
+						$.ajax({
+			             	url: '/stubbyPlanner/api/square/set_like.jsp?post_seq='+post_seq,
+			               	dataType: 'json',
+			               	cache:false,
+			               	success: function(data){
+			               		$.ajax({
+			               			url: '/stubbyPlanner/api/square/set_like.jsp?post_seq='+post_seq,
+					               	dataType: 'json',
+					               	cache:false,
+					               	success: function(data){
+					               		if(data!="")
+					    				{			
+					               			$.each(data.listLike, function( i, item ) {
+					               				alert("come here");
+					               			
+					               				thtml=item.post_like;
+					    					});
+					    					$('.like'+post_seq+'').html($('.like'+post_seq+'').html()+1);
+// 					    					$("ests").html($("ests").html()+1);
+					    				}
+					               	}
+			               		});
+			               	}
+						});
+					});
+					
 					
 					
 					//게시물 내용 출력
@@ -2177,11 +2282,6 @@ function getParty(){
 							$(this).attr('name','noshow');
 						}
 					});
-					
-					
-					
-
-					
 					
 				}
 		}
@@ -2393,5 +2493,36 @@ function getParty(){
 		</div>
 	</div>
 </div>
+
+
+<div id="write_gallery_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>갤러리 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body">
+			<form method="post" enctype="multipart/form-data" id="insert_form_gallery">
+			<label><b>제목</b></label>
+			<input type="text" name="gallerySubject" id="gallerySubject" class="form-control" />
+			<br />
+			<label style="float:left; margin-top: 15px;"><b>사진</b></label><a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a>
+			<input type="file" id="writeGallery" class="writeGallery" name="writeGallery1" style="border: none;"/>
+			<br />
+			<input type="submit" name ="insert" id="insert" value="작성" class="btn btn-success" />
+			</form>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+
 </body>
 </html>
