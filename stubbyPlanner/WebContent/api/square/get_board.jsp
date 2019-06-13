@@ -8,10 +8,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+	PreparedStatement pstmtNew = null;
+	PreparedStatement pstmtLike = null;
+	PreparedStatement pstmtClick = null;
+	ResultSet rsNew = null;
+	ResultSet rsLike = null;
+	ResultSet rsClick = null;
 	JSONObject jObj = null;
-	JSONArray jArr = null;
+	JSONArray jArrNew = null;
+	JSONArray jArrLike = null;
+	JSONArray jArrClick = null;
 	
 	try {
 		conn = ConnectionProvider.getConnection();
@@ -19,42 +25,86 @@
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select * from tbl_boards order by post_seq desc";
+		String sqlNew = "select * from tbl_boards order by post_seq desc";
+		String sqlLike = "select * from tbl_boards order by post_like desc";
+		String sqlClick = "select * from tbl_boards order by post_hits desc";
 
 		
-		pstmt = conn.prepareStatement(sql);
+		pstmtNew = conn.prepareStatement(sqlNew);
+		pstmtLike = conn.prepareStatement(sqlLike);
+		pstmtClick = conn.prepareStatement(sqlClick);
 
-		rs = pstmt.executeQuery();
+		rsNew = pstmtNew.executeQuery();
+		rsLike = pstmtLike.executeQuery();
+		rsClick = pstmtClick.executeQuery();
 
-		if (rs.next()) {
+		if (rsNew.next()) {
 			System.out.println("if");
 			jObj = new JSONObject();
-			jArr = new JSONArray();
+			jArrNew = new JSONArray();
 			do {
 				
 				JSONObject CommonObj = new JSONObject();
-					CommonObj.put("post_seq", rs.getInt("post_seq"));
-					CommonObj.put("member_id", rs.getString("member_id"));
-					CommonObj.put("post_subject", rs.getString("post_subject"));
-					CommonObj.put("post_content", rs.getString("post_content"));
-					CommonObj.put("post_regdate",   rs.getString("post_regdate".toString()));
+					CommonObj.put("post_seq", rsNew.getInt("post_seq"));
+					CommonObj.put("member_id", rsNew.getString("member_id"));
+					CommonObj.put("post_subject", rsNew.getString("post_subject"));
+					CommonObj.put("post_content", rsNew.getString("post_content"));
+					CommonObj.put("post_regdate",   rsNew.getString("post_regdate".toString()));
 // 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
-					CommonObj.put("post_hits", rs.getInt("post_hits"));
-					CommonObj.put("post_like", rs.getInt("post_like"));
-					
-
-				jArr.add(CommonObj);
-
-			} while (rs.next());
+					CommonObj.put("post_hits", rsNew.getInt("post_hits"));
+					CommonObj.put("post_like", rsNew.getInt("post_like"));
+					jArrNew.add(CommonObj);
+			} while (rsNew.next());
 		}
 
-		jObj.put("list", jArr);
+		if (rsLike.next()) {
+			System.out.println("if");
+			jObj = new JSONObject();
+			jArrLike = new JSONArray();
+			do {
+				
+				JSONObject CommonObj = new JSONObject();
+					CommonObj.put("post_seq", rsLike.getInt("post_seq"));
+					CommonObj.put("member_id", rsLike.getString("member_id"));
+					CommonObj.put("post_subject", rsLike.getString("post_subject"));
+					CommonObj.put("post_content", rsLike.getString("post_content"));
+					CommonObj.put("post_regdate",   rsLike.getString("post_regdate".toString()));
+// 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
+					CommonObj.put("post_hits", rsLike.getInt("post_hits"));
+					CommonObj.put("post_like", rsLike.getInt("post_like"));
+					jArrLike.add(CommonObj);
+			} while (rsLike.next());
+		}
+		
+		if (rsClick.next()) {
+			System.out.println("if");
+			jObj = new JSONObject();
+			jArrClick = new JSONArray();
+			do {
+				
+				JSONObject CommonObj = new JSONObject();
+					CommonObj.put("post_seq", rsClick.getInt("post_seq"));
+					CommonObj.put("member_id", rsClick.getString("member_id"));
+					CommonObj.put("post_subject", rsClick.getString("post_subject"));
+					CommonObj.put("post_content", rsClick.getString("post_content"));
+					CommonObj.put("post_regdate",   rsClick.getString("post_regdate".toString()));
+// 					CommonObj.put("post_regdate",   rs.getString(post_regdate.toString('yyyy-m-d'));
+					CommonObj.put("post_hits", rsClick.getInt("post_hits"));
+					CommonObj.put("post_like", rsClick.getInt("post_like"));
+					jArrClick.add(CommonObj);
+			} while (rsClick.next());
+		}
+		
+		jObj.put("listNew", jArrNew);
+		jObj.put("listLike", jArrLike);
+		jObj.put("listClick", jArrClick);
 
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
-		pstmt.close();
-		//rs.close();
+		pstmtNew.close();
+		pstmtLike.close();
+		pstmtClick.close();
 		conn.close();
 	}
 %>

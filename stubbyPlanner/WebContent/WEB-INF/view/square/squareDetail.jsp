@@ -76,6 +76,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/stubbyPlanner/externalData/mypage/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/header_footer11.css">
+
 <script src="/stubbyPlanner/externalData/mypage/js/bootstrap.min.js"></script>
 
    <!-- CSS/JavaScript -->
@@ -441,7 +444,9 @@ header .stu_gnb_container button.ico_planner {
 
 
 <style>
-
+.profile:hover{
+	text-decoration:underline; color:#66aaff;
+}
 table.type09 {
     border-collapse: collapse;
     text-align: left;
@@ -555,8 +560,7 @@ button#good:hover:before,button:hover:after{
 }
 
 </style>
-
-
+<a href="#" class="stu_top_wrap"><span>맨 위로 가기</span><i></i></a>
 </head>
 
 <body>
@@ -637,13 +641,13 @@ button#good:hover:before,button:hover:after{
 						<li class="swiper-slide all on"><a
 							href="javascript:getTotal();"><span>전체</span></a></li>
 						<li class="swiper-slide board"><a
-							href="javascript:getBoard();"><span>게시판</span></a></li>
+							href="javascript:getBoard(1);"><span>게시판</span></a></li>
 						<li class="swiper-slide planner"><a
-							href="javascript:getBoard();"><span>플래너공유</span></a></li>
+							href="javascript:getBoard(1);"><span>플래너공유</span></a></li>
 						<li class="swiper-slide party"><a
-							href="javascript:getParty();"><span>동행찾기</span></a></li>
+							href="javascript:getParty(1);"><span>동행찾기</span></a></li>
 						<li class="swiper-slide gallery"><a
-							href="javascript:getGallery();"><span>갤러리</span></a></li>
+							href="javascript:getGallery(1);"><span>갤러리</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -694,17 +698,17 @@ button#good:hover:before,button:hover:after{
             	 	 </div>
             	 	</li>
 						<li class="filter-section stu_clearfix">
-							<h4 class="stu_title">상품 정렬</h4>
+							<h4 class="stu_title">게시글 정렬</h4>
 							<ul class="filter-wrap sorting">
 
 								<li class="filter-list table  default on ">
-									<div class="filter-item" onclick="update_orderby('recom')">최신순</div>
+									<div class="filter-item" onclick="sortNew()">최신순</div>
 								</li>
 								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('hot')">추천순</div>
+									<div class="filter-item" onclick="sortLike()">추천순</div>
 								</li>
 								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('review')">조회순</div>
+									<div class="filter-item" onclick="sortClick()">조회순</div>
 								</li>
 
 							</ul>
@@ -1163,8 +1167,11 @@ button#good:hover:before,button:hover:after{
 	        $('body').toggleClass('modal-opened');
 	        $('.prd_filter').toggleClass('action');
 	    });
+	
 		
-	 // 상품(필터) 선택 - 카테고리
+		
+		
+	 // 정렬 선택
         $('.category .filter-list').on('click', function() {
             $('.category .filter-list').removeClass('on');
             $(this).addClass('on');
@@ -1267,6 +1274,7 @@ button#good:hover:before,button:hover:after{
                 $('.stu_top_wrap').fadeOut();
             }
         });
+        
         $('.stu_top').click(function() {
             $('html, body').animate({scrollTop : 0}, 400);
             return false;
@@ -1381,23 +1389,47 @@ button#good:hover:before,button:hover:after{
 
 	}// togglebucket
 	
-	function select_thema_code(c){
-		/* if(c!="204")
-			select_class('');
- */
-		thema_code=c;
-		console.log(thema_code)
-		updateTours();
+// 	function select_thema_code(c){
+// 		/* if(c!="204")
+// 			select_class('');
+//  */
+// 		thema_code=c;
+// 		console.log(thema_code)
+// 		updateTours();
 
-	}// function select_thema_code
+// 	}// function select_thema_code
 	
-	function update_orderby(o) {
-		orderby = o;
-		console.log(orderby)
-		updateTours();
+// 	function update_orderby(o) {
+// 		orderby = o;
+// 		console.log(orderby)
+// // 		updateTours();
 
-	}//function update_orderby	
+// 	}//function update_orderby	
 
+
+function sortNew()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(1);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(1);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(1);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(1);
+}
+
+function sortLike()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(2);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(2);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(2);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(2);
+}
+
+function sortClick()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(3);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(3);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(3);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(3);
+}
 
 
 function showProfile(myid,friend_id)
@@ -1720,7 +1752,7 @@ function getSearchAll(option,search){
 		if(data!="")
 		{					
 			thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
-			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -1930,8 +1962,8 @@ function getGallery(){
 
 
 
-function getParty(){
-//		var board_code = code;
+function getParty(code){
+		var board_code = code;
 		$.ajax({
          	url: '/stubbyPlanner/api/square/get_party.jsp',
            	dataType: 'json',
@@ -1948,25 +1980,65 @@ function getParty(){
 				thtml+='                                                                                     ';
 				thtml+='       <div class="swiper-container stu_tagArea"">                                   ';
 				thtml+='           <ul class="swiper-wrapper">                                               ';
-				
-				$.each(data.list, function( i, item ) {
-					if(i%5==0){
-					thtml+='</ul><br/><ul class="swiper-wrapper">';	
-					}
-					thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
-					thtml+='     <a style="width:100%; height: 100%;">                                                           ';
-					thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
-					if(item.profile_pic==''){
-					thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
-					}else{
-					thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
-					}                                                                                  
-					thtml+='         </figure>                                                                                           ';
-					thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
-					thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
-					thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
-					thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
-				});
+				if(board_code==1){
+					$.each(data.listNew, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}else if(board_code==2){
+					$.each(data.listLike, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}else if(board_code==3){
+					$.each(data.listClick, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}
+
 				
 				thtml+='</div></div></section>';
 				$('#tourlist').html(thtml)
@@ -2000,8 +2072,8 @@ function getParty(){
 });
 }
 
-	function getBoard(){
-// 		var board_code = code;
+	function getBoard(code){
+		var board_code = code;
 			$.ajax({
              	url: '/stubbyPlanner/api/square/get_board.jsp',
                	dataType: 'json',
@@ -2011,20 +2083,37 @@ function getParty(){
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">전체 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
 					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
 					thtml+='<tbody>';
-					
-					$.each(data.list, function( i, item ) {
-						thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
-						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
-						thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
-						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
-						thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
-					});
+					if(board_code==1){
+						$.each(data.listNew, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});
+					}else if(board_code==2){
+						$.each(data.listLike, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});						
+					}else if(board_code==3){
+						$.each(data.listClick, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});						
+					}
 					
 					thtml+='</tbody></table></div></section>';
 					$('#tourlist').html(thtml);
@@ -2142,7 +2231,7 @@ function boardComment(post_seq)
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2190,7 +2279,7 @@ function boardComment(post_seq)
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">질문 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2238,7 +2327,7 @@ function boardComment(post_seq)
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">여행정보 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2418,10 +2507,10 @@ function boardComment(post_seq)
 <!-- 모달 바디 -->
 			<div class="modal-body" style="width: 790px;height: 450px;">
 <div id="slide">
-  <input name="pos" id="pos1" checked>
-  <input name="pos" id="pos2">
-  <input name="pos" id="pos3">
-  <input name="pos" id="pos4">
+  <input type="radio" name="pos" id="pos1" checked>
+  <input type="radio" name="pos" id="pos2">
+  <input type="radio" name="pos" id="pos3">
+  <input type="radio" name="pos" id="pos4">
   <ul>
     <li style="width: 790px;height: 450px;"></li>
     <li></li>
