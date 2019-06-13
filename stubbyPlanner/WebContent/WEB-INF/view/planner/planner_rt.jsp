@@ -773,6 +773,7 @@ function openInfoWindow2(city_x,city_y,se)
 }
 function update_arr_nextday()
 {
+	deleteData();
 	saveCookie();
 	updateTerm();
 	updateDateInOut();
@@ -802,6 +803,25 @@ function updateTerm()
 
 var trip_id="";
 var tripwith="";
+function deleteData(is_sync) {
+	is_async=true;
+	if(is_sync)
+		is_async=false;
+	
+	$.ajax({
+		url: "/stubbyPlanner/model1/deleteData.jsp",
+		type: "POST",
+		async: is_async,
+		data: {
+			tid:trip_id,
+		},
+		success: function( data ) {
+			trip_id=data;
+		}
+	});
+}
+
+
 function saveCookie(is_sync)
 {
 	is_async=true;
@@ -947,10 +967,15 @@ var stockholm = new google.maps.LatLng(45, 10);
   var myMarkers=[];
   var recommMarkers=[];
   var prv_infowindow;
-  
-  
-  // routelist[routelist.length]=new Route('111011004','파리','3','X','0','48.86110101269274','2.3421478271484375',new Date('2019-07-13'),new Date('2019-07-16'));slpRatesArr[routelist[routelist.length-1].cityserial]='4|7|46|24|20';routelist[routelist.length]=new Route('111081001','브뤼셀','1','X','0','50.8466245793837','4.3511438369751',new Date('2019-07-16'),new Date('2019-07-17'));slpRatesArr[routelist[routelist.length-1].cityserial]='18|68|14|2|0';routelist[routelist.length]=new Route('111071001','암스테르담','1','X','0','52.3737914039891','4.89076137542725',new Date('2019-07-17'),new Date('2019-07-18'));slpRatesArr[routelist[routelist.length-1].cityserial]='11|61|24|6|1';routelist[routelist.length]=new Route('111061005','뮌헨','1','X','0','48.1399742326904','11.579246520996',new Date('2019-07-18'),new Date('2019-07-19'));slpRatesArr[routelist[routelist.length-1].cityserial]='6|55|26|11|3';routelist[routelist.length]=new Route('121011002','바르셀로나','3','X','0','41.3878531743444','2.17001438140869',new Date('2019-07-19'),new Date('2019-07-22'));slpRatesArr[routelist[routelist.length-1].cityserial]='1|5|58|24|12';routelist[routelist.length]=new Route('111031001','런던','3','X','0','51.5000874980771','-0.126256942749023',new Date('2019-07-22'),new Date('2019-07-25'));slpRatesArr[routelist[routelist.length-1].cityserial]='5|7|43|25|21';
-  
+	  
+  /* 
+  routelist[routelist.length]=new Route('111011004','파리','3','X','0','48.86110101269274','2.3421478271484375',new Date('2019-07-13'),new Date('2019-07-16'));    slpRatesArr[routelist[routelist.length-1].cityserial]='4|7|46|24|20';
+  routelist[routelist.length]=new Route('111081001','브뤼셀','1','X','0','50.8466245793837','4.3511438369751',new Date('2019-07-16'),new Date('2019-07-17'));      slpRatesArr[routelist[routelist.length-1].cityserial]='18|68|14|2|0';
+  routelist[routelist.length]=new Route('111071001','암스테르담','1','X','0','52.3737914039891','4.89076137542725',new Date('2019-07-17'),new Date('2019-07-18')); slpRatesArr[routelist[routelist.length-1].cityserial]='11|61|24|6|1';
+  routelist[routelist.length]=new Route('111061005','뮌헨','1','X','0','48.1399742326904','11.579246520996',new Date('2019-07-18'),new Date('2019-07-19'));        slpRatesArr[routelist[routelist.length-1].cityserial]='6|55|26|11|3';
+  routelist[routelist.length]=new Route('121011002','바르셀로나','3','X','0','41.3878531743444','2.17001438140869',new Date('2019-07-19'),new Date('2019-07-22')); slpRatesArr[routelist[routelist.length-1].cityserial]='1|5|58|24|12';
+  routelist[routelist.length]=new Route('111031001','런던','3','X','0','51.5000874980771','-0.126256942749023',new Date('2019-07-22'),new Date('2019-07-25'));     slpRatesArr[routelist[routelist.length-1].cityserial]='5|7|43|25|21';
+  */
   var styles=[
 	  {
 	    "elementType": "geometry",
@@ -1249,7 +1274,7 @@ function delSchd(r_id,schd_id)
 	saveCookie();
 }
 
-//#########스케줄 추가 코당[]
+//#########스케줄 추가 코딩[]
 function addSchd(r_id,schd_id) 
 {
 
@@ -2648,7 +2673,7 @@ function login()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/login.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
-//저장
+// 회원가입
 function register()
 {
 	if(!trip_id)
@@ -2656,7 +2681,7 @@ function register()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/register.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
-//완료
+// 완료
 function complete()
 {
 	if('${authUser.member_id}'!=''){
@@ -2669,7 +2694,7 @@ function complete()
 			return;
 		}
 	
-		window.location="/planner/detail.do?tid="+trip_id;
+		window.location="/stubbyPlanner/planner/detail.do?tid="+trip_id;
 	
 	} else {
 		if(!trip_id)
@@ -3263,6 +3288,7 @@ function moveCity(sidx,eidx)
 
 	
 //	drawDayList();
+	deleteData();
 	saveCookie();
 
     }
@@ -3421,6 +3447,7 @@ function delCity(idx)
 //	reloadCostNPeriod();
 //	getHighlights('');
 //	getAirPrice();
+	deleteData();
 	saveCookie();
 
 }
@@ -3437,7 +3464,7 @@ function chgNights(i,nights)
 //	drawDayList();
 	redrawMapMarkers();
 	updateTerm();
-
+	deleteData();
 	saveCookie();
 	updateDateSilent(i);
 }
@@ -4295,7 +4322,7 @@ function selNightMoveTab(id_idx,rt_i)
 	des=routelist[rt_i].city_id;
 	loadTrsInfo(rt_i,dep,des);
 	updateTerm();
-
+	deleteData();
 	saveCookie();
 }
 function showTrsHistory()
@@ -4323,6 +4350,7 @@ function showTrsInfo()
 function chgTrsType(i,trstype)
 {
 	routelist[i].trstype=trstype;
+	deleteData();
 	saveCookie();
 	redrawMapMarkers();
 	depserial=routelist[i-1].city_id;
