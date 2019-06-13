@@ -24,7 +24,7 @@
 
 		conn = ConnectionProvider.getConnection();
 // 		insert into tbl_message values((select nvl(max(msg_seqno),0)+1 from tbl_message),'rlrlghk','abcd12','test','teeeeeeeeeeeeeest',sysdate);
-		String sqlWriteBoard = "insert into tbl_party values((select nvl(max(party_seqno),0)+1 from tbl_party),?,?,0)";
+		String sqlWriteBoard = "insert into tbl_party values((select nvl(max(party_seqno),0)+1 from tbl_party),?,?,0,0)";
 		
 		pstmtWriteParty =conn.prepareStatement(sqlWriteBoard);
 	 			

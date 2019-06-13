@@ -27,6 +27,9 @@ public class SquareDetailHandler implements CommandHandler{
 		// 최근 동행찾기 
 		List<PartyDTO> partyList = service.partySelect();
 		request.setAttribute("partyList", partyList);
+		// 최근 갤러리 
+		List<GalleryDTO> galleryList = service.gallerySelect();
+		request.setAttribute("galleryList", galleryList);
 		
 		
 		

@@ -43,7 +43,9 @@
 				JSONObject ArticleObj = new JSONObject();
 				ArticleObj.put("POST_SUBJECT", rs.getString("POST_SUBJECT"));
 				ArticleObj.put("POST_CONTENT", rs.getString("POST_CONTENT"));
-
+				ArticleObj.put("post_like", rs.getString("post_like"));
+				ArticleObj.put("post_hits", rs.getString("post_hits"));
+				ArticleObj.put("post_regdate", rs.getString("post_regdate".toString()));
 				jArr.add(ArticleObj);
 
 			} while (rs.next());

@@ -37,6 +37,7 @@
 				PartyObj.put("member_id", rs.getString("member_id"));
 				PartyObj.put("party_content", rs.getString("party_content"));
 				PartyObj.put("party_like", rs.getInt("party_like"));
+				PartyObj.put("party_seqno", rs.getInt("party_seqno"));
 					
 
 				jArr.add(PartyObj);

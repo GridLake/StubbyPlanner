@@ -33,12 +33,12 @@
 		String sqlTake = "select * "
 				+ " from tbl_friendlist f join tbl_member m on f.member_friendid = m.member_id "
 				+ " join tbl_ms s on m.ms_code = s.ms_code "
-				+ " where f.status =1 and f.member_myid = ? ";
+				+ " where f.status =1 and f.member_friendid = ? ";
 		
 		String sqlApplyTake = "select * "
 				+ " from tbl_friendlist f join tbl_member m on f.member_friendid = m.member_id "
 				+ " join tbl_ms s on m.ms_code = s.ms_code "
-				+ " where f.status =2 and f.member_myid = ? ";
+				+ " where f.status =2 and f.member_friendid = ? ";
 		
 		
 		pstmt = conn.prepareStatement(sqlTake);
@@ -52,13 +52,13 @@
 
 
 		if (rs.next()) {
-			System.out.println("if");
+			System.out.println("sqltake if");
 			jObj = new JSONObject();
 			jArr = new JSONArray();
 			do {
 				System.out.println("do");
 				JSONObject FriendObj = new JSONObject();
-				FriendObj.put("member_id", rs.getString("member_id"));
+				FriendObj.put("member_myid", rs.getString("member_myid"));
 				FriendObj.put("profile_pic", rs.getString("profile_pic"));
 				FriendObj.put("ms_name", rs.getString("ms_name"));
 				FriendObj.put("gender",   rs.getString("gender"));
@@ -68,21 +68,21 @@
 
 			} while (rs.next());
 		}
-		
-		if (rsApply.next()) {
-			System.out.println("if");
+			
+	if (rsApply.next()) {
+			System.out.println("sqlapplytake if");
 			jObj = new JSONObject();
 			jArrApply = new JSONArray();
 			do {
 				System.out.println("do");
-				JSONObject FriendObj = new JSONObject();
-				FriendObj.put("member_id", rsApply.getString("member_id"));
-				FriendObj.put("profile_pic", rsApply.getString("profile_pic"));
-				FriendObj.put("ms_name", rsApply.getString("ms_name"));
-				FriendObj.put("gender",   rsApply.getString("gender"));
-				FriendObj.put("status",   rsApply.getString("status"));
+				JSONObject FriendreqObj = new JSONObject();
+				FriendreqObj.put("member_myid", rsApply.getString("member_myid"));
+				FriendreqObj.put("profile_pic", rsApply.getString("profile_pic"));
+				FriendreqObj.put("ms_name", rsApply.getString("ms_name"));
+				FriendreqObj.put("gender",  rs.getString("gender"));
+				FriendreqObj.put("status",   rsApply.getString("status"));
 
-				jArrApply.add(FriendObj);
+				jArrApply.add(FriendreqObj);
 
 			} while (rsApply.next());
 		}

@@ -691,10 +691,10 @@ var member_id = id;
 						$.each(data.list, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
 	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
-	                     		thtml+='<button id ="good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
-	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
-								thtml+='<h3>'+item.member_id+'</h3>';
-								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
+	                     		thtml+='<button id ="good" class ="no" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
+	                     		thtml+='<a><img alt="'+item.member_myid+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+								thtml+='<h3>'+item.member_myid+'</h3>';
+								thtml+='<p>'+item.ms_name+'/'+(item.gender=='M'?'MAN':'WOMAN')+'</p></div>'; 
 						});
 						thtml+='</div>';
 						$("#layerpop_friend_content").html(thtml); //
@@ -746,14 +746,15 @@ var member_id = id;
 	               	success: function(data){ // { result : 1 }
 					if(data!="")
 					{
+						alert("들어오니?");
 						thtml='<div style="text-align: left">';
 						$.each(data.listApply, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
 	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
 // 	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
-	                     		thtml+='<button id = "good" class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button>';
-	                     		thtml+='<button id = "good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button>';
-	                     		thtml+='<h3>'+item.member_id+'</h3>';
+	                     		thtml+='<button id = "good" class ="ok" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button>';
+	                     		thtml+='<button id = "good" class ="no" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button>';
+	                     		thtml+='<h3>'+item.member_myid+'</h3>';
 								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
 // 								thtml+='+item.gender+'</p>'; 
 						});
@@ -808,7 +809,6 @@ var member_id = id;
     })
  
     $("#friendApply").click(function(){        
-
 
         showFriendApply('${myPage.memberInfoMap.member_id }');
     })
@@ -916,9 +916,9 @@ var member_id = id;
 	                     		thtml+='<a href="광장 게시물페이지 주소">';
 								thtml+='<div class="name">'+item.POST_SUBJECT+'</div>';
 								thtml+='<div class="desc"><div><span>'+item.POST_CONTENT+'</span></div>';
-		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
-		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
-		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
+		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>'+item.post_hits+'</span></dd></dl>';
+		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>'+item.post_like+'</span></dd></dl>';
+		                        thtml+='<dl><dt>'+item.post_regdate.split(" ")[0]+'</dt><dd class="date"><span></span></dd></dl></div></div></li>';
  
 			console.log(thtml);
 						});
