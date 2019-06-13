@@ -5,11 +5,17 @@ public class AddResvResDTO {
 	private String a_type;
 	private String a_name;
 	private double a_price;
+	
+	private String a_currency;
+	
 	private String a_reserver;
 	private String a_checkout;
 	private String a_room_type;
 	private int a_room_cnt;
-	private String a_room_loc;
+	//private String a_room_loc;
+	private double a_lat;
+	private double a_lng;
+
 	private String a_address;
 	private String a_tel;
 	private String a_url;
@@ -22,6 +28,26 @@ public class AddResvResDTO {
 	private String startdate;
 	private String date_in;
 	
+	
+	
+	public String getA_currency() {
+		return a_currency;
+	}
+	public void setA_currency(String a_currency) {
+		this.a_currency = a_currency;
+	}
+	public double getA_lat() {
+		return a_lat;
+	}
+	public void setA_lat(double a_lat) {
+		this.a_lat = a_lat;
+	}
+	public double getA_lng() {
+		return a_lng;
+	}
+	public void setA_lng(double a_lng) {
+		this.a_lng = a_lng;
+	}
 	public int getSerial() {
 		return serial;
 	}
@@ -82,12 +108,7 @@ public class AddResvResDTO {
 	public void setA_room_cnt(int a_room_cnt) {
 		this.a_room_cnt = a_room_cnt;
 	}
-	public String getA_room_loc() {
-		return a_room_loc;
-	}
-	public void setA_room_loc(String a_room_loc) {
-		this.a_room_loc = a_room_loc;
-	}
+
 	public String getA_address() {
 		return a_address;
 	}

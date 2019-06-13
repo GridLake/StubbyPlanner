@@ -1,3 +1,5 @@
+<%@page import="net.sf.json.JSON"%>
+<%@page import="net.sf.json.JSONObject"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/include.jspf" %>
@@ -29,8 +31,8 @@
     <meta name="author" content="스투비플래너">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<%=contextPath %>/externalData/images2/common/favicon.ico">
-
+<%--     <link rel="shortcut icon" href="<%=contextPath %>/externalData/images2/common/favicon.ico"> --%>
+  <link rel="shortcut icon" href="externalData/images2/common/favicon.ico">
 
  	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,700&amp;subset=cyrillic,latin">
 
@@ -286,6 +288,7 @@ function complete()
 	<div style="clear:both"></div>
 </div>
 <div>
+
 	<div id="contentLeft" style="float:left;width:20%;padding-top:15px;overflow-y:auto">
 		
 		<div class="leftmenu">
@@ -293,40 +296,43 @@ function complete()
 		</div>
 		<div class="leftmenu">
 
-			<a href="<%= contextPath %>/planner/planner_resv_air.do?trip_id=${trip_id}" class="lmenu_title selected"><i class="fa fa-plane"></i> 항공권 <i class="fa fa-check-circle-o" aria-hidden="true"></i></a>
+			<a href="/stubbyPlanner/planner/planner_resv_air.do?trip_id=${param.trip_id }" class="lmenu_title "><i class="fa fa-plane"></i> 항공권 </a>
 		</div>
-		<%-- 		
 		<div class="leftmenu">
 
 
-			<a href="<%= contextPath %>/planner/planner_resv_pass.do?trip_id=${trip_id}" class="lmenu_title "><i class="fa fa-ticket"></i> 유레일패스 </a>
+			<a href="planner_resv_pass.asp?trip_id=10287774" class="lmenu_title "><i class="fa fa-ticket"></i> 유레일패스 </a>
 		</div>
-		 --%>
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-arrow-right"></i> 교통</div>
-
-
+			
+<c:forEach items="${routelist}" var="dto" varStatus="status">
+<c:if test="${status.last eq false }">
 			<div class="leftsubmenu">
-				<a href="<%= contextPath %>/planner/planner_resv_trs.do?trip_id=${trip_id}&ridx=1" class="lmenu_title ">파리~런던 <font class="check_date ">7월 12일</font> </a>
+	
+				<a href="planner_resv_trs.do?trip_id=${param.trip_id }&ridx=${dto.ridx}&scity_id=${dto.scity_id}&ecity_id=${dto.ecity_id}">${dto.scity_name }~${dto.ecity_name } 
+				<font class="check_date ">${dto.trs_date}</font>
+				</a>	
 			</div>
+</c:if>			
+</c:forEach>
 
 
 		</div>
-		
-		<!-- foreach  -->
+
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-hotel"></i> 숙소</div>
 
-			<!-- ridx -->
+<c:forEach  items="${routelist}" var="dto" varStatus="status" >
 			<div class="leftsubmenu">
-				<a href="<%= contextPath %>/planner/planner_resv_slp.do?trip_id=${trip_id}&ridx=0" class="lmenu_title ">파리 <font class="check_date">7월 9일~7월 12일(3박)</font> </a>
-
+				<a href="planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${dto.ridx}&scity_id=${route.scity_id}" class="lmenu_title ">${dto.scity_name } 
+				<font class="check_date">${dto.arr_date}~${dto.trs_date}(${dto.rt_days}박)</font> </a>
+<c:if test="${status.count eq param.ridx }">				
+				<i class="fa fa-check-circle-o" aria-hidden="true"></i>
+</c:if>			
 			</div>
+</c:forEach>
 
-			<div class="leftsubmenu">
-				<a href="<%= contextPath %>/planner/planner_resv_slp.do?trip_id=${trip_id}&ridx=1" class="lmenu_title ">런던 <font class="check_date">7월 12일~7월 15일(3박)</font> </a>
-
-			</div>
 
 
 		</div>
@@ -334,20 +340,22 @@ function complete()
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-flag"></i> 투어 / 티켓</div>
 
-
+<c:forEach  items="${routelist}" var="dto" >
 			<div class="leftsubmenu">
-				<a href="<%= contextPath %>/planner/planner_resv_tour.do?trip_id=${trip_id}&ridx=0" class="lmenu_title ">파리 <font class="check_date">7월 9일부터 3박</font> </a>
+				<a href="planner_resv_tour.asp?trip_id=${param.trip_id }&ridx=${dto.ridx}" class="lmenu_title ">${dto.scity_name }  <font class="check_date">${dto.arr_date}부터 ${dto.rt_days}박</font> </a>
 			</div>
-
-			<div class="leftsubmenu">
-				<a href="<%= contextPath %>/planner/planner_resv_tour.do?trip_id=${trip_id}&ridx=1" class="lmenu_title ">런던 <font class="check_date">7월 12일부터 3박</font> </a>
-			</div>
-
+</c:forEach>
 
 		</div>
 
+
 	</div>
-	
+
+
+
+
+
+
 	
 	<div id="contentRight" style="float:left;width:80%;padding-top:10px;">
 		<div style="width:98%;padding-left:20px;padding-right:20px;margin-left:1%;;height:600px;border-left:1px solid #efefef">
@@ -364,12 +372,12 @@ function complete()
 		<div style="padding-top:10px;">
 			<div style="float:left;width:50%;">
 				<div style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;margin-bottom:3px;background:#c0c0c0;color:#fff">출국편</div>
-				<div>출발: 서울/인천 (7월 9일)</div>
-				<div>도착: <b>파리</b>, 프랑스</div>
+				<div>출발: 서울/인천 (${airInfo[0].date })</div>
+				<div>도착: <b>${airInfo[0].scity_name }</b>, ${airInfo[0].country_name }</div>
 			</div>
 			<div style="float:left;width:50%;">
 				<div style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:2px;padding-bottom:2px;margin-bottom:3px;background:#c0c0c0;color:#fff">귀국편</div>
-				<div>출발: <b>런던</b>, 영국 (7월 15일)</div>
+				<div>출발: <b>${airInfo[1].scity_name }</b>,  ${airInfo[1].country_name } (${airInfo[1].date })</div>
 				<div>도착: 서울/인천</div>
 			</div>
 			<div style="clear:both"></div>
@@ -452,7 +460,7 @@ function complete()
 <hr>
 	<!-- 도시명 파라미터 -->
 	<h5 style="margin-bottom:2px;">비행시간이 짧으면서 가격이 저렴한 항공권을 찾는 스투비회원들은</h5>
-	<h4>	나와 동일한 조건(IN : 파리/OUT : 런던)에서 
+	<h4>	나와 동일한 조건(IN : ${airInfo[0].scity_name }/OUT : ${airInfo[1].scity_name })에서 
 		다음과 같은 항공권을 선택했습니다.
 	 </h4>
 
@@ -861,12 +869,59 @@ function complete()
 <script src="<%= contextPath %>/externalData/superguide/One-Pages/assets/js/one.app.js"></script>
 <script src="<%= contextPath %>/externalData/chartjs/dist/2.7.2/Chart.bundle.js"></script>
 <script src="<%= contextPath %>/externalData/chartjs/samples/latest/utils.js"></script>
+<%
+
+
+JSONObject json =(JSONObject) request.getAttribute("scatterInfoList");
+
+%>
+
+
+
+
 	<script>
 		var color = Chart.helpers.color;
-
-
+// 자바스크립트 array만들기 
+	var jsonString1 = JSON.stringify(<%=json%>);
+	//console.log(jsonString1);
+	//console.log(<%=json%>);
+	var sets = <%=json%>.datasets;
+	var datasets = new Array();
+	for(var i=0; i<sets.length; i++) {
+	   // console.log(sets[i]);
+	    var airdata = new Object();
+	    airdata.label = sets[i].label;
+	    airdata.borderColor = window.chartColors.red;
+	    airdata.backgroundColor = color(window.chartColors.red).alpha(0.2).rgbString();
+	    var dotArr = new Array();
+	    var dots = sets[i].data;
+	   // console.log(dots);
+	    for (var j = 0; j < sets[i].data.length; j++) {
+	    	//console.log(sets[i].data[j]);
+			dotArr.push(sets[i].data[j]);
+		}
+	    airdata.data = dotArr;
+	    
+		//console.log(airdata);
+		datasets.push(airdata);
+	}
+	
+	console.log(datasets);
 
 		var scatterChartData = {
+				datasets: datasets
+					
+					/* [
+
+					{
+						label: '아시아나항공(19%)',
+						borderColor: window.chartColors.red,
+						backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+						data: [{x: 24,y: 134.48},{x: 24,y: 90},{x: 34,y: 97.3},{x: 22,y: 101.82},{x: 25,y: 93.8},{x: 25,y: 95},{x: 36,y: 85},{x: 25,y: 95.838},{x: 25,y: 46.7},{x: 25,y: 97.5},{x: 24,y: 110},{x: 22,y: 106.9},{x: 24,y: 106},{x: 24,y: 114.03},]
+					}
+					
+					] */
+		/*
 			datasets: [
 
 			{
@@ -920,18 +975,22 @@ function complete()
 
 
 			]
+			*/
 		};
 
 
 
 		window.onload = function() {
+			
+			
+			
 			var ctx = document.getElementById('canvas').getContext('2d');
 			window.myScatter = Chart.Scatter(ctx, {
 				data: scatterChartData,
 				options: {
 					title: {
 						display: true,
-						text: '항공사별 왕복 합산 비행시간과 비용 비교 -  IN : 파리 / OUT : 런던'
+						text: '항공사별 왕복 합산 비행시간과 비용 비교 - (IN : ${airInfo[0].scity_name }/OUT : ${airInfo[1].scity_name })'
 					},
  legend: {
             display: true,

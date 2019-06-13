@@ -283,7 +283,7 @@ function complete()
 		</div>
 		<div class="leftmenu">
 
-			<a href="planner_resv_air.asp?trip_id=10287774" class="lmenu_title "><i class="fa fa-plane"></i> 항공권 </a>
+			<a href="/stubbyPlanner/planner/planner_resv_air.do?trip_id=${param.trip_id }" class="lmenu_title "><i class="fa fa-plane"></i> 항공권 </a>
 		</div>
 		<div class="leftmenu">
 
@@ -292,11 +292,15 @@ function complete()
 		</div>
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-arrow-right"></i> 교통</div>
-
-
+			
+<c:forEach items="${routelist}" var="dto" varStatus="status">
 			<div class="leftsubmenu">
-				<a href="planner_resv_trs.asp?trip_id=10287774&ridx=1" class="lmenu_title ">파리~런던 <font class="check_date ">7월 14일</font> </a>
+	
+				<a href="planner_resv_trs.do?trip_id=${param.trip_id }&ridx=${dto.ridx}&scity_id=${dto.scity_id}&ecity_id=${dto.ecity_id}">${dto.scity_name }~${dto.ecity_name } 
+				<font class="check_date ">${dto.trs_date}</font>
+				</a>	
 			</div>
+</c:forEach>
 
 
 		</div>
@@ -304,16 +308,16 @@ function complete()
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-hotel"></i> 숙소</div>
 
-
+<c:forEach  items="${routelist}" var="dto" varStatus="status" >
 			<div class="leftsubmenu">
-				<a href="planner_resv_slp.asp?trip_id=10287774&ridx=0" class="lmenu_title selected">파리 <font class="check_date">7월 11일~7월 14일(3박)</font> <i class="fa fa-check-circle-o" aria-hidden="true"></i></a>
-
+				<a href="planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${dto.ridx}&scity_id=${route.scity_id}" class="lmenu_title ">${dto.scity_name } 
+				<font class="check_date">${dto.arr_date}~${dto.trs_date}(${dto.rt_days}박)</font> </a>
+<c:if test="${status.count eq param.ridx }">				
+				<i class="fa fa-check-circle-o" aria-hidden="true"></i>
+</c:if>			
 			</div>
+</c:forEach>
 
-			<div class="leftsubmenu">
-				<a href="planner_resv_slp.asp?trip_id=10287774&ridx=1" class="lmenu_title ">런던 <font class="check_date">7월 14일~7월 17일(3박)</font> </a>
-
-			</div>
 
 
 		</div>
@@ -321,15 +325,11 @@ function complete()
 		<div class="leftmenu">
 			<div style="padding-bottom:10px"><i class="fa fa-flag"></i> 투어 / 티켓</div>
 
-
+<c:forEach  items="${routelist}" var="dto" >
 			<div class="leftsubmenu">
-				<a href="planner_resv_tour.asp?trip_id=10287774&ridx=0" class="lmenu_title ">파리 <font class="check_date">7월 11일부터 3박</font> </a>
+				<a href="planner_resv_tour.asp?trip_id=${param.trip_id }&ridx=${dto.ridx}" class="lmenu_title ">${dto.scity_name }  <font class="check_date">${dto.arr_date}부터 ${dto.rt_days}박</font> </a>
 			</div>
-
-			<div class="leftsubmenu">
-				<a href="planner_resv_tour.asp?trip_id=10287774&ridx=1" class="lmenu_title ">런던 <font class="check_date">7월 14일부터 3박</font> </a>
-			</div>
-
+</c:forEach>
 
 		</div>
 
@@ -388,9 +388,11 @@ function complete()
 <!-----팝업 끝---->
 
 		
-		<h3>7월 11일~14일, 파리3박</h3>  
+	<!-- 	<h3>7월 11일~14일, 파리3박</h3>   -->
+		<h3>${route.arr_date }~${route.trs_date }, ${route.scity_name }${route.rt_days }박</h3>
+		
 <!---- 내 예약정보 시작--->
-
+<c:if test="${resvResDto eq null}">
 
 
             <div class="profile-body">
@@ -403,10 +405,10 @@ function complete()
               	              <i class="fa fa-arrow-right"></i>
 			<span class="service-heading">나의 예약정보</span>
 
-		<h4>파리 숙소정보</h4>
+		<h4>${route.scity_name } 숙소정보</h4>
 		<div style="display:inline-block">
-			Check In: 7월 11일<br/>
-			Check Out: 7월 14일
+			Check In:${route.arr_date }<br/>
+			Check Out:  ${route.trs_date }
 		</div>
 	
 		<a href="javascript:openResvinfo()" class="btn-u btn-u-orange btn-u-lg pull-right"><span class="fa fa-pencil"></span> 내 예약 정보 입력</a>
@@ -421,8 +423,129 @@ function complete()
 
 	</div></div></div></div>
 
-
+</c:if>	
 <!-----내 예약정보 끝--->
+<c:if test="${resvResDto ne null}">
+<div class="service-block-v3 servive-block-u" style="background:#2ecc71">
+
+
+              	              <i class="fa fa-arrow-right"></i>
+			<span class="service-heading">나의 예약정보
+	
+				  <div class="btn-group pull-right">
+			              <button type="button" class="btn-u btn-u-dark dropdown-toggle" data-toggle="dropdown">
+              	              	<span class="fa fa-cog"></span> 관리
+              	            		  <span class="fa fa-angle-down"></span>
+              	          		</button>
+              	          		<ul class="dropdown-menu" role="menu">
+              	          		    <li><a href="javascript:openResvinfo('296933')">수정</a></li>
+              	          		    <li><a href="asp/del_resv_info.asp?t=slp&amp;rs=296933&amp;s=296933&amp;ridx=0&amp;p=10288161">삭제</a></li>
+              	          		</ul>
+		                    	</div>
+		
+			</span>
+
+
+                               <span class="counter">	[${resvResDto.a_room_type}]${resvResDto.a_name}
+                               <a href="/wheretogo/streetview.asp?lat=48.882177100389804&amp;lng=2.344511591356536&amp;ht=%ED%8C%8C%EB%A6%AC%ED%8C%AC%EC%85%98" target="_blank">
+                               <span class="label label-warning">PREVIEW</span></a>&nbsp;&nbsp;${resvResDto.a_price} ${resvResDto.a_currency}</span>                                
+                                <div class="clearfix margin-bottom-10"></div>
+                                <div class="row ">
+                            	<div class="col-xs-12 service-in">
+
+				<h4>체크인: ${route.arr_date }/ 체크아웃:${resvResDto.a_checkout} <small> ${route.rt_days }박</small></h4>
+
+
+		<h4>${resvResDto.a_room_type} ${resvResDto.a_room_cnt}개</h4>
+
+		<div style="padding-top:10px;">
+		<p class="small"><span class="label label-default">ADDRESS</span> ${resvResDto.a_address}</p>
+			
+		<p></p>
+
+
+
+
+
+<!---지도 시작---->
+
+		<hr>
+		<small>Location</small>
+		<span class="pull-right">
+			<span class="label label-dark">함께보기</span>
+			 <select onchange="selectmap(this.value);" class="form-control">
+				<option value="withmytrs">내가 이용할 역/공항</option>
+
+				<option value="withsubway">가까운 지하철역</option>
+
+				<option value="withbestsee">주요 관광지들</option>
+				<option value="withbesttrs">주요 역/공항</option>
+			</select>
+			
+		</span>
+
+	<div id="withmytrs" class="" style="display: block;">
+		<a href="/wheretogo/streetview.asp?lat=48.882177100389804&amp;lng=2.344511591356536&amp;ht=%ED%8C%8C%EB%A6%AC%ED%8C%AC%EC%85%98" target="_blank"><img src="http://maps.googleapis.com/maps/api/staticmap?size=430x160&amp;mobile=true&amp;markers=color:red|label:A|48.882177100389804,2.344511591356536&amp;zoom=13&amp;key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I"></a>
+		<ul class="list-unstyled small">
+			<li>A.내 숙소 </li>
+			
+		</ul>
+	</div>
+<script>
+	var prv_id="withmytrs";
+	function selectmap(id)
+	{
+		$("#"+prv_id).hide("slow");
+		$("#"+id).show("slow");
+		prv_id=id;
+	}
+</script>
+
+<!--지도 지하철역 시작-->
+
+	<div id="withsubway" style="display: none;">
+		<a href="/wheretogo/streetview.asp?lat=48.882177100389804&amp;lng=2.344511591356536&amp;ht=%ED%8C%8C%EB%A6%AC%ED%8C%AC%EC%85%98" target="_blank"><img src="http://maps.googleapis.com/maps/api/staticmap?size=430x160&amp;mobile=true&amp;markers=color:red|label:A|48.882177100389804,2.344511591356536&amp;markers=color:blue|label:B|48.88227160921027,2.337566614151001&amp;markers=color:blue|label:C|48.88227160921027,2.337566614151001&amp;markers=color:blue|label:D|48.88301947310488,2.344851493835449&amp;key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I"></a>
+		<ul class="list-unstyled small">
+			<li>A.내 숙소</li>
+			<li>B.<font color="#">■</font>Pigalle - 선() 숙소에서 1km</li><li>C.<font color="#">■</font>Pigalle - 선() 숙소에서 1km</li><li>D.<font color="#">■</font>Anvers - 선() 숙소에서 0km</li>
+		</ul>
+	</div>
+
+<!--지도 지하철역 끝-->
+
+<!--지도 주요관광지 시작-->
+
+	<div id="withbestsee" style="display: none;">
+		<a href="/wheretogo/streetview.asp?lat=48.882177100389804&amp;lng=2.344511591356536&amp;ht=%ED%8C%8C%EB%A6%AC%ED%8C%AC%EC%85%98" target="_blank"><img src="http://maps.googleapis.com/maps/api/staticmap?size=430x160&amp;mobile=true&amp;markers=color:red|label:A|48.882177100389804,2.344511591356536&amp;markers=color:blue|label:B|48.8866457488725,2.34121978282928&amp;markers=color:blue|label:C|48.8736774272086,2.29503750801086&amp;markers=color:blue|label:D|48.8616939112992,2.33648300170898&amp;markers=color:blue|label:E|48.8584822931665,2.29452252388&amp;markers=color:blue|label:F|48.8589552256979,2.3345947265625&amp;markers=color:blue|label:G|48.8720543863763,2.30049848556519&amp;key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I"></a>
+		<ul class="list-unstyled small">
+			<li>A.내 숙소</li>
+			<li><a href="/wheretogo/11101100411004" target="_blank">B.몽마르뜨 언덕</a> (숙소에서 1km)</li><li><a href="/wheretogo/11101100411012" target="_blank">C.개선문</a> (숙소에서 4km)</li><li><a href="/wheretogo/11101100411017" target="_blank">D.루브르 박물관</a> (숙소에서 2km)</li><li><a href="/wheretogo/11101100411014" target="_blank">E.에펠탑</a> (숙소에서 5km)</li><li><a href="/wheretogo/11101100411001" target="_blank">F.세느 강</a> (숙소에서 3km)</li><li><a href="/wheretogo/11101100411015" target="_blank">G.샹젤리제 거리</a> (숙소에서 3km)</li>
+		</ul>
+	</div>
+
+
+<!--지도 주요관광지 끝-->
+<!--지도 주요교통 시작-->
+
+	<div id="withbesttrs" style="display: none;">
+		<a href="/wheretogo/streetview.asp?lat=48.882177100389804&amp;lng=2.344511591356536&amp;ht=%ED%8C%8C%EB%A6%AC%ED%8C%AC%EC%85%98" target="_blank"><img src="http://maps.googleapis.com/maps/api/staticmap?size=430x160&amp;mobile=true&amp;markers=color:red|label:A|48.882177100389804,2.344511591356536&amp;markers=color:blue|label:B|48.8866457488725,2.34121978282928&amp;markers=color:blue|label:C|48.8736774272086,2.29503750801086&amp;markers=color:blue|label:D|48.8616939112992,2.33648300170898&amp;markers=color:blue|label:E|48.8584822931665,2.29452252388&amp;markers=color:blue|label:F|48.8589552256979,2.3345947265625&amp;markers=color:blue|label:G|48.8720543863763,2.30049848556519&amp;key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I"></a>
+		<ul class="list-unstyled small">
+			<li>A.내 숙소</li>
+			<li><a href="/wheretogo/11101100470008" target="_blank">B.파리-샤를드골 공항</a> (숙소에서 22km)</li><li><a href="/wheretogo/11101100470001" target="_blank">C.북역</a> (숙소에서 1km)</li><li><a href="/wheretogo/11101100470009" target="_blank">D.파리-오를리 공항</a> (숙소에서 18km)</li><li><a href="/wheretogo/11101100470002" target="_blank">E.리옹역</a> (숙소에서 5km)</li>
+		</ul>
+	</div>
+
+
+<!--지도 주요관광지 끝-->
+
+
+<!---지도 끝---->
+
+	</div></div></div>
+
+</div>
+
+</c:if>
 	<div class="clearfix"></div>
 
 
@@ -439,12 +562,12 @@ function complete()
 	<h4>파리에서 다음 위치의 숙소를 선택했습니다.</h4>
 
 		<div style="width:100%;margin-top:30px;margin-bottom:30px;">
-			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;text-align:center;border:1px solid #fff;background:#c0c0c0"><a href="planner_resv_slp.asp?trip_id=10287774&ridx=0">전체</a></div>
-			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="planner_resv_slp.asp?trip_id=10287774&ridx=0&slpType=24">호텔 (33.6%)</a></div>
-			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="planner_resv_slp.asp?trip_id=10287774&ridx=0&slpType=22">호스텔 (15.1%)</a></div>
+			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;text-align:center;border:1px solid #fff;background:#c0c0c0"><a href="/stubbyPlanner/planner/planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${param.ridx}">전체</a></div>
+			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="/stubbyPlanner/planner/planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${param.ridx}&slpType=호텔&scity_id=${route.scity_id}">호텔 (${slpRate[0].hotel})</a></div>
+			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="/stubbyPlanner/planner/planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${param.ridx}&slpType=호스텔&scity_id=${route.scity_id}">호스텔 (${slpRate[1].hostel})</a></div>
 
-			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="planner_resv_slp.asp?trip_id=10287774&ridx=0&slpType=21">민박 (34.8%)</a></div>
-			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="planner_resv_slp.asp?trip_id=10287774&ridx=0&slpType=23">아파트 (16.5%)</a></div>
+		<%-- 	<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="/stubbyPlanner/planner/planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${param.ridx}&slpType=민박&scity_id=${route.scity_id}">민박 (34.8%)</a></div> --%>
+			<div style="float:left;width:20%;padding-top:10px;padding-bottom:10px;;text-align:center;border:1px solid #fff;background:#efefef"><a href="/stubbyPlanner/planner/planner_resv_slp.do?trip_id=${param.trip_id }&ridx=${param.ridx}&slpType=아파트&scity_id=${route.scity_id}">아파트 (${slpRate[2].apt})</a></div>
 			<div style="clear:both"></div>
 			<div id="map_canvas" style="height:450px;"></div>
 		</div>
@@ -464,61 +587,52 @@ function complete()
 	<div class="row" id="wrapper">
 		<div class="col-sm-12 col-md-12">
 
+
+<!-- AccomInfo 시작  -->
+<c:forEach items="${accInfoList }" var="AccomInfo">
 	<div class="row" style="margin-bottom:10px;">
 		
 		<div class="col-xs-12 col-md-4">
-			<img src="http://tripgene.com/stubby/photo/1/2/5f7bb84fb9ad9a535ffd33c8e267a78d.png" width="100%">
+			<img src="${AccomInfo.image }" width="100%">
 		</div>
 		<div class="col-xs-12 col-md-8">
 		
-			<h2>A.파리 팬션</h2>
-			<h5>파리 1존에 위치한 여성 전용 민박으로, 친절한 사장님이 직접 드라이브하는 야경 투어는 강추! 단, 별관에선 와이파이가 약하다.</h5>
+			<h2>A.${AccomInfo.title }</h2>
+		<!-- 	<h5>파리 1존에 위치한 여성 전용 민박으로, 친절한 사장님이 직접 드라이브하는 야경 투어는 강추! 단, 별관에선 와이파이가 약하다.</h5> -->
 
 
 
 
 		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/trace" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/0/trace_sq.jpg"></a>
+			<a href="http://www.stubbyPlanner.com/trace" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="${AccomInfo.reviewMap.profile_pic }"></a>
 		</span>
 		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000003669999">" 	 	위치 교통 다 괜찮았는데 시내랑 그렇게 가까운 거리는 아니였던거 같다. 아침저녁 제공하고 맛있어요. 빨래해주시는게 가장.."</a></h4>
+	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000003669999">${AccomInfo.reviewMap.content }</a></h4>
        <div class="star-vote">
 		
               		              <ul class="list-inline">
-		
+<c:forEach begin="1" end="5" step="1" varStatus="status">
+<c:if test="${status.count <= AccomInfo.star }">
 	                               <li><i class="color-green fa fa-star"></i></li>
+</c:if>
+<c:if test="${status.count > AccomInfo.star }">
+ 								 <li><i class="color-green fa fa-star-o"></i></li>
+</c:if>
+</c:forEach>				
+
 		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
+	                             
 		
 		 </ul>
 
 			</div>
 		</div>
 
-	<h5>최근 예약한 플래너들 <span class="label label-success">265명</span> </h5>
+	<h5>최근 예약한 플래너들 <span class="label label-success">${AccomInfo.cnt }명</span> </h5>
 	<div>
-	
-		<a href="http://www.stubbyPlanner.com/gustn30225" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/3/gustn30225_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/ekdgk23" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/3/6/ekdgk23_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/njs1556" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/5/njs1556_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/vaiorlet" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/1/vaiorlet_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/dmlwls701" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/7/dmlwls701_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/jihyeon206" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/5/jihyeon206_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/mkyeong" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/6/mkyeong_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/shi623" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/4/shi623_sq.jpg"></a>
+<c:forEach items="${AccomInfo.reserverList }" var="reserver">
+		<a href="http://www.stubbyPlanner.com/${reserver.member_id }" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="${reserver.profile_pic }"></a>
+</c:forEach>		
 	
 	</div>
 
@@ -527,549 +641,18 @@ function complete()
 		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420001" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
 
 
-		<a href="http://shinjungparis.com" target="_blank" class="btn-u btn-u-green">홈페이지</a>
+		<a href="${AccomInfo.link}" target="_blank" class="btn-u btn-u-green">예약</a>
 			
 	</p>
 	<hr>
 
 		</div>
 	</div>
+</c:forEach>
+<!-- AccomInfo 끝 -->
 
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://tripgene.com/stubby/photo/1/2/0f21fcdc86a39640e46834bfa8a678bd_m.jpg" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>B.Adveniat Hostel</h2>
-			<h5>친절한 직원들과 다양한 편의 시설, 그리고 탁 트인 실내 공간. 명품샵이 즐비한 몽테뉴 거리에 위치. 식사 메뉴가 단촐하고 유료 와이파이 사용</h5>
 
 
-
-
-		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/hahayama" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/1/hahayama_sq.jpg"></a>
-		</span>
-		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000011739999">"2013년에 일주일, 2016년에 1박 했어요. 두번다 2인실이었습니다.장점&nbsp;1. 위치 : 걸어서 상젤리제 가능, 바.."</a></h4>
-       <div class="star-vote">
-		
-              		              <ul class="list-inline">
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-		 </ul>
-
-			</div>
-		</div>
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">255명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/rose3u" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/9/8/rose3u_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/Hyoneyy92" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/7/Hyoneyy92_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/c3ok30" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/9/c3ok30_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/nicemmm" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/5/nicemmm_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/sinangsong" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/5/sinangsong_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/shshs6" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/4/shshs6_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/new36" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/3/new36_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/dltjdtn321" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/6/dltjdtn321_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420041" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.booking.com/searchresults.html?aid=308767&label=_nslppick111011004&ss=Adveniat+Hostel&si=ho&checkin_monthday=11&checkin_year_month=2019-7&checkout_monthday=14&checkout_year_month=2019-7&city=-1456928" target="_blank" class="btn-u btn-u-green">예약 <span class="badge badge-dark">7월 11일~, 3박</span></a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/3a63588c13b4b5016c3be5a66319449d_m.jpg" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>C.세인트 크리스토퍼 인 파리 - 가르 뒤 노드</h2>
-			<h5>북역에서 단 200m 거리에 있으며, 3개의 바, 인터넷 카페 및 테이블 축구 게임을 즐길 수 있는 휴게실을 보유하고 있습니다. 몽마르트(Montmartre)와 사크레 쾨르 성당(Sacre Coeur)까지는 도보로 15분이 걸립니다.</h5>
-
-
-
-
-		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/jfrences" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/3/jfrences_sq.jpg"></a>
-		</span>
-		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000007629999">" 	 	 	          · 장점 : 북역에서 바로 근처라 유로스타 타고와서 힘든데 헤매지 않아서 좋았고, 오베르쉬르우아즈.."</a></h4>
-       <div class="star-vote">
-		
-              		              <ul class="list-inline">
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-		 </ul>
-
-			</div>
-		</div>
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">126명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/megannnn" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/3/megannnn_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/swonyoo" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/5/swonyoo_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/gksduf77" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/6/gksduf77_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/ooalstn" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/8/ooalstn_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/fish413" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/3/5/fish413_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/dhorpdjqtd" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/4/dhorpdjqtd_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/chazymoon" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/4/chazymoon_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/tnd02030" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/7/tnd02030_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420421" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.booking.com/searchresults.html?aid=308767&label=_nslppick&ss=%EC%84%B8%EC%9D%B8%ED%8A%B8+%ED%81%AC%EB%A6%AC%EC%8A%A4%ED%86%A0%ED%8D%BC+%EC%9D%B8+%ED%8C%8C%EB%A6%AC+%2D+%EA%B0%80%EB%A5%B4+%EB%92%A4+%EB%85%B8%EB%93%9C&si=ho&checkin_monthday=11&checkin_year_month=2019-7&checkout_monthday=14&checkout_year_month=2019-7&city=-1456928" target="_blank" class="btn-u btn-u-green">예약 <span class="badge badge-dark">7월 11일~, 3박</span></a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://tripgene.com/stubby/photo/1/2/059cde56d6e2bc0c3c2b12578c03defb.png" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>D.마리하우스</h2>
-			<h5>화려한 아침상! 와이파이 사용하고 노트북 대여, 주요 관광지와 가까움. 정겹지만 투박한 이모님의 말투에 호불호 갈림</h5>
-
-
-
-
-		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/gon716" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/8/gon716_sq.jpg"></a>
-		</span>
-		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000011379999">" 	 	장점 : 음식이 맛있고 아침 저녁으로 밥을 주셔서 돈을 세이브 할 수 있었다. 이모님이 잘 챙겨 주셔서 좋았다.단점 :.."</a></h4>
-       <div class="star-vote">
-		
-              		              <ul class="list-inline">
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-		 </ul>
-
-			</div>
-		</div>
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">108명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/ghn02058" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/4/ghn02058_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/zlzhznzk" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/6/zlzhznzk_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/adam96bwj" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/2/adam96bwj_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/zeritzerit" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/3/zeritzerit_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/moulouds" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/8/moulouds_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/wlals3224" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/6/wlals3224_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/rlagjswp1" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/9/6/rlagjswp1_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/newskys" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/3/newskys_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420040" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://marie-house.co.kr/" target="_blank" class="btn-u btn-u-green">홈페이지</a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/58ebedd5e98b9ddb4c5b133210279335_m.jpg" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>E.에펠스타</h2>
-			<h5>최고의 위치! 무엇보다 무료 세탁과 짐보관이 가능 또 출입이 자유롭다는 것.</h5>
-
-
-
-
-		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/chipoo3" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/4/chipoo3_sq.jpg"></a>
-		</span>
-		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000011099999">" 	 	장단점 : 위치가 너무 좋아용 역들 사이에 끼고있고, 부촌이라 그런지 늦은 밤에 들어와도 다른 도시들 보다 두렵지않았습.."</a></h4>
-       <div class="star-vote">
-		
-              		              <ul class="list-inline">
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-		 </ul>
-
-			</div>
-		</div>
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">100명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/Hyoneyy92" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/7/Hyoneyy92_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/chj1330" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/4/chj1330_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/sym1015" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/7/sym1015_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/jung74569" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/3/jung74569_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/wjddms12" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/5/wjddms12_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/ivida12" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/4/ivida12_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/naismiok" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/1/naismiok_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/pling1412" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/6/pling1412_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420352" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.에펠스타.kr/" target="_blank" class="btn-u btn-u-green">홈페이지</a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-12">
-		
-			<h2>F.3 ducks Boutique hostel</h2>
-			<h5>호스텔</h5>
-
-
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">93명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/rlruqkqka2" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/9/6/rlruqkqka2_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/enter0986" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/3/7/enter0986_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/hhhasm" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/4/hhhasm_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/gwonee22" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/5/gwonee22_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/mgh1213" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/4/mgh1213_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/tjsgodhks" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/5/tjsgodhks_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/taewan13" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/1/taewan13_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/tkdfiddk1" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/6/tkdfiddk1_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420449" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.booking.com/searchresults.html?aid=308767&label=_nslppick111011004&ss=3+ducks+Boutique+hostel&si=ho&checkin_monthday=11&checkin_year_month=2019-7&checkout_monthday=14&checkout_year_month=2019-7&city=-1456928" target="_blank" class="btn-u btn-u-green">예약 <span class="badge badge-dark">7월 11일~, 3박</span></a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/80eb728679d98a7989b8a925e64aea06_m.png" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>G.코코파리</h2>
-			<h5>파리 1존 퐁피드역 근처에 위치한 민박. 대부분 관광지는 도보 10~20분 거리이다. 화이트톤의 깔끔한 인테리어로 여행자들에게 쾌적한 환경을 제공한다.</h5>
-
-
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">88명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/jrekwjd" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/0/jrekwjd_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/bhs9363" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/4/bhs9363_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/kjj2161" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/6/5/kjj2161_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/parisbomni" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/1/parisbomni_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/sjkey24" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/5/sjkey24_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/davinci91" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/1/davinci91_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/parkms0902" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/8/1/parkms0902_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/hyeji211" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/4/7/hyeji211_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420021" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.koko-paris.com" target="_blank" class="btn-u btn-u-green">홈페이지</a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://tripgene.com/stubby/photo/1/2/e344a761220e0b00afdf1f48d497a4b9_m.png" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>H.Kyriad Bercy Village</h2>
-			<h5>가격대비 시설 우수/근처에 마트 있는 점이 장점. 약간 시외곽에 위치한 점이 단점.</h5>
-
-
-
-
-		<span class="pull-left" style="margin-left:15px;margin-right:10px;">
-			<a href="http://www.stubbyPlanner.com/devil9479" target="_blank"><img class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/3/devil9479_sq.jpg"></a>
-		</span>
-		<div>
-	                 	<h4><a  target="_blank" href="/review/document.asp?serial=1000007389999">" 	 	 	· 장단점 :장점-베르시 마을의 상가들 구경하는것, 조용한점,지하철이 생긴지 얼마 안된 14호선이라 깨끗하다.&nb.."</a></h4>
-       <div class="star-vote">
-		
-              		              <ul class="list-inline">
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                               <li><i class="color-green fa fa-star"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-	                                <li><i class="color-green fa fa-star-o"></i></li>
-		
-		 </ul>
-
-			</div>
-		</div>
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">88명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/shin281" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/4/shin281_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/dsu9999" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/1/dsu9999_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/bmggmb" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/7/bmggmb_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/min1208" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/5/min1208_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/jisunny83" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/5/jisunny83_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/chap90" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/4/chap90_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/belovedbin" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/3/belovedbin_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/ysy5443" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/1/ysy5443_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420319" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.booking.com/searchresults.html?aid=308767&label=_nslppick111011004&ss=Kyriad+Bercy+Village&si=ho&checkin_monthday=11&checkin_year_month=2019-7&checkout_monthday=14&checkout_year_month=2019-7&city=-1456928" target="_blank" class="btn-u btn-u-green">예약 <span class="badge badge-dark">7월 11일~, 3박</span></a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/9e45fa4ed47427431f4f56076fe70e30_m.jpg" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>I.Generator Paris</h2>
-			<h5>파리의 활기찬 10구에 위치한 디자이너 호스텔입니다. 숙소는 게임룸이 딸린 세련된 라운지 공간, 무료 Wi-Fi를 갖추고 있습니다.</h5>
-
-
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">85명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/dmsdud001" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/7/dmsdud001_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/yarywt" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/1/yarywt_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/wldus3205" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/6/wldus3205_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/mstar315" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/1/mstar315_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/seany0106" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/3/seany0106_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/manse0317" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/1/manse0317_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/lkjh7143" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/6/6/lkjh7143_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/wetpdyd" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/5/3/wetpdyd_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420465" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://www.booking.com/searchresults.html?aid=308767&label=_nslppick111011004&ss=Generator+Paris&si=ho&checkin_monthday=11&checkin_year_month=2019-7&checkout_monthday=14&checkout_year_month=2019-7&city=-1456928" target="_blank" class="btn-u btn-u-green">예약 <span class="badge badge-dark">7월 11일~, 3박</span></a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
-
-	<div class="row" style="margin-bottom:10px;">
-		
-		<div class="col-xs-12 col-md-4">
-			<img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/cdcc14c4645f191d446f7148f31299ff_m.png" width="100%">
-		</div>
-		<div class="col-xs-12 col-md-8">
-		
-			<h2>J.파리 플로르 민박</h2>
-			<h5>파리1존 중심지에 위치. 교통편이 좋다.</h5>
-
-
-
-	<h5>최근 예약한 플래너들 <span class="label label-success">83명</span> </h5>
-	<div>
-	
-		<a href="http://www.stubbyPlanner.com/965love" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/0/9/965love_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/1905y" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/0/9/1905y_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/bonitanh" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/8/bonitanh_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/dptjdtk" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/2/8/dptjdtk_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/songi7532" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/1/8/songi7532_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/yw9333" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/7/5/yw9333_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/eeea_eee" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/3/3/eeea_eee_sq.jpg"></a>
-	
-		<a href="http://www.stubbyPlanner.com/q4580576" target="_blank"><img width="35px" class="rounded-x" onerror="this.src='/stubbyPlanner/externalData/img_v6/img_pfnull.gif'" src="http://www.stubbyPlanner.com/pfimg/9/9/q4580576_sq.jpg"></a>
-	
-	</div>
-
-
-	<p align="right" style="padding-top:15px">
-		<a href="/review/write.asp?region=111011004&spotname=&category=slp&spotserial=11101100420325" class="btn-u btn-u-default">리뷰쓰기 <span class="label label-default">+50마일</span></a>
-
-
-		<a href="http://cafe.naver.com/iloveparis2013" target="_blank" class="btn-u btn-u-green">홈페이지</a>
-			
-	</p>
-	<hr>
-
-		</div>
-	</div>
 
 
 
