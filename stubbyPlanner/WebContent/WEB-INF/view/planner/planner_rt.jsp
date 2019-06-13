@@ -773,7 +773,7 @@ function openInfoWindow2(city_x,city_y,se)
 }
 function update_arr_nextday()
 {
-	deleteData();
+//	deleteData();
 	saveCookie();
 	updateTerm();
 	updateDateInOut();
@@ -803,6 +803,7 @@ function updateTerm()
 
 var trip_id="";
 var tripwith="";
+/* 
 function deleteData(is_sync) {
 	is_async=true;
 	if(is_sync)
@@ -820,7 +821,7 @@ function deleteData(is_sync) {
 		}
 	});
 }
-
+ */
 
 function saveCookie(is_sync)
 {
@@ -894,10 +895,7 @@ function reorderSchd(idx,changed_j)
 function getTripgene()
 {
 	
-	// routelist[routelist.length]
-	// =new Route(city_id,city_name,recommSlp,'X',0,city_x,city_y,date_in,date_out);
 	var rtstring="";
-	// console.log("getTripgene trstype 확인:"+routelist[i].trstype);
 	for(i=0;i<routelist.length;i++)
 	{
 		city_id=routelist[i].city_id;
@@ -969,6 +967,7 @@ var stockholm = new google.maps.LatLng(45, 10);
   var prv_infowindow;
 	  
   /* 
+  									 (city_id,city_name,nights,trstype,is_night_move,city_x,city_y,date_in,date_out) { 
   routelist[routelist.length]=new Route('111011004','파리','3','X','0','48.86110101269274','2.3421478271484375',new Date('2019-07-13'),new Date('2019-07-16'));    slpRatesArr[routelist[routelist.length-1].cityserial]='4|7|46|24|20';
   routelist[routelist.length]=new Route('111081001','브뤼셀','1','X','0','50.8466245793837','4.3511438369751',new Date('2019-07-16'),new Date('2019-07-17'));      slpRatesArr[routelist[routelist.length-1].cityserial]='18|68|14|2|0';
   routelist[routelist.length]=new Route('111071001','암스테르담','1','X','0','52.3737914039891','4.89076137542725',new Date('2019-07-17'),new Date('2019-07-18')); slpRatesArr[routelist[routelist.length-1].cityserial]='11|61|24|6|1';
@@ -2535,7 +2534,7 @@ function selectTripwith(x,y)
 function gotoHome()
 {
 	if(confirm('저장하지 않고 이 페이지를 나가려고 합니다.'))
-		window.location='/stubbyPlanner/common/main.do';	
+		window.location='/stubbyPlanner/common/index.do';	
 }
 function gotoRoute() 
 {
@@ -3288,7 +3287,7 @@ function moveCity(sidx,eidx)
 
 	
 //	drawDayList();
-	deleteData();
+//	deleteData();
 	saveCookie();
 
     }
@@ -3447,7 +3446,7 @@ function delCity(idx)
 //	reloadCostNPeriod();
 //	getHighlights('');
 //	getAirPrice();
-	deleteData();
+//	deleteData();
 	saveCookie();
 
 }
@@ -3464,7 +3463,7 @@ function chgNights(i,nights)
 //	drawDayList();
 	redrawMapMarkers();
 	updateTerm();
-	deleteData();
+//	deleteData();
 	saveCookie();
 	updateDateSilent(i);
 }
@@ -4322,7 +4321,7 @@ function selNightMoveTab(id_idx,rt_i)
 	des=routelist[rt_i].city_id;
 	loadTrsInfo(rt_i,dep,des);
 	updateTerm();
-	deleteData();
+//	deleteData();
 	saveCookie();
 }
 function showTrsHistory()
@@ -4350,7 +4349,7 @@ function showTrsInfo()
 function chgTrsType(i,trstype)
 {
 	routelist[i].trstype=trstype;
-	deleteData();
+//	deleteData();
 	saveCookie();
 	redrawMapMarkers();
 	depserial=routelist[i-1].city_id;

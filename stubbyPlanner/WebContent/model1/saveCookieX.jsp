@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.util.ConnectionProvider"%>
@@ -9,29 +11,25 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 
 <%!
-// 함수 선언 
-  public String getEnddate(String startdate, String tripgeneRt){
-	// startdate - > java.util.Date
-	// rt_days+
-	// 숙박일에 따른 다음 이동날짜 계산
-	String enddate = "";
-	int rt_days = Integer.parseInt(startdate.substring(8));
-	rt_days = rt_days + Integer.parseInt(tripgeneRt);
+	// 날짜 변경 함수 선언 
+  	public String getDate (String startdate, int tripgeneRt) {
 		
-	StringBuffer replace_rt_days = new StringBuffer();
-	if(rt_days < 10) {
-		replace_rt_days.append("0");
+		int year = Integer.parseInt(startdate.substring(0, 4));
+		int month = Integer.parseInt(startdate.substring(5, 7));
+		int day = Integer.parseInt(startdate.substring(8));
+		
+		LocalDate date = LocalDate.of(year, month, day);
+		date = date.plusDays(tripgeneRt);
+		
+		return date.toString();
 	}
-	replace_rt_days.append(rt_days);
-	enddate = startdate.replace(startdate.substring(8), replace_rt_days);
-	return enddate;
-}
 
 %>
  
 <%
 	//공통
 	String tid = request.getParameter("tid"); // trip_id
+	System.out.println("saveCookieX tid:" + tid);
 	int arr_nextday = Integer.parseInt(request.getParameter("arr_nextday")); // +1 도착
 	
 	// tbl_route
@@ -44,30 +42,20 @@
 	// tbl_planner
 	
 	String startdate = request.getParameter("startdate");
-	/* 
+	String tripwith = request.getParameter("tripwith"); 		//여행타입
+	int term = Integer.parseInt(request.getParameter("term")); 	// eg., 13박 14일 -> term == 14일
+	System.out.println("term:" + term);
 	if(arr_nextday == 1) {
-		int startdays = Integer.parseInt(startdate.substring(8));
-		startdays += 1;
-		StringBuffer replacedays = new StringBuffer();
-		if(startdays < 10) {
-			replacedays.append("0");
-		}
-		replacedays.append(startdays);
-		
-		startdate = startdate.replace(startdate.substring(8), replacedays); //출국일
+		startdate = getDate(startdate, arr_nextday);
 	}
-	 */
-	String tripwith = request.getParameter("tripwith"); //여행타입
-	int term = Integer.parseInt(request.getParameter("term")); // eg., 13박 14일 -> term == 14일
-	
-	
 %>
 <%
 	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	String [] tripgeneArr2 = {};
+	String [] tripgeneArr2;
+	String [] tripgeneArr3;
 	String sql = "";
 	
 	if (tid == "") {
@@ -81,8 +69,6 @@
 			pstmt.setString(1, tripwith);
 			pstmt.setString(2, startdate);
 			pstmt.setInt(3, term);
-			
-			// java.util.Date -> java.sql.Date
 			
 			rs = pstmt.executeQuery();
 			
@@ -130,50 +116,109 @@
 		
 	}
 	
-	sql = " insert into tbl_route(rt_id, trip_id, rt_days, rt_trans "
-		+ " , rt_startdate, rt_enddate, scity_id) "
-		+ " values(seq_route.nextval, ?, ?, ?, ?, ?, ?) ";
-	
+	sql = " insert into tbl_route(rt_id, trip_id, rt_days, rt_trans, "
+		+ " rt_startdate, rt_enddate, scity_id, ecity_id, night_move ) "
+		+ " values(seq_route.nextval, ?, ?, ?, ?, ?, ?, ?, ?) ";
+	 	
 	try {
 		conn = ConnectionProvider.getConnection();
 		pstmt = conn.prepareStatement(sql);
 		
 		// [1:3:X], [2:3:1], [3:2:2], [4:1:1], [5,2:1]
-		
 		int tgarrlength = tripgeneArr1.length;
 		tripgeneArr2 = tripgeneArr1[tgarrlength - 1].split(":");
 		
-		String enddate = getEnddate(startdate, tripgeneArr2[1]);
+		// 출발도시, 도착도시 id
+		int scity_id = 0;
+		int ecity_id = 0;
 		
-		pstmt.setString(1, tid);
+		// 숙박일수
+		int rt_days = Integer.parseInt(tripgeneArr2[1]);
 		
-		pstmt.setString(2, tripgeneArr2[1]);
-		pstmt.setString(3, tripgeneArr2[2]);
-		
-		if(tgarrlength == 1) {
-			pstmt.setString(4, startdate);
-			pstmt.setString(5, enddate);
-		} else if (tgarrlength > 1) {
-			startdate = enddate;
-			
-					
-			pstmt.setString(4, startdate);
-			pstmt.setString(5, enddate);
+		// 날짜 정리 
+		// rt_startdate = startdate + term - rt_days - 1
+		// rt_enddate = rt_startdate + rt_days
+		int duration;
+		if(tripgeneArr2.length -1 == 3) {		// 야간이동 포함
+			duration = term - rt_days;
+			pstmt.setString(8, tripgeneArr2[3]);
+		} else {
+			duration = term - rt_days - 1;
+			pstmt.setString(8, "");
 		}
 		
-		pstmt.setString(6, tripgeneArr2[0]);
+		String rt_startdate = getDate(startdate, duration);
+		String rt_enddate = "";
 		
+		pstmt.setInt(1, Integer.parseInt(tid));
+		pstmt.setInt(2, rt_days);
+		pstmt.setString(3, tripgeneArr2[2]);
+		pstmt.setString(4, rt_startdate);
+		rt_enddate = getDate(rt_startdate, rt_days);
+		pstmt.setString(5, rt_enddate);
+		
+		if(tgarrlength == 1) {
+			
+			scity_id = ecity_id = Integer.parseInt(tripgeneArr2[0]);
+			pstmt.setInt(6, scity_id);
+			pstmt.setInt(7, ecity_id);
+			
+		}
+		
+		else if (tgarrlength > 1) {
+			
+			tripgeneArr3 = tripgeneArr1[tgarrlength - 2].split(":");
+			
+			scity_id = Integer.parseInt(tripgeneArr3[0]);
+			ecity_id = Integer.parseInt(tripgeneArr2[0]);
+			pstmt.setInt(6, scity_id);
+			pstmt.setInt(7, ecity_id);
+					
+		}
 		
 		rs = pstmt.executeQuery();
 		
 		rs.close();
 		pstmt.close();
 		
+		sql = " select a.city_name as scity_name, b.city_name as ecity_name " 
+	     	+ " from tbl_city a, tbl_city b, tbl_route c "
+	     	+ " where a.city_id = ? and b.city_id = ? " 
+	     	+ " and trip_id = ? and rt_startdate = ? "; 
 		
-		sql = " select a.scity_id, b.city_name, a.ecity_id, c.city_name from tbl_route a " 
-			+ " left join tbl_city b on a.scity_id = b.city_id "
-			+ " left join tbl_city c on a.ecity_id = c.city_id ";
+		pstmt = conn.prepareStatement(sql);
 		
+		pstmt.setInt(1, scity_id);
+		pstmt.setInt(2, ecity_id);
+		pstmt.setString(3, tid);
+		pstmt.setString(4, rt_startdate);
+		
+		rs = pstmt.executeQuery();
+		
+		String scity_name = "";
+		String ecity_name = "";
+		
+		if(rs.next()) {
+			scity_name = rs.getString("scity_name");
+			ecity_name = rs.getString("ecity_name");
+		}
+		System.out.println("scity_name: " + scity_name + "/" + "ecity_name: " + ecity_name);
+		
+		rs.close();
+		pstmt.close();
+		
+		sql = " update tbl_route set "
+			+ " scity_name = ? , ecity_name = ?"
+			+ " where trip_id = ? and rt_startdate = ?";
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, scity_name);
+		pstmt.setString(2, ecity_name);
+		pstmt.setString(3, tid);
+		pstmt.setString(4, rt_startdate);
+		
+		rs = pstmt.executeQuery();
 		
 	} catch (Exception e) {
 		e.printStackTrace();
