@@ -1,3 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/include.jspf" %>
+<%
+	int trip_id = Integer.parseInt(request.getParameter("trip_id"));
+// 	System.out.println(trip_id);
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
@@ -9,7 +16,7 @@
 <meta property="fb:app_id" content="218650814915663">
 <meta property="og:title" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://www.stubbyplanner.com/plan/planner_schd.asp?trip_id=" />
+<meta property="og:url" content="http://www.stubbyplanner.com/planner/planner_schd.jsp?trip_id=10000001"/>  
 <meta property="og:image" content="" />
 <meta property="og:site_name" content="상상속 여행을 현실로, 스투비플래너" />
 <meta property="og:description" content=" " />
@@ -18,6 +25,7 @@
 
 <link rel="image_src" href="" />
 <!-- Meta -->
+	
 
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta charset="utf-8">
@@ -68,17 +76,19 @@ fbq('init', '597062987120795');
 fbq('track', 'Planner');
 </script>
 
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyD22gGuJambID4g4M2bHWgxOCmWCArzTzM"></script>
+<script src="https://maps.google.co.kr/maps/api/js?sensor=false&language=ko&key=AIzaSyA2uoKY8XZudT_cVnXJZqPm57U0TVB0WG0&callback"></script>
 
 <script>
 var geocoder;
 var map_att;
-var  marker;
+var marker;
+
+// geo좌표를 받아와서 해당 위치에 마커찍고 누를시 출발위치 표시
 function moveMapwithAdrs()
 {
 	if(marker)
 		marker.setMap(null);
-	  geocoder = new google.maps.Geocoder();
+	  geocoder = new google.maps.Geocoder(); // 서버에 지오코드 요청을 보내는 새 인스턴스 생성
 	adrs=$("#schd_adrs").val();
 
 
@@ -86,9 +96,9 @@ function moveMapwithAdrs()
     geocoder.geocode({
       'address': adrs
     }, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
-          map_att.setCenter(results[0].geometry.location);
+      if (status == google.maps.GeocoderStatus.OK) { // geocoder 완료시에 반환된 상태 = OK
+        if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {	//결과값이 리턴된게 하나라도 있을 경우
+          map_att.setCenter(results[0].geometry.location); // geo좌표값으로 센터위치
 
         var infowindow = new google.maps.InfoWindow({
             content: '<b>출발위치</b>',
@@ -103,18 +113,15 @@ function moveMapwithAdrs()
             title: "출발위치"
           });
 
-   document.getElementById('lat').value = results[0].geometry.location.lat();
+    document.getElementById('lat').value = results[0].geometry.location.lat();
     document.getElementById('lng').value = results[0].geometry.location.lng();
 
     marker.addListener('drag', handleEvent);
     marker.addListener('dragend', handleEvent);
 
           google.maps.event.addListener(marker, 'click', function() {
-            infowindow.open(map_att, marker);
+            infowindow.open(map, marker);
           });
-
-
-
 
 
         } else {
@@ -127,6 +134,7 @@ function moveMapwithAdrs()
   }
 
 }
+
 function mapInit(plat,plng) {
 
 	
@@ -725,9 +733,9 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 function gotoHome()
 {
 	if(confirm(' 이 페이지를 나가려고 합니다.'))
-		window.location='/';	
+		window.location='/stubbyPlanner/main.do';	
 }
-
+// ########3수정해야한다.
 function gotoResv()
 {
 	
@@ -742,8 +750,8 @@ function gotoResv()
 		</div>
 	</div>
 	<div id="topControllerRight" style="width:80%;float:left;">
-		<div class="top_menu" id="menu1" onclick="window.location='/planner/planner_rt.asp?trip_id=10276248'"><font style="color:#fff;font-size:12pt;">루트</font></div>
-		<div class="top_menu"  id="menu2" onclick="window.location='/planner/planner_schd.asp?trip_id=10276248'" style="border-bottom:5px solid gray"><font style="font-size:12pt;color:#fff;">일정</font></div>
+		<div class="top_menu" id="menu1" onclick="window.location='/stubbyPlanner/planner/planner_rt.do?trip_id=<%=trip_id%>'"><font style="color:#fff;font-size:12pt;">루트</font></div>
+		<div class="top_menu"  id="menu2" onclick="window.location='/stubbyPlanner/planner/planner_schd.do?trip_id=<%=trip_id%>'" style="border-bottom:5px solid gray"><font style="font-size:12pt;color:#fff;">일정</font></div>
 		<div class="top_menu"  id="menu3" onclick="gotoResv()" ><font style="font-size:12pt;color:#fff;"  >예약 <i class="fa fa-lock"></i></font></div>
 		<div style="float:left;width:25%;text-align:center;padding-top:8px;">
 
@@ -753,8 +761,10 @@ function gotoResv()
 		</div>
 
 <script>
-var trip_id=10276248;
+// 수정해야한다.
+var trip_id= <%=trip_id%>; 
 var is_TRMenu_displayed=0;
+// # 저장 선택메뉴
 function toggleTRMenu()
 {
 
@@ -777,7 +787,7 @@ function toggleTRMenu()
 }
 function login()
 {
-	window.location="/common/login.asp?h_url=%2Fplan%2Fplanner%5Frt4%2Easp%3Ftrip%5Fid%3D"+trip_id;
+	window.location="/stubbyPlanner/common/login.do?h_url=%2Fplan%2Fplanner%5Frt4%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
 function register()
 {
@@ -824,8 +834,8 @@ function complete()
 	</div>
 </main>
 
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
@@ -835,13 +845,13 @@ function complete()
 
 
 <!-- JS Implementing Plugins -->
-<script src="/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
 
 <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
 
 <!-- JS Page Level -->
-<script src="/superguide/One-Pages/assets/js/one.app.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/js/one.app.js"></script>
 
 <script>
 
@@ -869,20 +879,22 @@ function moveNextMonth()
 }
 function drawMonth(y,m,d)
 {
+// 	console.log("y:"+y + "m::" + m + "d::" + d);
 	$.ajax({
-		  url: "/api/v5/planner/cal_route.asp",
+		  url: "/stubbyPlanner/model1/cal_route.jsp",
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
 			y:y,
 			m:m,
-			trip_id:10276248
+			trip_id:<%=trip_id%>
 		  },
 		  success: function( data ) {
+// 			  console.log(data);
 				theIdx=0;
 				theDispCityIdx=0;
-				myroutes=data.data.routes;
-
+				myroutes=data.routes;
+				
 				max_mday=31;
 				if(m==2)
 					max_mday=28;
@@ -915,7 +927,7 @@ function drawMonth(y,m,d)
 				if(m<9)
 					m_txt="0"+m;
 				var dx = new Date(y+'-'+m_txt+'-01');
-
+// 				console.log("y:"+y + "m::" + m + "d::" + d);
 				for(i=0;i<dx.getDay();i++)
 				{
 					thtml=thtml+'<div class="calendar_day_nothing"><a href="#" style="color:#fff">-</a></div>';
@@ -926,6 +938,7 @@ function drawMonth(y,m,d)
 					d_txt=i;
 					if(i<10)
 						d_txt='0'+i;
+// 					console.log("y:"+y + "m::" + m + "d::" + d);
 					thedate=y+'-'+m_txt+'-'+d_txt;
 //					if(selected_date==thedate)
 //					{
@@ -934,19 +947,21 @@ function drawMonth(y,m,d)
 //					else
 					{
 
-	
+// 						console.log(myroutes);
 						if(myroutes)
 						if(myroutes[theIdx])
 						{
 							if((myroutes[theIdx].date_in.y<parseInt(y)&&myroutes[theIdx].date_out.d>=i)||(myroutes[theIdx].date_in.m<parseInt(m)&&myroutes[theIdx].date_out.d>=i)||(myroutes[theIdx].date_in.d<=i&&myroutes[theIdx].date_out.d>=i)||(myroutes[theIdx].date_in.d<=i&&myroutes[theIdx].date_out.m>parseInt(m)))
 							{
-								
+// 								console.log(myroutes[theIdx].date_in.y +"/" + myroutes[theIdx].date_out.d + "/" + parseInt(y) );
+// 								console.log(myroutes[theIdx].date_in.m +"/" + myroutes[theIdx].date_out.d + "/" + parseInt(m));
 								var thecolor;
 								if(theDispCityIdx%2==1)
 									thecolor="#3ad195";
 								else
 									thecolor="#ff6142";
-
+								console.log("theIdx:: " + theIdx );
+								console.log("myroutes.length-1:: " + myroutes.length-1 );
 								if(theIdx<myroutes.length-1&&myroutes[theIdx].date_out.d==i)
 								{
 									theDispCityIdx++;
@@ -955,12 +970,13 @@ function drawMonth(y,m,d)
 
 									thtml+='<div style="clear:both"> </div>';
 									local_idx=0;
+// 									console.log("i" + i); // 10,11,13
 									while(myroutes[theIdx]&&myroutes[theIdx].date_out.d==i)
+// 										console.log("myroutes[theIdx::" + myroutes[theIdx] + "myroutes[theIdx].date_out.d" + "i" + i);
 									{
 										local_idx++;
 //										thtml+='<div style="position:relative;margin-left:50%;font-size:9pt;color:#c0c0c0;height:15px;"> </div>';
 										theIdx++;	
-										
 			
 									}
 									if(local_idx>1)
@@ -1019,7 +1035,7 @@ function drawMonth(y,m,d)
 								thtml=thtml+'<div style="width:14%;float:left"><div class="calendar_day" id="cd_'+i+'" onclick="selDate(\''+thedate+'\',\''+i+'\')"><div class="tday">'+i+'</div>';
 								thtml+='</div></div>';
 							}
-						}
+							}
 						else
 						{
 							thtml=thtml+'<div style="width:14%;float:left"><div class="calendar_day" id="cd_'+i+'" onclick="selDate(\''+thedate+'\',\''+i+'\')"><div class="tday">'+i+'</div>';
@@ -1080,22 +1096,22 @@ function showSchdDetail(id,t)
 			 dataType: 'json',
 			 data: {
 				schd_id:id,
-				trip_id:10276248
+				trip_id:<%=trip_id%>
 			  },
 			success: function( data ) {
 
 				thtml="";
-				thtml+="<p>"+data.data.schd_desc+"</p>"; 
+				thtml+="<p>"+data.schd_desc+"</p>"; 
 
-				if(data.data.location)
+				if(data.location)
 				{
-					thtml+='<div><a href="https://www.google.com/maps/@'+data.data.location.lat+','+data.data.location.lng+',18z" target="_blank"><img width="100%" src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x250&mobile=true&markers=color:red|'+data.data.location.lat+','+data.data.location.lng+'&key=AIzaSyCKLReQhuQjYV2EwJb8cwElimBV9wcl8NY&scale=2"></a></div>';
+					thtml+='<div><a href="https://www.google.com/maps/@'+data.location.lat+','+data.location.lng+',18z" target="_blank"><img width="100%" src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=640x250&mobile=true&markers=color:red|'+data.data.location.lat+','+data.data.location.lng+'&key=AIzaSyCKLReQhuQjYV2EwJb8cwElimBV9wcl8NY&scale=2"></a></div>';
 				}		
 		
 
 				xtitle="";
-				if(data.data.schd_stime)
-					xtitle+="["+data.data.schd_stime+"]"; 
+				if(data.schd_stime)
+					xtitle+="["+data.schd_stime+"]"; 
 				xtitle+=data.data.schd_title;
 
 				$("#title-Guide2").html(xtitle);
@@ -1158,15 +1174,16 @@ function closeMap()
 
 	$("#map_canvas").hide();
 }
-
-function opencitymap(cityname,cityid,rid,lat,lng)
+// cur_cityBlockArr[cb_i].city_name,cur_cityBlockArr[cb_i].city_id,cur_cityBlockArr[cb_i].r_id
+// ,cur_cityBlockArr[cb_i].city_lat,cur_cityBlockArr[cb_i].city_lng
+function opencitymap(city_name,city_id,rid,city_lat,city_lng)
 {
 	clearMyMarkers();
-	Xcur_cityname=cityname;
-	Xcur_cityid=cityid;
+	Xcur_cityname=city_name;
+	Xcur_cityid=city_id;
 	Xcur_rid=rid;
-	Xcur_lat=lat;
-	Xcur_lng=lng;
+	Xcur_lat=city_lat;
+	Xcur_lng=city_lng;
 
 	
 	if($("#icon_btn_container_"+prv_rid))
@@ -1188,6 +1205,7 @@ function opencitymap(cityname,cityid,rid,lat,lng)
 
 	markerBounds.extend(myLatlng);
 	spotcnt=0;
+// 	console.log("cur_cityBlockArr :: " + cur_cityBlockArr);
 	if(cur_cityBlockArr)
 	{
 
@@ -1260,7 +1278,8 @@ function opencitymap(cityname,cityid,rid,lat,lng)
 	
 }
 function selDate(thedate,idx)
-{
+{	
+	console.log("idx::" + idx);
 	if(selected_date)
 	{
 		$("#cd_"+selected_date_idx).removeClass('calendar_day_selected');
@@ -1268,6 +1287,8 @@ function selDate(thedate,idx)
 	}
 	selected_date=thedate;
 	selected_date_idx=idx;
+	console.log("selected_date::" + selected_date);
+	console.log("selected_date_idx::" + selected_date_idx);
 	if($("#cd_"+idx).hasClass('calendar_day_selected'))
 	{
 		$("#cd_"+idx).removeClass('calendar_day_selected');
@@ -1281,25 +1302,28 @@ function selDate(thedate,idx)
 	}
 
 
-
+	
 	var xx = new Date(thedate);
+// 	console.log("thedate :: " + thedate);
+// 	console.log("idx::" + idx);
 	y=xx.getFullYear();
 	m=xx.getMonth()+1;
 	d=xx.getDate();
 	$("#header_title").html(m+'월 '+d+'일 <font style="font-size:9pt;">'+weekday[xx.getDay()]+'');
 		
 	$.ajax({
-		  url: "/api/v5/planner/cal_day_schd.asp",
+		  url: "/stubbyPlanner/model1/cal_day_schd.jsp",
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
 			y:y,
 			m:m,
 			d:d,
-			trip_id:10276248
+			trip_id:<%=trip_id%>
 		  },
 		  success: function( data ) {
-			cityBlockArr=data.data.items;
+			cityBlockArr=data.items;
+// 			console.log(cityBlockArr[2].item_type)
 			if(cityBlockArr)
 			{
 
@@ -1309,7 +1333,7 @@ function selDate(thedate,idx)
 				thtml='<div  style="border-top:0.5px solid #c8c8c8;border-bottom:0.5px solid #c8c8c8;padding-top:30px;padding-bottom:30px;font-size:8pt;color:#c0c0c0;text-align:center">여행기간에 포함되지 않는 날짜입니다. </div>';
 
 
-			for(i=0;i<cityBlockArr.length;i++)
+			for(i=cityBlockArr.length-1;i >= 0;i--)
 			{
 
 if(cityBlockArr[i].item_type=="city_schd")
@@ -1336,7 +1360,7 @@ if(cityBlockArr[i].item_type=="city_schd")
 	else
 		thtml+='<div class="icon_btn" onclick="openBucketDetail(\''+cityBlockArr[i].city_bucket_id+'\',\''+cityBlockArr[i].city_name+'\');" style="background:#c0c0c0;display:inline-block;"><font style="font-size:19pt;"><a  title="'+cityBlockArr[i].city_name+' 도시정보" href="javascript:openBucketDetail(\''+cityBlockArr[i].city_bucket_id+'\',\''+cityBlockArr[i].city_name+'\');"><i class="fa fa-info" aria-hidden="true"></i></a></font></div>&nbsp;&nbsp;';
 
-	thtml+='<div class="icon_btn" onclick="writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\'\',\''+i+'\');" style="background:#c0c0c0;display:inline-block;"><font style="font-size:19pt;"><a href="javascript:writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\'\',\''+i+'\');"><i class="fa fa-pencil" aria-hidden="true"></i></a></font></div>';
+	thtml+='<div class="icon_btn" onclick="writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\'\',\''+i+'\',\''+cityBlockArr[i].city_day+'\');" style="background:#c0c0c0;display:inline-block;"><font style="font-size:19pt;"><a href="javascript:writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\'\',\''+i+'\',\''+cityBlockArr[i].city_day+'\');"><i class="fa fa-pencil" aria-hidden="true"></i></a></font></div>';
 
 
 	thtml+='</div>';
@@ -1353,7 +1377,7 @@ if(cityBlockArr[i].item_type=="city_schd")
 			else
 				thtml+='<div style="border-bottom:0.5px solid #c8c8c8;padding-left:20px;padding-right:20px;"><div ';
 			thtml+='style="padding-top:15px;padding-bottom:15px;">';
-			for(j=0;j<cityBlockArr[i].buckets.length;j++)
+			for(j=cityBlockArr[i].buckets.length-1; j>=0; j++)
 			{
 				if(cityBlockArr[i].buckets.length>6)
 					thtml+='<div class="carousel-cell" ';
@@ -1377,9 +1401,10 @@ if(cityBlockArr[i].item_type=="city_schd")
 		{
 			thtml+='<div style="overflow-x:hidden" id="schd_container_'+cityBlockArr[i].r_id+'">';
 
-			for(j=0;j<cityBlockArr[i].schedule.length;j++)
+			for(j=cityBlockArr[i].schedule.length -1;j>= 0;j--)
 			{
-				schd_stime=cityBlockArr[i].schedule[j].stime;
+				schd_stime=cityBlockArr[i].schedule[j].s_time;
+				console.log(schd_stime);
 				if(!schd_stime)	
 					schd_stime="";
 				//if(schd_stime!="")
@@ -1414,7 +1439,7 @@ if(cityBlockArr[i].item_type=="city_schd")
 						thtml+='<div><a href="javascript:showSchdDetail(\'B'+bucket_id+'\',\''+cityBlockArr[i].schedule[j].title+'\')"><font style="font-size:13pt;color:#464646">'+stitle+'</font></a> <a href="javascript:del_schd(\''+thedate+'\',\''+cityBlockArr[i].schedule[j].schd_id+'\','+y+','+m+','+d+','+cityBlockArr[i].r_id+','+idx+')" style="color:#c0c0c0" alt="일정삭제"><i class="fa fa-trash"></i></a>';
 
 					if(bucket_id=="")
-						thtml+=' <a href="javascript:writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\''+cityBlockArr[i].schedule[j].schd_id+'\',\''+i+'\')" style="color:#c0c0c0"  alt="일정수정"><i class="fa fa-pencil-square"></i></a>';
+						thtml+=' <a href="javascript:writeCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+cityBlockArr[i].r_id+',\''+thedate+'\',\''+idx+'\',\''+cityBlockArr[i].city_lat+'\',\''+cityBlockArr[i].city_lng+'\',\''+cityBlockArr[i].schedule[j].schd_id+'\',\''+i+'\',\''+cityBlockArr[i].city_day+'\')" style="color:#c0c0c0"  alt="일정수정"><i class="fa fa-pencil-square"></i></a>';
 					thtml+='</div>';
 					thtml+='</div>';
 					thtml+='<div style="float:left;width:25%;padding-top:5px;text-align:center">';
@@ -1465,10 +1490,11 @@ else if(cityBlockArr[i].item_type=="city_move")
 
 			resized();
 			updateMap();
-			for(i=0;i<cityBlockArr.length;i++)
+			for(i=cityBlockArr.length-1 ;i>=0;i--)
 			{
 				if(cityBlockArr[i].item_type=="city_schd")
 					dragdropactivate(cityBlockArr[i].r_id,cityBlockArr[i].city_day);
+					console.log(cityBlockArr[i].r_id + "//" + cityBlockArr[i].city_day);
 			}
 				
 
@@ -1500,7 +1526,7 @@ function moveSchd(r_id,dayofcity,sidx,eidx)
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
-			trip_id:'10276248',
+			trip_id:'<%=trip_id%>',
 			r_id:r_id,
 			dayofcity:dayofcity,
 			sidx:sidx,
@@ -1520,11 +1546,10 @@ function moveSchd(r_id,dayofcity,sidx,eidx)
 function dragdropactivate(r_id,dayofcity)
 {
 
-
+	
     $( "#schd_container_"+r_id ).sortable({
       items: ".schd_block",
        start: function(event, ui) {
-
 
                 var start_pos = ui.item.index();
                 ui.item.data('start_pos', start_pos);
@@ -1544,8 +1569,6 @@ function dragdropactivate(r_id,dayofcity)
 		}
 			
 		moveSchd(r_id,dayofcity,sidx,eidx);
-
-		
 
 	}
 	else
@@ -1573,8 +1596,9 @@ function backTwistSchd(id)
 }
 
 
-function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i)
+function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i,city_day)
 {
+// 	console.log("cb_i::"  + cb_i);
 	var schd_id=$("#schd_id").val();
 	var schd_title=$("#schd_title").val();
 	var schd_desc=$("#schd_desc").val();
@@ -1594,10 +1618,10 @@ function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i)
 	var schd_lat=$("#schd_lat").val();
 	var schd_lng=$("#schd_lng").val();
 
-
+// 	console.log("schd_id:: " + "schd_lat:: " + schd_lat + "schd_lng:: " + schd_lng + "schd_time:: " +schd_time + "idx::" + idx + "r_id::" + r_id);
 	
 	$.ajax({
-		  url: "/api/v5/planner/mng_schd.asp",
+		  url: "/stubbyPlanner/model1/mng_schd.jsp",
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
@@ -1605,7 +1629,7 @@ function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i)
 			y:y,
 			m:m,
 			d:d,
-			trip_id:'10276248',
+			trip_id:'<%=trip_id%>',
 			r_id:r_id,
 			schd_title:schd_title,
 			schd_desc:schd_desc,
@@ -1614,7 +1638,8 @@ function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i)
 			schd_lat:schd_lat,
 			schd_lng:schd_lng,
 			schd_img:schd_img,
-			bucket_id:bucket_id
+			bucket_id:bucket_id,
+			city_day:city_day
 		},
 
 		  success: function( data ) {
@@ -1623,17 +1648,13 @@ function saveCustomSchd(y,m,d,r_id,thedate,idx,cb_i)
 			
 			selDate(thedate,idx);
 			if(schd_lat!="")
-				opencitymap(cur_cityBlockArr[cb_i].city_name,cur_cityBlockArr[cb_i].city_id,cur_cityBlockArr[cb_i].r_id,cur_cityBlockArr[cb_i].city_lat,cur_cityBlockArr[cb_i].city_lng);
+				opencitymap(cur_cityBlockArr[cb_i].city_name,cur_cityBlockArr[cb_i].city_id,cur_cityBlockArr[cb_i].r_id,cur_cityBlockArr[cb_i].city_lat,cur_cityBlockArr[0].city_lng);
 
 		}
 	});
 }
 function showMap(plat,plng)
 {
-
-
-	
-
 
 	var use_map=$("#use_map").is(":checked");
 	if(use_map)
@@ -1651,8 +1672,8 @@ function showMap(plat,plng)
 	}
 
 }
-
-function mngSTime(y,m,d,r_id,thedate,idx,schd_id,cb_i)
+// 왼쪽 시간 수정
+function mngSTime(y,m,d,r_id,thedate,idx,schd_id,cb_i,city_day)
 {
 		schd_title="";
 		schd_desc="";
@@ -1668,7 +1689,7 @@ function mngSTime(y,m,d,r_id,thedate,idx,schd_id,cb_i)
 		//수정일 경우 ajax를 동기화해서 가져온 뒤에 기본값 추가 처리
 
 		$.ajax({
-			url: "/api/v5/planner/schd_modify.asp",
+			url: "/stubbyPlanner/model1/schd_modify.jsp",
 			type: "GET",
 			async: false,
 			dataType: "json",
@@ -1749,7 +1770,7 @@ function mngSTime(y,m,d,r_id,thedate,idx,schd_id,cb_i)
 	thtml+='<div style="clear:both"></div></div>';
 
 
-	thtml+='<div class="div_row"><a class="btn-u btn-u-lg btn-block" style="background:#3ad195" href="javascript:saveCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+r_id+',\''+thedate+'\','+idx+','+cb_i+')">저장하기</div>';
+	thtml+='<div class="div_row"><a class="btn-u btn-u-lg btn-block" style="background:#3ad195" href="javascript:saveCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+r_id+',\''+thedate+'\','+idx+','+cb_i+','+city_day+')">저장하기</div>';
 
 	$("#mymodal_content").html(thtml);
 	$("#mymodal_title").html(schd_title+" 시간설정");
@@ -1763,32 +1784,34 @@ function useSTime()
 	$("#use_stime").attr("checked", true);
 }
 
-function writeCustomSchd(y,m,d,r_id,thedate,idx,clat,clng,schd_id,cb_i)
+function writeCustomSchd(y,m,d,r_id,thedate,idx,clat,clng,schd_id,cb_i,city_day)
 {
 		
-		schd_title="";
-		schd_desc="";
-		schd_adrs="";
-		schd_time="";
-		schd_img="";
-		bucket_id="";
-		schd_lat="";
-		schd_lng="";
+		schd_title=""; //일정명
+		schd_desc=""; // 메모
+		schd_adrs=""; // 주소
+		schd_time=""; // 시간
+		schd_img=""; // 버킷이미지
+		bucket_id=""; // 버킷id
+		schd_lat=""; // x
+		schd_lng=""; // y
 
 	if(schd_id!="")
 	{
 		//수정일 경우 ajax를 동기화해서 가져온 뒤에 기본값 추가 처리
 
 		$.ajax({
-			url: "/api/v5/planner/schd_modify.asp",
+			url: "/stubbyPlanner/model1/schd_modify.jsp",
 			type: "GET",
 			async: false,
 			dataType: "json",
 			data: {
-			    schd_id:schd_id
+			    schd_id:schd_id,
+			    city_day:city_day
 			},
 			success: function( xdata ) {
 				data=xdata.data;
+				console.log(data.schd_title +"//" + data.schd_desc +"//" + data.schd_adrs +"//" + data.schd_time +"//" + data.schd_time +"//");
 				if(data.schd_title)
 					schd_title=data.schd_title;
 
@@ -1874,7 +1897,7 @@ function writeCustomSchd(y,m,d,r_id,thedate,idx,clat,clng,schd_id,cb_i)
 		thtml+='<div id="div_map" style="height:200px;background:#efefef"></div><input type="hidden" id="schd_lat" value="'+schd_lat+'"><input type="hidden" id="schd_lng" value="'+schd_lng+'">';
 		thtml+='<div class="div_row"><div style="float:left;width:80%;"><input id="schd_adrs" name="schd_adrs" type="text" class="form-control" value="'+schd_adrs+'"></div><div style="float:left;width:20%;"><a href="javascript:moveMapwithAdrs()" class="btn-block btn-u btn-u-dark">주소로 이동</a></div><div style="clear:both"></div></div>';
 	thtml+='</div>';
-	thtml+='<div class="div_row"><a class="btn-u btn-u-lg btn-block" style="background:#3ad195" href="javascript:saveCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+r_id+',\''+thedate+'\','+idx+','+cb_i+')">저장하기</div>';
+	thtml+='<div class="div_row"><a class="btn-u btn-u-lg btn-block" style="background:#3ad195" href="javascript:saveCustomSchd(\''+y+'\',\''+m+'\',\''+d+'\','+r_id+',\''+thedate+'\','+idx+','+cb_i+','+city_day+')">저장하기</div>';
 
 	$("#mymodal_content").html(thtml);
 
@@ -1889,14 +1912,14 @@ function writeCustomSchd(y,m,d,r_id,thedate,idx,clat,clng,schd_id,cb_i)
 function del_schd(thedate,schd_id,y,m,d,r_id,idx)
 {
 	$.ajax({
-		  url: "/api/v5/planner/del_schd.asp",
+		  url: "/stubbyPlanner/model1/del_schd.jsp",
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
 			y:y,
 			m:m,
 			d:d,
-			trip_id:10276248,
+			trip_id:<%=trip_id%>,
 			schd_id:schd_id,
 			r_id:r_id
 		},
@@ -1918,7 +1941,7 @@ function add_schd_bucket(thedate,y,m,d,bucket_id,r_id,idx,cb_i)
 			y:y,
 			m:m,
 			d:d,
-			trip_id:10276248,
+			trip_id:<%=trip_id%>,
 			bucket_id:bucket_id,
 			r_id:r_id
 		},
@@ -1980,7 +2003,7 @@ else
 		$("#div_bucketlist").show();
 
 	             $.ajax({
-	             	url: '/api/planning/bucket_list.asp?trip_id=10276248&region_id='+city_id,
+	             	url: '/api/planning/bucket_list.asp?trip_id=<%=trip_id%>&region_id='+city_id,
 	               	dataType: 'json',
 	               	success: function(data){
 					if(data!="")
@@ -2057,7 +2080,7 @@ var cur_region_id="";
 function toggleSchd(bucket_id,region_id)
 {
              $.ajax({
-             	url: 'https://www.stubbyplanner.com/api/v5/planner/toggle_bucket.asp?trip_id=10276248&region_id='+region_id+'&bucket_id='+bucket_id,
+             	url: 'https://www.stubbyplanner.com/api/v5/planner/toggle_bucket.asp?trip_id=<%=trip_id%>&region_id='+region_id+'&bucket_id='+bucket_id,
                	dataType: 'json',
                	success: function(data){
 			if(data!="")
@@ -2145,14 +2168,9 @@ function closeBucketlist()
 }
 
 
-
-
-
-
-
 var cur_year=2019;
-var cur_month=6;
-var cur_day=27;
+var cur_month=7;
+var cur_day=8;
 
 $(function() {
 
@@ -2576,7 +2594,6 @@ function addMarker(lat,lng,title,is_recomm,is_mine,optimg)
 					  };
 //					icoimg="https://www.stubbyplanner.com/img_v8/marker_willgo.png";
 
-
 					var marker = new google.maps.Marker({
 					      icon:icoimg,
 			  		      shape:{coords:[16,16,16],type:'circle'},
@@ -2597,7 +2614,6 @@ function addMarker(lat,lng,title,is_recomm,is_mine,optimg)
 				zidx=10;
 				icoimg="https://www.stubbyplanner.com/img_v8/marker.png";
 
-
 			}
 			else
 			{
@@ -2615,9 +2631,7 @@ function addMarker(lat,lng,title,is_recomm,is_mine,optimg)
 
 		}
 
-
 		myMarkers.push(marker);
-
 	
 		google.maps.event.addListener(marker, 'click', function() {
 			if(prv_infowindow)
@@ -2631,7 +2645,6 @@ function addMarker(lat,lng,title,is_recomm,is_mine,optimg)
 			infowindow.open(map,marker);
 			prv_infowindow=infowindow;
 		});
-
 		
 	}
 }

@@ -10,7 +10,7 @@
  String trstype = request.getParameter("trstype");	// 교통편
  int depCityId = Integer.parseInt(request.getParameter("depCityId"));	// 출발도시
  int desCityId = Integer.parseInt(request.getParameter("desCityId"));	// 도착도시
- // String thedate = request.getParameter("thedate");	// 일수
+ String thedate = request.getParameter("thedate");	// 일수
 %>
 
 <%

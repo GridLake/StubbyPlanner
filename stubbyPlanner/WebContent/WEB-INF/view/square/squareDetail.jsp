@@ -76,6 +76,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="/stubbyPlanner/externalData/mypage/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/header_footer11.css">
+
 <script src="/stubbyPlanner/externalData/mypage/js/bootstrap.min.js"></script>
 
    <!-- CSS/JavaScript -->
@@ -84,6 +87,33 @@
 <%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/header_footer11.css"> --%>
 <%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/md_select_group.css"> --%>
 <%--     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/tourHome11.css"> --%>
+
+
+<style>
+  *{margin:0;padding:0;} 
+  ul,li{list-style:none;}
+  #slide{height:300px;position:relative;overflow:hidden;}
+  #slide ul{width:400%;height:100%;transition:1s;}
+  #slide ul:after{content:"";display:block;clear:both;}
+  #slide li{float:left;width:25%;height:100%;}
+  #slide li:nth-child(1){background-image:url(/stubbyPlanner/square/gallery/다른사람프로필2.jpg);
+ 						 background-size: auto;}
+ 						 
+  #slide li:nth-child(2){background-image:url(/stubbyPlanner/square/gallery/다른사람프로필2.jpg);}
+  #slide li:nth-child(3){background:#faF;}
+  #slide li:nth-child(4){background:#aaf;}
+  #slide input{display:none;}
+  #slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
+  #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
+  #pos1:checked~ul{margin-left:0%;}
+  #pos2:checked~ul{margin-left:-100%;}
+  #pos3:checked~ul{margin-left:-200%;}
+  #pos4:checked~ul{margin-left:-300%;}
+/*   #pos1:checked~.pos>label:nth-child(1){background-image:url(/stubbyPlanner/square/gallery/다른사람프로필2.jpg);} */
+/*   #pos2:checked~.pos>label:nth-child(2){background:#666;} */
+/*   #pos3:checked~.pos>label:nth-child(3){background:#666;} */
+/*   #pos4:checked~.pos>label:nth-child(4){background:#666;} */
+</style>
 
 
 
@@ -295,7 +325,112 @@ header .stu_gnb_container button.ico_planner {
 <%@include file="/WEB-INF/layout/css/header_large.css" %>
 
 </style>
+<!-- 갤러리 -->
+<style type="text/css">
 
+.snip1384:hover {
+  color: #ffffff; 
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000; 
+}
+.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+.snip1384:after,
+.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+.snip1384 figcaption {
+  z-index: 1;
+  padding: 20px;
+}
+.snip1384 h2,
+.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+.snip1384 h2 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: x-large;
+  text-transform: uppercase;
+  opacity: 0;
+}
+.snip1384 p {
+  font-size: large;
+  font-weight: 300;
+/*   letter-spacing: 1px; */
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+.snip1384 i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px 25px;
+  font-size: 34px;
+  opacity: 0;
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.snip1384:hover img,
+.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+.snip1384:hover:after,
+.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.snip1384:hover h2,
+.snip1384.hover h2,
+.snip1384:hover p,
+.snip1384.hover p,
+.snip1384:hover i,
+.snip1384.hover i {
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+</style>
 
 <style type="text/css">
 
@@ -309,7 +444,9 @@ header .stu_gnb_container button.ico_planner {
 
 
 <style>
-
+.profile:hover{
+	text-decoration:underline; color:#66aaff;
+}
 table.type09 {
     border-collapse: collapse;
     text-align: left;
@@ -382,13 +519,48 @@ table.type09 tbody td.comment{
 .stu_recent-offer .score span.buy { margin:0 0 0 8px; font-weight:normal; color:#8f8f8f; }
 .stu_recent-offer .score { display:inline-block; position:absolute; left:12px; bottom:8px; font-size:13px; font-weight:bold; color:#222; }
 
-
-
-
 </style>
 
+<style type="text/css">
+button#good{
+  background:black;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button#good:hover{
+  background:#fff;
+  color:gray;
+}
+button#good:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: gray;
+  transition:400ms ease all;
+}
+button#good:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button#good:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
 
-
+</style>
+<a href="#" class="stu_top_wrap"><span>맨 위로 가기</span><i></i></a>
 </head>
 
 <body>
@@ -425,7 +597,7 @@ table.type09 tbody td.comment{
 
 				<div class="stu_trip-type">
 					<div class="selectBtn">
-						<spans class="write" style="float:left;"><p style="height: 30px; margin-top: 7px;">게시글 작성</p></spans>
+						<spans class="write" style="float:left;"><p style="height: 30px; margin-top: 9px;cursor:pointer">게시글 작성</p></spans>
 					  <select  id ="write" style="width: 15px; border: none; float: rigth">
 						<option value="none"></option>
 						<option value="board">게시판</option>
@@ -469,13 +641,13 @@ table.type09 tbody td.comment{
 						<li class="swiper-slide all on"><a
 							href="javascript:getTotal();"><span>전체</span></a></li>
 						<li class="swiper-slide board"><a
-							href="javascript:getBoard();"><span>게시판</span></a></li>
+							href="javascript:getBoard(1);"><span>게시판</span></a></li>
 						<li class="swiper-slide planner"><a
-							href="javascript:getBoard();"><span>플래너공유</span></a></li>
+							href="javascript:getBoard(1);"><span>플래너공유</span></a></li>
 						<li class="swiper-slide party"><a
-							href="javascript:getParty();"><span>동행찾기</span></a></li>
+							href="javascript:getParty(1);"><span>동행찾기</span></a></li>
 						<li class="swiper-slide gallery"><a
-							href="javascript:getBoard();"><span>갤러리</span></a></li>
+							href="javascript:getGallery(1);"><span>갤러리</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -516,27 +688,27 @@ table.type09 tbody td.comment{
 		          	 <div class="stu_square_search" style=" bottom:0; height: 40px; width: 200px;">   
 		         	 <input class="search_input" id="search_input" placeholder="제목, 내용, 작성자로 검색" style="border: solid 1px gray; width: 68%;">
 
-		          	  <select  id ="a_such" style="width: 10%;" onchange="document.getElementById('search_input').placeholder =this.options[this.selectedIndex].value">
+		          	  <select  id ="a_such" style="width: 10%;cursor:pointer;" onchange="document.getElementById('search_input').placeholder =this.options[this.selectedIndex].value">
 						<option id="subject" value="제목">제목</option>
 						<option id="content" value="내용">내용</option>
 						<option id="member_id" value="작성자">작성자</option>
 					  </select>
 									  
-		         	 <input type="button" value="검색" id="search" onclick="" style="width: 18%;"/>
+		         	 <input type="button" value="검색" id="search" onclick="" style="width: 18%;cursor:pointer;"/>
             	 	 </div>
             	 	</li>
 						<li class="filter-section stu_clearfix">
-							<h4 class="stu_title">상품 정렬</h4>
+							<h4 class="stu_title">게시글 정렬</h4>
 							<ul class="filter-wrap sorting">
 
 								<li class="filter-list table  default on ">
-									<div class="filter-item" onclick="update_orderby('recom')">최신순</div>
+									<div class="filter-item" onclick="sortNew()">최신순</div>
 								</li>
 								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('hot')">추천순</div>
+									<div class="filter-item" onclick="sortLike()">추천순</div>
 								</li>
 								<li class="filter-list table">
-									<div class="filter-item" onclick="update_orderby('review')">댓글순</div>
+									<div class="filter-item" onclick="sortClick()">조회순</div>
 								</li>
 
 							</ul>
@@ -618,7 +790,7 @@ table.type09 tbody td.comment{
 
                 
 
-                        <div class="swiper-container swiper3">
+                        <div class="swiper-container swiper4">
                             <ul class="swiper-wrapper" style="padding: 5px;">
 
 
@@ -727,7 +899,7 @@ table.type09 tbody td.comment{
         
 
 
- <section class="stu_swiper-section stu_recent-offer"">
+ 		<section class="stu_swiper-section stu_recent-offer">
             <div class="stu_inner_wrap">
                 <div class="titArea" style="display: inline-block;  padding-top: 20px; ">
                <h2 style="font-size:18pt;font-weight:700;">
@@ -739,228 +911,79 @@ table.type09 tbody td.comment{
                     <ul class="swiper-wrapper">
 
 
+				 <c:set var="partyEmpty" value="false"/>
+       			 <c:forEach var="partyList" items="${partyList}" varStatus="status">
+        		 <c:if test="${not partyEmpty}">
+        		 <c:if test="${status.last}">
+        				<c:set var="partyEmpty" value="true"/>
+        		 </c:if>      		
+        		 <c:if test="${status.count==5}">
+        				<c:set var="partyEmpty" value="true"/>
+        		 </c:if>  
                         <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">
                             <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
                                 <figure class="thumb">
-                                        <c:if test="${!empty partyList[0].profile_pic }">
-                                            <img class="fh" src="${partyList[0].profile_pic}" alt="프로필 사진"/>
+                                        <c:if test="${!empty partyList.profile_pic }">
+                                            <img class="fh" src="${partyList.profile_pic}" alt="프로필 사진"/>
                                         </c:if>
-                                        <c:if test="${empty partyList[0].profile_pic }">
+                                        <c:if test="${empty partyList.profile_pic }">
                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                                         </c:if>
                                 </figure>
-                                
                                 <figcaption class="prd_info">
                                     <div class="cpn">
                                     </div>
                                     <div class="name">
-                                        <span>${partyList[0].party_content}</span>
+                                        <span>${partyList.party_content}</span>
                                     </div>
 
                              		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[0].member_id}
+                                        ${partyList.member_id}
                                     </div>
                                     
                                     <div class="score" style="display:inline-block">
-                                        <span>${partyList[0].party_like}</span>
+                                        <span>${partyList.party_like}</span>
                                     </div>
                    			   </figcaption>
                             </a>
                         </li>
-
-        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
-                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[1].profile_pic }">
-                                            <img class="fh" src="${partyList[1].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[1].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[1].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[1].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span>${partyList[1].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
-                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[2].profile_pic }">
-                                            <img class="fh" src="${partyList[2].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[2].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[2].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[2].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span>${partyList[2].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
-                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[3].profile_pic }">
-                                            <img class="fh" src="${partyList[3].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[3].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[3].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[3].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span>${partyList[3].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 17%; margin-bottom: 0px;">
-                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[4].profile_pic }">
-                                            <img class="fh" src="${partyList[4].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[4].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[4].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[4].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span>${partyList[4].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
+				 </c:if>
+       			 </c:forEach>
                 </div>
             </div>
         </section>
 
 
-
-    <section class="stu_regions";">
-                <div class="stu_inner_wrap" style="padding-top: 20px;">
-
-<!--        <li class="swiper-slide"> -->
-               <h2 style="font-size:18pt;font-weight:700;">
-                  	  최근 갤러리
-               </h2>
-<!--        </li> -->
-
-                
-
-                        <div class="swiper-container swiper3">
-                            <ul class="swiper-wrapper" style="padding: 5px;">
-
-
-                                <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">
-                                	<!-- 경로 & 파라미터 변경 필요 -->
-                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
-                                        <div class="tone-down"></div>
-                                    </a>
-                                </li>
-
-
-                                <li class="swiper-slide" style="width: 150px; height: 150px; padding:5px;">
-                                  <!-- 경로 & 파라미터 변경 필요 -->
-                                  <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
-                                        <div class="tone-down"></div>
-                                    </a>
-                                </li>
-
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
-                                 <!-- 경로 & 파라미터 변경 필요 -->
-								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
-                                        <div class="tone-down"></div>
-                                    </a>
-                                </li>
-
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
-                                 <!-- 경로 & 파라미터 변경 필요 -->
-								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
-                                        <div class="tone-down"></div>
-                                    </a>
-                                </li>
-
-
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
-                                	<!-- 경로 & 파라미터 변경 필요 -->
-                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
-                                        <div class="tone-down"></div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-					</div>
-            </section>
-
-
+		<section class="stu_regions">
+		<div class="stu_inner_wrap" style="padding-top: 20px;">
+			<h2 style="font-size:18pt;font-weight:700;">최근 갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">
+				
+				
+				 <c:set var="galleryEmpty" value="false"/>
+       			 <c:forEach var="galleryList" items="${galleryList}" varStatus="status">
+        		 <c:if test="${not galleryEmpty}">
+        		 <c:if test="${status.last}">
+        				<c:set var="galleryEmpty" value="true"/>
+        		 </c:if>      		
+        		 <c:if test="${status.count==4}">
+        				<c:set var="galleryEmpty" value="true"/>
+        		 </c:if>    	
+				
+				 	<li class="swiper-slide snip1384" style="width: 200px; height: 200px; margin: 5px;">
+					<a href="http://www.stubbyplanner.com" style="width:100%; height:100%;">                                                  
+					<img src="/stubbyPlanner/square/gallery/${galleryList.gal_pic_path}" style="width:100%; height:100%;">
+					<figcaption><h2 style="color:white;">${galleryList.member_id}.</h2><p style="color:white; text-align:left;">${ galleryList.gal_subject}</p><i class="ion-ios-arrow-right"><div class="score" style="display:inline-block; color:white;"><span>♥ ${galleryList.post_like}</span></div></i></figcaption>
+					</a></li>
+				
+				 </c:if>
+       			 </c:forEach>
+					
+				</ul></div>
+			</div></section>
 
 				</ul>
 			</div>
-
-
 		</section>
-
 
 
 		<div style="clear: both"></div>
@@ -976,21 +999,14 @@ table.type09 tbody td.comment{
 
 
 	$(document).ready(function() {
-
 		
-		//댓글 작성
-		$('#comment').on("click",function(event){
-			alert("댓글");
-			var post_seq = $(this).next().next().attr('id');
-			var cmt_detail = $('#commentInput').val();
-			if(cmt_detail==''){
-				alert("댓글을 입력해주세요.");
-			}
-			writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
+		
+		var i =2;
+		$('#galleryPlus').click(function(){
+			$('#writeGallery').after('<input type="file" class="writeGallery" name="writeGallery'+i+'" style="border: none;"/><br />');
+			i++;
 		});
-		
-		
-		
+			
 		//게시물 내용 출력
 		$('tr').click(function(){
 			if($(this).attr('name')=='noshow'){
@@ -1008,14 +1024,16 @@ table.type09 tbody td.comment{
 		
 		//게시물 작성
 		$('.write').click(function(){
-			
 		if($('#write option:selected').val()=='board'){
 			$('#write_board_Modal').modal();
 			}else if($('#write option:selected').val()=='party'){
 			$('#write_party_Modal').modal();	
+			}else if($('#write option:selected').val()=='gallery'){
+			$('#write_gallery_Modal').modal();
 			}
 		});
 		
+		//게시판
 		   $('#insert_form_board').on('submit',function(event){
 				  var board_code = $('#write_category option:selected').attr('id');
 				  if($('#writeSubject').val()=='')
@@ -1034,6 +1052,7 @@ table.type09 tbody td.comment{
 				  }
 		   })
 		   
+		   //동행 찾기
 		   $('#insert_form_party').on('submit',function(event){
 				  if($('#writeParty').val()=='')
 					 {
@@ -1045,7 +1064,56 @@ table.type09 tbody td.comment{
 						  }
 		   })	
 		
-		
+		   //갤러리
+		   $('#insert_form_gallery').on('submit',function(event){
+					   event.preventDefault();
+					   
+				 if($('#gallerySubject').val()=='')
+				 {
+				 $('#gallerySubject').focus();
+				 alert("제목을 입력해주세요");
+				 }else if($('#writeGallery').val()==''){
+				 alert("사진을 선택해주세요");
+				 }else{					 
+// 					   var form = $('#writeGallery')[0];
+// 					   for (var i = 0; i < 2 ; i++) {
+// 					   }
+					   var formData = new FormData();
+					   formData.append("subject",$('#gallerySubject').val());
+					   for (var i = 1; i <= $('input[class=writeGallery]').length ; i++) {
+					   formData.append("picture"+i+"",$('input[name=writeGallery'+i+']')[0].files[0]);
+					   }
+// 					   var subject =$('input#gallerySubject').val();
+                     
+// 						 var formData = new FormData();
+			         
+// 					    for(var i=0; i<$('#writeGallery')[0].files.length; i++){
+// 					        formData.append('writeGallery', $('#writeGallery')[0].files[i]);
+// 					    }
+
+					   var member_id = '${authUser.member_id}';
+					   $.ajax({
+ 				            url: '/stubbyPlanner/api/square/set_writeGallery.jsp?member_id='+member_id,
+				            type: "POST",
+				            enctype: 'multipart/form-data',
+				            data:formData,
+				            processData: false,
+				            contentType: false,
+				            cache: false,
+//		 		            timeout: 600000,
+				            success: function (data) {
+				                alert("갤러리 작성이 완료되었습니다.");
+				                $('#gallerySubject').val(null);
+				                $('#writeGallery').val(null);
+				                $('#write_gallery_Modal').modal("hide");
+				            },
+				            error: function (e) {
+				                alert("갤러리 작성이 실패하였습니다.");
+				            }
+				        });
+					 }
+				  });	   		   
+		   
 
 		//검색
 		$('#search').click(function(event){
@@ -1059,6 +1127,7 @@ table.type09 tbody td.comment{
 			else if($('.swiper-slide.planner').hasClass('on')) getSearchPlanner(option,search);
 			else if($('.swiper-slide.party').hasClass('on')) getSearchParty(option,search);
 			else if($('.swiper-slide.gallery').hasClass('on')) getSearchGallery(option,search);
+			$('#search_input').val(null);
 		});
 		
 		   
@@ -1098,8 +1167,11 @@ table.type09 tbody td.comment{
 	        $('body').toggleClass('modal-opened');
 	        $('.prd_filter').toggleClass('action');
 	    });
+	
 		
-	 // 상품(필터) 선택 - 카테고리
+		
+		
+	 // 정렬 선택
         $('.category .filter-list').on('click', function() {
             $('.category .filter-list').removeClass('on');
             $(this).addClass('on');
@@ -1202,6 +1274,7 @@ table.type09 tbody td.comment{
                 $('.stu_top_wrap').fadeOut();
             }
         });
+        
         $('.stu_top').click(function() {
             $('html, body').animate({scrollTop : 0}, 400);
             return false;
@@ -1316,468 +1389,192 @@ table.type09 tbody td.comment{
 
 	}// togglebucket
 	
-	function select_thema_code(c){
-		/* if(c!="204")
-			select_class('');
- */
-		thema_code=c;
-		console.log(thema_code)
-		updateTours();
+// 	function select_thema_code(c){
+// 		/* if(c!="204")
+// 			select_class('');
+//  */
+// 		thema_code=c;
+// 		console.log(thema_code)
+// 		updateTours();
 
-	}// function select_thema_code
+// 	}// function select_thema_code
 	
-	function update_orderby(o) {
-		orderby = o;
-		console.log(orderby)
-		updateTours();
+// 	function update_orderby(o) {
+// 		orderby = o;
+// 		console.log(orderby)
+// // 		updateTours();
 
-	}//function update_orderby
-/* 	
-	function updateTripwith(cur_page){
-		if(!cur_page) cur_page="1"
-		Xthema_code="r"
-		$.ajax({
-			url:'/stubbyPlanner/market/get_list.jsp?city_id=${param.city_id}&orderby='+orderby,
-			dataType:'json',
-			success:function(data){
-				if(data!=""){
-					thtml='';
-					$.each(data.list, function(i, item){
+// 	}//function update_orderby	
 
-						thtml+='<li class="prd_item">';
 
-							thtml+='<a href="/crowd/detail.asp?serial='+'&bucket_ids='+'&l=" class="prd outline lock-off">';
+function sortNew()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(1);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(1);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(1);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(1);
+}
 
-							thtml+='<figure class="thumb">';
-							thtml+='<img class="fh lazyload"  data-src="'+'" onerror="this.src=\'/>';
-							thtml+='</figure>';
+function sortLike()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(2);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(2);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(2);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(2);
+}
 
-							thtml+='<div class="prd_info">';
+function sortClick()
+{
+	if($('.swiper-slide.board').hasClass('on')) getBoard(3);
+	else if($('.swiper-slide.planner').hasClass('on')) getPlanner(3);
+	else if($('.swiper-slide.party').hasClass('on')) getParty(3);
+	else if($('.swiper-slide.gallery').hasClass('on')) getGallery(3);
+}
 
-							thtml+='<div class="name">';
-							thtml+='<span>'+item.title+'</span>';
-							thtml+='</div>';
-							thtml+='<div class="score">';
-							thtml+='<span>'+item.reserver_cnt+'</span>';
-							thtml+='</div>';
-							thtml+='</div>';
-						thtml+='</a>';
-						thtml+='</li>';
 
-					});//$.each
-					
-					$("#tourlist").html(thtml);
-
-			        $('.prd_count').text(data.totalcnt);
-
-			        $('.prd_list.paginated').each(function(){
-			        	var currentPage = 0;
-			            var numPerPage = 12;
-			            var $prd_list = $(this);
-			            
-			            $prd_list.bind('repaginate', function(){
-			            	$prd_list.find('li.prd_item').hide()
-			            	.slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show
-			            });//$('.prd_list.paginated').each
-			        	
-			            var numRows = data.totalcnt;
-			            var numPages = Math.ceil(numRows / numPerPage);
-			            
-			         $('.pager').remove();
-			         
-			         	var $pager = $('<div class="pager"></div>');
-			         	for (var page = 0; page < numPages; page++){
-			         		if(eval(page+1)==data.curpage)
-			         			$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
-			         		else
-			         			$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number"></a>').text(page + 1).appendTo($pager);
-			         		
-			         	}// for문
-			         	$pager.insertAfter($prd_list);
-			         	if(parseInt($('a.page_number:last').text()) == 1) {
-			         		$('.pager').hide();
-			         	} else {
-			         		$('.pager').show();
-			         	}
-			       }); //$.each
-				} // if(data!="")
-			}//success:function(data)
-		});//ajax
-	} //function updateTripwith(cur_page)
-	
-	 */
-
-// 	var thema_code=0;	
-	
-// 	var orderby = 'hot';
-	
-// 	function updateBuckets(cur_page){
-// 		if(!cur_page)
-// 			cur_pager="1";
-// 		Xthema_code="r";
-		
-// 		$.ajax({
-// 			url:'/api/planning/GetBucketRecomms2.asp?tripwith=&cate='+Xthema_code+'&subcate='+subcatelist+'&city_id=${param.city_id}&bucketlist='+bucketlist+"&orderby="+orderby+"&page="+cur_page,
-// 			dataType:'json',
-// 			success: function(data){
-// 				if(data!=""){
-// 					thtml='';
-					
-// 					$.each(data.list, function( i, item ) {
-// 						thtml+='<li class="prd_item">';
-
-// 						thtml+='	<a href="" class="prd out line lock-off">';
-
-// 						thtml+='		<figure class="thumb">';
-// 						//thtml+='			<img class="fh lazyload"  data-src="'" onerror=""/>';
-// 						thtml+='		</figure>';
-
-// 						thtml+='		<div class="prd_info">';
-
-// 						thtml+='			<div class="name">';
-// 						thtml+='				<span>'+item.title+'</span>';
-// 						thtml+='			</div>';
-// 						thtml+='			<div class="tag">';
-// 						thtml+='				<span> </span>'; //+item.sdesc+
-// 						thtml+='			</div>';
-// 						thtml+='			<div class="score">';
-// 						thtml+='				<span>'+item.hot+'</span>';
-// 						thtml+='			</div>';
-// 						thtml+='		</div>';
-// 						thtml+='	</a>';
+function showProfile(myid,friend_id)
+{
+	 
+var member_myid = myid;
+var friend_id = friend_id;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/square/get_profile.jsp?member_myid='+member_myid+'&friend_id='+friend_id,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						thtml='<div style="text-align: left">';
+						$.each(data.list, function( i, item ) {
+									console.log(item.POST_SUBJECT);	
+	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
+	                     	
+	                     		if(data.friendList=='친구'){
+// 	                     			alert("친구");
+	                     		thtml+='<button id ="good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
+	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+	                     		}else if(data.friendList=='대기'){
+// 	                     			alert("대기");
+	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+	                     		}else if(data.friendList=='거절'){
+// 	                     			alert("거절");
+	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+	                     		}else{
+// 	                     			alert("친구아님");
+                     			thtml+='<button id = "good" class ="req" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">신청</button>';	
+	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+	                     		}
+	                     		
+	                     		thtml+='<h3>'+item.member_id+'</h3>';
+								thtml+='<p>'+item.ms_name+'/'+(item.gender=='M'?'MAN':'WOMAN')+'</p></div>'; 
+						});
+						thtml+='</div>';
+						$("#layerpop_friend_content").html(thtml); //
 						
-// 						if (item.stimelist) {
-// 							thtml+='<ul class="prd_info_bottom outline">';
-// 							thtml+='<li class="start">';
-// 							thtml+='<span>09:00</span>';
-// 							thtml+='<div class="set_time">';
-// 							thtml+='<ul>';
-							
-// 							for(i=0;i<item.stimelist.length;i++)
-// 								thtml+='<li class="current"> </li>';//+item.stimelist[i].stime+
-							
-// 							thtml+='</ul>';
-// 							thtml+='</div>';
-// 							thtml+='</li>';
-// 							thtml+='<li class="duration">';
-// 							thtml+='<span>20 H</span>';
-// 						    thtml+='<div class="set_time">';
-// 						    thtml+='<ul>';
-// 						    thtml+='<li class="current">16 H</li>';
-// 						    thtml+='<li>18 H</li>';
-// 						    thtml+='<li>20 H</li>';
-// 						    thtml+='<li>22 H</li>';
-// 						    thtml+='</ul>';
-// 						    thtml+='</div>';
-// 							thtml+='</li>';
-// 							thtml+='<li class="plus">';
-// 							thtml+='<span>담기<i></i></span>';
-// 							thtml+='</li>';
-// 							thtml+='</ul>';
-// 						}//if (item.stimelist)
+				     	$(".no").on("click",function(){
+				     		var value = $(this).val();
+				  		    deleteFriend('${authUser.member_id}',value);
+				  		   $(this).parent().remove();
+					  	})
+					  	
 
-// 						thtml+='</li>';
-// 					});//$.each
-					
-// 					$("#tourlist").html(thtml);
-					
-// 					curGuidebookList=data.list;
+ 					   $(".msg").click(function(){
+ 						  var value = $(this).attr("alt") ;
+  					      $('#add_data_Modal').modal();
+ 						  $('#add_data_Modal').val(value);
+ 					   })					  	
+					  
+  					   $(".req").on("click",function(){
+				     		var value = $(this).val();
+				  		    requestFriend('${authUser.member_id}',value);
+				  		   $(this).remove();
+					   })
+ 					   
+ 					   $('#insert_form').on('submit',function(event){
+	 						  if($('#subject').val()=='')
+	 						 {
+	 						 alert("제목을 입력해주세요");
+	 						 }else if($('#content').val()=='')
+	 						 {
+	 						 alert("내용을 입력해주세요");
+	 						 }else{
+//	 						  var value =$(this).val();
+							  var content =$('textarea#content').val();
+							  var subject =$('input#subject').val();
+	  					      var member_friendid = $('#add_data_Modal').val();
+							  messageFriend('${authUser.member_id}',content,subject,member_friendid);
+							  }
+	 					   })					  	
+ 					    
+					}
+			}
+		});
+}
 
-// 					$('.prd_count').text(data.totalcnt);
-					
-// 					// Item 시간 선택(토글)
-// 					$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
-// 			            event.stopPropagation();
-// 			            $('.set_time').not($(this).next()).removeClass('on');
-// 			            $(this).next().toggleClass('on');
-// 			        });//	$('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event)
-					
-// 					$('.prd_list.paginated').each(function(){
-// 						var currentPage = 0;
-// 			            var numPerPage = 12;
-// 			            var $prd_list = $(this);
-// 			            $prd_list.bind('repaginate', function() {
-// 			                $prd_list.find('li.prd_item').hide()
-// 			                .slice(currentPage * numPerPage,
-// 			                    (currentPage + 1) * numPerPage)
-// 			                .show();
 
-// 						}); //$prd_list.bind('repaginate', function()
-						
-// 			            var numRows = data.totalcnt;
-// 			            var numPages = Math.ceil(numRows / numPerPage);
-			            
-// 			            $('.pager').remove();
 
-// 			            var $pager = $('<div class="pager"></div>');
-			            
-// 			            for (var page = 0; page < numPages; page++) {
-// 			            	if(eval(page+1)==data.curpage)
-// 			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
-// 			            	else
-// 			            		$('<a href="javascript:updateBuckets('+eval(page+1)+')" class="page_number active"></a>').text(page + 1).appendTo($pager);
-			            	
-// 			            }//for
-// 			            $pager.insertAfter($prd_list);
-// 			            if(parseInt($('a.page_number:last').text()) == 1){
-// 			            	$('.pager').hide();
-// 			            } else {
-// 			            	$('.pager').show();
-// 			            }
+function deleteFriend(id,friend)
+{
+	 
+var member_myid = id;
+var member_friendid = friend;
+alert(member_myid);
+alert(member_friendid);
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/set_deleteFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						alert("친구 삭제 완료")
+					}
+			}
+		});
+}	
 
-// 					}); //$('.prd_list.paginated').each(function()
-				
-// 				}//if(data!=)
-// 			}//success
-		
-// 		});// ajax
-// 	}//function updateBuckets(cur_page)
+
+function requestFriend(id,friend)
+{
+	 
+var member_myid = id;
+var member_friendid = friend;
+alert(member_myid);
+alert(member_friendid);
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/square/set_requestFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+					if(data!="")
+					{
+						alert("친구 신청 완료")
+					}
+			}
+		});
+}	
+
+
+function messageFriend(id,content,subject,member_friendid)
+{
+var member_myid = id;
+var msg_content = content.replace(/(\n|\r\n)/g, '<br>');
+var msg_subject = subject;
+var member_friendid = member_friendid;
+	             $.ajax({
+	             	url: '/stubbyPlanner/api/mypage/set_messageFriend.jsp?member_myid='+member_myid+'&member_friendid='+member_friendid+'&msg_subject='+msg_subject+'&msg_content='+msg_content,
+	               	dataType: 'json',
+	               	cache:false,
+	               	success: function(data){
+// 					if(data!="")
+// 					{
+						alert("메세지 전송 완료")
+// 					}
+			}
+		});
+}
 
 	
-
-	
-
-// 	function updateTours(cur_page) {
-
-// 		if (!cur_page)
-// 			cur_page = "1";
-// 		$.ajax({
-// 					url :'/stubbyPlanner/market/get_list.jsp?city_id=${param.city_id}&bucketlist='+ bucketlist +'&orderby='+orderby+'&page='+cur_page+'&thema_code='+thema_code,
-// 					dataType : 'json',
-// 					success : function(data) {
-// 						if (data != "") {
-// 							thtml = '';
-// 							$.each(data.list, function( i, item ) {
-// 								thtml+='<li class="prd_item">';
-// 								if(item.is_like)
-// 								 	thtml+='<div class="like active" id="'+item.serial+'"></div>';
-// 								else
-// 								 	thtml+='<div class="like" id="'+item.serial+'"></div>';
-
-// 								if(item.useoutlink==1)
-// 									thtml+='<a href="'+item.linkurl+'" target="_blank" class="prd outline lock-off">';
-// 								else
-// 									thtml+='<a href="/guide/detail.asp?needlogin=&serial='+item.serial+'" class="prd outline lock-off">';
-
-
-// 									thtml+='<figure class="thumb">';
-// 									thtml+='<img class="fh lazyloaded" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2e535464041209877c8a7cc9372b673d_l.jpeg">';
-									
-								
-// 								if(item.coupon_txt!="")
-// 									thtml+='<div class="band bg_red">'+item.coupon_txt+'</div>';
-								
-// 								if(item.useoutlink==0) {
-// 										if(item.is_lowest_price==1)
-// 										{	
-// 											thtml+='<div class="band2 bg_orange" style="font-size:9pt;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px;">최저가 보장제</div>';
-// 										}
-// 									} else {
-										
-// 										thtml+='<div class="band2 bg_gray"><p></p>제휴예약</div>';
-// 									}
-
-								
-								
-// 								tcomname=item.com_name;
-// 								if(tcomname.length>17)
-// 									tcomname=tcomname.substring(0,17)+'..';
-
-// 								thtml+='</figure>';
-
-// 								thtml+='<div class="prd_info" style="height:97px">';
-// 								thtml+='<div class="cpn">';
-// 								thtml+='<span>'+tcomname+'</span>';
-// 					            thtml+='</div>';
-// 					            thtml+='<div class="name">';
-					            
-// 					            thtml+='<span>'+item.title+'</span>';
-					            
-// 					            thtml+='</div>';
-// 					            thtml+='<div class="tag">';
-// 					            //thtml+='<span>'+item.sale_tag+'</span>';
-// 					            thtml+='</div>';
-					            
-// 					            if(item.useoutlink==1){
-// 					        		thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
-
-// 					        		thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.review_cnt+'개 리뷰</span></div>';
-// 					        	} else {
-// 					        			if(item.review_cnt>0&&item.review>3.9){
-// 					        			 	thtml+='<div class="score">';
-// 					        				thtml+='<span>'+item.review+'</span><span  class="buy">&nbsp;&nbsp;'+item.hot+'명 예약</span></div>';
-// 					        			} else {
-// 					        					thtml+='<div style="display: inline-block;position: absolute; left: 14px;bottom: 10px;line-height: 18px;">';
-// 					        					if(item.planner_cnt>0)
-// 					        					thtml+='❤️<span style="color:#8f8f8f;font-size:9pt">최근 플래너 '+item.planner_cnt+'명 선택</span>';
-// 					        					thtml+='</div>';
-// 					        			}// else	
-// 					        	}
-// 					        	if(!item.price_sale)
-// 					        		item.price_sale="";
-					        		
-// 					        	thtml+='<div class="price"><span>KRW</span> '+ item.price_sale;
-					        		
-// 					        	thtml+='</div>';
-// 					            thtml+='</div>';
-
-// 					            thtml+='</a>';
-					           	
-// 					            if(item.stimelist){
-// 					            	thtml+='<ul class="prd_info_bottom outline">';
-// 					          	  	thtml+='<li class="start" style="width:50%">';
-					          	  	
-// 					          	  if(item.stimelist.length==1){
-// 					          		if(item.stimelist[0].stime=="99:99")
-// 					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
-// 					        		else
-// 					        			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].stime+'</div>';
-// 					          	  } else if (item.stimelist.length>0) {
-// 					          			thtml+='<span>선택가</span>';
-// 					          	  } else {
-// 					          			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
-// 					          	  }
-					          	  
-// 					          	  if(item.stimelist.length>1){
-// 					          		 thtml+='<div class="set_time">';
-// 					          		 thtml+='<ul>';
-					          		 
-// 					          		 for(i=0;i<item.stimelist.length;i++)
-// 					          			thtml+='<li class="current">'+item.stimelist[i].stime+'</li>';
-					          			
-// 					          		 thtml+='</ul>';
-// 					          	 	 thtml+='</div>';
-// 					          	  }
-// 					          	thtml+='</li>';
-// 					      	  	thtml+='<li class="duration" style="width:50%">';
-					      	  	
-// 					      	  	if(item.stimelist.length==1)
-// 					      	  		thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.stimelist[0].duration+'</div>';
-
-// 					      	 	else if(item.stimelist.length>0)
-// 					      			thtml+='<span>'+item.stimelist[0].duration+'</span>';
-// 					      	 	else
-// 					      			thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">자유</div>';
-								
-// 					      		if(item.stimelist.length>1) {
-// 					      			thtml+='<div class="set_time">';
-// 					                thtml+='<ul>';
-
-// 					                for(i=0;i<item.stimelist.length;i++)
-// 					                	thtml+='<li class="current">'+item.stimelist[i].duration+'</li>';
-
-// 					              	 	thtml+='</ul>';
-// 					            	  	thtml+='</div>';
-
-// 					      		}
-// 					      		thtml+='</li>';
-					      		
-// 					      		thtml+='</ul>';
-
-// 					            }//if(item.stimelist)
-// 					            else{
-// 					            	thtml+='<ul class="prd_info_bottom outline">';
-					          	  	
-// 					            	thtml+='<li class="start" style="width:50%">';
-// 					          	  	thtml+='<div style="font-size:15px;font-weight:400;line-height:28px;color:#4a4a4a;cursor:pointer">'+item.duration+'</div>';
-// 					          	  	thtml+='</li>';
-					          	  	
-// 					          	  	thtml+='<li class="duration" style="width:50%">';
-// 					          	  	thtml+='<span>'+item.duration+'</span>';
-// 					          	  	thtml+='</li>';
-					          	  	
-// 					          	  	thtml+='</li>';
-// 						      		thtml+='</ul>';
-// 					            }
-
-					            	
-// 					            thtml+='</li>';
-
-// 							}); //$.each(data.list, function( i, item )
-
-// 							$("#tourlist").html(thtml);
-
-
-// 					        // Item 시간 선택(토글)
-// 					        $('.prd_item .prd_info_bottom li:not(.plus) span').click(function(event) {
-// 					            event.stopPropagation();
-// 					            $('.set_time').not($(this).next()).removeClass('on');
-// 					            $(this).next().toggleClass('on');
-// 					        });
-					        
-
-// 					     	// 리스트 찜하기(토글)
-// 					     	$('.prd_item .like').on('click', function(){
-// 					     		tid=$(this).attr("id");
-// 					     		$(this).toggleClass('active');
-// 					     		console.log(tid);
-// 					     		$.ajax({
-// 					     			url: '/stubbyPlanner/market/tour_like.jsp?city_id=${param.city_id}&tour_id='+tid,
-					             	
-
-// 					     			dataType: 'json',
-// 					     			success: function(data){
-// 					     				if(data!=""){
-// 					     					thtml='';
-// 					     				}
-// 					     			}
-// 					     		});
-
-// 					     	});
-					     	
-// 					     	$('.prd_count').text(data.totalcnt);
-					     	
-// 					     	$('.prd_list.paginated').each(function() {
-// 					     		 var currentPage = 0;
-// 					             var numPerPage = 12;
-// 					             var $prd_list = $(this);
-// 					             $prd_list.bind('repaginate', function() {
-// 					            	 $prd_list.find('li.prd_item').hide()
-// 					            	 .slice(currentPage * numPerPage,
-// 					            			 (currentPage + 1) * numPerPage)
-// 					                         .show();
-// 					             });
-					             
-// 					             var numRows = data.totalcnt;
-// 					             var numPages = Math.ceil(numRows / numPerPage);
-								
-// 					             $('.pager').remove();
-					             
-// 					             var $pager = $('<div class="pager"></div>');
-					             
-// 					             cPage=data.curpage;
-					             
-// 					             sPage=5*parseInt((cPage-1)/5)+1;
-					             
-// 					             ePage=sPage+5;
-// 									if(ePage>(numPages+1))
-// 										ePage=numPages+1;
-// 								if(sPage>5)
-// 									 $('<a href="javascript:updateTours('+eval(sPage-5)+')" class="page_number"></a>').text("<").appendTo($pager);
-								
-// 								for (var page = sPage; page < ePage; page++) {
-// 									if(eval(page)==data.curpage)
-// 										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number active"></a>').text(page).appendTo($pager);
-// 									else
-// 										$('<a href="javascript:updateTours('+eval(page)+')" class="page_number"></a>').text(page).appendTo($pager);
-// 								}
-// 								if(numPages>ePage)
-// 									 $('<a href="javascript:updateTours('+eval(ePage)+')" class="page_number"></a>').text(">").appendTo($pager);
-// 								$pager.insertAfter($prd_list);
-								
-// 								if(parseInt($('a.page_number:last').text()) == 1) {
-//             					    $('.pager').hide();
-//             					} else {
-//             					    $('.pager').show();
-//             					};
-
-// 					     	});
-// 						} //if(data)
-							
-// 					}//success
-// 				});//ajax
-// 	}//function
-			
 	function formatNumber(num) {
 		  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 	}
@@ -1787,6 +1584,103 @@ table.type09 tbody td.comment{
 
 <!-- getParty() -->
 <script type="text/javascript">
+
+
+function hitsBoard(post_seq,post_hits)
+{
+	var post_seq = post_seq;
+	var post_hits = post_hits;
+    $.ajax({
+     	url: '/stubbyPlanner/api/square/set_hits.jsp?post_seq='+post_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+   		if(data!="")
+			{			
+				$('.hits'+post_seq+'').html(post_hits+1);
+			}
+		}
+	});
+}
+
+
+function likeBoard(id,post_seq,post_like)
+{
+	var member_id = id;	
+	var post_seq = post_seq;
+	var post_like = post_like;
+    $.ajax({
+     	url: '/stubbyPlanner/api/square/get_likeBoard.jsp?member_id='+member_id+'&post_seq='+post_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){    // data.list
+       		if(data.list=='추천'){
+
+		    $('.like'+post_seq+'').html(post_like+1);
+       		
+       		}else{
+
+			$('.like'+post_seq+'').html(post_like);
+    			
+       		}
+		}
+	});
+}
+
+function likeParty(id,party_seqno,party_like)
+{
+	var member_id = id;
+	var party_seqno = party_seqno;
+	var party_like = party_like;
+    $.ajax({
+      	 
+     	url: '/stubbyPlanner/api/square/get_likeParty.jsp?member_id='+member_id+'&party_seqno='+party_seqno+'&party_like='+party_like,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+       		
+       		if(data.list=='추천'){
+
+    		    $('.plike'+party_seqno+'').html(party_like+1);
+           		
+           		}else{
+
+    			$('.plike'+party_seqno+'').html(party_like);
+        			
+           		}
+		}
+	});
+}
+
+function likePlanner(id,shplan_seq)
+{
+	var member_id = id;
+	var shplan_seq = shplan_seq;
+    $.ajax({
+      	 
+     	url: '/stubbyPlanner/api/square/set_writeBoardComment.jsp?member_id='+member_id+'&shplan_seq='+shplan_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+// 			alert("댓글 작성 완료");
+		}
+	});
+}
+
+function likeGallery(id,gal_seq)
+{
+	var member_id = id;
+	var gal_seq = gal_seq;
+    $.ajax({
+      	 
+     	url: '/stubbyPlanner/api/square/set_writeBoardComment.jsp?member_id='+member_id+'&gal_seq='+gal_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+// 			alert("댓글 작성 완료");
+		}
+	});
+}
 
 
 function writeBoardComment(id,post_seq,cmt_detail)
@@ -1800,34 +1694,10 @@ function writeBoardComment(id,post_seq,cmt_detail)
        	dataType: 'json',
        	cache:false,
        	success: function(data){
-			alert("댓글 작성 완료")
+// 			alert("댓글 작성 완료");
 		}
 	});
 }	
-
-
-//게시판 댓글
-function boardComment(post_seq)
-{
-	var post_seq = post_seq;	
-	$.ajax({
-     	url: '/stubbyPlanner/api/square/get_boardComment.jsp?post_seq='+post_seq,
-       	dataType: 'json',
-       	cache:false,
-       	success: function(data){
-		if(data!="")
-		{							
-       		thtml='';
-			$.each(data.list, function( i, item ) {
-				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
-			});
-			$('.com').remove('.com');
-			$('.'+post_seq+'').after(thtml);
-			
-		}
-	}
- });
-}
 
 
 function writeBoard(id,content,subject,board_code)
@@ -1835,15 +1705,19 @@ function writeBoard(id,content,subject,board_code)
 var post_content = content.replace(/(\n|\r\n)/g, '<br>');	 
 var member_id = id;
 var post_subject = subject;
-// var post_content = content;
 var board_code = board_code;
+// alert(post_content);
+// alert(member_id);
+// alert(post_subject);
+// alert(board_code);
 	             $.ajax({
 	 
 	             	url: '/stubbyPlanner/api/square/set_writeBoard.jsp?member_id='+member_id+'&post_subject='+post_subject+'&post_content='+post_content+'&board_code='+board_code,
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-						alert("게시글 작성 완료")
+	               		
+						alert("게시글 작성 완료");
 			}
 		});
 }
@@ -1859,10 +1733,10 @@ var party_content = content;
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-						alert("게시글 작성 완료")
+						alert("게시글 작성 완료");
 			}
 		});
-}
+}	
 
 
 // function getTotal()
@@ -1878,7 +1752,7 @@ function getSearchAll(option,search){
 		if(data!="")
 		{					
 			thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
-			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 			thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2056,8 +1930,40 @@ function getSearchParty(option,search){
 }
 
 
-function getParty(){
-//		var board_code = code;
+function getGallery(){
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_gallery.jsp',
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+		if(data!="")
+		{					
+			thtml='<section class="stu_regions";"><div class="stu_inner_wrap" style="padding-top: 20px;">';
+			thtml+='<h2 style="font-size:18pt;font-weight:700;">갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">';
+			$.each(data.list, function( i, item ) {
+				if(i%4==0){
+				thtml+='</ul><br/><ul class="swiper-wrapper">';	
+				}
+				thtml+=' <li class="swiper-slide snip1384" style="width: 200px; height: 200px; margin: 5px;">';
+				thtml+='<a href="http://www.stubbyplanner.com" style="width:100%; height:100%;">';                                                          
+// 				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'" style="width:100%; height:100%;"></a></li>';
+				thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'" style="width:100%; height:100%;">';
+				thtml+='<figcaption><h2 style="color:white;">'+item.member_id+'.</h2><p style="color:white; text-align:left;">'+item.gal_subject+'</p><i class="ion-ios-arrow-right"><div class="score" style="display:inline-block; color:white;"><span>♥ '+item.post_like+'</span></div></i></figcaption>';
+				thtml+='</a></li>';
+			});
+			thtml+='</ul></div></div></section>';
+			$('#tourlist').html(thtml);
+		}
+	}
+});
+}
+
+
+
+
+
+function getParty(code){
+		var board_code = code;
 		$.ajax({
          	url: '/stubbyPlanner/api/square/get_party.jsp',
            	dataType: 'json',
@@ -2074,36 +1980,100 @@ function getParty(){
 				thtml+='                                                                                     ';
 				thtml+='       <div class="swiper-container stu_tagArea"">                                   ';
 				thtml+='           <ul class="swiper-wrapper">                                               ';
-				
-				$.each(data.list, function( i, item ) {
-					if(i%5==0){
-					thtml+='</ul><br/><ul class="swiper-wrapper">';	
-					}
-					thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
-					thtml+='     <a href="#" style="width:100%; height: 100%;">                                                           ';
-					thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
-					if(item.profile_pic==''){
-					thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
-					}else{
-					thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
-					}                                                                                  
-					thtml+='         </figure>                                                                                           ';
-					thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
-					thtml+='             <div class="name"><span>'+item.party_content+'}</span></div>';
-					thtml+='      		<div class="price"  style="line-height:100%;text-align:right;2px;">'+item.member_id+'</div>';
-					thtml+='             <div class="score" style="display:inline-block"><span>'+item.party_like+'</span></div></figcaption></a></li>';
-				});
+				if(board_code==1){
+					$.each(data.listNew, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}else if(board_code==2){
+					$.each(data.listLike, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}else if(board_code==3){
+					$.each(data.listClick, function( i, item ) {
+						if(i%5==0){
+						thtml+='</ul><br/><ul class="swiper-wrapper">';	
+						}
+						thtml+=' <li class="swiper-slide prd_item"  style="width: 17%; margin-bottom: 0px;">                                 ';
+						thtml+='     <a style="width:100%; height: 100%;">                                                           ';
+						thtml+='         <figure class="thumb" style="height:70px;">                                                          ';
+						if(item.profile_pic==''){
+						thtml+='                     <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> ';
+						}else{
+						thtml+='                     <img class="fh" src="'+item.profile_pic+'" alt="프로필 사진"/>                   ';
+						}                                                                                  
+						thtml+='         </figure>                                                                                           ';
+						thtml+='         <figcaption class="prd_info"><div class="cpn"></div>';
+						thtml+='             <div class="name"><span>'+item.party_content+'</span></div>';
+						thtml+='      		<div class="price profile"  style="line-height:100%;text-align:right;2px;cursor:pointer;">'+item.member_id+'</div>';
+						thtml+='             <div class="score love" id="'+item.party_seqno+'" name="'+item.party_like+'" style="display:inline-block; cursor:pointer"><span class="plike'+item.party_seqno+'">'+item.party_like+'</span></div></figcaption></a></li>';
+					});
+				}
+
 				
 				thtml+='</div></div></section>';
 				$('#tourlist').html(thtml)
+				
+				
+					$(".profile").click(function(){   
+				    	var friend_id = $(this).text();
+				    	
+				    	$('#layerpop_friend').modal();
+				    	if(friend_id=='${authUser.member_id}'){
+				    	window.location="/stubbyPlanner/personal/mypage.do?";
+				    	}else{
+			 		    showProfile('${authUser.member_id}',friend_id);
+				    	}
+				    	event.stopPropagation();
+				    })
+				    
+					
+					//추천수 증가
+					$('.love').click(function(){
+						var party_seqno = $(this).attr('id');
+						var party_like = Number($(this).attr('name'));
+						
+						likeParty('${authUser.member_id}',party_seqno,party_like);
+						event.stopPropagation();
+					});
+							
 				
 			}
 	}
 });
 }
 
-	function getBoard(){
-// 		var board_code = code;
+	function getBoard(code){
+		var board_code = code;
 			$.ajax({
              	url: '/stubbyPlanner/api/square/get_board.jsp',
                	dataType: 'json',
@@ -2113,23 +2083,40 @@ function getParty(){
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">전체 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
 					thtml+='<table class="type09"><caption>테이블 설명</caption><thead><tr><th scope="cols">글번호</th><th scope="cols">아이디</th><th scope="cols">제목</th><th scope="cols">날짜</th><th scope="cols">조회</th><th scope="cols">추천</th></tr></thead>';					
 					thtml+='<tbody>';
-					
-					$.each(data.list, function( i, item ) {
-						thtml+='<tr name="noshow"><th scope="row">'+item.post_seq+'</th><td>'+item.member_id+'</td><td class="title">'+item.post_subject+'</td>';
-						thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
-						thtml+='<td>'+item.post_hits+'</td><td>'+item.post_like+'</td></tr>';
-						thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
-						thtml+='<tr class="con '+item.post_seq+'" style="display: none"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%;"/></div></td><td class="love">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
-					});
+					if(board_code==1){
+						$.each(data.listNew, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});
+					}else if(board_code==2){
+						$.each(data.listLike, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});						
+					}else if(board_code==3){
+						$.each(data.listClick, function( i, item ) {
+							thtml+='<tr style="cursor:pointer" class="'+item.post_hits+'" name="noshow"><th scope="row" class="'+item.post_seq+'">'+item.post_seq+'</th><td><div class="profile">'+item.member_id+'</div></td><td class="title">'+item.post_subject+'</td>';
+							thtml+='<td>'+(item.post_regdate).substring(0, 10)+'</td>';
+							thtml+='<td><div class="hits'+item.post_seq+'">'+item.post_hits+'</div></td><td><div class="like'+item.post_seq+'">'+item.post_like+'</div></td></tr>';
+							thtml+='<tr class="con" style="display: none"><td class="ct">내용</td><td></td><td colspan="3">'+item.post_content+'</td><td></td></tr>';
+							thtml+='<tr class="con '+item.post_seq+'" style="display: none;cursor:pointer"><td></td><td colspan="3"><div id="'+item.post_seq+'"><input id="getComment" class="getComment" placeholder="댓글을 작성하세요" type="text" name="text" size="20" style="width:90%;"><input type="button" value="작성" class="setComment" style="width: 10%; 	cursor:pointer;"/></div></td><td class="love" id="'+item.post_seq+'" name="'+item.post_like+'">추천</td><td class="comment" id="'+item.post_seq+'">댓글▼</td></tr>';
+						});						
+					}
 					
 					thtml+='</tbody></table></div></section>';
-					$('#tourlist').html(thtml)
+					$('#tourlist').html(thtml);
 					
 					
 					//댓글 작성
@@ -2141,8 +2128,10 @@ function getParty(){
 							alert("댓글을 입력해주세요.");
 						}else{
 							writeBoardComment('${authUser.member_id}',post_seq,cmt_detail);
-							boardComment(post_seq);
+							$(this).prev().val(null);
+							alert("댓글 작성 완료");
 						}
+							boardComment(post_seq);
 					});
 					
 					
@@ -2160,14 +2149,24 @@ function getParty(){
 					});
 					
 					
+					//추천수 증가
+					$('.love').click(function(){
+						var post_seq = $(this).attr('id');
+						var post_like = Number($(this).attr('name'));
+						likeBoard('${authUser.member_id}',post_seq,post_like);
+					});
+									
+					
 					//게시물 내용 출력
 					$('tr').click(function(){
+						var post_seq = $(this).children().attr('class');
+						var post_hits =Number($('.hits'+post_seq+'').text());
 						if($(this).attr('name')=='noshow'){
+							hitsBoard(post_seq,post_hits);
 							$('.con').css({display:'none'});
 							$(this).next().css({display:''});
 							$(this).next().next().css({display:''});
 							$(this).attr('name','show');
-							
 							
 						}
 						else if($(this).attr('name')=='show'){
@@ -2179,16 +2178,48 @@ function getParty(){
 					});
 					
 					
-					
-
-					
+				    $(".profile").click(function(){   
+				    	var friend_id = $(this).text();
+				    	
+				    	$('#layerpop_friend').modal();
+				    	if(friend_id=='${authUser.member_id}'){
+				    	window.location="/stubbyPlanner/personal/mypage.do?";
+				    	}else{
+			 		    showProfile('${authUser.member_id}',friend_id);
+				    	}
+				    	event.stopPropagation();
+				    })
 					
 				}
 		}
 	});
 }
 
-	
+
+//게시판 댓글
+function boardComment(post_seq)
+{
+	var post_seq = post_seq;	
+	$.ajax({
+     	url: '/stubbyPlanner/api/square/get_boardComment.jsp?post_seq='+post_seq,
+       	dataType: 'json',
+       	cache:false,
+       	success: function(data){
+		if(data!="")
+		{							
+       		thtml='';
+			$.each(data.list, function( i, item ) {
+				thtml+='<tr class="con com"><td></td><td>└'+item.member_id+'</td><td colspan="2">'+item.cmt_detail+'</td><td>'+(item.cmt_regdate).substring(0, 10)+'</td><td></td></tr>';
+			});
+			$('.com').remove('.com');
+			$('.con.'+post_seq+'').after(thtml);
+			
+		}
+	}
+ });
+}			
+			
+			
 	function getCommon(code){
  		var board_code = code;
 			$.ajax({
@@ -2200,7 +2231,7 @@ function getParty(){
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">일반 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2248,7 +2279,7 @@ function getParty(){
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">질문 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2296,7 +2327,7 @@ function getParty(){
 				if(data!="")
 				{					
 					thtml='<section class="stu_swiper-section stu_recent-offer" ><div class="stu_inner_wrap" style="padding-right: 5%;"><div class="titArea" style="display: inline-block; padding-top: 20px;"><h2 style="font-size:18pt;font-weight:700;">여행정보 게시판</h2></div>';
-					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard()"><b> 전체 .</b></a></div>';
+					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getBoard(1)"><b> 전체 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getCommon(1)"><b> 일반 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getQuestion(2)"><b> 질문 .</b></a></div>';
 					thtml+='<div style="display: inline-block" style="font-size:10pt;color:#696969;" ><a href="javascript:getInformation(3)"><b> 여행정보 	</b></a></div>';
@@ -2334,6 +2365,27 @@ function getParty(){
 }
 
 </script>
+
+<!-- <div id="slide"> -->
+<!--   <input type="radio" name="pos" id="pos1" checked> -->
+<!--   <input type="radio" name="pos" id="pos2"> -->
+<!--   <input type="radio" name="pos" id="pos3"> -->
+<!--   <input type="radio" name="pos" id="pos4"> -->
+<!--   <ul> -->
+<!--     <li></li> -->
+<!--     <li></li> -->
+<!--     <li></li> -->
+<!--     <li></li> -->
+<!--   </ul> -->
+<!--   <p class="pos"> -->
+<!--     <label for="pos1"></label> -->
+<!--     <label for="pos2"></label> -->
+<!--     <label for="pos3"></label> -->
+<!--     <label for="pos4"></label> -->
+<!--   </p> -->
+<!-- </div> -->
+
+
 <div id="write_board_Modal" class="modal fade">
 	<div class="modal-dialog">
 
@@ -2393,5 +2445,123 @@ function getParty(){
 		</div>
 	</div>
 </div>
+
+
+<div id="write_gallery_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>갤러리 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body">
+			<form method="post" enctype="multipart/form-data" id="insert_form_gallery">
+			<label><b>제목</b></label>
+			<input type="text" name="gallerySubject" id="gallerySubject" class="form-control" />
+			<br />
+			<label style="float:left; margin-top: 15px;"><b>사진</b></label><a id="galleryPlus" style="float: right; margin: 15px; ">+사진 추가</a>
+			<input type="file" id="writeGallery" class="writeGallery" name="writeGallery1" style="border: none;"/>
+			<br />
+			<input type="submit" name ="insert" id="insert" value="작성" class="btn btn-success" />
+			</form>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+
+<!-- 친구 모달창 -->
+<div class="friend modal fade" id="layerpop_friend" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<a href="javascript:#" id="review" style="color:white;"><span><h3>프로필</h3></span></a>
+	</div>
+<!--         <button type="button" class="close" data-dismiss="modal" style="float: right">×</button> -->
+<!--       <div class="modal-header"> -->
+      <div class="friend modal-footer" id="layerpop_friend_content">
+ 
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="add_data_Modal" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content" style="width: 800px;height: 600px;">
+			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;">
+		<h3>메세지 작성</h3>
+			</div>
+<!-- 모달 바디 -->
+			<div class="modal-body" style="width: 790px;height: 450px;">
+<div id="slide">
+  <input type="radio" name="pos" id="pos1" checked>
+  <input type="radio" name="pos" id="pos2">
+  <input type="radio" name="pos" id="pos3">
+  <input type="radio" name="pos" id="pos4">
+  <ul>
+    <li style="width: 790px;height: 450px;"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <p class="pos">
+    <label for="pos1"></label>
+    <label for="pos2"></label>
+    <label for="pos3"></label>
+    <label for="pos4"></label>
+  </p>
+</div>
+			</div>
+<!-- 모달 풋터 -->
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+<!-- <div id="add_data_Modal" class="modal fade"> -->
+<!-- 	<div class="modal-dialog"> -->
+
+<!-- 		<div class="modal-content"> -->
+<!-- 			<div class="modal-header" style="text-align: center; background: black; color:white; padding: 10px;height: 60px;"> -->
+<!-- 		<h3>메세지 작성</h3> -->
+<!-- 			</div> -->
+<!-- <!-- 모달 바디 --> -->
+<!-- 			<div class="modal-body"> -->
+<!-- 			<form method="post" id="insert_form"> -->
+<!-- 			<label>제목</label> -->
+<!-- 			<input type="text" name="subject" id="subject" class="form-control" /> -->
+<!-- 			<br /> -->
+<!-- 			<label>내용</label> -->
+<!-- 			<textarea name="content" id="content" class="form-control" ></textarea> -->
+<!-- 			<br /> -->
+<!-- 			<input type="submit" name ="insert" id="insert" value="전송" class="btn btn-success" /> -->
+<!-- 			</form> -->
+<!-- 			</div> -->
+<!-- <!-- 모달 풋터 --> -->
+<!-- 		<div class="modal-footer"> -->
+<!-- 			<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
+<!-- 		</div> -->
+		
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+
 </body>
 </html>

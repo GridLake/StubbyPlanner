@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.util.JdbcUtil;
 import stbplanner.square.command.BoardsDTO;
+import stbplanner.square.command.GalleryDTO;
 import stbplanner.square.command.PartyDTO;
 
 public class SquareDAO {
@@ -90,6 +91,34 @@ public class SquareDAO {
 				dto.setParty_content(rs.getString("party_content"));
 				dto.setParty_like(rs.getInt("party_like"));
 				dto.setProfile_pic(rs.getString("profile_pic"));
+
+				list.add(dto);
+			}
+			return list;
+		}finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public List<GalleryDTO> gallerySelect(Connection conn) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		GalleryDTO dto = null;
+		try {
+			pstmt = conn.prepareStatement("select * from tbl_gallery g join tbl_gallery_pic p on g.gal_seq=p.gal_seq order by g.gal_seq desc");
+			rs = pstmt.executeQuery();
+			List<GalleryDTO> list = new ArrayList<>();
+			
+			while(rs.next()) {
+				dto = new GalleryDTO();
+				
+				dto.setGal_seq(rs.getInt("gal_seq"));
+				dto.setMember_id(rs.getString("member_id"));
+				dto.setGal_subject(rs.getString("gal_subject"));
+				dto.setPost_like(rs.getInt("post_like"));
+				dto.setPost_hits(rs.getInt("post_hits"));
+				dto.setGal_pic_path(rs.getString("gal_pic_path"));
 
 				list.add(dto);
 			}

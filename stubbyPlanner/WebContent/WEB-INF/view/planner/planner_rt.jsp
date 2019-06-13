@@ -692,7 +692,7 @@ html {
 
 <script>
 var routelist=[];
-var slpRatesArr=[];
+// var slpRatesArr=[];
 
 Schd = function(id,dayofcity,stime,duration) {
 	this.id=id;
@@ -773,6 +773,7 @@ function openInfoWindow2(city_x,city_y,se)
 }
 function update_arr_nextday()
 {
+	deleteData();
 	saveCookie();
 	updateTerm();
 	updateDateInOut();
@@ -802,9 +803,27 @@ function updateTerm()
 
 var trip_id="";
 var tripwith="";
+function deleteData(is_sync) {
+	is_async=true;
+	if(is_sync)
+		is_async=false;
+	
+	$.ajax({
+		url: "/stubbyPlanner/model1/deleteData.jsp",
+		type: "POST",
+		async: is_async,
+		data: {
+			tid:trip_id,
+		},
+		success: function( data ) {
+			trip_id=data;
+		}
+	});
+}
+
+
 function saveCookie(is_sync)
 {
-	
 	is_async=true;
 	if(is_sync)
 		is_async=false;
@@ -833,7 +852,6 @@ function saveCookie(is_sync)
 		  },
 		  success: function( data ) {
 			trip_id=data;
-			//console.log("data:" + data);
 		}
 	});
 
@@ -875,7 +893,11 @@ function reorderSchd(idx,changed_j)
 }
 function getTripgene()
 {
+	
+	// routelist[routelist.length]
+	// =new Route(city_id,city_name,recommSlp,'X',0,city_x,city_y,date_in,date_out);
 	var rtstring="";
+	// console.log("getTripgene trstype 확인:"+routelist[i].trstype);
 	for(i=0;i<routelist.length;i++)
 	{
 		city_id=routelist[i].city_id;
@@ -883,19 +905,22 @@ function getTripgene()
 			rtstring=city_id;
 		else
 			rtstring=rtstring+","+city_id;
-
+		
 		if(routelist[i].nights!="")
 			rtstring=rtstring+":"+routelist[i].nights;
 		else
 			rtstring=rtstring+":X";
 
+		//
 		if(routelist[i].trstype!="")
+			
 			rtstring=rtstring+":"+routelist[i].trstype;
 		else
 			rtstring=rtstring+":X";
 
 		if(routelist[i].is_night_move!="")
 			rtstring=rtstring+":"+routelist[i].is_night_move;
+		
 		/* 
 		for(j=0;j<routelist[i].schdlist.length;j++)
 		{
@@ -919,7 +944,7 @@ function getTripgene()
 			else
 				rtstring=rtstring+":X";
 		}
-		*/
+		 */
 	}
 	return rtstring;
 }
@@ -942,7 +967,15 @@ var stockholm = new google.maps.LatLng(45, 10);
   var myMarkers=[];
   var recommMarkers=[];
   var prv_infowindow;
-  
+	  
+  /* 
+  routelist[routelist.length]=new Route('111011004','파리','3','X','0','48.86110101269274','2.3421478271484375',new Date('2019-07-13'),new Date('2019-07-16'));    slpRatesArr[routelist[routelist.length-1].cityserial]='4|7|46|24|20';
+  routelist[routelist.length]=new Route('111081001','브뤼셀','1','X','0','50.8466245793837','4.3511438369751',new Date('2019-07-16'),new Date('2019-07-17'));      slpRatesArr[routelist[routelist.length-1].cityserial]='18|68|14|2|0';
+  routelist[routelist.length]=new Route('111071001','암스테르담','1','X','0','52.3737914039891','4.89076137542725',new Date('2019-07-17'),new Date('2019-07-18')); slpRatesArr[routelist[routelist.length-1].cityserial]='11|61|24|6|1';
+  routelist[routelist.length]=new Route('111061005','뮌헨','1','X','0','48.1399742326904','11.579246520996',new Date('2019-07-18'),new Date('2019-07-19'));        slpRatesArr[routelist[routelist.length-1].cityserial]='6|55|26|11|3';
+  routelist[routelist.length]=new Route('121011002','바르셀로나','3','X','0','41.3878531743444','2.17001438140869',new Date('2019-07-19'),new Date('2019-07-22')); slpRatesArr[routelist[routelist.length-1].cityserial]='1|5|58|24|12';
+  routelist[routelist.length]=new Route('111031001','런던','3','X','0','51.5000874980771','-0.126256942749023',new Date('2019-07-22'),new Date('2019-07-25'));     slpRatesArr[routelist[routelist.length-1].cityserial]='5|7|43|25|21';
+  */
   var styles=[
 	  {
 	    "elementType": "geometry",
@@ -1142,7 +1175,7 @@ function initialize() {
 							var city_info = e.city_info;
 							var city_img = e.city_img;
 							var recommSlp = e.recommSlp;
-							var slpRates = e.slpRates;
+							//var slpRates = e.slpRates;
 							
 							var image = '/stubbyPlanner/externalData/img_v8/selectcityICON_red.png';					
 							var city_point = new google.maps.LatLng(parseFloat(e.city_x), parseFloat(e.city_y)); // 마커 포인트
@@ -1164,7 +1197,7 @@ function initialize() {
 							
 							
 							// 클릭했을 때 나오는 창
-							infowincontent.append('<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_infowindow2.jsp?lang=ko&city_name='+city_name+'&city_id='+city_id+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_info='+city_info+'"></iframe>');
+							infowincontent.append('<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_infowindow2.jsp?lang=ko&city_name='+city_name+'&city_id='+city_id+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&city_info='+city_info+'"></iframe>');
 							// infowincontent.append('<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_infowindow2.jsp?lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_id='+city_id+'"></iframe>');
 							marker.addListener('click', function() {
 								infowindow.setContent(infowincontent.html());
@@ -1180,9 +1213,11 @@ function initialize() {
 	for(iii=0;iii<routelist.length;iii++)
 	{
 		if(iii==routelist.length-1)
-			addCityBase(routelist[iii].name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
+			//addCityBase(routelist[iii].city_name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
+			addCityBase(routelist[iii].city_name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move);
 		else
-			tAddCityBase(routelist[iii].name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
+			//tAddCityBase(routelist[iii].city_name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move,slpRatesArr[routelist[iii].city_id]);
+			tAddCityBase(routelist[iii].city_name,routelist[iii].city_id,routelist[iii].city_x,routelist[iii].city_y,routelist[iii].nights,routelist[iii].is_night_move);
 		
 		$("#span_schd_cnt_"+iii).html("버킷 "+routelist[iii].schdlist.length);
 
@@ -1239,7 +1274,7 @@ function delSchd(r_id,schd_id)
 	saveCookie();
 }
 
-//#########스케줄 추가 코당[]
+//#########스케줄 추가 코딩[]
 function addSchd(r_id,schd_id) 
 {
 
@@ -2493,14 +2528,21 @@ function selectTripwith(x,y)
 	$("#tripwith_txt").html(tripwith_txt[thei]);
 	tripwith=thei;
 	
-	saveCookie();	toggleSelectTripWith();
+	saveCookie();	
+	toggleSelectTripWith();
 }
 //#스투비플래너 누를시 홈페이지로 이동
 function gotoHome()
 {
 	if(confirm('저장하지 않고 이 페이지를 나가려고 합니다.'))
-		window.location='/stubbyPlanner/main.do';	
+		window.location='/stubbyPlanner/common/main.do';	
 }
+function gotoRoute() 
+{
+	if(confirm('저장하지 않고 이 페이지를 나가려고 합니다.'))
+		window.location='/stubbyPlanner/planner/planner_rt.do';
+}
+
 // 일장텝으로 이동
 function gotoCalendar()
 {
@@ -2515,7 +2557,8 @@ function gotoCalendar()
 		saveCookie(1);
 	
 	/* ####################### 경로 확인: ? 뒤 체크 */
-	window.location='/stubbyPlanner/plan/planner_schd.do?trip_id='+trip_id;
+	window.location='/stubbyPlanner/planner/planner_schd.do?trip_id='+trip_id;
+	// window.location='/stubbyPlanner/planner/planner_schd.do';
 }
 // 예약탭으로 이동
 function gotoResv()
@@ -2584,7 +2627,7 @@ function gotoResv()
 	<div style="padding-bottom:0px;background:#3ad195">
 
 		<div id="topControllerRight" style="width:100%;">
-			<div class="top_menu" id="menu1" onclick="window.location='planner_rt.asp?trip_id='" style="border-bottom:5px solid gray"><font style="color:#fff;font-size:12pt">루트</font> <span id="menu_label_route" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;">-박-일</span></div>
+			<div class="top_menu"  id="menu1" onclick="gotoRoute()" style="border-bottom:5px solid gray"><font style="color:#fff;font-size:12pt">루트</font> <span id="menu_label_route" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;">-박-일</span></div>
 			<div class="top_menu"  id="menu2" onclick="gotoCalendar()"><font style="font-size:12pt;color:#fff;">일정</font> <span id="menu_label_schd" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;"><span id="span_schd_cnt">0</span>개</span></div>
 			<div class="top_menu"  id="menu3" onclick="gotoResv()" ><font style="font-size:12pt;color:#fff;">예약 <span id="menu_label_resv" style="border-radius:2px;display:inline-block;background:#fff;padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;color:#696969;font-size:8pt;">만원</span></div>
 			<div style="float:left;width:25%;text-align:center;padding-top:8px;">
@@ -2630,7 +2673,7 @@ function login()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/login.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
-//저장
+// 회원가입
 function register()
 {
 	if(!trip_id)
@@ -2638,7 +2681,7 @@ function register()
 	/* 경로 확인: ? 뒤 체크 */
 	window.location="/stubbyPlanner/common/register.do?h_url=%2Fplanner%2Fplanner%5Frt%2Easp%3Ftrip%5Fid%3D"+trip_id;
 }
-//완료
+// 완료
 function complete()
 {
 	if('${authUser.member_id}'!=''){
@@ -2651,7 +2694,7 @@ function complete()
 			return;
 		}
 	
-		window.location="/planner/detail.do?tid="+trip_id;
+		window.location="/stubbyPlanner/planner/detail.do?tid="+trip_id;
 	
 	} else {
 		if(!trip_id)
@@ -2765,7 +2808,7 @@ function complete()
 
 $('#thedate').datepicker();
 $('#thedate').datepicker( "option", "dateFormat", "yy-mm-dd" );
-$('#thedate').val('${defaultDate}'); // '2019-07-03'
+$('#thedate').val('${defaultDate}');
 // 이메일 체크
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -2871,14 +2914,15 @@ Spot = function(spotname,spotserial,city_x,city_y,imgurl) {
         this.imgurl=imgurl;
 }
 // 도시이름, 도시_id , 좌표 , 숙박일수, ?
-City = function(city_name,city_id,city_x,city_y,recommSlp,slpRates){
+// City = function(city_name,city_id,city_x,city_y,recommSlp,slpRates){
+City = function(city_name,city_id,city_x,city_y,recommSlp){
         this.city_name = city_name;
         this.city_id = city_id;
         this.city_x = city_x;
         this.city_y = city_y;
         this.spots=[];
         this.recommSlp=recommSlp;
-        this.slpRates=slpRates;
+        // this.slpRates=slpRates;
 }
 
 cities=[];
@@ -3147,9 +3191,11 @@ function showMoveCityTool(idx)
 	openMyModal();
 
 }
-function addAndMoveCityAndReload(city_name, city_id, city_x, city_y, recommSlp, slpRates, eidx)
+// function addAndMoveCityAndReload(city_name, city_id, city_x, city_y, recommSlp, slpRates, eidx)
+function addAndMoveCityAndReload(city_name, city_id, city_x, city_y, recommSlp, eidx)
 {
-	addCity(city_name, city_id, city_x, city_y, recommSlp, slpRates);
+	// addCity(city_name, city_id, city_x, city_y, recommSlp, slpRates);
+	addCity(city_name, city_id, city_x, city_y, recommSlp);
 	sidx=routelist.length-1;
 	moveCityAndReload(sidx,eidx);
 }
@@ -3242,6 +3288,7 @@ function moveCity(sidx,eidx)
 
 	
 //	drawDayList();
+	deleteData();
 	saveCookie();
 
     }
@@ -3302,13 +3349,12 @@ function loadTrsInfo(idx,depCityId,desCityId)
 {
 	// var A =cities[depserial];
 	// var B =cities[desserial];
-	// var thedate=getFormattedDate(routelist[idx].date_in);
+	var thedate=getFormattedDate(routelist[idx].date_in);
 	var trstype="";
 	if(routelist[idx].trstype=="X")
 		trstype="";
 	else
 		trstype=routelist[idx].trstype;
-
 	var is_night_move=routelist[idx].is_night_move;
 
 	$.ajax({
@@ -3318,15 +3364,17 @@ function loadTrsInfo(idx,depCityId,desCityId)
 		  data: {
  		    trstype:trstype,		// 교통편 (??)
 		    depCityId:depCityId,	// 출발도시
-		    desCityId:desCityId		// 도착도시
-		 // ,thedate:thedate		// 일수
+		    desCityId:desCityId,	// 도착도시
+		    thedate:thedate			// 일수
 		  },
 		 dataType: 'json',
 		  success: function( data ) {
 //			$(".cityblock .trsinfo").eq(idx).html(data);
 			
 			trstype=data.trstype;
-
+			routelist[idx].trstype = trstype;
+			
+			
 			trstype_txt="기타";
 			if(trstype=="1")
 				trstype_txt="기차";
@@ -3399,6 +3447,7 @@ function delCity(idx)
 //	reloadCostNPeriod();
 //	getHighlights('');
 //	getAirPrice();
+	deleteData();
 	saveCookie();
 
 }
@@ -3415,7 +3464,7 @@ function chgNights(i,nights)
 //	drawDayList();
 	redrawMapMarkers();
 	updateTerm();
-
+	deleteData();
 	saveCookie();
 	updateDateSilent(i);
 }
@@ -3545,15 +3594,19 @@ function createMyMarker(city_name,city_id,city_x,city_y,i,night)
 	myMarkers.push(marker);
 
 	btnGroup='&nbsp;<select class="daySelector" onchange="chgNights('+i+',this.value)"><option>숙박일</option>';
-
+	/* 
 	if(!tcity.slpRates)
 		tcity.slpRates="||||";
 
 	arrSlpRates=tcity.slpRates.split('|');
+	*/
+	 
 	if(tcity.recommSlp=='0')
-		btnGroup=btnGroup+'<option value="0" selected>무박 '+arrSlpRates[0]+'%</option>';
+		//btnGroup=btnGroup+'<option value="0" selected>무박 '+arrSlpRates[0]+'%</option>';
+		btnGroup=btnGroup+'<option value="0" selected>무박</option>';
 	else
-		btnGroup=btnGroup+'<option value="0">무박 '+arrSlpRates[0]+'%</option>';
+		//btnGroup=btnGroup+'<option value="0">무박 '+arrSlpRates[0]+'%</option>';
+		btnGroup=btnGroup+'<option value="0">무박</option>';
 
 	
 	for(ii=1;ii<8;ii++)
@@ -3561,9 +3614,11 @@ function createMyMarker(city_name,city_id,city_x,city_y,i,night)
 		if(ii<5)
 		{
 			if(tcity.recommSlp==ii.toString())
-				btnGroup=btnGroup+'<option value="'+ii+'" selected>'+ii+'박 '+arrSlpRates[ii]+'%</option>';
+				// btnGroup=btnGroup+'<option value="'+ii+'" selected>'+ii+'박 '+arrSlpRates[ii]+'%</option>';
+				btnGroup=btnGroup+'<option value="'+ii+'" selected>'+ii+'박</option>';
 			else
-				btnGroup=btnGroup+'<option value="'+ii+'">'+ii+'박 '+arrSlpRates[ii]+'%</option>';
+				// btnGroup=btnGroup+'<option value="'+ii+'">'+ii+'박 '+arrSlpRates[ii]+'%</option>';
+				btnGroup=btnGroup+'<option value="'+ii+'">'+ii+'박</option>';
 		}
 		else
 		{
@@ -4110,12 +4165,12 @@ function setTrsToolTab(i,trstype)
 	$("#div_trstype_"+curtrstype).removeClass("trs_selector");
 	$("#div_trstype_"+curtrstype).addClass("trs_selector_selected");
 
-
 	chgTrsType(i,trstype);
 
 }
 function openTrsLink()
 {
+	
 	thedateTxt=curthedate.replace("-","");
 	thedateTxt=thedateTxt.replace("-","");
 	thedateTxt=thedateTxt.replace("-","");
@@ -4267,7 +4322,7 @@ function selNightMoveTab(id_idx,rt_i)
 	des=routelist[rt_i].city_id;
 	loadTrsInfo(rt_i,dep,des);
 	updateTerm();
-
+	deleteData();
 	saveCookie();
 }
 function showTrsHistory()
@@ -4295,8 +4350,9 @@ function showTrsInfo()
 function chgTrsType(i,trstype)
 {
 	routelist[i].trstype=trstype;
-	//saveCookie(); //
-	redrawMapMarkers(); //
+	deleteData();
+	saveCookie();
+	redrawMapMarkers();
 	depserial=routelist[i-1].city_id;
 	desserial=routelist[i].city_id;
 	loadTrsInfo(i,depserial,desserial);
@@ -4315,16 +4371,19 @@ function addCitySimple(serial)
 			success: function(data){
 				if(data!="")
 				{
-					addCity(data.city.city_name,data.city.city_id,data.city.city_x,data.city.city_y,data.city.nights,data.city.slpRates);
+					// addCity(data.city.city_name,data.city.city_id,data.city.city_x,data.city.city_y,data.city.nights,data.city.slpRates);
+					addCity(data.city.city_name,data.city.city_id,data.city.city_x,data.city.city_y,data.city.nights);
 				}
 			}
 		});
 
 }
-function tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
+//function tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
+function tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move)
 {
 
-	tcity=new City(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
+	//tcity=new City(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
+	tcity=new City(city_name,city_id,city_x,city_y,recommSlp,is_night_move);
 
 	cities[city_id]=tcity;
 	
@@ -4503,10 +4562,13 @@ function tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,sl
 
 
 }
-function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
+//function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates)
+function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move)
 {
-	tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
-	getNextCities(lastcity.serial);
+	// tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slpRates);
+	tAddCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move);
+	// getNextCities(lastcity.serial);
+	getNextCities(lastcity.city_id);
 	if(prv_infowindow)
 	{
 		prv_infowindow.close();
@@ -4523,7 +4585,8 @@ function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slp
 		infowindow = new google.maps.InfoWindow();
 		
 		/* 경로 확인: ? 뒤 체크 */
-		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_id='+city_id+'"></iframe>';
+		//thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&slpRates='+slpRates+'&city_id='+city_id+'"></iframe>';
+		thtml='<iframe scrolling="no" width="330px" height="110px"  frameborder="0" src="/stubbyPlanner/model1/planner_step1_myinfowindow2.do?idx='+idx+'&lang=ko&city_name='+city_name+'&city_info='+city_info+'&city_x='+city_x+'&city_y='+city_y+'&recommSlp='+recommSlp+'&city_id='+city_id+'"></iframe>';
 		infowindow.setContent(thtml);
 		
 		getHighlights(se);
@@ -4593,8 +4656,35 @@ function addCityBase(city_name,city_id,city_x,city_y,recommSlp,is_night_move,slp
 		moveTo(city_x,city_y);
 	}
 }
+
+/* 
+function addSpotBase(cityserial,cityname,spotname,spotserial,lat,lng,imgurl)
+{
+
+
+	xxx=cityserial;
+	tcity=cities[xxx];
+	if(!tcity)
+		addCity(cityname,cityserial,lat,lng,'','');
+	tcity=cities[xxx];
+	cities[xxx].spots[tcity.spots.length]=new Spot(spotname,spotserial,lat,lng,imgurl);
+
+	$(".cityblock").each(function(idx) {
+		if($(this).find(".cityserial").val()==xxx)
+		{
+//			$(this).find(".spotbox").append("<div style='height:30px;overflow:hidden;margin-right:1px;float:left;position:relative;'><a href='javascript:moveToCityMap(\""+idx+"\")' title='"+spotname+"'><img   src='"+imgurl+"' width='34px'/></a></div>");
+
+//			$(this).find(".spotbox").show();
+		}
+	});
+}
+ */
+
+
+
 // 0:serial,1:markerName,2:longitude,3:latitude,4:taxSerial,5:SiteLevel,6:sitetax,7:sitename_eng
-function addCity(city_name,city_id,city_x,city_y,recommSlp,slpRates)
+// function addCity(city_name,city_id,city_x,city_y,recommSlp,slpRates)
+function addCity(city_name,city_id,city_x,city_y,recommSlp)
 {
 
 	if(routelist.length==0)
@@ -4621,9 +4711,10 @@ function addCity(city_name,city_id,city_x,city_y,recommSlp,slpRates)
 		date_out=new Date(date_in.getFullYear(),date_in.getMonth(),date_in.getDate()+eval(recommSlp));
 		
 	}
-
+		
 	routelist[routelist.length]=new Route(city_id,city_name,recommSlp,'X',0,city_x,city_y,date_in,date_out);
-	addCityBase(city_name,city_id,city_x,city_y,recommSlp,0,slpRates);
+	// addCityBase(city_name,city_id,city_x,city_y,recommSlp,0,slpRates);
+	addCityBase(city_name,city_id,city_x,city_y,recommSlp,0);
 //	drawDayList();
 	updateTerm();
 
@@ -5434,15 +5525,15 @@ if(data.schd.length<1)
                thtml='<div style="margin-bottom:20px;text-align:center;padding-left:45px;padding-right:25px;text-align:center">';
                for(i=0;i<10;i++)
                {
-
+				  /* 
                   val_schd_slp_rate=0;
                   if(i<5)
                   {
-                     val_schd_slp_rate=data.schd[i].slprate;
+                     //val_schd_slp_rate=data.schd[i].slprate;
                      if(val_schd_slp_rate=="")
                         val_schd_slp_rate=0;
                   }
-
+ 				  */
                   i_txt=i;
                   if(i_txt==0)
                      i_txt="무";
@@ -5450,9 +5541,10 @@ if(data.schd.length<1)
                      thtml+='<div  id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
                   else
                      thtml+='<div id="circle_night_selector_'+i+'" style="padding-top:16px" class="circle_night_selector"  onmouseover="showSchdDetail('+i+')" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:15pt;"><b>'+i_txt+'박</b></font><br>';
+                  /* 
                   if(val_schd_slp_rate>0)
                      thtml+='<font style="font-size:10pt;">'+val_schd_slp_rate+'%</font>';
-
+ 				  */
                   thtml+='</div>';
                   if(i==4)
                      thtml+='<div style="clear:both"></div>';
@@ -5653,7 +5745,7 @@ lastSchdData=data.schd;
                   {
                      if(data.schd[j].night==i)
                      {
-                        val_schd_slp_rate=data.schd[j].slprate;
+                        //val_schd_slp_rate=data.schd[j].slprate;
                         val_schd_subtitle=data.schd[j].subtitle;
                         val_schd_title=data.schd[j].title;
                         val_schd_title=val_schd_title.replace('<'+i+'박>','');
@@ -5668,8 +5760,10 @@ lastSchdData=data.schd;
                      thtml+='<div  id="circle_night_selector_'+i+'" class="circle_night_selector_selected" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
                   else
                      thtml+='<div id="circle_night_selector_'+i+'" class="circle_night_selector" onmouseover="showSchdDetail('+i+')" onmouseout="hideSchdDetail()" onclick="nightSelect('+rt_idx+',\''+i+'\');"><font style="font-size:8pt;">'+val_schd_title+'</font><br><font style="font-size:14pt;"><b>'+i_txt+'박</b></font><br>';
+                  /* 
                   if(val_schd_slp_rate>0)
                      thtml+='<font style="font-size:9pt;">'+val_schd_slp_rate+'%</font>';
+                   */
                   thtml+='</div>';
                   if(i==4)
                      thtml+='<div style="clear:both"></div>';

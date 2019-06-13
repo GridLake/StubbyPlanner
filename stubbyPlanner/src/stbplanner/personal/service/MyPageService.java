@@ -10,12 +10,18 @@ import stbplanner.personal.model.MyPageDTO;
 public class MyPageService {
 	
 	private MyPageDAO myPageDao = new MyPageDAO();
+	
+	
+	public void countFriend() {
 
+	}
 	public MyPageDTO getMyPage(String member_id) {
 
 		try(Connection conn = ConnectionProvider.getConnection()){
 			
 			MyPageDTO myPage = myPageDao.selectMyPage(conn, member_id);
+			
+			
 	
 			return myPage;
 			

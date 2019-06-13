@@ -22,9 +22,7 @@
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = " select *  "
-				+ " from tbl_gallery "
-				+ "where member_id = ? ";
+		String sql = "select * from tbl_gallery g join tbl_gallery_pic p on g.gal_seq=p.gal_seq where member_id=? order by g.gal_seq desc";
 
 		pstmt = conn.prepareStatement(sql);
 
@@ -38,22 +36,23 @@
 			do {
 				System.out.println("do");
 				JSONObject PhotoObj = new JSONObject();
-				PhotoObj.put("member_id", rs.getString("member_id"));
 				PhotoObj.put("gal_seq", rs.getInt("gal_seq"));
+				PhotoObj.put("gal_pic_seq", rs.getInt("gal_pic_seq"));
+				PhotoObj.put("member_id", rs.getString("member_id"));
+				PhotoObj.put("gal_subject", rs.getString("gal_subject"));
+				PhotoObj.put("gal_pic_path", rs.getString("gal_pic_path"));
+				PhotoObj.put("gal_regdate", rs.getString("gal_regdate".toString()));
+				PhotoObj.put("post_like", rs.getInt("post_like"));
 
 				jArr.add(PhotoObj);
 
 			} while (rs.next());
 		}
-
-
 		jObj.put("list", jArr);
-
 	} catch (Exception e) {
 		//e.printStackTrace();
 	} finally {
 		pstmt.close();
-		//rs.close();
 		conn.close();
 	}
 %>

@@ -810,7 +810,7 @@ table.type09 tbody td:hover{
                                 <div class="stu_inner_wrap">
                                     <div class="titArea" style="text-shadows:3px 4px 5px #000;">
                                       
-                                        <b class="title" style="color:yellow"><h1>유럽여행 만남의 공간</h1></b>
+                                        <b class="title" style="color:yellow"><h1>유럽여행 소통의 공간</h1></b>
                                         <p >자신만의 여행정보를 공유하세요!</p>
 
                                     </div>
@@ -818,75 +818,7 @@ table.type09 tbody td:hover{
                             </div>
                         </a>
                     </li>
-<%-- 
-<!--
-                    <li class="swiper-slide">
-                        <a href="<%= contextPath %>/market/index_ctry.do?region=14107">
-                            <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1557200068405fXpJZvHbLv.jpg);">
-                                <div class="stu_tone"></div>
-                                <div class="stu_inner_wrap">
-                                    <div class="titArea">
-                                        <b class="type" style="color:#ffec95;">한여름의 아이슬란드</b>
-                                        <b class="title">13만원 할인 쿠폰</b>
-                                        <p>현지 NO.1 업체들과의 직거래!</p>
-			 <span>할인상품들 보기<i></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
--->
-<!-- 
-                    <li class="swiper-slide">
-                        <a href="<%= contextPath %>/market/index_ctry.do?region=13106">
-                            <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1557200073282p7xDARFqSW.jpg);">
-                                <div class="stu_tone"></div>
-                                <div class="stu_inner_wrap">
-                                    <div class="titArea">
-                                        <b class="type" style="color:#ffec95;">크로아티아의 재발견</b>
-                                        <b class="title"> 얼리버드 SALE중</b>
-                                        <p>현지 NO.1 업체들과의 직거래!</p>
-			 <span>할인상품들 보기<i></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
- -->                    
-                    
-<!---
-                    <li class="swiper-slide">
-                        <a href="/coupon/winter_coupon.asp">
-                            <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548143509681qeUESXqBuF.jpg);">
-                                <div class="stu_tone"></div>
-                                <div class="stu_inner_wrap">
-                                    <div class="titArea">
-                                        <b class="type" style="color:#ffec95;">COUPON</b>
-                                        <b class="title">놓치지 말아야 할<br/>유럽 5대 필수투어 쿠폰</b>
-                                        <p>100,000원 할인쿠폰!</p>
-                                        <span>쿠폰받기<i></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="swiper-slide">
-                        <a href="/event_1/event_1plus1.asp">
-                            <div class="stu_bg" style="background-image:url(<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/0/0/1548143514207g7GoOyuFIS.jpg);">
-                                <div class="stu_tone"></div>
-                                <div class="stu_inner_wrap">
-                                    <div class="titArea">
-                                        <b class="type">EVENT</b>
-                                        <b class="title" style="color:#4a4a4a;">하나 사면 하나 더!<br/>1+1 할인상품</b>
-                                        <p style="color:#4a4a4a;">하나만 사도 핵이득!</p>
-                                        <span>자세히 보기<i></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
---->
- --%>
+
 <!--                 </ul> -->
             </div>
 <!---
@@ -896,9 +828,9 @@ table.type09 tbody td:hover{
 -->
 
 
-           <div class="stu_square_search" style=" position:absolute; bottom:0; left:50%; transform:translate(-50%, 50%); max-width:900px; width:calc(100% - 80px);">
-                <input href="#" class="search_input" placeholder="제목, 내용, 작성자로 검색">
-            </div>
+<!--            <div class="stu_square_search" style=" position:absolute; bottom:0; left:50%; transform:translate(-50%, 50%); max-width:900px; width:calc(100% - 80px);"> -->
+<!--                 <input href="#" class="search_input" placeholder="제목, 내용, 작성자로 검색"> -->
+<!--             </div> -->
         </section>
 <!--         
         <section class="stu_svc_icon">

@@ -96,6 +96,11 @@ button#good:hover:before,button:hover:after{
 }
 
 </style>
+
+
+
+
+
 </head>	
 <body>
 <div class="stu_wrap">
@@ -182,8 +187,8 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 		</li>
 		<li style="position: relative">
 			<a href="javascript:#" id="friend">
-				<div><img src="//image.msscdn.net/skin/m_musinsa/images/icon_point.png" alt="포인트"></div>
-				<em style="color: white">2,600</em>
+				<div id="countFriend"><img src="//image.msscdn.net/skin/m_musinsa/images/icon_point.png" alt="포인트"></div>
+				<em style="color: white">0</em>
 				<div>친구	</div>
 			</a>
 		</li>	
@@ -686,10 +691,10 @@ var member_id = id;
 						$.each(data.list, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
 	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
-	                     		thtml+='<button id ="good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
-	                     		thtml+='<a><img alt="'+item.member_id+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
-								thtml+='<h3>'+item.member_id+'</h3>';
-								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
+	                     		thtml+='<button id ="good" class ="no" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">삭제</button>';
+	                     		thtml+='<a><img alt="'+item.member_myid+'" class="msg" src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; height:50px; float:right; padding:5px;"></a>';
+								thtml+='<h3>'+item.member_myid+'</h3>';
+								thtml+='<p>'+item.ms_name+'/'+(item.gender=='M'?'MAN':'WOMAN')+'</p></div>'; 
 						});
 						thtml+='</div>';
 						$("#layerpop_friend_content").html(thtml); //
@@ -741,14 +746,15 @@ var member_id = id;
 	               	success: function(data){ // { result : 1 }
 					if(data!="")
 					{
+						alert("들어오니?");
 						thtml='<div style="text-align: left">';
 						$.each(data.listApply, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
 	                     		thtml+='<div><img src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" style="width:50px; heigth:50px; float:left; padding:5px;">';
 // 	                     		thtml+='<img src="/stubbyPlanner/externalData/m_musinsa/text_off.png" style="width:50px; heigth:50px; float:right; padding:5px;">';
-	                     		thtml+='<button id = "good" class ="ok" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button>';
-	                     		thtml+='<button id = "good" class ="no" value="'+item.member_id+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button>';
-	                     		thtml+='<h3>'+item.member_id+'</h3>';
+	                     		thtml+='<button id = "good" class ="ok" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">수락</button>';
+	                     		thtml+='<button id = "good" class ="no" value="'+item.member_myid+'" style="width:50px; height:50px; float:right; padding:5px;">거절</button>';
+	                     		thtml+='<h3>'+item.member_myid+'</h3>';
 								thtml+='<p>'+item.ms_name+'/'+item.gender+'</p></div>'; 
 // 								thtml+='+item.gender+'</p>'; 
 						});
@@ -804,7 +810,6 @@ var member_id = id;
  
     $("#friendApply").click(function(){        
 
-
         showFriendApply('${myPage.memberInfoMap.member_id }');
     })
     
@@ -825,6 +830,24 @@ var member_id = id;
     
 <script >
 
+function countFriend()
+{
+	var member_id = '${authUser.member_id}';	
+	  $.ajax({
+       	url: '/stubbyPlanner/api/mypage/get_countFriend.jsp?member_id='+member_id,
+         	dataType: 'json',
+         	cache:false,
+         	success: function(data){
+						if(data!="")
+						{
+					
+						}
+      				}
+	  		});
+}
+
+
+
 function getPlanner(id)
 {
 
@@ -843,20 +866,23 @@ var member_id = id;
 	               	success: function(data){
 					if(data!="")
 					{
-						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
+// 						thtml='<section class="stu_regions";"><div class="stu_inner_wrap" style="padding-top: 20px;">';
+// 						thtml+='<h2 style="font-size:18pt;font-weight:700;">갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">';
+									thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul>';
 						$.each(data.list, function( i, item ) {
-									console.log(item.POST_SUBJECT);	
-								thtml+='<li class="prd_item gallery" style="width:100%;"><div class="prd_info">';
-// 								thtml+='<li class="square"><div class="prd_info">';
-	                     		thtml+='<a href="광장 게시물페이지 주소">';
-								thtml+='<div class="name">'+item.member_id+'</div>';
-								thtml+='<div class="desc"><div><span>'+item.gal_seq+'</span></div>';
-		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
-		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
-		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
+									console.log(item.gal_subject);
+
+// 									if(i%4==0){
+// 									thtml+='</ul><br/><ul class="prd_list">';	
+// 									thtml+=' <li style="width: 200px; height: 200px; margin: 5px;">';
+// 									}
+// 									thtml+='<a href="http://www.stubbyplanner.com" style="width:20%;">';                                                          
+									thtml+='<img src="/stubbyPlanner/square/gallery/'+item.gal_pic_path+'" style="width:190px; height:190px; margin:5px;">';
  
-			console.log(thtml);
+						console.log(thtml);
 						});
+// 									thtml+='</li>';
+						thtml+='</ul>';
 						$(".mypage_message").html(thtml);
 					}else{
 						thtml='<div class="titArea"><h3 class="stu_title">내 갤러리 목록</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
@@ -890,9 +916,9 @@ var member_id = id;
 	                     		thtml+='<a href="광장 게시물페이지 주소">';
 								thtml+='<div class="name">'+item.POST_SUBJECT+'</div>';
 								thtml+='<div class="desc"><div><span>'+item.POST_CONTENT+'</span></div>';
-		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>100  </span></dd></dl>';
-		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>50  </span></dd></dl>';
-		                        thtml+='<dl><dt>2019-06-01</dt><dd class="date"><span></span></dd></dl></div></div></li>';
+		                        thtml+='<dl><dt>조회수</dt><dd class="date"><span>'+item.post_hits+'</span></dd></dl>';
+		                        thtml+='<dl><dt>추천수</dt><dd class="date"><span>'+item.post_like+'</span></dd></dl>';
+		                        thtml+='<dl><dt>'+item.post_regdate.split(" ")[0]+'</dt><dd class="date"><span></span></dd></dl></div></div></li>';
  
 			console.log(thtml);
 						});
