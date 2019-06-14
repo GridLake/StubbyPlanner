@@ -7,6 +7,7 @@
 
 <%
  String tid = request.getParameter("tid");
+ System.out.println("deleteData tid: " + tid);
 %>
 
 <%
@@ -15,7 +16,9 @@
  ResultSet rs = null;
  String [] tripgeneArr2 = {};
 
- String sql = " delete from tbl_planner where trip_id = ? ";
+ String sql = " update tbl_route set "
+		 	+ " "	
+		    + " where trip_id = ? ";
 
 	try {
 		conn = ConnectionProvider.getConnection();
@@ -28,14 +31,12 @@
 		rs.close();
 		pstmt.close();
 		
-		sql = " delete from tbl_route where trip_id = ? ";
+		sql = " delete from tbl_planner where trip_id = ? ";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, tid);
 		
 		rs = pstmt.executeQuery();
-		
-		tid = "";
 		
 	} catch (Exception e) {
 		e.printStackTrace();
