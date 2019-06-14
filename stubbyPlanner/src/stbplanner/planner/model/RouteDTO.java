@@ -3,8 +3,14 @@ package stbplanner.planner.model;
 public class RouteDTO {
 	// ecity_id, ecity_name, rt_days, night_move, rt_trans, city_x, city_y, rt_startdate, rt_enddate;
 	
+	private int ridx;
 	private int trip_id;
+	private int scity_id;
 	private int ecity_id;
+	private String trs_date;
+	private String arr_date;
+	private String scity_name;
+	
 	private String ecity_name;
 	private int rt_days;
 	private int night_move;
@@ -13,6 +19,37 @@ public class RouteDTO {
 	private double city_y;
 	private String rt_startdate;
 	private String rt_enddate;
+	
+	public String getTrs_date() {
+		return trs_date;
+	}
+	public void setTrs_date(String trs_date) {
+		this.trs_date = trs_date;
+	}
+	public String getArr_date() {
+		return arr_date;
+	}
+	public void setArr_date(String arr_date) {
+		this.arr_date = arr_date;
+	}
+	public int getRidx() {
+		return ridx;
+	}
+	public void setRidx(int ridx) {
+		this.ridx = ridx;
+	}
+	public int getScity_id() {
+		return scity_id;
+	}
+	public void setScity_id(int scity_id) {
+		this.scity_id = scity_id;
+	}
+	public String getScity_name() {
+		return scity_name;
+	}
+	public void setScity_name(String scity_name) {
+		this.scity_name = scity_name;
+	}
 	
 	public int getTrip_id() {
 		return trip_id;
