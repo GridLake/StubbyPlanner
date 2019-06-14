@@ -76,7 +76,7 @@
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
 
 <!-- Core CSS file -->
-<link rel="stylesheet" href="/css/photoswipe.css"> 
+<link rel="stylesheet" href="/stubbyPlanner/externalData/css/photoswipe.css"> 
 
 <!-- Skin CSS file (styling of UI - buttons, caption, etc.)
      In the folder of skin CSS file there are also:
@@ -772,7 +772,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
 	<div style="height:275px;overflow:hidden">
 
 	<div style="position:relative;">
-		<a href="attr_detail.do?attr=${attr.attr_id}"><img src="${attr.a_img}_m.jpg"  style="border-radius:5px;width:100%;" onerror="this.src='/img_v12/img_er.gif'"></a>
+		<a href="attr_detail.do?attr=${attr.attr_id}"><img src="${attr.a_img}_m.jpg"  style="border-radius:5px;width:100%;" onerror="this.src='/stubbyPlanner/externalData/img_v12/img_er.gif'"></a>
  
 		<div style="border-radius:5px;position:absolute;bottom:0px;right:0px;width:100%;height:30px;background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,5));">&nbsp;</div>
 		<div style="position:absolute;bottom:3px;right:10px;"><font style="color:#fff;font-size:12pt;"><i class="fa fa-star" aria-hidden="true"></i> ${attr.a_favorite}</font></div>
@@ -848,20 +848,20 @@ $("#"+id).css("color",thecolor);
 
 <!-- JS Global Compulsory -->
 
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
 <!-- JS Implementing Plugins -->
-<script src="/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/owl-carousel2/owl.carousel.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/owl-carousel2/owl.carousel.min.js"></script>
 
 <!-- JS Page Level -->
-<script src="/superguide/One-Pages/assets/js/one.app.js"></script>
-<script src="/superguide/One-Pages/Travel/assets/js/plugins/owl-carousel2.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/js/one.app.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/Travel/assets/js/plugins/owl-carousel2.js"></script>
 
 <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
 

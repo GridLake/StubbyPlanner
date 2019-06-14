@@ -46,9 +46,9 @@ public class PlannerReserveAirHandler implements CommandHandler {
 		
 		
 		
+		ArrayList<HashMap<String,String>> reserverList = resvAirService.getReservers();
 		
-		
-		
+		request.setAttribute("reserverList", reserverList);
 		
 		
 		return "/planner/planner_resv_air";

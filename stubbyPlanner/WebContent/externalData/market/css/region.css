@@ -1,0 +1,191 @@
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                       모바일 (공통)                        */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+/* 공통 */
+section { padding-top:30px; }
+.swiper-button-prev { background-image:url(../images/arr-prev.png); outline:none; }
+.swiper-button-next { background-image:url(../images/arr-next.png); outline:none; }
+.swiper-button-prev:hover, .swiper-button-next:hover { opacity:1; }
+.stu_h2_title { margin-bottom:10px; }
+
+
+
+/* topBanner 영역 */
+.stu_topBanner { position:relative; width:100%; height:230px; background-repeat:no-repeat; background-position:center center; background-size:cover; }
+.stu_topBanner .stu_titleArea { position:absolute; top:0; display:flex; flex-flow:column nowrap; justify-content:center; align-items:center; width:100%; height:100%; text-align:center; }
+.stu_topBanner .stu_titleArea img { width:70px; }
+.stu_topBanner .stu_h2_title { font-size:20px; font-weight:400; color:#fff; }
+.stu_topBanner .stu_h2_title em { font-size:25px; font-weight:700; }
+.stu_topBanner .regionMenu { position:relative; width:100px; height:40px; padding:0 16px; background:#3598fe url(../images/arr-down.png) no-repeat 72px center; background-size:13px; font-size:14px; font-weight:400; line-height:40px; text-align:left; color:#fff; box-sizing:border-box; cursor:pointer; outline:none; }
+.stu_topBanner .regionMenu.on { background:#3598fe url(../images/arr-up.png) no-repeat 72px center; background-size:13px; }
+.stu_topBanner .regionMenu ul { position:absolute; display:none; top:50px; left:50%; transform:translateX(-50%); width:300px; margin:12px auto 0; padding:14px 0; background:#fff; border-radius:2px; box-shadow:rgba(0, 0, 0, .3) 0 5px 15px; z-index:2; }
+.stu_topBanner .regionMenu ul:after { position:absolute; top:-10px; left:50%; transform:translateX(-50%); content:""; border-bottom:10px solid #fff; border-right:10px solid transparent; border-left:10px solid transparent; border-top:0 solid transparent; }
+.stu_topBanner .regionMenu ul.on { display:block; }
+.stu_topBanner .regionMenu ul li a { display:inline-block; float:left; width:33.333%; padding:10px; font-size:15px; font-weight:300; color:#000; text-align:center; text-decoration:none; box-sizing:border-box; }
+.stu_topBanner .regionMenu ul li a:hover { color:#3598fe; font-weight:500; }
+.stu_topBanner .regionMenu ul li a.current { color:#3598fe; font-weight:500; }
+
+
+
+/* region 그룹 영역 */
+.topContent { padding-bottom:20px; background:#f5f5f5; }
+.stu_regionGroup .swiper-container { position:relative; width:96%; overflow:hidden; z-index:1; }
+.stu_regionGroup .swiper-wrapper { display:flex; }
+.stu_regionGroup .swiper-slide { position:relative; height:220px; box-sizing:border-box; margin:0 auto; float:left; color:#fff; overflow:hidden; }
+.stu_regionGroup .swiper-slide img { position:absolute; top:50%; left:50%; height:100%; transform:translate(-50%, -50%); }
+.stu_regionGroup .swiper-slide .stu_titleArea { position:absolute; display:flex; flex-flow:column nowrap; justify-content:center; align-items:center; width:100%; height:100%; margin:4px 0; color:#fff; text-align:center; text-shadow:#000 0 0 3px; }
+.stu_regionGroup .swiper-slide .stu_titleArea .type1 { font-size:20px; font-weight:600; }
+.stu_regionGroup .swiper-slide .stu_titleArea .type2 { font-size:16px; font-weight:300; }
+.stu_regionGroup .swiper-slide .stu_titleArea .type2 span { margin-left:15px; }
+.col1 { width:100%; }
+.col2, .col3, .col4, .col5 { width:85%; }
+
+
+
+/* 개인가이드 영역 */
+.stu_privateGuide .swiper-container { position:relative; width:96%; margin:15px auto 0; overflow:hidden; z-index:1; }
+.stu_privateGuide li { position:relative; display:inline-block; width:52%; margin:0 1%; padding-bottom:4px; border:1px solid #e5e5e5; box-sizing:border-box; background:#fff; text-align:left; color:#888; }
+.stu_privateGuide li:first-child { margin-left:0; }
+.stu_privateGuide .swiper-button-prev, .stu_privateGuide .swiper-button-next { display:none; }
+.stu_privateGuide .swiper-button-prev { left:-62px; }
+.stu_privateGuide .swiper-button-next { right:-62px; }
+.stu_privateGuide .swiper-pagination { display:none; text-align:center; bottom:0; }
+.stu_band { position:absolute; top:8px; left:8px; height:26px; padding:0 8px; border-radius:5px; font-size:12.5px; font-weight:300; letter-spacing:0; line-height:26px; color:#fff; z-index:1; }
+.stu_thumbnail_img { float:left; position:relative; width:100%; height:0; padding-bottom:60%; overflow:hidden; }
+.stu_thumbnail_img img { position:absolute; top:-100%; right:-100%; bottom:-100%; left:-100%; width:100%! important; height:auto; margin:auto; }
+.stu_caption { float:left; display:block; width:100%; height:82px; padding:8px 4%; border-top:1px solid #e5e5e5; font-size:12.5px; vertical-align:top; box-sizing:border-box; }
+.stu_caption .stu_company { display:block; font-weight:400; color:#497eb7; }
+.stu_caption .stu_name { display:-webkit-box; display:-ms-box; margin-top:4px; font-size:14.5px; font-weight:500; line-height:20px; height:40px; white-space:normal; overflow:hidden; text-overflow:ellipsis; word-wrap:break-word; -webkit-line-clamp:2; -webkit-box-orient:vertical; color:#222; }
+.stu_info { display:block; float:left; width:100%; padding:10px 4% 6px; box-sizing:border-box; }
+.stu_info .stu_price { position:relative; right:0; bottom:0; font-size:13px; font-weight:300; color:#666; text-align:left; line-height:20px; }
+.stu_info .stu_price span { display:block; float:right; font-size:15px; font-weight:500; color:#222; }
+.stu_info .stu_review { position:relative; height:40px; }
+.stu_info .stu_ratingBox { display:inline-block; vertical-align:middle; }
+.stu_info .stu_ratingBox .stu_icon { display:inline-block; width:12px; height:11px; margin-right:-4px; padding:0; background:url(../images/star01.png) -24px 0 no-repeat; background-size:60px; }
+.stu_info .stu_icon.half { background-position:-12px 0; }
+.stu_info .stu_icon.max { background-position:0 0; }
+.stu_info .stu_icon.new { width:24px; background-position:-36px 0; }
+.stu_info .stu_icon.none { display:none; }
+.stu_info .stu_total { display:inline-block; margin:0 0 0 4px; font-size:12.5px; font-weight:300; line-height:18px; vertical-align:middle; color:#666; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    태블릿 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:620px){
+
+/* 공통 */
+section { padding-top:40px; }
+.stu_h2_title { margin-bottom:15px; }
+
+
+/* topBanner 영역 */
+.stu_topBanner { height:240px; }
+.stu_topBanner .stu_titleArea img { width:80px; }
+.stu_topBanner .stu_h2_title { font-size:24px; }
+.stu_topBanner .stu_h2_title em { font-size:28px; }
+.stu_topBanner .regionMenu { width:110px; padding:0 20px; background:#3598fe url(../images/arr-down.png) no-repeat 78px center; background-size:14px; font-size:15px; }
+.stu_topBanner .regionMenu.on { background:#3598fe url(../images/arr-up.png) no-repeat 78px center; background-size:14px; }
+.stu_topBanner .regionMenu ul { width:480px; padding:10px 0; }
+.stu_topBanner .regionMenu ul li a { width:20%; line-height:26px; }
+
+
+
+/* region 그룹 영역 */
+.stu_regionGroup .swiper-container { width:98.5%; }
+.stu_regionGroup .swiper-wrapper { display:block; }
+.col2 { width:50%; }
+.col3 { width:33.333%; }
+.col4 { width:25%; } 
+.col5 { width:100%; }
+
+
+
+/* 개인가이드 영역 */
+.stu_privateGuide .swiper-container { width:98%; }
+.stu_privateGuide li { width:28%; }
+.stu_privateGuide li:first-child { margin:0 1%; }
+.stu_band { font-size:13px; }
+.stu_caption { height:90px; font-size:14px; }
+.stu_caption .stu_name { font-size:15.5px; }
+.stu_info .stu_price { font-size:14px; }
+.stu_info .stu_price span { font-size:15.5px; }
+.stu_info .stu_total { margin:0 0 0 5px; font-size:14px; }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================================= */
+/* --------------------------------------------------------- */
+/*                    PC 웹 (가로 및 세로)                    */
+/* --------------------------------------------------------- */
+/* ========================================================= */
+
+@media (min-width:1024px){
+
+/* 공통 */
+section { padding-top:50px; }
+.stu_h2_title { margin-bottom:20px; }
+
+
+/* topBanner 영역 */
+.stu_topBanner { height:0; padding-bottom:24%; }
+.stu_topBanner .stu_titleArea img { width:90px; }
+.stu_topBanner .stu_h2_title { font-size:30px; }
+.stu_topBanner .stu_h2_title em { font-size:35px; }
+.stu_topBanner .regionMenu ul { top:60px; width:500px; }
+.stu_topBanner .regionMenu ul li a { line-height:30px; }
+
+
+
+/* region 그룹 영역 */
+.topContent { padding-bottom:40px; }
+.stu_regionGroup .swiper-slide .stu_titleArea .type1 { font-size:22px; }
+.stu_regionGroup .swiper-slide .stu_titleArea .type2 { font-size:18px; }
+
+
+
+/* 개인가이드 영역 */
+.stu_privateGuide .swiper-container { width:100%; height:352px; }
+.stu_privateGuide ul { height:306px; }
+.stu_privateGuide li { width:23.2%; margin:0 .9%; }
+.stu_privateGuide .swiper-button-prev, .stu_privateGuide .swiper-button-next { display:block; }
+.stu_privateGuide .swiper-pagination { display:block; }
+.stu_caption { padding:10px 4%; }
+.stu_info .stu_price span { font-size:17px; }
+
+
+}

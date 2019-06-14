@@ -3509,7 +3509,7 @@ $(document).ready(function() {
     $(window).scroll(function() { if($(this).scrollTop() > 600) { $('.stu_top_wrap').fadeIn(); } else { $('.stu_top_wrap').fadeOut(); } }); $('.stu_top').click(function() { $('html, body').animate({scrollTop : 0}, 400); return false; });
 });
 </script>
-            <section class="stu_md-background" style="z-index:999">
+  <!--           <section class="stu_md-background" style="z-index:999">
                 <div class="md-container" style="z-index:999">
                     <div class="md-header" style="background:#00A572">
                         <a href="#stu_md-close" class="ico_back2"></a>
@@ -4644,7 +4644,7 @@ $(document).ready(function() {
                         </div>
 
                 </div>
-            </section>
+            </section> -->
             <!--// 모달 영역 -->
 </body>
 </html>

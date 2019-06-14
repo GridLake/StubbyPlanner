@@ -173,4 +173,64 @@ public class ReserveAirDAO {
 
 	}
 
+	public ArrayList<HashMap<String, String>> getReservers(Connection conn) throws SQLException {
+		
+		ArrayList<HashMap<String, String>> reserverList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		 String sql =                                                                                                  
+                                                                                                                          
+			"	 with temp as (                                                                                           "
+			+"			 select Row_number() over (order by reg_date desc) rnk, t.*                                       "
+			+"			 from(                                                                                            "
+			+"			 select b.*, a.airline_name, c.city_name in_city, d.city_name out_city                            "
+			+"			 from tbl_airline a  join  tbl_res_flight b on A.Airline_Id = b.airline_id                        "
+			+"			                     join tbl_city c on B.In_City_Id = c.city_id                                  "
+			+"			                     join tbl_city d on B.Out_City_Id = d.city_id                                 "
+			+"			 )t                                                                                               "
+			+"			 )                                                                                                "
+			+"			 select airline_name, flight_price||'만원' flight_price , in_city, out_city, Getago(reg_date) ago "
+			+"		,	 TO_CHAR(to_date(dept_sdate,'MM/DD/RRRR'), 'RRRR\"년\"MM\"월 출발\"' )  deptdate                      "
+			+"			 from temp                                                                                        "
+			+"			 where rnk <= 15                                                                                  "              ;                           
+                                                                                                   
+				 
+				 
+				                                                                                                                                  
+				
+		 System.out.println(sql);
+
+		 
+			pstmt = conn.prepareStatement(sql);
+
+			//like의 에 ' ' 안써줘서 오류 발생가능 
+			rs = pstmt.executeQuery();
+			
+
+			if (rs.next()) {
+				reserverList = new ArrayList<>();
+
+				do {
+					HashMap<String, String> reserver  = new HashMap<>();
+					
+					
+					reserver.put("airline_name",rs.getString("airline_name"));
+					reserver.put("flight_price", rs.getString("flight_price"));
+					reserver.put("in_city",rs.getString("in_city"));
+					reserver.put("out_city", rs.getString("out_city"));
+					reserver.put("ago",rs.getString("ago"));
+					reserver.put("deptdate", rs.getString("deptdate"));
+				
+
+					reserverList.add(reserver);
+					
+
+				} while (rs.next());
+			}
+			
+		
+		return reserverList;
+	}
+
 }

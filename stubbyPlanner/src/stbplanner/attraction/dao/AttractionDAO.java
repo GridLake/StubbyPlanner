@@ -70,15 +70,17 @@ public class AttractionDAO {
 
 		String sql = "select month , count(*) user_cnt " + 
 				"from( " + 
-				"select A.Country_Name , extract (month from D.Lastdate) month " + 
+				"select A.Country_Name , extract (month from D.rt_enddate) month " + 
 				"from tbl_country a join tbl_region b on A.Country_Id = B.Country_Id " + 
 				"                    join tbl_city c on B.Region_Id = C.Region_Id " + 
-				"                    join Tbl_Route d on C.City_Id  = D.City_Id  " + 
+				"                    join Tbl_Route d on C.City_Id  = D.SCity_Id  " + 
 				"                    where A.Country_Id = ?  ) " + 
 				" group by month " + 
 				" having month between ? and ? ";
 
 
+		
+		
 
 		pstmt = conn.prepareStatement(sql);
 
@@ -140,6 +142,11 @@ public class AttractionDAO {
 						+"			                join Tbl_City_Img e on A.City_Id = E.City_Id            "
 						+"                        left outer join Tbl_Bucketcity f on A.City_Id = F.City_Id"
 						+"			where C.Country_Id = ? and B.Region_Name = ?                  ";
+		
+		
+		System.out.println(sql);
+		
+		
 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, country_id);
@@ -242,6 +249,8 @@ public class AttractionDAO {
 						+"	 from tbl_attr a join tbl_attr_info b on A.Attr_Id = B.Attr_Id "
 						+"	                join Tbl_Theme c on A.Theme_Id = C.Theme_Id  "
 						+"	where A.City_Id = ? and C.Theme_Name= ?  ";
+		
+		System.out.println(sql);
 
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, city_id);
@@ -284,6 +293,9 @@ public class AttractionDAO {
 						+	"	from Tbl_Bucketcity_Img a join Tbl_Bucketcity b on A.Bucketcity_Id = B.Bucketcity_Id  "
 						+	"	where B.City_Id = ?  ";
 
+		
+		//System.out.println(sql);
+		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, city_id);
 

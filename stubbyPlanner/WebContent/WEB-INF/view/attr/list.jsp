@@ -48,34 +48,34 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 <link rel="stylesheet"
-	href="/stubbyPlanner/superguide/One-Pages/assets/css/app.css">
+	href="/stubbyPlanner/externalData/superguide/One-Pages/assets/css/app.css">
 <link rel="stylesheet"
-	href="/stubbyPlanner/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
+	href="/stubbyPlanner/externalData/superguide/assets/plugins/font-awesome/css/font-awesome.min.css">
 
 
 <!-- CSS Header and Footer -->
 <link rel="stylesheet"
-	href="/stubbyPlanner/superguide/assets/css/headers/header-v4.css">
+	href="/stubbyPlanner/externalData/superguide/assets/css/headers/header-v4.css">
 
 
 
 <link rel="stylesheet" type="text/css"
-	href="/stubbyPlanner/market/css/swiper.min.css">
+	href="/stubbyPlanner/externalData/market/css/swiper.min.css">
 
 <link rel="stylesheet" type="text/css"
-	href="/stubbyPlanner/css2/common.css">
+	href="/stubbyPlanner/externalData/css2/common.css">
 
 <link rel="stylesheet" type="text/css"
-	href="/stubbyPlanner/mb/css/BnB_home.css">
+	href="/stubbyPlanner/externalData/mb/css/BnB_home.css">
 <link rel="stylesheet" type="text/css"
-	href="/stubbyPlanner/market/css/tourHome.css">
+	href="/stubbyPlanner/externalData/market/css/tourHome.css">
 <link rel="stylesheet" type="text/css"
-	href="/stubbyPlanner/css2/header_footer.css">
+	href="/stubbyPlanner/externalData/css2/header_footer.css">
 
 
 <!-- swiper.js : 이미지슬라이더 -->
 <script type="text/javascript"
-	src="/stubbyPlanner/market/js/swiper.min.js"></script>
+	src="/stubbyPlanner/externalData/market/js/swiper.min.js"></script>
 
  <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -558,7 +558,8 @@ function updateExp()
 							<div
 								style="position: relative; overflow: hidden; border-radius: 5px; height: 100%;">
 								<img class="lazyload"
-									data-src="${country.img_url}_l.jpg"
+									<%-- data-src="${country.img_url}_l.jpg" --%>
+									data-src="${country.img_url}"
 									style="position: absolute; height: 100%; left: -100%; right: -100%; top: -100%; bottom: -100%; margin: auto">
 								<div
 									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-shadow: inset 0 -240px 120px -120px rgba(0, 0, 0, .3)"></div>
@@ -645,9 +646,9 @@ for (var i = 1; i <=6; i++) {
 
 
 	<script
-		src="/stubbyPlanner/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
+		src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
 	<script
-		src="/stubbyPlanner/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
+		src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -657,14 +658,14 @@ for (var i = 1; i <=6; i++) {
 
 	<!-- JS Implementing Plugins -->
 	<script
-		src="/stubbyPlanner/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
+		src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/smoothScroll.js"></script>
 	<script
-		src="/stubbyPlanner/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
+		src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery.easing.min.js"></script>
 
 	<!-- JS Page Level -->
-	<script src="/superguide/One-Pages/assets/js/one.app.js"></script>
+	<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/js/one.app.js"></script>
 
-	<script src="/stubbyPlanner/market/js/lazysizes.min.js"
+	<script src="/stubbyPlanner/externalData/market/js/lazysizes.min.js"
 		type="text/javascript" async=""></script>
 	<script
 		src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
@@ -767,7 +768,7 @@ $(function() {
 });
 
 </script>
-	<script src="/js2/header_footer3.js" type="text/javascript"></script>
+	<script src="/stubbyPlanner/externalData/js2/header_footer3.js" type="text/javascript"></script>
 <!-- 검색창부분  -->
 	<section class="stu_md_search">
 		<div class="search_background"></div>

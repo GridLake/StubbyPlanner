@@ -44,4 +44,17 @@ public class PlannerReserveAirService {
 		}
 	}
 
+	public ArrayList<HashMap<String, String>> getReservers() {
+		try(Connection conn = ConnectionProvider.getConnection()){
+			
+			ArrayList<HashMap<String, String>> reserverList = resAirDao.getReservers(conn);
+	
+			return reserverList;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
+
 }

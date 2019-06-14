@@ -482,7 +482,7 @@ function complete()
 <hr>
 	<h4 style="color:#c0c0c0">최근 유럽항공권 예약 트렌드&nbsp;&nbsp;<small style="color:#c0c0c0"> 최근 트렌드를 살펴보세요!</small></h4>
 	<div class="row">
-
+<c:forEach items="${reserverList }" var="reserver">
 <div class="col-md-4"  style="margin-bottom:15px">
 		<div class="media">
 		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=mimm98"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="<%= contextPath %>/externalData/pfimg/7/5/mimm98_sq.jpg" border="0"></a>
@@ -491,14 +491,14 @@ function complete()
 			<ul class="list-unstyled">
 				<li  style="color:#c0c0c0">
 					<!-- 정보 불러와야 -->
-					<span class="badge" style="background:#c0c0c0;float:right">84.1만원</span>
-					2019년 12월 출발
+					<span class="badge" style="background:#c0c0c0;float:right">${reserver.flight_price }</span>
+					${reserver.deptdate }
 				</li>
 				<li  style="color:#c0c0c0">
-					<b>아시아나항공</b> 파리IN/런던OUT
+					<b>${reserver.airline_name }</b> ${reserver.in_city }IN/${reserver.out_city }OUT
 				</li>
 				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">16분전</span>
+					<span class="small" style="float:right">${reserver.ago }</span>
 					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285547">관련 여행보기></a>-->
 				</li>
 			</ul>
@@ -506,328 +506,13 @@ function complete()
 	
 		</div>
 </div>
+</c:forEach>
 
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=rhdals234"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/9/4/rhdals234_sq.jpg" border="0"></a>
-		<div class="media-body">
 
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">106만원</span>
-					2019년 7월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>KLM 네덜란드항공</b> 취리히 공항IN/프라하OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">18분전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285989">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
+
+
 </div>
 
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=qhal6236"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/9/4/qhal6236_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">209.6만원</span>
-					2019년 8월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>아시아나항공</b> 프랑크푸르트왕복
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">26분전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285913">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-<div class="clearfix"></div>
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=gk2997"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="<%= contextPath %>/externalData/pfimg/4/6/gk2997_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">81만원</span>
-					2019년 11월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>아시아나항공</b> 런던IN/로마OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">28분전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10286020">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id="><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/0/0/_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">89만원</span>
-					2019년 9월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>KLM 네덜란드항공</b> 런던IN/부다페스트OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">29분전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10283882">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=doomva"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/2/8/doomva_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">370만원</span>
-					2020년 4월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>아시아나항공</b> 로마IN/베니스OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">57분전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285971">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-<div class="clearfix"></div>
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=khl1478"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/6/4/khl1478_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">105만원</span>
-					2019년 7월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>대한항공</b> 파리IN/프랑크푸르트OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">1시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285950">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=heayoung01"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/4/3/heayoung01_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">86만원</span>
-					2019년 9월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>대한항공</b> 런던IN/로마OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">2시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285920">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=bluei2929"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/1/6/bluei2929_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">105만원</span>
-					2019년 9월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>카타르항공</b> 아테네왕복
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">3시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285854">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-<div class="clearfix"></div>
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=ssh3399"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/1/1/ssh3399_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">108만원</span>
-					2019년 7월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>대한항공</b> 로마IN/바르셀로나OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">3시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285831">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=pkb0702"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/8/6/pkb0702_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">72.6만원</span>
-					2019년 9월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>대한항공</b> 런던IN/바르셀로나OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">4시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10279736">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=shaylee"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/1/4/shaylee_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">85.1만원</span>
-					2019년 9월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>오스트리아항공</b> 비엔나(빈)왕복
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">5시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10240361">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-<div class="clearfix"></div>
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=spjw0325"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/1/8/spjw0325_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">58.1만원</span>
-					2020년 5월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>에미레이트항공</b> 런던IN/마드리드OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">5시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10284845">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=ivesio457"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/5/4/ivesio457_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">80만원</span>
-					2019년 5월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>에미레이트항공</b> 런던IN/로마OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">13시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=486671">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
-
-<div class="col-md-4"  style="margin-bottom:15px">
-		<div class="media">
-		<a class="pull-left" href="<%= contextPath %>/plan/profile.do?id=htk314"><img class="media-object img-circle" width="45px" onerror="this.src='<%= contextPath %>/externalData/img_v6/img_pfnull.gif';" src="/pfimg/4/2/htk314_sq.jpg" border="0"></a>
-		<div class="media-body">
-
-			<ul class="list-unstyled">
-				<li  style="color:#c0c0c0">
-					<span class="badge" style="background:#c0c0c0;float:right">94.8만원</span>
-					2019년 7월 출발
-				</li>
-				<li  style="color:#c0c0c0">
-					<b>아시아나항공</b> 런던IN/로마OUT
-				</li>
-				<li  style="color:#c0c0c0">
-					<span class="small" style="float:right">13시간전</span>
-					<!--<a class="btn btn-default btn-xs" href="/supertrip/detail.asp?serial=10285717">관련 여행보기></a>-->
-				</li>
-			</ul>
-		  </div>
-	
-		</div>
-</div>
 <div class="clearfix"></div>
 </div>
 
@@ -883,30 +568,26 @@ JSONObject json =(JSONObject) request.getAttribute("scatterInfoList");
 		var color = Chart.helpers.color;
 // 자바스크립트 array만들기 
 	var jsonString1 = JSON.stringify(<%=json%>);
-	//console.log(jsonString1);
 	//console.log(<%=json%>);
+	
+	
 	var sets = <%=json%>.datasets;
 	var datasets = new Array();
 	for(var i=0; i<sets.length; i++) {
-	   // console.log(sets[i]);
 	    var airdata = new Object();
 	    airdata.label = sets[i].label;
 	    airdata.borderColor = window.chartColors.red;
 	    airdata.backgroundColor = color(window.chartColors.red).alpha(0.2).rgbString();
 	    var dotArr = new Array();
 	    var dots = sets[i].data;
-	   // console.log(dots);
 	    for (var j = 0; j < sets[i].data.length; j++) {
-	    	//console.log(sets[i].data[j]);
 			dotArr.push(sets[i].data[j]);
 		}
 	    airdata.data = dotArr;
-	    
-		//console.log(airdata);
 		datasets.push(airdata);
 	}
 	
-	console.log(datasets);
+		console.log(datasets);
 
 		var scatterChartData = {
 				datasets: datasets
