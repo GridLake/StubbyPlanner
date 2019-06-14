@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/include.jspf" %>
+<%
+ String trip_id = request.getParameter("trip_id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -801,7 +804,9 @@ function updateTerm()
 
 }
 
-var trip_id="";
+// var trip_id="10000061";
+
+var trip_id=<%= trip_id %>;
 var tripwith="";
 /* 
 function deleteData(is_sync) {
@@ -955,7 +960,7 @@ function moveToCalendar()
 	window.location="/plan/planner_city_schd.do?startdate="+startdate+"&tripgene="+getTripgene();
 }
 </script>
-<script type="text/javascript"> 
+<script type="text/javascript">	
 
 var stockholm = new google.maps.LatLng(45, 10);
 
@@ -965,16 +970,29 @@ var stockholm = new google.maps.LatLng(45, 10);
   var myMarkers=[];
   var recommMarkers=[];
   var prv_infowindow;
-	  
-  /* 
+  
+  <c:if test="${jsarr ne null}">
+  
+  var rl = ${jsarr};
+  
+  for (var i = 0; i < rl.length; i++) {
+	var p = rl[i];
+	routelist.push(new Route(p.ecity_id, p.ecity_name, p.rt_days, p.rt_trans, p.night_move, p.city_x, p.city_y, new Date(p.rt_startdate), new Date(p.rt_enddate)));  
+  }
+  </c:if>
+  /*
+  
   									 (city_id,city_name,nights,trstype,is_night_move,city_x,city_y,date_in,date_out) { 
-  routelist[routelist.length]=new Route('111011004','파리','3','X','0','48.86110101269274','2.3421478271484375',new Date('2019-07-13'),new Date('2019-07-16'));    slpRatesArr[routelist[routelist.length-1].cityserial]='4|7|46|24|20';
   routelist[routelist.length]=new Route('111081001','브뤼셀','1','X','0','50.8466245793837','4.3511438369751',new Date('2019-07-16'),new Date('2019-07-17'));      slpRatesArr[routelist[routelist.length-1].cityserial]='18|68|14|2|0';
   routelist[routelist.length]=new Route('111071001','암스테르담','1','X','0','52.3737914039891','4.89076137542725',new Date('2019-07-17'),new Date('2019-07-18')); slpRatesArr[routelist[routelist.length-1].cityserial]='11|61|24|6|1';
   routelist[routelist.length]=new Route('111061005','뮌헨','1','X','0','48.1399742326904','11.579246520996',new Date('2019-07-18'),new Date('2019-07-19'));        slpRatesArr[routelist[routelist.length-1].cityserial]='6|55|26|11|3';
   routelist[routelist.length]=new Route('121011002','바르셀로나','3','X','0','41.3878531743444','2.17001438140869',new Date('2019-07-19'),new Date('2019-07-22')); slpRatesArr[routelist[routelist.length-1].cityserial]='1|5|58|24|12';
   routelist[routelist.length]=new Route('111031001','런던','3','X','0','51.5000874980771','-0.126256942749023',new Date('2019-07-22'),new Date('2019-07-25'));     slpRatesArr[routelist[routelist.length-1].cityserial]='5|7|43|25|21';
   */
+  
+  //routelist[routelist.length]=new Route('1','파리','3','X','0','48.856614','2.352222',new Date('2019-07-14'),new Date('2019-07-17'));
+  // routelist[routelist.length]=new Route('2','런던','3','X','0','51.507351','-0.127758',new Date('2019-07-17'),new Date('2019-07-20'));
+  // routelist[routelist.length]=new Route('4','암스테르담','1','X','0','52.637984','4.903561',new Date('2019-07-20'),new Date('2019-07-21'));
   var styles=[
 	  {
 	    "elementType": "geometry",
@@ -2807,7 +2825,17 @@ function complete()
 
 $('#thedate').datepicker();
 $('#thedate').datepicker( "option", "dateFormat", "yy-mm-dd" );
-$('#thedate').val('${defaultDate}');
+<c:choose>
+	<c:when test="${jsarr ne null}">
+		var rttime = ${jsarr}
+		var time = rttime[0];
+		$('#thedate').val(time.rt_startdate);
+	</c:when>
+	<c:otherwise>
+		$('#thedate').val('${defaultDate}');
+	</c:otherwise>
+</c:choose> 
+
 // 이메일 체크
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -2999,7 +3027,7 @@ function updateDateInOut()
 	term=arr_nextday;
 	
 	startdate=new Date($("#thedate").val().replace("-","/").replace("-","/"));
-	
+	console.log("updateDateInout: " +startdate);
 	for(i=0;i<routelist.length;i++)
 	{
 		
@@ -5249,7 +5277,7 @@ function share()
 
 
 
-
+<!-- 
 <div id="mapControllerCenterTop" style="position:absolute;top;height:50px;margin-left:35px;padding-top:10px;margin-top:10px;width:460px;">
 	<div style="width:416px;border-radius:2px; border:1px solid #efefef;background:#fff;padding-left:4px;padding-right:4px;padding-top:4px;padding-bottom:4px;">
 		<div style="float:left;width:328px;">
@@ -5262,6 +5290,7 @@ function share()
 	</div>
 
 </div>
+ -->
 <div id="mapControllerRightTop" style="margin-top:10px;margin-right:10px;font-size:18pt;font-weight:500;color:#696969;background:#fff;border:1px solid #efefef;border-radius:30px;width:60px;height:60px;padding-top:13px;text-align:center"> <span id="plan_term">-</span><font style="font-size:9pt">일</font></div>
 
 <script>
