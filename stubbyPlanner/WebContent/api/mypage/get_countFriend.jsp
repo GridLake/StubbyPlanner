@@ -22,11 +22,12 @@
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select count(member_myid) countFriend from tbl_friendlist where member_myid=?";
+		String sql = "select count(member_myid) countFriend from tbl_friendlist where (member_myid=? and status=1) or (member_friendid=? and status=1)";
 
 		pstmt = conn.prepareStatement(sql);
 
 		pstmt.setString(1, member_id);
+		pstmt.setString(2, member_id);
 
 		rs = pstmt.executeQuery();
 		if (rs.next()) {

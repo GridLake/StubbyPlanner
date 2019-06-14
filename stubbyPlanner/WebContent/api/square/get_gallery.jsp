@@ -7,11 +7,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	JSONObject jObj = null;
-	JSONArray jArr = null;
+Connection conn = null;
+PreparedStatement pstmtNew = null;
+PreparedStatement pstmtLike = null;
+PreparedStatement pstmtClick = null;
+ResultSet rsNew = null;
+ResultSet rsLike = null;
+ResultSet rsClick = null;
+JSONObject jObj = null;
+JSONArray jArrNew = null;
+JSONArray jArrLike = null;
+JSONArray jArrClick = null;
 	
 	try {
 		conn = ConnectionProvider.getConnection();
@@ -19,40 +25,85 @@
 		//jObj = new JSONObject();
 		//JSONArray jArr = new JSONArray();
 
-		String sql = "select * from tbl_gallery g join tbl_gallery_pic p on g.gal_seq=p.gal_seq order by g.gal_seq desc";
+		String sqlNew = "with a as(select gal_seq, min(gal_pic_seq) gal_pic_seq from tbl_gallery_pic group by gal_seq), b as(select distinct gal_seq ,min(gal_pic_path) gal_pic_path from tbl_gallery_pic group by gal_seq), c as(select*from tbl_gallery) select * from a,b,c where a.gal_seq=b.gal_seq and b.gal_seq=c.gal_seq order by a.gal_seq desc";
+		String sqlLike = "with a as(select gal_seq, min(gal_pic_seq) gal_pic_seq from tbl_gallery_pic group by gal_seq), b as(select distinct gal_seq ,min(gal_pic_path) gal_pic_path from tbl_gallery_pic group by gal_seq), c as(select*from tbl_gallery) select * from a,b,c where a.gal_seq=b.gal_seq and b.gal_seq=c.gal_seq order by c.post_like desc";
+		String sqlClick = "with a as(select gal_seq, min(gal_pic_seq) gal_pic_seq from tbl_gallery_pic group by gal_seq), b as(select distinct gal_seq ,min(gal_pic_path) gal_pic_path from tbl_gallery_pic group by gal_seq), c as(select*from tbl_gallery) select * from a,b,c where a.gal_seq=b.gal_seq and b.gal_seq=c.gal_seq order by c.post_hits desc";
 
-		
-		pstmt = conn.prepareStatement(sql);
+		pstmtNew = conn.prepareStatement(sqlNew);
+		pstmtLike = conn.prepareStatement(sqlLike);
+		pstmtClick = conn.prepareStatement(sqlClick);
 
-		rs = pstmt.executeQuery();
+		rsNew = pstmtNew.executeQuery();
+		rsLike = pstmtLike.executeQuery();
+		rsClick = pstmtClick.executeQuery();
 
-		if (rs.next()) {
+		if (rsNew.next()) {
 			System.out.println("if");
 			jObj = new JSONObject();
-			jArr = new JSONArray();
+			jArrNew = new JSONArray();
 			do {
 				
 				JSONObject GalleryObj = new JSONObject();
-				GalleryObj.put("gal_seq", rs.getInt("gal_seq"));
-				GalleryObj.put("gal_pic_seq", rs.getInt("gal_pic_seq"));
-				GalleryObj.put("member_id", rs.getString("member_id"));
-				GalleryObj.put("gal_subject", rs.getString("gal_subject"));
-				GalleryObj.put("gal_pic_path", rs.getString("gal_pic_path"));
-				GalleryObj.put("gal_regdate", rs.getString("gal_regdate".toString()));
-				GalleryObj.put("post_like", rs.getInt("post_like"));
-					
+				GalleryObj.put("gal_seq", rsNew.getInt("gal_seq"));
+				GalleryObj.put("gal_pic_seq", rsNew.getInt("gal_pic_seq"));
+				GalleryObj.put("member_id", rsNew.getString("member_id"));
+				GalleryObj.put("gal_subject", rsNew.getString("gal_subject"));
+				GalleryObj.put("gal_pic_path", rsNew.getString("gal_pic_path"));
+				GalleryObj.put("gal_regdate", rsNew.getString("gal_regdate".toString()));
+				GalleryObj.put("post_like", rsNew.getInt("post_like"));
+				jArrNew.add(GalleryObj);
 
-				jArr.add(GalleryObj);
-
-			} while (rs.next());
+			} while (rsNew.next());
 		}
-		System.out.println(rs);
-		jObj.put("list", jArr);
+		
+		if (rsLike.next()) {
+			System.out.println("if");
+			jObj = new JSONObject();
+			jArrLike = new JSONArray();
+			do {
+				
+				JSONObject GalleryObj = new JSONObject();
+				GalleryObj.put("gal_seq", rsLike.getInt("gal_seq"));
+				GalleryObj.put("gal_pic_seq", rsLike.getInt("gal_pic_seq"));
+				GalleryObj.put("member_id", rsLike.getString("member_id"));
+				GalleryObj.put("gal_subject", rsLike.getString("gal_subject"));
+				GalleryObj.put("gal_pic_path", rsLike.getString("gal_pic_path"));
+				GalleryObj.put("gal_regdate", rsLike.getString("gal_regdate".toString()));
+				GalleryObj.put("post_like", rsLike.getInt("post_like"));
+				jArrLike.add(GalleryObj);
+
+			} while (rsLike.next());
+		}
+		
+		if (rsClick.next()) {
+			System.out.println("if");
+			jObj = new JSONObject();
+			jArrClick = new JSONArray();
+			do {
+				
+				JSONObject GalleryObj = new JSONObject();
+				GalleryObj.put("gal_seq", rsClick.getInt("gal_seq"));
+				GalleryObj.put("gal_pic_seq", rsClick.getInt("gal_pic_seq"));
+				GalleryObj.put("member_id", rsClick.getString("member_id"));
+				GalleryObj.put("gal_subject", rsClick.getString("gal_subject"));
+				GalleryObj.put("gal_pic_path", rsClick.getString("gal_pic_path"));
+				GalleryObj.put("gal_regdate", rsClick.getString("gal_regdate".toString()));
+				GalleryObj.put("post_like", rsClick.getInt("post_like"));
+				jArrClick.add(GalleryObj);
+
+			} while (rsClick.next());
+		}
+		
+		jObj.put("listNew", jArrNew);
+		jObj.put("listLike", jArrLike);
+		jObj.put("listClick", jArrClick);
 
 	} catch (Exception e) {
 		e.printStackTrace();
 	} finally {
-		pstmt.close();
+		pstmtNew.close();
+		pstmtLike.close();
+		pstmtClick.close();
 		conn.close();
 	}
 %>

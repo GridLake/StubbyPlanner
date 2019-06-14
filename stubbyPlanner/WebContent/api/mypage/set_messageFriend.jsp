@@ -55,7 +55,6 @@
 		e.printStackTrace();
 	} finally {
 		pstmtMsgFriend.close();
-		//rs.close();
 		conn.close();
 	}
 %>

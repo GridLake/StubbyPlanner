@@ -45,7 +45,7 @@
 
 		conn = ConnectionProvider.getConnection();
 // 		insert into tbl_gallery values((select nvl(max(gal_seq),0)+1 from tbl_gallery),?,sysdate,0,?)
-		String sqlWriteGallery = "insert into tbl_gallery values((select nvl(max(gal_seq),0)+1 from tbl_gallery),?,sysdate,0,?)";
+		String sqlWriteGallery = "insert into tbl_gallery values((select nvl(max(gal_seq),0)+1 from tbl_gallery),?,sysdate,0,?,0)";
 
 		pstmtWriteGallery =conn.prepareStatement(sqlWriteGallery);
 	 			

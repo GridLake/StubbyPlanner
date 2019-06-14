@@ -266,7 +266,8 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 
 
 
-	<form name="form" action="/stubbyPlanner/asp/join.do" method="post" class="sky-form">
+	<form name="form" action="/stubbyPlanner/asp/join.do" method="post" class="sky-form" 
+	enctype="multipart/form-data">
 <!-- 	<input type="hidden" name="h_url" value="">
 
 
@@ -586,7 +587,8 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 				<option value="2018">2018</option>
 				
 				<option value="2019">2019</option>
-				</select></span> 
+				</select>
+				</span> 
 				</div>
 				<div class="col-md-6 col-xs-6">
 				<select id="birth_month" name="birth_month" class="form-control" style="">
@@ -612,7 +614,18 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
                                     </div>
                                 </section>
 
-                                <section>
+							<section>
+								<div class="row">
+									<label class="label col col-4">프로필 사진</label>
+									<div class="col col-8">
+										<label class="input">
+											<input type="file" class="profile_pic" name="profile_pic"/>
+										</label>
+									</div>
+								</div>
+							</section>
+
+							<section>
                                     <label class="checkbox"><input type="checkbox" name="accept_mail" value="Y" id="accept_mail" checked><i></i>여행(계획)중일때에 해당 여행과 관련된 회원특가 광고메일을 받겠습니다.</label>
                                 </section>
                                 

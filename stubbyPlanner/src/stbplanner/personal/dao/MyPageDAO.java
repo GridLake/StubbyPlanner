@@ -17,8 +17,9 @@ public class MyPageDAO {
 		ResultSet rs = null;
 		int countFriend =0;
 		try {
-			pstmt=conn.prepareStatement("select count(member_myid) countFriend from tbl_friendlist where member_myid=?");
+			pstmt=conn.prepareStatement("select count(member_myid) countFriend from tbl_friendlist where (member_myid=? and status=1) or (member_friendid=? and status=1)");
 			pstmt.setString(1, member_id);
+			pstmt.setString(2, member_id);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				countFriend = rs.getInt(1);

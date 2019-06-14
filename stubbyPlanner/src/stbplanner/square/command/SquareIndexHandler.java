@@ -24,6 +24,9 @@ public class SquareIndexHandler implements CommandHandler{
 		// 최근 동행찾기 
 		List<PartyDTO> partyList = service.partySelect();
 		request.setAttribute("partyList", partyList);
+		// 인기 갤러리 
+		List<GalleryDTO> galleryList = service.gallerySelect();
+		request.setAttribute("galleryList", galleryList);
 		
 		// 최근살펴본 여행
 		// 인기있는 여행지

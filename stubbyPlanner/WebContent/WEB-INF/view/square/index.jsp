@@ -20,6 +20,118 @@
 <meta property="og:site_name" content="스투비플래너" />
 <meta property="og:description" content="상상속 유럽여행을 현실로, 스투비플래너" />
 
+
+
+<!-- 갤러리 -->
+<style type="text/css">
+
+.snip1384:hover {
+  color: #ffffff; 
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000; 
+}
+.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+.snip1384:after,
+.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+.snip1384 figcaption {
+  z-index: 1;
+  padding: 20px;
+}
+.snip1384 h2,
+.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+.snip1384 h2 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: x-large;
+  text-transform: uppercase;
+  opacity: 0;
+}
+.snip1384 p {
+  font-size: large;
+  font-weight: 300;
+/*   letter-spacing: 1px; */
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+.snip1384 i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px 25px;
+  font-size: 34px;
+  opacity: 0;
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+  background-image: none;
+}
+.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.snip1384:hover img,
+.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+.snip1384:hover:after,
+.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.snip1384:hover h2,
+.snip1384.hover h2,
+.snip1384:hover p,
+.snip1384.hover p,
+.snip1384:hover i,
+.snip1384.hover i {
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+</style>
+
+
+
 <style type="text/css">
 
 .prd_info {
@@ -1013,41 +1125,8 @@ table.type09 tbody td:hover{
             </tr>
         	</c:if>
         </c:forEach>
-          <%--   <tr>
-                <th scope="row">17</th>
-                <td>abcd12</td>
-                <td class="title">반가워요 여러분!!!!!</td>
-                <td>2019-05-26</td>
-                <td>12</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <th scope="row">34</th>
-                <td>efgh34</td>
-                <td class="title">여기는 뭐하는 곳인가요?</td>
-                <td>2019-05-26</td>
-                <td>23</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <th scope="row">${boardList[0].post_seq}</th>
-                <td>${boardList[0].member_id}</td>
-                <td class="title">${boardList[0].post_subject}</td>
-                <td>${boardList[0].post_regdate}</td>
-                <td>${boardList[0].post_like}</td>
-                <td>${boardList[0].post_hits}</td>
-            </tr>
-            <tr>
-                <th scope="row">${boardList[1].post_seq}</th>
-                <td>${boardList[0].member_id}</td>
-                <td class="title">${boardList[1].post_subject}</td>
-                <td>${boardList[1].post_regdate}</td>
-                <td><i></i>${boardList[1].post_like}</td>
-                <td>${boardList[1].post_hits}</td>
-            </tr> --%>
         </tbody>
     </table>
-    
 <!-- prev/next -->
 </div>
 </div>
@@ -1076,250 +1155,241 @@ table.type09 tbody td:hover{
 <a id="partyDetail" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; "><b>+더 보기</b></a>
 
 
-                <div class="swiper-container stu_tagArea">
+
+        <div class="swiper-container stu_tagArea">
                     <ul class="swiper-wrapper">
 
 
+				 <c:set var="partyEmpty" value="false"/>
+       			 <c:forEach var="partyList" items="${partyList}" varStatus="status">
+        		 <c:if test="${not partyEmpty}">
+        		 <c:if test="${status.last}">
+        				<c:set var="partyEmpty" value="true"/>
+        		 </c:if>      		
+        		 <c:if test="${status.count==5}">
+        				<c:set var="partyEmpty" value="true"/>
+        		 </c:if>  
                         <li class="swiper-slide prd_item"  style="width: 20%;">
-                            <a href="<%= contextPath %>/square/index.do">
+                            <a href="<%= contextPath %>/square/index.do" style="width:100%; height: 100%;">
                                 <figure class="thumb">
-                                        <c:if test="${!empty partyList[0].profile_pic }">
-                                            <img class="fh" src="${partyList[0].profile_pic}" alt="프로필 사진"/>
+                                        <c:if test="${!empty partyList.profile_pic }">
+                                            <img class="fh" src="/stubbyPlanner/square/gallery/${partyList.profile_pic}" alt="프로필 사진"/>
                                         </c:if>
-                                        <c:if test="${empty partyList[0].profile_pic }">
+                                        <c:if test="${empty partyList.profile_pic }">
                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                                         </c:if>
                                 </figure>
-                                
                                 <figcaption class="prd_info">
                                     <div class="cpn">
                                     </div>
                                     <div class="name">
-                                        <span>${partyList[0].party_content}</span>
+                                        <span>${partyList.party_content}</span>
                                     </div>
 
                              		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[0].member_id}
+                                        ${partyList.member_id}
                                     </div>
                                     
                                     <div class="score" style="display:inline-block">
-                                        <span><i></i>${partyList[0].party_like}</span>
+                                        <span><i></i>${partyList.party_like}</span>
                                     </div>
                    			   </figcaption>
                             </a>
                         </li>
-
-        <li class="swiper-slide prd_item" style="width: 20%;">
-                            <a href="<%= contextPath %>/square/index.do">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[1].profile_pic }">
-                                            <img class="fh" src="${partyList[1].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[1].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[1].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[1].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span><i></i>${partyList[1].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 20%;">
-                            <a href="<%= contextPath %>/square/index.do">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[2].profile_pic }">
-                                            <img class="fh" src="${partyList[2].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[2].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[2].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[2].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span><i></i>${partyList[2].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 20%;">
-                            <a href="<%= contextPath %>/square/index.do">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[3].profile_pic }">
-                                            <img class="fh" src="${partyList[3].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[3].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[3].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[3].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span><i></i>${partyList[3].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
-        <li class="swiper-slide prd_item" style="width: 20%;">
-                            <a href="<%= contextPath %>/square/index.do">
-                                <figure class="thumb">
-                                        <c:if test="${!empty partyList[4].profile_pic }">
-                                            <img class="fh" src="${partyList[4].profile_pic}" alt="프로필 사진"/>
-                                        </c:if>
-                                        <c:if test="${empty partyList[4].profile_pic }">
-                                            <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
-                                        </c:if>
-                                </figure>
-                                
-                                <figcaption class="prd_info">
-                                    <div class="cpn">
-                                    </div>
-                                    <div class="name">
-                                        <span>${partyList[4].party_content}</span>
-                                    </div>
-
-                             		<div class="price"  style="line-height:100%;text-align:right;2px;">
-                                        ${partyList[4].member_id}
-                                    </div>
-                                    
-                                    <div class="score" style="display:inline-block">
-                                        <span><i></i>${partyList[4].party_like}</span>
-                                    </div>
-                   			   </figcaption>
-                            </a>
-                        </li>
-
+				 </c:if>
+       			 </c:forEach>
                 </div>
+
+
+
+
+
+<!--                 <div class="swiper-container stu_tagArea"> -->
+<!--                     <ul class="swiper-wrapper"> -->
+
+
+<!--                         <li class="swiper-slide prd_item"  style="width: 20%;"> -->
+<%--                             <a href="<%= contextPath %>/square/index.do"> --%>
+<!--                                 <figure class="thumb"> -->
+<%--                                         <c:if test="${!empty partyList[0].profile_pic }"> --%>
+<%--                                             <img class="fh" src="${partyList[0].profile_pic}" alt="프로필 사진"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:if test="${empty partyList[0].profile_pic }"> --%>
+<!--                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> -->
+<%--                                         </c:if> --%>
+<!--                                 </figure> -->
+                                
+<!--                                 <figcaption class="prd_info"> -->
+<!--                                     <div class="cpn"> -->
+<!--                                     </div> -->
+<!--                                     <div class="name"> -->
+<%--                                         <span>${partyList[0].party_content}</span> --%>
+<!--                                     </div> -->
+
+<!--                              		<div class="price"  style="line-height:100%;text-align:right;2px;"> -->
+<%--                                         ${partyList[0].member_id} --%>
+<!--                                     </div> -->
+                                    
+<!--                                     <div class="score" style="display:inline-block"> -->
+<%--                                         <span><i></i>${partyList[0].party_like}</span> --%>
+<!--                                     </div> -->
+<!--                    			   </figcaption> -->
+<!--                             </a> -->
+<!--                         </li> -->
+
+<!--         <li class="swiper-slide prd_item" style="width: 20%;"> -->
+<%--                             <a href="<%= contextPath %>/square/index.do"> --%>
+<!--                                 <figure class="thumb"> -->
+<%--                                         <c:if test="${!empty partyList[1].profile_pic }"> --%>
+<%--                                             <img class="fh" src="${partyList[1].profile_pic}" alt="프로필 사진"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:if test="${empty partyList[1].profile_pic }"> --%>
+<!--                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> -->
+<%--                                         </c:if> --%>
+<!--                                 </figure> -->
+                                
+<!--                                 <figcaption class="prd_info"> -->
+<!--                                     <div class="cpn"> -->
+<!--                                     </div> -->
+<!--                                     <div class="name"> -->
+<%--                                         <span>${partyList[1].party_content}</span> --%>
+<!--                                     </div> -->
+
+<!--                              		<div class="price"  style="line-height:100%;text-align:right;2px;"> -->
+<%--                                         ${partyList[1].member_id} --%>
+<!--                                     </div> -->
+                                    
+<!--                                     <div class="score" style="display:inline-block"> -->
+<%--                                         <span><i></i>${partyList[1].party_like}</span> --%>
+<!--                                     </div> -->
+<!--                    			   </figcaption> -->
+<!--                             </a> -->
+<!--                         </li> -->
+
+<!--         <li class="swiper-slide prd_item" style="width: 20%;"> -->
+<%--                             <a href="<%= contextPath %>/square/index.do"> --%>
+<!--                                 <figure class="thumb"> -->
+<%--                                         <c:if test="${!empty partyList[2].profile_pic }"> --%>
+<%--                                             <img class="fh" src="${partyList[2].profile_pic}" alt="프로필 사진"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:if test="${empty partyList[2].profile_pic }"> --%>
+<!--                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> -->
+<%--                                         </c:if> --%>
+<!--                                 </figure> -->
+                                
+<!--                                 <figcaption class="prd_info"> -->
+<!--                                     <div class="cpn"> -->
+<!--                                     </div> -->
+<!--                                     <div class="name"> -->
+<%--                                         <span>${partyList[2].party_content}</span> --%>
+<!--                                     </div> -->
+
+<!--                              		<div class="price"  style="line-height:100%;text-align:right;2px;"> -->
+<%--                                         ${partyList[2].member_id} --%>
+<!--                                     </div> -->
+                                    
+<!--                                     <div class="score" style="display:inline-block"> -->
+<%--                                         <span><i></i>${partyList[2].party_like}</span> --%>
+<!--                                     </div> -->
+<!--                    			   </figcaption> -->
+<!--                             </a> -->
+<!--                         </li> -->
+
+<!--         <li class="swiper-slide prd_item" style="width: 20%;"> -->
+<%--                             <a href="<%= contextPath %>/square/index.do"> --%>
+<!--                                 <figure class="thumb"> -->
+<%--                                         <c:if test="${!empty partyList[3].profile_pic }"> --%>
+<%--                                             <img class="fh" src="${partyList[3].profile_pic}" alt="프로필 사진"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:if test="${empty partyList[3].profile_pic }"> --%>
+<!--                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> -->
+<%--                                         </c:if> --%>
+<!--                                 </figure> -->
+                                
+<!--                                 <figcaption class="prd_info"> -->
+<!--                                     <div class="cpn"> -->
+<!--                                     </div> -->
+<!--                                     <div class="name"> -->
+<%--                                         <span>${partyList[3].party_content}</span> --%>
+<!--                                     </div> -->
+
+<!--                              		<div class="price"  style="line-height:100%;text-align:right;2px;"> -->
+<%--                                         ${partyList[3].member_id} --%>
+<!--                                     </div> -->
+                                    
+<!--                                     <div class="score" style="display:inline-block"> -->
+<%--                                         <span><i></i>${partyList[3].party_like}</span> --%>
+<!--                                     </div> -->
+<!--                    			   </figcaption> -->
+<!--                             </a> -->
+<!--                         </li> -->
+
+<!--         <li class="swiper-slide prd_item" style="width: 20%;"> -->
+<%--                             <a href="<%= contextPath %>/square/index.do"> --%>
+<!--                                 <figure class="thumb"> -->
+<%--                                         <c:if test="${!empty partyList[4].profile_pic }"> --%>
+<%--                                             <img class="fh" src="${partyList[4].profile_pic}" alt="프로필 사진"/> --%>
+<%--                                         </c:if> --%>
+<%--                                         <c:if test="${empty partyList[4].profile_pic }"> --%>
+<!--                                             <img class="fh" src="/stubbyPlanner/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/> -->
+<%--                                         </c:if> --%>
+<!--                                 </figure> -->
+                                
+<!--                                 <figcaption class="prd_info"> -->
+<!--                                     <div class="cpn"> -->
+<!--                                     </div> -->
+<!--                                     <div class="name"> -->
+<%--                                         <span>${partyList[4].party_content}</span> --%>
+<!--                                     </div> -->
+
+<!--                              		<div class="price"  style="line-height:100%;text-align:right;2px;"> -->
+<%--                                         ${partyList[4].member_id} --%>
+<!--                                     </div> -->
+                                    
+<!--                                     <div class="score" style="display:inline-block"> -->
+<%--                                         <span><i></i>${partyList[4].party_like}</span> --%>
+<!--                                     </div> -->
+<!--                    			   </figcaption> -->
+<!--                             </a> -->
+<!--                         </li> -->
+
+<!--                 </div> -->
                 <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
+                <div class="swiper-button-next"></div>	
             </div>
         </section>
 
 
 
        <section class="stu_regions">
-                <div class="stu_inner_wrap" style="">
+             <div class="stu_inner_wrap" style="padding-top: 20px;">
+			<h2 style="font-size:18pt;font-weight:700;">최근 갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">
+				
+				
+				 <c:set var="galleryEmpty" value="false"/>
+       			 <c:forEach var="galleryList" items="${galleryList}" varStatus="status">
+        		 <c:if test="${not galleryEmpty}">
+        		 <c:if test="${status.last}">
+        				<c:set var="galleryEmpty" value="true"/>
+        		 </c:if>      		
+        		 <c:if test="${status.count==5}">
+        				<c:set var="galleryEmpty" value="true"/>
+        		 </c:if>    	
+				
+				 	<li class="swiper-slide snip1384" style="width: 200px; height: 200px; margin: 8px;">
+					<a href="http://www.stubbyplanner.com" style="width:100%; height:100%;">                                                  
+					<img src="/stubbyPlanner/square/gallery/${galleryList.gal_pic_path}" style="width:100%; height:100%;">
+					<figcaption><h2 style="color:white;">${galleryList.member_id}.</h2><p style="color:white; text-align:left;">${ galleryList.gal_subject}</p><i class="ion-ios-arrow-right"><div class="score" style="display:inline-block; color:white;"><span>${galleryList.post_like}</span></div></i></figcaption>
+					</a></li>
+				
+				 </c:if>
+       			 </c:forEach>
+					
+				</ul></div>
+			</div></section>
 
-<!--        <li class="swiper-slide"> -->
-               <h2 style="font-size:18pt;font-weight:700;">
-                  	  인기 갤러리
-               <a id="galleryDetail" class="plus" href="<%= contextPath %>/square/squareDetail.do" style="float: right; margin: 15px; ">
-                  +더 보기
-               </a>
-               </h2>
-<!--        </li> -->
-
-                
-
-                    <div id="tab-1" class="stu_tab-content current">
-                        <div class="swiper-container swiper3">
-                            <ul class="swiper-wrapper">
-
-
-
-
-
-                                <li class="swiper-slide">
-                                	<!-- 경로 & 파라미터 변경 필요 -->
-                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
-                                        <div class="tone-down"></div>
-                                        <div class="stu_titleArea">
-                                            <p>서유럽 단기</p>
-                                            <p class="type2">12~15일</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="swiper-slide">
-                                  <!-- 경로 & 파라미터 변경 필요 -->
-                                  <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
-                                        <div class="tone-down"></div>
-                                        <div class="stu_titleArea">
-                                            <p>동유럽 단기</p>
-                                            <p class="type2">7~10일</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="swiper-slide">
-                                 <!-- 경로 & 파라미터 변경 필요 -->
-								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
-                                        <div class="tone-down"></div>
-                                        <div class="stu_titleArea">
-                                            <p>스페인+포르투갈</p>
-                                            <p class="type2">15~20일</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="swiper-slide">
-                                 <!-- 경로 & 파라미터 변경 필요 -->
-								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
-                                        <div class="tone-down"></div>
-                                        <div class="stu_titleArea">
-                                            <p>터키+그리스</p>
-                                            <p class="type2">15~20일</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="swiper-slide">
-                                	<!-- 경로 & 파라미터 변경 필요 -->
-                                    <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
-                                        <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
-                                        <div class="tone-down"></div>
-                                        <div class="stu_titleArea">
-                                            <p>유럽일주</p>
-                                            <p class="type2">30일</p>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!--Navigation buttons-->
+				</ul>
+			</div>
 
                     </div>
 	</div>

@@ -32,4 +32,21 @@ public class MyPageService {
 
 	}
 
+	public int getMyFriend(String member_id) {
+
+		try(Connection conn = ConnectionProvider.getConnection()){
+			
+			int myFriend = myPageDao.countFriend(conn, member_id);
+			
+			
+	
+			return myFriend;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+
+	}
+	
 }

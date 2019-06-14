@@ -40,7 +40,7 @@
 		String sqlFriend1 = "select m.member_id "
 				+ " from tbl_friendlist f join tbl_member m on f.member_friendid = m.member_id "
 				+ " join tbl_ms s on m.ms_code = s.ms_code "
-				+ " where f.status =1 and f.member_myid = ? and f.member_friendid =?";
+				+ " where f.status =1 and ((f.member_myid = ? and f.member_friendid =?) or (f.member_myid = ? and f.member_friendid =?))";
 		
 		String sqlFriend2 = "select m.member_id "
 				+ " from tbl_friendlist f join tbl_member m on f.member_friendid = m.member_id "
@@ -67,6 +67,8 @@
 				
 		pstmtFriend1.setString(1, member_myid);
 		pstmtFriend1.setString(2, friend_id);
+		pstmtFriend1.setString(3, friend_id);
+		pstmtFriend1.setString(4, member_myid);
 				
 		pstmtFriend2.setString(1, member_myid);
 		pstmtFriend2.setString(2, friend_id);

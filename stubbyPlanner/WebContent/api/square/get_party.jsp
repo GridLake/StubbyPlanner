@@ -44,12 +44,13 @@
 			jArrNew = new JSONArray();
 			do {
 				JSONObject PartyObj = new JSONObject();
-				PartyObj.put("profile_pic", rsNew.getInt("profile_pic"));
+				PartyObj.put("profile_pic", rsNew.getString("profile_pic"));
 				PartyObj.put("member_id", rsNew.getString("member_id"));
 				PartyObj.put("party_content", rsNew.getString("party_content"));
 				PartyObj.put("party_like", rsNew.getInt("party_like"));
 				PartyObj.put("party_seqno", rsNew.getInt("party_seqno"));
 				jArrNew.add(PartyObj);
+				System.out.println(jArrNew);
 			} while (rsNew.next());
 		}
 
@@ -59,7 +60,7 @@
 			jArrLike = new JSONArray();
 			do {
 				JSONObject PartyObj = new JSONObject();
-				PartyObj.put("profile_pic", rsLike.getInt("profile_pic"));
+				PartyObj.put("profile_pic", rsLike.getString("profile_pic"));
 				PartyObj.put("member_id", rsLike.getString("member_id"));
 				PartyObj.put("party_content", rsLike.getString("party_content"));
 				PartyObj.put("party_like", rsLike.getInt("party_like"));
@@ -74,7 +75,7 @@
 			jArrClick = new JSONArray();
 			do {
 				JSONObject PartyObj = new JSONObject();
-				PartyObj.put("profile_pic", rsClick.getInt("profile_pic"));
+				PartyObj.put("profile_pic", rsClick.getString("profile_pic"));
 				PartyObj.put("member_id", rsClick.getString("member_id"));
 				PartyObj.put("party_content", rsClick.getString("party_content"));
 				PartyObj.put("party_like", rsClick.getInt("party_like"));

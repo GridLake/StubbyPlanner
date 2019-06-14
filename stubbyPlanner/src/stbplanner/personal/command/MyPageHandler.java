@@ -20,8 +20,10 @@ public class MyPageHandler implements CommandHandler {
 		String member_id = dto.getMember_id();
 		
 		MyPageDTO myPage =  myPageService.getMyPage(member_id);		
+		int myFriend =  myPageService.getMyFriend(member_id);		
 		
 		request.setAttribute("myPage", myPage);
+		request.setAttribute("myFriend", myFriend);
 		
 		return "/personal/myPage";
 	}

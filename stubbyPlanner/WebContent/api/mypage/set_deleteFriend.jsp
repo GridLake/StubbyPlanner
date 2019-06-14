@@ -27,8 +27,8 @@
 		
 		pstmtDelete = conn.prepareStatement(sqlDelete);
 
-		pstmtDelete.setString(1, member_myid);
-		pstmtDelete.setString(2, member_friendid);
+		pstmtDelete.setString(1, member_friendid);
+		pstmtDelete.setString(2, member_myid);
 
 		int rsDelete = pstmtDelete.executeUpdate();
 

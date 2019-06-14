@@ -28,8 +28,8 @@
 		
 	 	pstmtUpdate =	conn.prepareStatement(sqlUpdate);
 	 			
-		pstmtUpdate.setString(1, member_myid);
-		pstmtUpdate.setString(2, member_friendid);
+		pstmtUpdate.setString(1, member_friendid);
+		pstmtUpdate.setString(2, member_myid);
 		
 	 	System.out.println("pstmtUpdate");
 	 

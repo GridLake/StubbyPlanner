@@ -31,16 +31,17 @@ public class RegisterDAO {
 	
 	public int insert(Connection conn, RegisterDTO dto)throws SQLException{
 		System.out.println("registerdao");
-		try(PreparedStatement pstmt = conn.prepareStatement("insert into tbl_member values(?,?,null,0,?,1,?,?,?,?,?,?)")){
+		try(PreparedStatement pstmt = conn.prepareStatement("insert into tbl_member values(?,?,?,0,?,1,?,?,?,?,?,?)")){
 			pstmt.setString(1, dto.getMember_id());
 			pstmt.setString(2, dto.getPassword());
-			pstmt.setString(3, dto.getMember_email());
-			pstmt.setString(4, dto.getName());
-			pstmt.setString(5, dto.getGender());
-			pstmt.setString(6, dto.getBirth_year());
-			pstmt.setString(7, dto.getBirth_month());
-			pstmt.setString(8, dto.getAccept_mail());
-			pstmt.setString(9, dto.getVemail());
+			pstmt.setString(3, dto.getProfile_pic());
+			pstmt.setString(4, dto.getMember_email());
+			pstmt.setString(5, dto.getName());
+			pstmt.setString(6, dto.getGender());
+			pstmt.setString(7, dto.getBirth_year());
+			pstmt.setString(8, dto.getBirth_month());
+			pstmt.setString(9, dto.getAccept_mail());
+			pstmt.setString(10, dto.getVemail());
 			System.out.println("registerdao");
 			return pstmt.executeUpdate();
 		}

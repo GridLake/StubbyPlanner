@@ -106,7 +106,7 @@ public class SquareDAO {
 		ResultSet rs = null;
 		GalleryDTO dto = null;
 		try {
-			pstmt = conn.prepareStatement("select * from tbl_gallery g join tbl_gallery_pic p on g.gal_seq=p.gal_seq order by g.gal_seq desc");
+			pstmt = conn.prepareStatement("with a as(select gal_seq, min(gal_pic_seq) gal_pic_seq from tbl_gallery_pic group by gal_seq), b as(select distinct gal_seq ,min(gal_pic_path) gal_pic_path from tbl_gallery_pic group by gal_seq), c as(select*from tbl_gallery) select * from a,b,c where a.gal_seq=b.gal_seq and b.gal_seq=c.gal_seq order by c.post_like desc");
 			rs = pstmt.executeQuery();
 			List<GalleryDTO> list = new ArrayList<>();
 			
