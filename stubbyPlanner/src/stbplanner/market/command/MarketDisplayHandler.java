@@ -9,6 +9,8 @@ public class MarketDisplayHandler implements CommandHandler{
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		
 		request.setAttribute("lnb_item", "market");
 		return "/market/index";
 	}
