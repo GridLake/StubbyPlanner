@@ -168,7 +168,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 	var it = f.password.value;
 	var b = '0';var chars = it.split("");while(b<it.length){c = '0';while(c<letters.length){if(split[c] == chars[b]){if(c == "0") { c = ""; }if(eval(c+10) >= letters.length){num = eval(10-(letters.length-c));encrypted += split[num];}else{num = eval(c+10);encrypted += split[num];}}c++;}b++;}f.password.value = encrypted;encrypted = '';
  */
-
+	alert("회원가입이 완료되었습니다.");
 	f.submit();
 }
 
@@ -619,7 +619,7 @@ if(document.getElementById("birth_year").value==''||document.getElementById("bir
 									<label class="label col col-4">프로필 사진</label>
 									<div class="col col-8">
 										<label class="input">
-											<input type="file" class="profile_pic" name="profile_pic"/>
+											<input type="file" class="profile_pic" name="profile_pic" style="border: none;"/>
 										</label>
 									</div>
 								</div>

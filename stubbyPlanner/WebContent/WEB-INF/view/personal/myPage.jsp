@@ -170,7 +170,7 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
 			<span class="text-nic"><button><a href="/stubbyPlanner/common/logout.do">로그아웃</a></button></span>
 		</div>
 		<span class="text-info-lev">
-			자기소개글[회원가입에서 입력받는거 추가/테이블 추가]
+			상상 속 여행을 현실로! 스투비 플래너에 오신걸 환영합니다.
 		</span>
 		<div>
 
@@ -256,19 +256,30 @@ if(confirm("취소후에는 다시 예약이 불가능할 수 있습니다. 정�
            
                  
                 <div class="titArea">
-                    <h3 class="stu_title">내 투어 예약내역</h3>
+                    <h3 class="stu_title">나의 플래너</h3>
                 </div>
                 
-                <div class="empty_container">
+                <ul>
+                <img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg" style="width:190px; height:190px; margin:5px;">
+                </ul>
+               
+                 
+                 
+                 
+<!--                 <div class="titArea"> -->
+<!--                     <h3 class="stu_title">내 투어 예약내역</h3> -->
+<!--                 </div> -->
                 
- 					<div class="empty_wrap">
-                        <img src="/market/images/empty.png" alt="">
-                        <p><span>예약 내역이 없습니다.</span>스투비플래너와 함께 즐거운 여행을 떠나보세요.</p>
-                        <a href="/market/" class="stu_btn">
-                            <span>투어홈 바로가기</span>
-                        </a>
-                    </div>
-                </div>
+<!--                 <div class="empty_container"> -->
+                
+<!--  					<div class="empty_wrap"> -->
+<!--                         <img src="/market/images/empty.png" alt=""> -->
+<!--                         <p><span>예약 내역이 없습니다.</span>스투비플래너와 함께 즐거운 여행을 떠나보세요.</p> -->
+<!--                         <a href="/market/" class="stu_btn"> -->
+<!--                             <span>투어홈 바로가기</span> -->
+<!--                         </a> -->
+<!--                     </div> -->
+<!--                 </div> -->
 
   
 
@@ -787,7 +798,34 @@ function countFriend()
 function getPlanner(id)
 {
 
-}
+	var member_id = id;
+		             $.ajax({
+		             	url: '/stubbyPlanner/api/mypage/get_planner.jsp?member_id='+member_id,
+		               	dataType: 'json',
+		               	cache:false,
+		               	success: function(data){
+						if(data!=null)
+						{
+
+							thtml='<div class="titArea"><h3 class="stu_title">나의 플래너</h3></div><ul>';
+							$.each(data.list, function( i, item ) {
+								
+								thtml+='<img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg" style="width:190px; height:190px; margin:5px;">';
+								console.log(thtml);
+							});
+							thtml+='</ul>';
+							$(".mypage_message").html(thtml);
+						}else{
+							thtml='<div class="titArea"><h3 class="stu_title">내 투어 예약내역</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+							thtml+='<p><span>게시물이 없습니다.</span>광장에서 다른 회원들과 여행정보를 공유해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>광장홈 바로가기</span></a></div></div>';
+
+							$(".mypage_message").html(thtml);
+						}
+
+				}
+
+			});
+	}
 
 
 
@@ -800,7 +838,7 @@ var member_id = id;
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-					if(data!="")
+					if(data!=null)
 					{
 // 						thtml='<section class="stu_regions";"><div class="stu_inner_wrap" style="padding-top: 20px;">';
 // 						thtml+='<h2 style="font-size:18pt;font-weight:700;">갤러리</h2><div class="swiper-container swiper3"><ul class="swiper-wrapper" style="padding: 5px;">';
@@ -841,9 +879,8 @@ var member_id = id;
 	               	dataType: 'json',
 	               	cache:false,
 	               	success: function(data){
-					if(data!="")
+					if(data!=null)
 					{
-						
 						thtml='<div class="titArea"><h3 class="stu_title">광장 게시물</h3></div><ul class="prd_list">';
 						$.each(data.list, function( i, item ) {
 									console.log(item.POST_SUBJECT);	
@@ -875,7 +912,25 @@ var member_id = id;
 function getRes(id)
 {
 
-}
+	var member_id = id;
+		             $.ajax({
+		             	url: '/stubbyPlanner/api/mypage/get_article.jsp?member_id='+member_id,
+		               	dataType: 'json',
+		               	cache:false,
+		               	success: function(data){
+						if(data!=null)
+						{
+							thtml='<div class="titArea"><h3 class="stu_title">내 투어 예약내역</h3></div> <div class="empty_container"><div class="empty_wrap"><img src="/market/images/empty.png" alt="">';
+							thtml+='<p><span>예약내역이 없습니다.</span>투어상품에서 다양한 상품들을 예약해보세요.</p> <a href="/stubbyPlanner/square/index.do" class="stu_btn"><span>투어홈 바로가기</span></a></div></div>';
+
+							$(".mypage_message").html(thtml);
+						}
+
+				}
+
+			});
+	}
+
 
 
 function getMessage(id)
@@ -888,7 +943,7 @@ var member_id = id;
 	               	cache:false,
 	               	success: function(data){
 						console.log(">>>>>>>>>>"+data);	
-					if(data!="")
+					if(data!=null)
 					{
 
 						thtml='<div class="titArea"><h3 class="stu_title">받은 메세지함</h3></div><ul class="prd_list">';

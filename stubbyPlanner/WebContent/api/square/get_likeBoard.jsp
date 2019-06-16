@@ -74,7 +74,7 @@
 			jObj = new JSONObject();
 			System.out.println("else");
 			
-			String Insertsql = "insert into tbl_like values(( select nvl(max(like_seq),0) from tbl_like )+1,?,null,null,null,?)";
+			String Insertsql = "insert into tbl_like values(( select nvl(max(like_seq),0) from tbl_like )+1,?,null,null,?,null)";
 			String Plussql = "update tbl_boards set post_like= (select nvl(max(post_like),0)+1 from tbl_boards where post_seq = ?) where post_seq = ?";
 
 			Insertpstmt = conn.prepareStatement(Insertsql);

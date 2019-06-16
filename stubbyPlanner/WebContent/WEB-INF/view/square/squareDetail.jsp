@@ -647,7 +647,7 @@ button#good:hover:before,button:hover:after{
 						<li class="swiper-slide board"><a
 							href="javascript:getBoard(1);"><span>게시판</span></a></li>
 						<li class="swiper-slide planner"><a
-							href="javascript:getBoard(1);"><span>플래너공유</span></a></li>
+							href="javascript:getPlanner(1);"><span>플래너공유</span></a></li>
 						<li class="swiper-slide party"><a
 							href="javascript:getParty(1);"><span>동행찾기</span></a></li>
 						<li class="swiper-slide gallery"><a
@@ -798,7 +798,7 @@ button#good:hover:before,button:hover:after{
                             <ul class="swiper-wrapper" style="padding: 5px;">
 
 
-                                <li class="swiper-slide" style="width: 150px; height: 150px; padding: 5px;">
+                                <li class="swiper-slide" style="width: 150px; height: 150px; margin: 5px;">
                                 	<!-- 경로 & 파라미터 변경 필요 -->
                                     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">
@@ -807,7 +807,7 @@ button#good:hover:before,button:hover:after{
                                 </li>
 
 
-                                <li class="swiper-slide" style="width: 150px; height: 150px; padding:5px;">
+                                <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">
                                   <!-- 경로 & 파라미터 변경 필요 -->
                                   <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">
@@ -815,7 +815,7 @@ button#good:hover:before,button:hover:after{
                                     </a>
                                 </li>
 
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">
                                  <!-- 경로 & 파라미터 변경 필요 -->
 								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">
@@ -823,7 +823,7 @@ button#good:hover:before,button:hover:after{
                                     </a>
                                 </li>
 
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">
                                  <!-- 경로 & 파라미터 변경 필요 -->
 								 <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">
@@ -832,7 +832,7 @@ button#good:hover:before,button:hover:after{
                                 </li>
 
 
-                                <li class="swiper-slide" style="width: 150px; height: 150px;">
+                                <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">
                                 	<!-- 경로 & 파라미터 변경 필요 -->
                                     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">
                                         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">
@@ -1666,11 +1666,9 @@ function likeParty(id,party_seqno,party_like)
        	success: function(data){
        		
        		if(data.list=='추천'){
-
     		    $('.plike'+party_seqno+'').html(party_like+1);
            		
            		}else{
-
     			$('.plike'+party_seqno+'').html(party_like);
         			
            		}
@@ -2189,7 +2187,6 @@ function getParty(code){
 					$('.love').click(function(){
 						var party_seqno = $(this).attr('id');
 						var party_like = Number($(this).attr('name'));
-						
 						likeParty('${authUser.member_id}',party_seqno,party_like);
 						event.stopPropagation();
 					});
@@ -2199,6 +2196,94 @@ function getParty(code){
 	}
 });
 }
+
+	function getPlanner(code){
+		var board_code = code;
+		$.ajax({
+			
+         	url: '/stubbyPlanner/api/square/get_board.jsp',
+           	dataType: 'json',
+           	cache:false,
+           	success: function(data){
+           	//	alert(data.list);
+			if(data!="")
+			{		
+				thtml='<section class="stu_swiper-section stu_recent-offer"">                                ';
+				thtml+='   <div class="stu_inner_wrap">                                                      ';
+				thtml+='       <div class="titArea" style="display: inline-block;  padding-top: 20px;">      ';
+				thtml+='      <h2 style="font-size:18pt;font-weight:700;">플래너 공유</h2>                     ';
+				thtml+='       </div>                                                                        ';
+				thtml+='                                                                                     ';
+				thtml+='       <div class="swiper-container stu_tagArea"">                                   ';
+				thtml+='           <ul class="swiper-wrapper">                                               ';	                                                                                                                                                                                                                
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin: 5px;">                                                                                                                                                                                                                               ';
+             thtml+='     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">                                                                                                                                                ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+			thtml+=' <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">                                    ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+             thtml+='   <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">                                                                                                                                  ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+			thtml+=' <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">                                                                                    ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+             thtml+='     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">'; 
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>     ';
+            	 thtml+='</ul><br/><ul class="swiper-wrapper">';	
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+             thtml+='   <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=131011001:2:X:0,131011003:1:2:0,131041002:0:0:0,131041032:1:1:0,131041001:1:1:0,131021001:1:1:0">                                                                                                                                  ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/467ff806c2e8d1d75abfe661f238595b_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+			thtml+=' <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121011002:3:X:0,121011001:1:1:0,121011048:0:2:0,121011005:1:2:0,121011057:1:2:0,121011007:1:0:0,121021001:2:0:0,121021041:1:0:0,121011003:1:0:0,121011004:0:2:0,121011008:0:0:0,121011003:3:0:0">                                    ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/41f99a5e1fef95c038f585bc77f827e5_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+             thtml+='     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X,121011003:2:X,121011004:0:X,121011003:1:X,121011002:3:X,111041004:3:X,111041003:1:X,111041006:1:X,111061005:1:X,131041002:1:X,131041032:1:X,131041001:2:X,131021001:1:X,131011001:3:X,111061006:1:X,111011004:4:X">'; 
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5bf452c02b7c792e6cbda09451d2f523_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin: 5px;">                                                                                                                                                                                                                               ';
+             thtml+='     <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=111031001:3:X:0,111011004:3:0:0,111041006:1:5:0,111041003:1:1:0,111041004:3:1:0">                                                                                                                                                ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/636c475c3ce6932a35fadb740f63bf74_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+             thtml+=' <li class="swiper-slide" style="width: 150px; height: 150px; margin:5px;">                                                                                                                                                                                                                                ';
+			thtml+=' <a href="http://www.stubbyplanner.com/planner/planner_rt.do?tripgene=121041001:3:X:0,121041035:1:0:0,121041006:1:0:0,121041003:2:0:0,121041030:1:0:0,121041004:1:0:0,121031002:2:0:0,121031001:2:0:0,121041001:1:5:0">                                                                                    ';
+             thtml+='         <img class="fw" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/684a6760ae74e6e614c6b24f7b4d2337_l.jpg">                                                                                                                                                                                     ';
+             thtml+='         <div class="tone-down"></div>                                                                                                                                                                                                                                                                     ';
+             thtml+='     </a>                                                                                                                                                                                                                                                                                                  ';
+             thtml+=' </li>                                                                                                                                                                                                                                                                                                     ';
+			 thtml+='</div></div></section>';
+				$('#tourlist').html(thtml)
+
+			}
+		}
+	});
+}		
 
 	function getBoard(code){
 		var board_code = code;
@@ -2288,7 +2373,7 @@ function getParty(code){
 					//게시물 내용 출력
 					$('tr').click(function(){
 						var post_seq = $(this).children().attr('class');
-						var post_hits =Number($('.hits'+post_seq+'').text());
+						var post_hits =Number($('.hitsBoard'+post_seq+'').text());
 						if($(this).attr('name')=='noshow'){
 							hitsBoard(post_seq,post_hits);
 							$('.con').css({display:'none'});

@@ -481,7 +481,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" id="member_id" name="member_id" value="admin">
+                                                <input type="text" id="member_id" name="member_id">
                                             </label>
                                         </div>
                                     </div>   
@@ -493,7 +493,7 @@ src="https://www.facebook.com/tr?id=597062987120795&ev=PageView&noscript=1"
                                         <div class="col col-8">
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" id="password" name="password" value="admin"/>
+                                                <input type="password" id="password" name="password"/>
                                             </label>
                                             <div class="note"><a href="/stubbyPlanner/common/find.do" class="modal-opener"><u>아이디/비밀번호 찾기</u></a></div>
                                         </div>

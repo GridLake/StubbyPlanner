@@ -23,7 +23,7 @@
 		//JSONArray jArr = new JSONArray();
 
 		String sql = "select * "
-				+ " from tbl_boards "
+				+ " from tbl_planner "
 				+ "where member_id = ? ";
 
 		
@@ -41,24 +41,12 @@
 			do {
 				System.out.println("do");
 				JSONObject ArticleObj = new JSONObject();
-				ArticleObj.put("POST_SUBJECT", rs.getString("POST_SUBJECT"));
-				ArticleObj.put("POST_CONTENT", rs.getString("POST_CONTENT"));
+				ArticleObj.put("trip_id", rs.getString("trip_id"));
 
 				jArr.add(ArticleObj);
 
 			} while (rs.next());
 		}
-
-		/* 		while (rs.next()) {
-					JSONObject countryObj = new JSONObject();
-					countryObj.put("country_name", rs.getString("country_name"));
-					countryObj.put("country_id", rs.getInt("country_id"));
-					countryObj.put("img_url", rs.getString("img_url"));
-					countryObj.put("item_cnt", rs.getInt("item_cnt"));
-		
-					jArr.add(countryObj);
-		
-				} */
 
 		jObj.put("list", jArr);
 
@@ -66,7 +54,7 @@
 		e.printStackTrace();
 	} finally {
 		pstmt.close();
-		//rs.close();
+		rs.close();
 		conn.close();
 	}
 %>

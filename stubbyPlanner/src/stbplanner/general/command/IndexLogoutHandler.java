@@ -15,6 +15,7 @@ public class IndexLogoutHandler implements CommandHandler{
 			System.out.println("!null");
 			//response.sendRedirect("/stubbyPlanner/common/checkLogout.do");
 			session.invalidate();
+			
 			response.sendRedirect("/stubbyPlanner/common/login.do");
 			
 		}/*else {
