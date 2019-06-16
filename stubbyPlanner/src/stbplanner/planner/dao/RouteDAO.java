@@ -27,10 +27,10 @@ public class RouteDAO {
 		//('4','암스테르담','1','X','0','52.637984','4.903561',new Date('2019-07-20'),new Date('2019-07-21'));
 		
 		try {
-			String sql = " select ecity_id, ecity_name, rt_days, rt_trans, nvl(night_move, 0) as night_move, "
+			String sql = " select scity_id, scity_name, rt_days, rt_trans, nvl(night_move, 0) as night_move, "
 					   + " city_x, city_y, rt_startdate, rt_enddate"
 					   + " from tbl_route a, tbl_city b"
-					   + " where trip_id = ? and a.ecity_id = b.city_id";
+					   + " where trip_id = ? and a.scity_id = b.city_id";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -41,8 +41,8 @@ public class RouteDAO {
 			
 			while (rs.next()) {
 				jobj = new JSONObject();
-				int ecity_id = rs.getInt("ecity_id");
-				String ecity_name = rs.getString("ecity_name");
+				int scity_id = rs.getInt("scity_id");
+				String scity_name = rs.getString("scity_name");
 				int rt_days = rs.getInt("rt_days");
 				String rt_trans = rs.getString("rt_trans");
 				int night_move = rs.getInt("night_move");
@@ -51,8 +51,8 @@ public class RouteDAO {
 				String rt_startdate = rs.getString("rt_startdate");
 				String rt_enddate = rs.getString("rt_enddate");
 				
-				jobj.put("ecity_id", ecity_id);
-				jobj.put("ecity_name", ecity_name);
+				jobj.put("ecity_id", scity_id);
+				jobj.put("ecity_name", scity_name);
 				jobj.put("rt_days", rt_days);
 				jobj.put("rt_trans", rt_trans);
 				jobj.put("night_move", night_move);

@@ -18,7 +18,8 @@ Connection conn = null;
 PreparedStatement pstmt = null;
 ResultSet rs = null;
 
-String sql = "select scity_name , rt_startdate, rt_enddate, att_id from tbl_route where trip_id = ?";
+// String sql = "select scity_name , rt_startdate, rt_enddate, att_id from tbl_route where trip_id = ?";
+String sql = "select scity_name , rt_startdate, rt_enddate from tbl_route where trip_id = ?";
 
 JSONArray jsonArray = new JSONArray(); // data
 JSONObject jsonRoute = new JSONObject(); // routes
@@ -45,7 +46,7 @@ try {
 		String y1 = rs.getString("rt_enddate").substring(0, 4);
 		String m1 = rs.getString("rt_enddate").substring(5, 7);
 		String d1 = rs.getString("rt_enddate").substring(8, 10);
-		Boolean att_id = rs.getString("att_id") == null ? false : true;
+		// Boolean att_id = rs.getString("att_id") == null ? false : true;
 		
 		jsonArray2.put("y",Integer.parseInt(y));
 		jsonArray2.put("m",Integer.parseInt(m));
@@ -57,7 +58,7 @@ try {
 		JsonO.put("title",scity_name);
 		JsonO.put("date_in",jsonArray2);
 		JsonO.put("date_out",jsonArray3);
-		JsonO.put("has_bucket_list",att_id);
+		// JsonO.put("has_bucket_list",att_id);
 		
 		jsonRoute2.add(JsonO); // date_in
 		

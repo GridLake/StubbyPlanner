@@ -6,8 +6,6 @@
 <%@ include file="/include.jspf" %>
 <%
 	int trip_id = Integer.parseInt(request.getParameter("tid"));
-	String thedate = request.getParameter("thedate");
-	System.out.println(thedate);
 %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
@@ -622,7 +620,7 @@ var geocoder;
 var overlay;
 var marker=[];
 var routelines=[];
-      function initMap() {
+      function initMap(data) {
            geocoder = new google.maps.Geocoder();
          map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 45.674, lng: 30},
@@ -742,7 +740,7 @@ var routelines=[];
 
 
 	var leftTopControlDiv = document.createElement('div');
-	thtml='<div style="margin-bottom:5px;margin-left:10px;font-size:10pt;color:#696969;border:1px solid #efefef;border-radius:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;background:#fff;font-weight:600;cursor:pointer" onclick="openStartDateModal()">2019년 7월 13일 출발 </div>';
+	thtml='<div style="margin-bottom:5px;margin-left:10px;font-size:10pt;color:#696969;border:1px solid #efefef;border-radius:10px;padding-top:5px;padding-bottom:5px;padding-left:10px;padding-right:10px;background:#fff;font-weight:600;cursor:pointer" onclick="openStartDateModal()">'+data.planner.startdate.substring(0, 4)+'년'+data.planner.startdate.substring(5, 7)+'월'+data.planner.startdate.substring(8, 10)+'일 출발 </div>';
 	leftTopControlDiv.innerHTML = thtml;
 	leftTopControlDiv.index = 1;
 	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(leftTopControlDiv);
@@ -764,14 +762,14 @@ var routelines=[];
 	overlay.draw = function() {};
 	overlay.setMap(map);
 
-	iniMapItems();
+	iniMapItems(data);
 	
 
       }
 
-
-var tripwith_isopen=false;
-var tripwith_txt=[];
+var trip_tt;
+var tripwith_isopen= trip_txt == null ? false : true;
+var tripwith_txt = [];
 tripwith_txt[1]="여자혼자";
 tripwith_txt[2]="남자혼자";
 tripwith_txt[3]="커플/신혼";
@@ -821,56 +819,55 @@ function selectTripwith(x,y)
 	saveTripgene();
 	toggleSelectTripWith();
 }
-function iniMapItems()
+function iniMapItems(data)
 {
-
         var image0 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night0.png',
-	scaledSize: new google.maps.Size(8, 8),
+          url: '/stubbyPlanner/externalData/marker/mycity_night0.png',
+		scaledSize: new google.maps.Size(8, 8),
           anchor: new google.maps.Point(4, 4)
         };
         var image1 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night1.png',
-	scaledSize: new google.maps.Size(14, 14),
+          url: '/stubbyPlanner/externalData/marker/mycity_night1.png',
+			scaledSize: new google.maps.Size(14, 14),
           anchor: new google.maps.Point(7,7)
         };
         var image2 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night2.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night2.png',
 	scaledSize: new google.maps.Size(16, 16),
           anchor: new google.maps.Point(8, 8)
         };
         var image3 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night3.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night3.png',
 	scaledSize: new google.maps.Size(18, 18),
           anchor: new google.maps.Point(9, 9)
         };
         var image4 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night4.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night4.png',
 	scaledSize: new google.maps.Size(20, 20),
           anchor: new google.maps.Point(10, 10)
         };
         var image5 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night5.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night5.png',
 	scaledSize: new google.maps.Size(22, 22),
           anchor: new google.maps.Point(11, 11)
         };
         var image6 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night6.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night6.png',
 	scaledSize: new google.maps.Size(22, 22),
           anchor: new google.maps.Point(11, 11)
         };
         var image7 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night7.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night7.png',
 	scaledSize: new google.maps.Size(22, 22),
           anchor: new google.maps.Point(11, 11)
         };
         var image8 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night8.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night8.png',
 	scaledSize: new google.maps.Size(22, 22),
           anchor: new google.maps.Point(11, 11)
         };
         var image9 = {
-          url: '//www.stubbyplanner.com/img_v13/marker/mycity_night9.png',
+          url: '/stubbyPlanner/externalData/marker/mycity_night9.png',
 	scaledSize: new google.maps.Size(22, 22),
           anchor: new google.maps.Point(11, 11)
         };
@@ -898,123 +895,66 @@ var lineSymbol_TRAIN_LR = {
 	rotation: 0,
 	anchor: new google.maps.Point(0,0)
 }
-
-
-        marker[0] = new google.maps.Marker({
-          map: map,
-          position: {lat:48.86110101269274, lng: 2.3421478271484375},
-            icon: image3,
-            shape: shape,
-            title: "파리",
-            zIndex: 10000
-        });
-
-
-	marker[0].addListener('click', function() {
-	mapIntoCity('111011004');
-  });
-
-
-
-
-
-
-        marker[1] = new google.maps.Marker({
-          map: map,
-          position: {lat:50.8466245793837, lng: 4.3511438369751},
-            icon: image1,
-            shape: shape,
-            title: "브뤼셀",
-            zIndex: 5000
-        });
-
-
-	marker[1].addListener('click', function() {
-	mapIntoCity('111081001');
-  });
-
-
-
-
-
-
-	lineSymbol=lineSymbol_TRAIN_LR;
 	
-        var path = [marker[0].getPosition(), marker[1].getPosition()];
-        routelines[0] = new google.maps.Polyline({
-        strokeColor: '#696969',
-          strokeOpacity: 1.0,
-          strokeWeight:1,
-          geodesic: false,
-          icons: [{
-            icon: lineSymbol,
-            offset: '95%'
-          }],
-          map: map
-        });
-       routelines[0].setPath(path);
+	for (var i = 0; i < data.map.length; i++) {
+		var k = data.map[i].nights;
+		var image;
+		if(k == 0) image = image0;
+		else if(k==1) image = image1;
+		else if(k==2) image = image2;
+		else if(k==3) image = image3;
+		else if(k==4) image = image4;
+		else if(k==5) image = image5;
+		else if(k==6) image = image6;
+		else if(k==7) image = image7;
+		else if(k==8) image = image8;
+		else if(k==9) image = image9;
+		marker[i] = new google.maps.Marker({
+	          map: map,
+	          position: {lat:data.map[i].lat, lng: data.map[i].lng},
+	            icon: image,
+	            shape: shape,
+	            title: image,
+	            zIndex: 10000
+	    });
 
-        marker[2] = new google.maps.Marker({
-          map: map,
-          position: {lat:51.5000874980771, lng: -0.126256942749023},
-            icon: image3,
-            shape: shape,
-            title: "런던",
-            zIndex: 3333
-        });
-
-
-	marker[2].addListener('click', function() {
-	mapIntoCity('111031001');
-  });
-
-
-
-
-
-
-	lineSymbol=lineSymbol_TRAIN_LR;
-	
-        var path = [marker[1].getPosition(), marker[2].getPosition()];
-        routelines[1] = new google.maps.Polyline({
-        strokeColor: '#696969',
-          strokeOpacity: 1.0,
-          strokeWeight:1,
-          geodesic: false,
-          icons: [{
-            icon: lineSymbol,
-            offset: '95%'
-          }],
-          map: map
-        });
-       routelines[1].setPath(path);
-
+		if( i >= 1 ){
+			lineSymbol=lineSymbol_TRAIN_LR;
+			
+	        var path = [marker[i-1].getPosition(), marker[i].getPosition()];
+	        routelines[i] = new google.maps.Polyline({
+	        strokeColor: '#696969',
+	          strokeOpacity: 1.0,
+	          strokeWeight:1,
+	          geodesic: false,
+	          icons: [{
+	            icon: lineSymbol,
+	            offset: '95%'
+	          }],
+	          map: map
+	        });
+	       routelines[i].setPath(path);
+		}
+		
+	}//for
 
 
 	var rightTopControlDiv = document.createElement('div');
-	thtml='<div style="margin-top:10px;margin-right:10px;font-size:18pt;font-weight:500;color:#696969;background:#fff;border:1px solid #efefef;border-radius:30px;width:60px;height:60px;padding-top:11px;text-align:center">8<font style="font-size:9pt">일</font></div>';
+	thtml='<div style="margin-top:10px;margin-right:10px;font-size:18pt;font-weight:500;color:#696969;background:#fff;border:1px solid #efefef;border-radius:30px;width:60px;height:60px;padding-top:11px;text-align:center">'+data.planner.terms+'<font style="font-size:9pt">일</font></div>';
 	rightTopControlDiv.innerHTML = thtml;
 	rightTopControlDiv.index = 1;
 	map.controls[google.maps.ControlPosition.RIGHT_TOP].push(rightTopControlDiv);
 
-
-
-
 	var bounds = new google.maps.LatLngBounds();
+		
+		for (var i = 0; i < marker.length; i++) {
+			
+			bounds.extend(marker[i].getPosition());
+		}
 	
-		bounds.extend(marker[0].getPosition());
-	
-		bounds.extend(marker[1].getPosition());
-	
-		bounds.extend(marker[2].getPosition());
-	
-
 	map.fitBounds(bounds);
 
 }
-
-
-
 
 </script>
 <script>
@@ -1342,7 +1282,8 @@ function showSchdDetail(id,t)
 <script src="<%= contextPath %>/externalData/js/photoswipe-ui-default.min.js"></script> 
 
 </head>
-<body id="body" onload="initMap()">
+<!-- <body id="body" onload="initMap()"> -->
+<body id ="body">
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1443,7 +1384,7 @@ function showSchdDetail(id,t)
                     </div>
                     <h1 class="stu_logo">
                         <a href="/">
-                            <img class="fh" src="/images2/stu_logo_mobile.png" alt="logo"/>
+                            <img class="fh" src="<%= contextPath %>/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                         </a>
                     </h1>
                     <div class="gnb_banner on-pc">
@@ -1453,7 +1394,7 @@ function showSchdDetail(id,t)
 
                               <li class="swiper-slide">
                                     <a href="http://www.stubbyplanner.com/coupon/iceland_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB02.jpg" alt=""/>
+                                        <img class="fw" src="<%= contextPath %>/externalData/images2/sample/GB02.jpg" alt=""/>
                                         <div class="txtWrap">
                                             <p>아이슬란드 특급 할인!</p>
                                             <b><span>130,000원</span> 할인쿠폰</b>
@@ -1464,7 +1405,7 @@ function showSchdDetail(id,t)
 
                                 <li class="swiper-slide">
                                    <a href="/consulting/index.asp?from=top2">
-                                        <img class="fw" src="/images2/sample/GB03.jpg" alt=""/>
+                                        <img class="fw" src="<%= contextPath %>/externalData/images2/sample/GB03.jpg" alt=""/>
                                         <div class="txtWrap">
                                             <p>유럽 초보자를 위한</p>
                                             <b>전문가 유럽 맞춤계획 의뢰<span> </span></b>
@@ -1484,7 +1425,7 @@ function showSchdDetail(id,t)
                                 </li>
                                 <li class="swiper-slide">
                                     <a href="http://www.stubbyplanner.com/coupon/winter_coupon.asp">
-                                        <img class="fw" src="/images2/sample/GB01.jpg" alt=""/>
+                                        <img class="fw" src="<%= contextPath %>/externalData/images2/sample/GB01.jpg" alt=""/>
                                         <div class="txtWrap">
                                             <p>유럽 현지투어 / 액티비티</p>
                                             <b><span>100,000원</span> 할인쿠폰</b>
@@ -1500,15 +1441,15 @@ function showSchdDetail(id,t)
                     </div>
                     <ul class="gnb_wrap on-pc">
                         <li class="gnb_item">
-                            <a href="/guide/reservation.asp">예약내역</a>
+                            <a href="<%= contextPath %>/guide/reservation.asp">예약내역</a>
                         </li>
                         <li class="gnb_item">
-                            <a href="/coupon/index.asp">쿠폰함</a>
+                            <a href="<%= contextPath %>/coupon/index.asp">쿠폰함</a>
                         </li>
 
                         <li class="gnb_item gnb_profile sign_in">
                             <a href="#" class="profile_photo">
-                                <img class="fh" src="/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                <img class="fh" src="<%= contextPath %>/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                             </a>
 
 
@@ -1516,37 +1457,37 @@ function showSchdDetail(id,t)
                                 <ul class="prfPopup_section">
                                     <li class="prfPopup_item prfPopup_profile">
                                         <a href="#" class="profile_photo">
-                                            <img class="fh" src="/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                            <img class="fh" src="<%= contextPath %>/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                                         </a>
                                         <div class="profile_name">
                                             <p>ggplay1</p>
-                                            <a href="/ggplay1" class="mng_account">마이페이지</a>
+                                            <a href="<%= contextPath %>/ggplay1" class="mng_account">마이페이지</a>
                                         </div>
                                     </li>
                                 </ul>
                                 <ul class="prfPopup_section">
 
                                     <li class="prfPopup_item prfPopup_coupon">
-                                        <a href="/coupon/index.asp"><i></i>쿠폰함</a>
+                                        <a href="<%= contextPath %>/coupon/index.asp"><i></i>쿠폰함</a>
                                     </li>
                                     <li class="prfPopup_item prfPopup_square">
-                                        <a href="/square/"><i></i>광장</a>
+                                        <a href="<%= contextPath %>/square/"><i></i>광장</a>
                                     </li>
 
                                     <li class="prfPopup_item prfPopup_premium">
-                                        <a href="/selfguide/"><i></i>프리미엄</a>
+                                        <a href="<%= contextPath %>/selfguide/"><i></i>프리미엄</a>
                                     </li>
                                 </ul>
 
                                 <ul class="prfPopup_section">
                                     <li class="prfPopup_item">
-                                        <a href="/qa/">1:1문의</a>
+                                        <a href="<%= contextPath %>/qa/">1:1문의</a>
                                     </li>
                                     <li class="prfPopup_item">
-                                        <a href="/common/memberinfo.asp">회원정보변경</a>
+                                        <a href="<%= contextPath %>/common/memberinfo.asp">회원정보변경</a>
                                     </li>
                                     <li class="prfPopup_item">
-                                        <a href="/common/logout.asp">로그아웃</a>
+                                        <a href="<%= contextPath %>/common/logout.asp">로그아웃</a>
                                     </li>
                                 </ul>
 
@@ -1563,17 +1504,17 @@ function showSchdDetail(id,t)
                             <a href="/">홈</a>
                         </li>
                         <li class="lnb_item active">
-                            <a href="/planner/index.do">계획짜기</a>
+                            <a href="<%= contextPath %>/planner/index.do">계획짜기</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/market/index.do">투어예약</a>
+                            <a href="<%= contextPath %>/market/index.do">투어예약</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/mb/index.do">숙소예약</a>
+                            <a href="<%= contextPath %>/mb/index.do">숙소예약</a>
                         </li>
 
                         <li class="lnb_item ">
-                            <a href="/exp/list.do">여행지</a>
+                            <a href="<%= contextPath %>/exp/list.do">여행지</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
@@ -1595,12 +1536,12 @@ function showSchdDetail(id,t)
                             <div class="side_profile">
                                 <a href="#" class="profile_photo">
                                     <i>
-                                        <img class="fh" src="/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
+                                        <img class="fh" src="<%= contextPath %>/externalData/img_v9/img_pfnull.jpg" alt="프로필 사진"/>
                                     </i>
                                 </a>
                                 <div class="profile_name">
                                     <p>ggplay1</p>
-                                    <a href="/ggplay1" class="mng_account">마이페이지</a>
+                                    <a href="<%= contextPath %>/ggplay1" class="mng_account">마이페이지</a>
                                 </div>
                             </div>
                         </li>
@@ -1609,33 +1550,33 @@ function showSchdDetail(id,t)
                     <ul class="side_section">
 
                         <li class="side_item side_resv">
-                            <a href="/guide/reservation.asp">
+                            <a href="<%= contextPath %>/guide/reservation.jsp">
                                 <i></i>예약내역
                             </a>
                         </li>
 
                         <li class="side_item side_coupon">
-                            <a href="/coupon/index.do"><i></i>쿠폰함</a>
+                            <a href="<%= contextPath %>/coupon/index.do"><i></i>쿠폰함</a>
                         </li>
                         <li class="side_item side_square">
-                            <a href="/square/index.do"><i></i>광장</a>
+                            <a href="<%= contextPath %>/square/index.do"><i></i>광장</a>
                         </li>
 
                         <li class="side_item side_premium">
-                            <a href="/selfguide/index.do"><i></i>프리미엄</a>
+                            <a href="<%= contextPath %>/selfguide/index.do"><i></i>프리미엄</a>
                         </li>
                     </ul>
 
 
                     <ul class="side_section sign_in">
                         <li class="side_item">
-                            <a href="/qa/index.do">1:1문의</a>
+                            <a href="<%= contextPath %>/qa/index.do">1:1문의</a>
                         </li>
                         <li class="side_item">
-                            <a href="/common/memberinfo.do">회원정보변경</a>
+                            <a href="<%= contextPath %>/common/memberinfo.do">회원정보변경</a>
                         </li>
                         <li class="side_item">
-                            <a href="/common/logout.do">로그아웃</a>
+                            <a href="<%= contextPath %>/common/logout.do">로그아웃</a>
                         </li>
                     </ul>
 
@@ -1652,7 +1593,7 @@ function showSchdDetail(id,t)
       <div class="stu_inner_wrap" >
 
 
-		<h3 style="padding-left:10px;padding-top:25px;font-weight:600;font-size:18pt">8일간 여행 <div class="btn-group" style="margin-top:0px;padding-top:0px;">
+		<h3 style="padding-left:10px;padding-top:25px;font-weight:600;font-size:18pt">나의 여행 플래너 <div class="btn-group" style="margin-top:0px;padding-top:0px;">
 		             <button type="button" class="btn-u btn-u-dark" style="border-radius:25px;" data-toggle="dropdown" aria-expanded="false">
                             		<span class="fa fa-cog"></span> 관리
                           		  <span class="fa fa-angle-down"></span>
@@ -1660,9 +1601,9 @@ function showSchdDetail(id,t)
                         		<ul class="dropdown-menu" role="menu">
 			  <li><a href="javascript:openStartDateModal()">출발일변경</a></li>
                         		    <li><a href="javascript:mngPlannerInfo()">정보 수정</a></li>
-                        		    <li><a href="/planner/planner_rt.do?trip_id=<%=trip_id%>">루트 수정</a></li>
-                        		    <li><a href="/planner/planner_schd.do?trip_id=<%=trip_id%>">일정표 관리</a></li>
-                        		    <li><a href="/planner/planner_resv.do?trip_id=<%=trip_id%>">예약정보 관리</a></li>
+                        		    <li><a href="/stubbyPlanner/planner/planner_rt.do?trip_id=<%=trip_id%>">루트 수정</a></li>
+                        		    <li><a href="/stubbyPlanner/planner/planner_schd.do?trip_id=<%=trip_id%>">일정표 관리</a></li>
+                        		    <li><a href="/stubbyPlanner/planner/planner_resv.do?trip_id=<%=trip_id%>">예약정보 관리</a></li>
                         		    <li><a  href="#" id="kakao-link-btn" >카톡 작업공유</a></li>
 	
                         		    <li><a href="javascript:delPlan();">플래너 삭제</a></li>
@@ -1766,7 +1707,7 @@ function deleteReal()
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_air.asp?trip_id=<%=trip_id%>" style="color:#696969">
+	<a href="/stubbyPlanner/planner/planner_resv_air.jsp?trip_id=<%=trip_id%>" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-plane"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">항공권</div>
@@ -1777,7 +1718,7 @@ function deleteReal()
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_trs.asp?trip_id=<%=trip_id%>&ridx=1" style="color:#696969">
+	<a href="planner_resv_trs.jsp?trip_id=<%=trip_id%>&ridx=1" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-arrow-right"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">도시이동</div>
@@ -1843,33 +1784,6 @@ function openSLP(turl)
 	
 }
 </script>
-
-
-
-<!---
-        <section class="stu_event_banner" style="margin:10px 0px;padding:10px 0px">
-            <div class="stu_inner_wrap">
-                <div class="swiper-container event_banner" style="padding-bottom:0px">
-                    <ul >
-                        <li class="swiper-slide">
-                            <a href="/coupon/winter_coupon.asp" target="_blank">
-                                <div class="txtWrap">
-                                    <p>유럽 현지투어/액티비티</p>
-                                    <b><span>10만원</span>할인 쿠폰</b>
-                                </div>
-                                <div class="imgWrap" style="background-image:url(/images/coupon-bn.png);">
-                                    <b><span>STUBBY PLANNER</span>￦ 100,000</b>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </section>
---->
-
-
 
 <script>
 function mng_small_city()
@@ -2271,7 +2185,8 @@ function loadDayExtInfo()
 
 
 <script>
-var startdate='2019-07-13';
+// var startdate='2019-07-13';
+var startdate=startdate;
 function openStartDateModal()
 {
 	
@@ -2300,8 +2215,8 @@ function closeMyModal()
 
 	
 }
-console.log('${list.get(1)}');
-var sd=new Date('2019-07-10');
+
+var sd=new Date(thedate);
 dis_cur_year=sd.getFullYear();
 dis_cur_month=sd.getMonth()+1;
 dis_cur_day=sd.getDate();
@@ -2523,27 +2438,38 @@ var tripgene;
 $( document ).ready(function() {
 	
 	$.ajax({
-		  url: "/stubbyPlanner/model1/tr1.jsp",
+		  url: "/stubbyPlanner/model1/detail_ajax.jsp",
 		 type: "GET",
 		 dataType: 'json',
 		 data: {
 			trip_id:<%=trip_id%>
 		  },
+		
 		  success: function( data ) {
-// 				alert(data[0].startdate);
-				thedate = data[0].startdate;
-				console.log("ajax:: " +thedate);
+// 				alert(data.planner.startdate);
+				thedate = data.planner.startdate;
+				startdate = data.planner.startdate;
+				trip_txt = data.planner.triptype;
+				if(trip_txt == '여자혼자') trip_tt =1;
+				else if(trip_txt == '남자혼자') trip_tt =2;
+				else if(trip_txt == '커플/신혼') trip_tt =3;
+				else if(trip_txt == '여자끼리') trip_tt =4;
+				else if(trip_txt == '남자끼리') trip_tt =5;
+				else if(trip_txt == '남녀함께') trip_tt =6;
+				else if(trip_txt == '아이들과') trip_tt =7;
+				else if(trip_txt == '부모님과') trip_tt =8;
+				else if(trip_txt == '부모님끼리') trip_tt =9;
+// 				alert(data.map.length);
 				// 
 		setTimeout(function(){toggleSelectTripWith(); }, 1500);
-			
-			
 	
-	tripgene="111011004:3:X,111081001:1:X,111031001:3:X";
 // 	console.log(startdate);
 	startdate=startdate;
 
-
+	
 	setTimeout(function(){showCalendar(data);}, 1000);
+// 	setTimeout(function(){iniMapItems(data);}, 1500);
+	initMap(data);
 
             var mySwiper3 = new Swiper ('.swiper', {
                 slidesPerView:'auto',
@@ -2568,8 +2494,13 @@ $( document ).ready(function() {
 	initKakaoBtn();
 	
 		  }
-	});//ajax
-
+	
+	
+	});//ajax1
+	
+	
+			
+	
 });
 	
 
@@ -2637,16 +2568,18 @@ $('div').find('span').each(function(i, e){
  */
 function showCalendar(data)
 {
-var randomColor = '#'+ ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6);
-// 	alert("startdate :: "  + startdate);
-	
-// 	console.log(data[1].rt_trans +"//" + data[1].rt_startdate);
-	var id;
-	var title;
-	var start;
-	var end;
-	var color;
-					
+	console.log(data.calendar[3].Country_name);
+	eventData = [];
+	for (var i = 0; i < data.calendar.length; i++) {
+	var randomColor = '#'+ ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6);
+		eventData.push({
+			title :  '<img src="/stubbyPlanner/externalData/stbcimg/'+data.calendar[i].Country_name+'.gif" style="width:15px;height:11px">'+data.calendar[i].scity_name, 
+			start : new Date(data.calendar[i].rt_startdate),
+			end : new Date(data.calendar[i].rt_enddate),
+			color : randomColor
+		})
+				
+	}
 	
 	$("#div_loading_on_map").hide();
 			$("#div_calendar").fullCalendar({
@@ -2660,27 +2593,19 @@ var randomColor = '#'+ ('000000' + Math.floor(Math.random()*16777215).toString(1
 				weekNumbers: false,
 				editable: false,
 				lang:'ko',
-				events: function(start, end, timezone, callback){
-					var events = [];
-					for (var i = 1; i < data.length; i++) {
-						console.log(data[i].scity_name + "//" + data[i].rt_startdate);
-						event.push({
-							title:'<img src="/images/is/flag/11101_s.gif" style="width:15px;height:11px">'+data[i].scity_name+'',
-							start:data[i].rt_startdate,
-							end:data[i].rt_enddate,
-							color: randomColor
-						});
-					}
-				},
+				events: eventData,
 				eventRender: function (event, element) {
 				    element.find('.fc-event-title').html(event.title);
+				    element.find('.fc-event-time').hide();
 				}
 				
+				
 			});
-		
 
 	$(".fc-button-prev").html("<");
 	$(".fc-button-next").html(">");
+	
+
 }
 	function openTrsinfo(dep,des,thedate)
 	{
@@ -3049,7 +2974,7 @@ function delSchd(d,t)
 }
 
 
-<script src="<%= contextPath %>/externalData/js2/header_footer3.js" type="text/javascript"></script>
+<%-- <script src="<%= contextPath %>/externalData/js2/header_footer3.js" type="text/javascript"></script> --%>
  
 
 
