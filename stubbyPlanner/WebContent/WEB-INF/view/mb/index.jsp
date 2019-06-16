@@ -407,7 +407,7 @@ $(this).remove();
                             <div class="content-header ico_theme">주요도시</div>
                             <ul class="content-list">
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/mb/index_city.do?l=&region=111011004">
+                                    <a href="<%= contextPath %>/mb/index_city.do?l=&city_id=1">
                                         <div class="value">
                                             <b class="name">파리</b>
                                             <i class="category">프랑스</i>
@@ -982,7 +982,7 @@ $(this).remove();
                             <ul class="content-list">
 
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/mb/index_city.do?l=&region=111011004">
+                                    <a href="<%= contextPath %>/mb/index_city.do?l=&ciyt_id=111011004">
                                         <div class="value">
                                             <b class="name">파리</b>
                                             <i class="category">프랑스</i>

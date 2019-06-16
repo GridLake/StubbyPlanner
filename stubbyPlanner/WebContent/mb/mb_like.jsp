@@ -16,12 +16,12 @@
 	PreparedStatement pstmt1 = null;
 	ResultSet rs = null;
 	
-	String tour_id = request.getParameter("tour_id");
+	String slp_id = request.getParameter("slp_id");
  	String city_id = request.getParameter("city_id");
 	String user_id = request.getParameter("user_id");
 
 	System.out.println("user_id:" + user_id);
-	System.out.println("tour_id:" + tour_id);
+	System.out.println("slp_id:" + slp_id);
 	
 	JSONObject jsonData = null;
 	
@@ -30,9 +30,9 @@
 		String sql = null;
 		
 		
-		pstmt1 = conn.prepareStatement(" select count(*) as cnt from tbl_wishlist where member_id = ? and guide_seq = ? ");
+		pstmt1 = conn.prepareStatement(" select count(*) as cnt from tbl_wishlist where member_id = ? and accom_seq = ? ");
 		pstmt1.setString(1, user_id);
-		pstmt1.setString(2, tour_id);
+		pstmt1.setString(2, slp_id);
 		
 		rs = pstmt1.executeQuery();
 		int result = 0;
@@ -41,15 +41,15 @@
 		}
 		
 		if(result==0){
-			sql = " insert into TBL_WISHLIST (WISHLIST_SEQNO, MEMBER_ID, guide_seq) "
+			sql = " insert into TBL_WISHLIST (WISHLIST_SEQNO, MEMBER_ID, accom_seq) "
 			   		+ " values (SEQ_ID.nextval, ?, ?)";
 		} else {
-			sql = " delete from tbl_wishlist where member_id = ? and guide_seq = ? ";
+			sql = " delete from tbl_wishlist where member_id = ? and accom_seq = ? ";
 		}
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, user_id);
-		pstmt.setString(2, tour_id);
+		pstmt.setString(2, slp_id);
 		pstmt.executeUpdate();
 		
 		

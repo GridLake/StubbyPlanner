@@ -13,11 +13,12 @@ import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import stbplanner.general.command.CommandHandler;
 import stbplanner.guide.model.GuideDTO;
+import stbplanner.guide.model.TourtypeDTO;
 import stbplanner.guide.service.GuideListPage;
 import stbplanner.guide.service.GuideListService;
 
 public class GuideListHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/market/list";
+	private static final String FORM_VIEW = "/market/index_city";
 	
 	private GuideListService guideListService = new GuideListService();
 
@@ -26,48 +27,17 @@ public class GuideListHandler implements CommandHandler{
 		int index = 0;
 		
 		int city_id = Integer.parseInt(request.getParameter("city_id"));
-		int attr_id = Integer.parseInt(request.getParameter("attr_id") == null ? "0" : request.getParameter("attr_id"));
-		String category = request.getParameter("category") == null ? "all" : request.getParameter("category");
-		String filter_item = request.getParameter("orderby")  ;
-		String pageNo = request.getParameter("currentPage");
-		int currentPage = 1;
-		System.out.println("handler" + city_id);
 		
-		if(pageNo != null) {
-			currentPage = Integer.parseInt(pageNo); //currentPage가 넘어오면 넘어온 페이지로 아니면 1페이지
-		}
+		TourtypeDTO dto = new TourtypeDTO();
 		
-		
-		GuideDTO dto = new GuideDTO();
 		dto.setCity_id(city_id);
-		dto.setAttr_id(attr_id);
-		dto.setCategory(category);
-		dto.setFilter_item(filter_item);
 		
-		List<GuideDTO> list = guideListService.getGuideListPage(dto);
+		GuideListService guideListService = new GuideListService();
 		
-		JSONObject jsonData = new JSONObject();
+		List<TourtypeDTO> tourtype = guideListService.getTourType(dto);
 		
-		JSONArray jsonlist = new JSONArray();
 		
-		/*
-		Iterator<GuideDTO> ir = list.iterator();
-		
-		for (GuideDTO guideDTO : list) {
-			System.out.println(guideDTO.getTitle());
-			jsonData = new JSONObject();
-			jsonData.put("title", guideDTO.getTitle());
-			jsonData.put("hours", guideDTO.getHours());
-			jsonData.put("price", guideDTO.getPrice());
-			jsonData.put("hot", guideDTO.getHot());
-			jsonData.put("review", guideDTO.getreview());
-			jsonlist.add(jsonData);
-			
-			
-		}
-		System.out.println(jsonlist);
-		*/
-		request.setAttribute("guideList", list);
+		request.setAttribute("tourtype", tourtype);
 		
 		/*
 		List<Map<String, Object>> list = guideListService.getGuideListPage(dto);

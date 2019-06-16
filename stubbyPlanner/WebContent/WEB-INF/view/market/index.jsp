@@ -42,14 +42,14 @@
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/tourHome11.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!-- swiper.js : 이미지슬라이더 -->
+  <%--   <!-- swiper.js : 이미지슬라이더 -->
     <script type="text/javascript" src="<%= contextPath %>/externalData/market/js/swiper.min.js"></script>
     <!-- header/footer -->
 
-<script src="<%= contextPath %>/externalData/js2/header_footer3.js" type="text/javascript"></script>
+	<script src="<%= contextPath %>/externalData/js2/header_footer3.js" type="text/javascript"></script>
     <!-- md-select_group -->
     <script type="text/javascript" src="<%= contextPath %>/externalData/market/js/md_select_group.js"></script>
-
+ --%>
 
 
 
@@ -151,7 +151,7 @@
 
 
 <!-- line 374 ~ 926 경로 확인: ? 뒤 체크 -->
-<a href="<%= contextPath %>/market/list.do?city_id=111011004">파리</a>
+<a href="<%= contextPath %>/market/index_city.do?city_id=1">파리</a>
 	
 <a href="<%= contextPath %>/market/index_city.do?region=111011010">리옹</a>
 
@@ -866,7 +866,7 @@
 
 
                             <div class="prd_item">
-                               <a href="<%= contextPath %>/market/list.do?city_id=111011004">
+                               <a href="<%= contextPath %>/market/index_city.do?city_id=1">
                                     <div class="imgArea">
                                         <img class="fh" src="<%= contextPath %>/externalData/CDN_Images/d3b39vpyptsv01.cloudfront.net/photo/1/2/8dd49e94be2f1f20057849442b8f5dbf_l.jpg" alt="파리"/>
                                     </div>
@@ -2585,7 +2585,7 @@
 
 
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/market/index_city.do?l=&region=111011004">
+                                    <a href="<%= contextPath %>/market/index_city.do?l=&region=1">
                                         <div class="value">
                                             <b class="name">파리</b>
                                             <i class="category">프랑스</i>
