@@ -1,7 +1,14 @@
+<%@page import="stbplanner.planner.model.PlannerDetailDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/include.jspf" %>
-
+<%
+	int trip_id = Integer.parseInt(request.getParameter("tid"));
+	String thedate = request.getParameter("thedate");
+	System.out.println(thedate);
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
@@ -13,7 +20,7 @@
 <meta property="fb:app_id" content="218650814915663">
 <meta property="og:title" content="8일간 여행 (2019년 7월 13일 출발) - 스투비플래너" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://www.stubbyplanner.com/planner/detail.asp?trip_id=10288912" />
+<meta property="og:url" content="http://www.stubbyplanner.com/planner/detail.asp?trip_id=" />
 <meta property="og:image" content="http://maps.googleapis.com/maps/api/staticmap?size=500x500&mobile=true&visible=39,17&path=color:0x|weight:1|48.861,2.342|50.847,4.351|51.5,-0.126&&markers=scale:2|icon:http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fimg%5Fv13%2Fmarker%2Fmycity%5Fnight3%2Epng|48.861,2.342&markers=scale:2|icon:http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fimg%5Fv13%2Fmarker%2Fmycity%5Fnight1%2Epng|50.847,4.351&markers=scale:2|icon:http%3A%2F%2Fwww%2Estubbyplanner%2Ecom%2Fimg%5Fv13%2Fmarker%2Fmycity%5Fnight3%2Epng|51.5,-0.126&key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xffffff%7Cvisibility:on&style=element:labels%7Cvisibility:simplified&style=element:labels.icon%7Cvisibility:off&style=element:labels.text%7Ccolor:0xcfcfcf%7Cvisibility:simplified&style=feature:administrative.country%7Celement:geometry.stroke%7Ccolor:0xd6d6d6%7Cvisibility:on%7Cweight:0.5&style=feature:poi%7Cvisibility:off&style=feature:water%7Celement:geometry%7Ccolor:0xd2f4f4%7Cvisibility:on&style=feature:water%7Celement:labels%7Cvisibility:off&scale=2" />
 <meta property="og:site_name" content="상상속 여행을 현실로, 스투비플래너" />
 <meta property="og:description" content="스투비플래너로 만든 나만의  여행" />
@@ -36,7 +43,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="/superguide/assets/css/headers/header-v4.css">
+	<link rel="stylesheet" href="<%= contextPath %>/externalData/superguide/assets/css/headers/header-v4.css">
 
 	<!-- CSS Implementing Plugins -->
 	<link rel="stylesheet" href="<%= contextPath %>/externalData/superguide/assets/plugins/animate.css">
@@ -50,11 +57,11 @@
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/common.css">
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/market/css/tourHome.css">
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/mb/css/BnB_home.css">
-<link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/header_footer.css">
+	<link rel="stylesheet" type="text/css" href="<%= contextPath %>/externalData/css2/header_footer.css">
 
 
 
-     <link href='/css/fullcalendar.css' rel='stylesheet' />
+     <link href='<%= contextPath %>/externalData/css/fullcalendar.css' rel='stylesheet' />
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="<%= contextPath %>/externalData/superguide/assets/css/style.css">
 	<link rel="stylesheet" href="<%= contextPath %>/externalData/superguide/assets/css/custom.css">
@@ -604,7 +611,11 @@ input[type="text"]::-webkit-input-placeholder
 <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I&callback=initMap" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I&callback=initMap" async defer></script> -->
+<script src="https://maps.google.co.kr/maps/api/js?sensor=false&language=ko&key=AIzaSyA2uoKY8XZudT_cVnXJZqPm57U0TVB0WG0&callback=initMap" async defer></script>
+<script>	
+
+</script>
 <script>
 var map;
 var geocoder;
@@ -788,7 +799,7 @@ function toggleSelectTripWith()
 			x=parseInt(i/3)+1;
 			y=i%3+1;
 			thtml+='<div style="float:left;width:33%">';
-			thtml+='<div><a href="javascript:selectTripwith('+x+','+y+')"><img src="/img_v14/tripwith/TW_'+x+'_'+y+'_w.png" width="100%"></a></div>';
+			thtml+='<div><a href="javascript:selectTripwith('+x+','+y+')"><img src="/stubbyPlanner/externalData/img_v14/tripwith/TW_'+x+'_'+y+'_w.png" width="100%"></a></div>';
 			thtml+='<div style="margin-top:-15px;text-align:center;"><font style="color:#fff;font-size:8pt">'+tripwith_txt[i+1]+'</font></div>';
 			thtml+='</div>';
 		}
@@ -803,7 +814,7 @@ function selectTripwith(x,y)
 {
 	thei=(x-1)*3+y*1;
 	
-	$("#tripwith_img").attr('src','/img_v14/tripwith/TW_'+x+'_'+y+'.png');
+	$("#tripwith_img").attr('src','/stubbyPlanner/externalData/img_v14/tripwith/TW_'+x+'_'+y+'.png');
 	$("#tripwith_txt").html(tripwith_txt[thei]);
 	tripwith=thei;
 	
@@ -1076,7 +1087,7 @@ else
 		$("#div_bucketlist").show();
 
 	             $.ajax({
-	             	url: '/api/planning/bucket_list.asp?trip_id=10288912&region_id='+city_id,
+	             	url: '/api/planning/bucket_list.asp?trip_id=<%=trip_id%>&region_id='+city_id,
 	               	dataType: 'json',
 	               	success: function(data){
 					if(data!="")
@@ -1190,7 +1201,7 @@ var cur_region_id="";
 function toggleSchd(bucket_id,region_id,img,title)
 {
              $.ajax({
-             	url: '//www.stubbyplanner.com/api/v5/planner/toggle_bucket.asp?trip_id=10288912&region_id='+region_id+'&bucket_id='+bucket_id,
+             	url: '//www.stubbyplanner.com/api/v5/planner/toggle_bucket.asp?trip_id=<%=trip_id%>&region_id='+region_id+'&bucket_id='+bucket_id,
                	dataType: 'json',
                	success: function(data){
 			if(data!="")
@@ -1256,7 +1267,7 @@ function bucket_select(id)
 
 function closeBucketlist()
 {
-	window.location='city_buckets.asp?city_id='+cur_region_id+'&trip_id=10288912';
+	window.location='city_buckets.asp?city_id='+cur_region_id+'&trip_id=<%=trip_id%>';
 
 	$("#div_bucketlist").hide();
 	$("#cp_"+cur_r_id).css("background","#fff");
@@ -1296,7 +1307,7 @@ function showSchdDetail(id,t)
 			 dataType: 'json',
 			 data: {
 				schd_id:id,
-				trip_id:10288912
+				trip_id:<%=trip_id%>
 			  },
 			success: function( data ) {
 
@@ -1323,12 +1334,12 @@ function showSchdDetail(id,t)
 }
 </script>
 <!-- Core CSS file -->
-<link rel="stylesheet" href="/css/photoswipe.css"> 
+<link rel="stylesheet" href="<%= contextPath %>/externalData/css/photoswipe.css"> 
 <link rel="stylesheet" href="https://photoswipe.com/dist/default-skin/default-skin.css?v=4.1.1-1.0.4"> 
 <!-- Core JS file -->
-<script src="/js/photoswipe.min.js"></script> 
+<script src="<%= contextPath %>/externalData/js/photoswipe.min.js"></script> 
 <!-- UI JS file -->
-<script src="/js/photoswipe-ui-default.min.js"></script> 
+<script src="<%= contextPath %>/externalData/js/photoswipe-ui-default.min.js"></script> 
 
 </head>
 <body id="body" onload="initMap()">
@@ -1410,7 +1421,7 @@ function showSchdDetail(id,t)
 
         <div class="header_banner">
             <div class="stu_inner_wrap">
-                <a href="/market/index.asp?from=top1">
+                <a href="<%= contextPath %>/externalData/market/index.asp?from=top1">
                     <div class="header_banner_wrap">
                         <p class="txtWrap">1,700가지 유럽투어/액티비티
                             <span>얼리버드 SALE</span>
@@ -1439,7 +1450,7 @@ function showSchdDetail(id,t)
                         <div class="swiper-container swiper-gnb_banner">
                             <ul class="swiper-wrapper">
 
-<!--
+
                               <li class="swiper-slide">
                                     <a href="http://www.stubbyplanner.com/coupon/iceland_coupon.asp">
                                         <img class="fw" src="/images2/sample/GB02.jpg" alt=""/>
@@ -1450,7 +1461,7 @@ function showSchdDetail(id,t)
                                     </a>
                                 </li>
 
--->
+
                                 <li class="swiper-slide">
                                    <a href="/consulting/index.asp?from=top2">
                                         <img class="fw" src="/images2/sample/GB03.jpg" alt=""/>
@@ -1460,7 +1471,7 @@ function showSchdDetail(id,t)
                                         </div>
                                     </a>
                                 </li>
-<!--
+
 
                                 <li class="swiper-slide">
                                     <a href="http://www.stubbyplanner.com/event_1/event_1plus1.asp">
@@ -1480,7 +1491,7 @@ function showSchdDetail(id,t)
                                         </div>
                                     </a>
                                 </li>
-  -->
+ 
                             </ul>
                             <div class="swiper-pagination gnb_banner-pagination"></div>
                             <div class="swiper-button-prev gnb_banner-button-prev"></div>
@@ -1514,14 +1525,14 @@ function showSchdDetail(id,t)
                                     </li>
                                 </ul>
                                 <ul class="prfPopup_section">
-<!--
+
                                     <li class="prfPopup_item prfPopup_coupon">
                                         <a href="/coupon/index.asp"><i></i>쿠폰함</a>
                                     </li>
                                     <li class="prfPopup_item prfPopup_square">
                                         <a href="/square/"><i></i>광장</a>
                                     </li>
--->
+
                                     <li class="prfPopup_item prfPopup_premium">
                                         <a href="/selfguide/"><i></i>프리미엄</a>
                                     </li>
@@ -1552,17 +1563,17 @@ function showSchdDetail(id,t)
                             <a href="/">홈</a>
                         </li>
                         <li class="lnb_item active">
-                            <a href="/planner/index.asp">계획짜기</a>
+                            <a href="/planner/index.do">계획짜기</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/market/index.asp">투어예약</a>
+                            <a href="/market/index.do">투어예약</a>
                         </li>
                         <li class="lnb_item  ">
-                            <a href="/mb/index.asp">숙소예약</a>
+                            <a href="/mb/index.do">숙소예약</a>
                         </li>
 
                         <li class="lnb_item ">
-                            <a href="/exp/list.asp">여행지</a>
+                            <a href="/exp/list.do">여행지</a>
                         </li>
                     </ul>
                     <div class="gnb_search_wrap">
@@ -1576,7 +1587,7 @@ function showSchdDetail(id,t)
                     <ul class="side_section">
                         <li class="side_item side_logo sign_out">
                             <a href="http://stubbyplanner.com/">
-                                <img class="fh" src="/images2/stu_logo_mobile.png" alt="logo"/>
+                                <img class="fh" src="<%= contextPath %>/externalData/images2/stu_logo_mobile.png" alt="logo"/>
                             </a>
                         </li>
 
@@ -1602,29 +1613,29 @@ function showSchdDetail(id,t)
                                 <i></i>예약내역
                             </a>
                         </li>
-<!--
+
                         <li class="side_item side_coupon">
-                            <a href="/coupon/index.asp"><i></i>쿠폰함</a>
+                            <a href="/coupon/index.do"><i></i>쿠폰함</a>
                         </li>
                         <li class="side_item side_square">
-                            <a href="/square/index.asp"><i></i>광장</a>
+                            <a href="/square/index.do"><i></i>광장</a>
                         </li>
--->
+
                         <li class="side_item side_premium">
-                            <a href="/selfguide/index.asp"><i></i>프리미엄</a>
+                            <a href="/selfguide/index.do"><i></i>프리미엄</a>
                         </li>
                     </ul>
 
 
                     <ul class="side_section sign_in">
                         <li class="side_item">
-                            <a href="/qa/index.asp">1:1문의</a>
+                            <a href="/qa/index.do">1:1문의</a>
                         </li>
                         <li class="side_item">
-                            <a href="/common/memberinfo.asp">회원정보변경</a>
+                            <a href="/common/memberinfo.do">회원정보변경</a>
                         </li>
                         <li class="side_item">
-                            <a href="/common/logout.asp">로그아웃</a>
+                            <a href="/common/logout.do">로그아웃</a>
                         </li>
                     </ul>
 
@@ -1635,20 +1646,7 @@ function showSchdDetail(id,t)
         <a href="#" class="stu_scroll_top"><span>맨 위로 가기</span><i></i></a>
     </header>
 
-
-
-
-
-
-
-
-
-
-
 <main style="margin-top:0px">
-
-
-	
 
 <section style="margin-top:0px">
       <div class="stu_inner_wrap" >
@@ -1662,9 +1660,9 @@ function showSchdDetail(id,t)
                         		<ul class="dropdown-menu" role="menu">
 			  <li><a href="javascript:openStartDateModal()">출발일변경</a></li>
                         		    <li><a href="javascript:mngPlannerInfo()">정보 수정</a></li>
-                        		    <li><a href="/planner/planner_rt.asp?trip_id=10288912">루트 수정</a></li>
-                        		    <li><a href="/planner/planner_schd.asp?trip_id=10288912">일정표 관리</a></li>
-                        		    <li><a href="/planner/planner_resv.asp?trip_id=10288912">예약정보 관리</a></li>
+                        		    <li><a href="/planner/planner_rt.do?trip_id=<%=trip_id%>">루트 수정</a></li>
+                        		    <li><a href="/planner/planner_schd.do?trip_id=<%=trip_id%>">일정표 관리</a></li>
+                        		    <li><a href="/planner/planner_resv.do?trip_id=<%=trip_id%>">예약정보 관리</a></li>
                         		    <li><a  href="#" id="kakao-link-btn" >카톡 작업공유</a></li>
 	
                         		    <li><a href="javascript:delPlan();">플래너 삭제</a></li>
@@ -1687,7 +1685,7 @@ function showSchdDetail(id,t)
 
 			<div style="padding-left:5px;padding-bottom:5px;margin-bottom:15px;vertical-align:text-bottom">
 
-		<div style="margin-top:15px;font-size:13pt;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;text-align:left;margin-left:30px;margin-right:3px;border:1px solid #efefef;font-weight:500;background:#efefef;color:#fff;border-radius:5px;cursor:pointer" onclick="window.location='detail_schd.asp?trip_id=10288912'"><div style="display:inline-block;line-height:110%;color:#fff;"><i class="fa fa-calendar" aria-hidden="true"></i> 일정표  </div>  <span style="float:right"><font style="font-size:9pt;color:#fff;">0개</font>&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></span></div>
+		<div style="margin-top:15px;font-size:13pt;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;text-align:left;margin-left:30px;margin-right:3px;border:1px solid #efefef;font-weight:500;background:#efefef;color:#fff;border-radius:5px;cursor:pointer" onclick="window.location='detail_schd.asp?trip_id=<%=trip_id%>'"><div style="display:inline-block;line-height:110%;color:#fff;"><i class="fa fa-calendar" aria-hidden="true"></i> 일정표  </div>  <span style="float:right"><font style="font-size:9pt;color:#fff;">0개</font>&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></span></div>
 
 			</div>
 
@@ -1741,7 +1739,7 @@ function deleteReal()
 			type: "GET",
 			dataType: 'json',
 			data: {
-				trip_id:10288912
+				trip_id:<%=trip_id%>
 			},
              	  	success: function(data)
 			{
@@ -1762,17 +1760,13 @@ function deleteReal()
 
 </script>
 
-
-
-
-
            <section style="margin-top:0px;padding-top:0px;padding-bottom:0px;">
 	<div class="stu_inner_wrap">
 		<div style="border-top:0px solid #efefef;padding-top:0px;width:100%;padding-bottom:5px;padding-top:20px;">
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_air.asp?trip_id=10288912" style="color:#696969">
+	<a href="planner_resv_air.asp?trip_id=<%=trip_id%>" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-plane"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">항공권</div>
@@ -1783,7 +1777,7 @@ function deleteReal()
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_trs.asp?trip_id=10288912&ridx=1" style="color:#696969">
+	<a href="planner_resv_trs.asp?trip_id=<%=trip_id%>&ridx=1" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-arrow-right"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">도시이동</div>
@@ -1794,7 +1788,7 @@ function deleteReal()
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_slp.asp?trip_id=10288912&ridx=0" style="color:#696969">
+	<a href="planner_resv_slp.asp?trip_id=<%=trip_id%>&ridx=0" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-bed"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">숙소</div>
@@ -1805,7 +1799,7 @@ function deleteReal()
 
 
 	<div style="float:left;width:25%;">
-	<a href="planner_resv_tour.asp?trip_id=10288912&ridx=0" style="color:#696969">
+	<a href="planner_resv_tour.asp?trip_id=<%=trip_id%>&ridx=0" style="color:#696969">
 	<div style="position:relative;font-size:25pt;padding:5px 10px;border:1px solid #efefef;background:#fff;margin:0px 5px;">
 		<i class="fa fa-flag"></i>
 		<div style="position:absolute;top:15px;left:60px;font-size:12pt;color:#696969f;font-weight:600">투어/티켓</div>
@@ -1822,355 +1816,23 @@ function deleteReal()
 
 	</div>
 	</section>	
-
-
-            <section style="margin-top:20px;padding-top:0px;padding-bottom:20px;background:#f5f5f5">
-	<div class="stu_inner_wrap">
-		<div style="border-top:0px solid #efefef;padding-top:20px;width:100%;padding-bottom:5px;padding-top:20px;">
-			<div style="float:left;width:25%;" >
-				<font style="font-size:18pt;font-weight:700;color:#696969">버킷리스트</font> <font style="font-size:12pt;color:#c0c0c0;"></font><br>
-
-				<br><font style="font-size:10pt;color:#c0c0c0">꼭 경험하고 싶은 것들을 찜해두세요. </font>
-			</div>
-
-
-			<div style="float:left;width:75%">
-
-				<div  class="swiper-container swiper">
-				<ul class="nolist swiper-wrapper">
-
-
-
-
-			<li class="swiper-slide" style="background:transparent;width:170px"><a href="explist.asp?region=111011004&trip_id=10288912">
-
-						<div style="position:relative;margin-bottom:5px;">
-							<div class="round" style="margin:0px 10px;padding-top:12px;padding-left:20px;padding-right:20px;padding-bottom:28px;position:relative;border:1px solid #efefef;background:#fff">								
-								<img src="//www.stubbyplanner.com/img_v14/ico_111011004_2.png" style="width:100%">
-							</div>
-							<div class="sbold" style="font-size:13px;position:absolute;bottom:15px;width:100%;test-align:center">파리</div>
-
-						</div>
-						
-						<div><font style="font-size:12pt;color:#696969f;font-weight:700"><i class="fa fa-star"></i><span id="span_bcnt_111011004">0</span></font></div>
-
-				</a></li>
-
-
-
-			<li class="swiper-slide" style="background:transparent;width:170px"><a href="explist.asp?region=111081001&trip_id=10288912">
-
-						<div style="position:relative;margin-bottom:5px;">
-							<div class="round" style="margin:0px 10px;padding-top:12px;padding-left:20px;padding-right:20px;padding-bottom:28px;position:relative;border:1px solid #efefef;background:#fff">								
-								<img src="//www.stubbyplanner.com/img_v14/ico_111081001_2.png" style="width:100%">
-							</div>
-							<div class="sbold" style="font-size:13px;position:absolute;bottom:15px;width:100%;test-align:center">브뤼셀</div>
-
-						</div>
-						
-						<div><font style="font-size:12pt;color:#696969f;font-weight:700"><i class="fa fa-star"></i><span id="span_bcnt_111081001">0</span></font></div>
-
-				</a></li>
-
-
-
-			<li class="swiper-slide" style="background:transparent;width:170px"><a href="explist.asp?region=111031001&trip_id=10288912">
-
-						<div style="position:relative;margin-bottom:5px;">
-							<div class="round" style="margin:0px 10px;padding-top:12px;padding-left:20px;padding-right:20px;padding-bottom:28px;position:relative;border:1px solid #efefef;background:#fff">								
-								<img src="//www.stubbyplanner.com/img_v14/ico_111031001_2.png" style="width:100%">
-							</div>
-							<div class="sbold" style="font-size:13px;position:absolute;bottom:15px;width:100%;test-align:center">런던</div>
-
-						</div>
-						
-						<div><font style="font-size:12pt;color:#696969f;font-weight:700"><i class="fa fa-star"></i><span id="span_bcnt_111031001">0</span></font></div>
-
-				</a></li>
-
-
-				</ul>
-				</div>
-			</div>
-			<div style="clear:both"></div>
-
-		</div>
-		<div style="clear:both"></div>
-
-	</div>
-	</section>	
-
-
-            <section style="margin-top:20px;padding-top:20px;padding-bottom:0px;">
-	<div class="stu_inner_wrap" style="">
-<div style="width:66%;float:left">
-<font style="font-size:18pt;font-weight:700;color:#696969"> ⚡️ 맞춤 할인투어 추천 <a href="javascript:func_alert('스투비플래너는 유럽 지역의 투어 서비스를 지난 6년간 운영해온 유럽투어 전문 중개업체입니다. 현재 유럽 현지 384개 대표업체 1,700여개 상품을 직거래로 계약해 얼리버드 할인가격을 제공하고 있습니다.  미리 여행을 준비하는 플래너분들을 위한 특별한 가격할인 혜택인 얼리버드를 놓치지 마세요.');"><span style="display:inline-block;padding-left:5px;padding-right:5px;padding-top:3px;padding-bottom:3px;background:#3ad195;font-size:9pt;color:#fff">유럽1,700개 할인상품</span></a></font>
-<div style="padding-bottom:5px;"><font style="font-size:13pt;font-weight:400;color:#c0c0c0">미리 사면 <span style="color:#3ad195;font-weight:600"> 얼리버드SALE </span>, 여러개 사면 <span style="color:#3ad195;font-weight:600">결합 SALE </span></font></div>
-</div><div style="width:33%;float:left">
-
-<div style="margin-bottom:10px;padding-left:0px;padding-right:10px;text-align:center;">
-
-
-	<div style="background:#f5f5f5;border:0px solid #c0c0c0;border-radius:8px;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;color:#696969;">
-		<div style="position:relative;text-align:left;padding-bottom:5px;padding-left:10px;padding-right:10px;"><font style="font-size:13pt;font-weight:700">내 예약내역</font>
-				<a  href="/guide/reservation.asp" target="_blank"><div style="position:absolute;right:10px;top:10px;font-size:11pt;color:#696969;"><u>자세히 ></u></div></a>
-		</div>
-
-
-	</div>
-
-
-
-</div>
-</div><div style="clear:both"></div>
-
-<div >
-	<div  class="swiper-container swiper">
-	<ul class="nolist swiper-wrapper">
-
-
-
-<li class="swiper-slide" style="margin-bottom:0px;margin-top:0px;position:relative;width:29%;float:left;cursor:pointer;margin-bottom:10px;">
-<div style="margin-left:5px;margin-right:5px;">
-
-
-<div style="height:190px;overflow:hidden;position:relative;border-radius:5px;">
-<a href="javascript:moveToCityPlanner('111011004')"><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/8dd49e94be2f1f20057849442b8f5dbf_l.jpg"  style="border-radius:5px;width:100%" onerror="this.src=\'/img_v12/img_er.gif\'"></a>'; 
-
-<div style="position:absolute;top:40px;left:50%;margin-left:-90px;"><a href="javascript:moveToCityPlanner('111011004')"><img width="180px" src="/img_v12/exp_label_111011004.png"></a></div>
-
-<div style="border-radius:5px;position:absolute;bottom:0px;right:0px;width:100%;height:70px;background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,5));">&nbsp;</div>
-<div style="position:absolute;top:10px;right:20px;">
-	<font style="color:#fff;font-size:18pt;"><i class="fa fa-heart"></i> 0</font>
-</div>
-<div style="position:absolute;bottom:10px;left:10px;right:10px;">
-	<h5 style="padding-left:3px;line-height:100%;padding-bottom:0px;margin-bottom:0px;text-align:center;color:#fff;" >
-
-	<a href="javascript:moveToCityPlanner('111011004')" style="color:#fff;font-size:11pt;font-weight:300" title="">
-		
-		<i class="fa fa-clock-o" aria-hidden="true"></i> 파리  ⚡️얼리버드 SALE 
-		
-	</a>
 	
-	</h5>
-
-</div>
-</div>
-
-
-</div>
-
-</li>
-
-
-
-<li class="swiper-slide" style="margin-bottom:0px;margin-top:0px;position:relative;width:29%;float:left;cursor:pointer;margin-bottom:10px;">
-<div style="margin-left:5px;margin-right:5px;">
-
-
-<div style="height:190px;overflow:hidden;position:relative;border-radius:5px;">
-<a href="javascript:moveToCityPlanner('111081001')"><img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/ebdd3b13decb1e4091d32fcb36125ab8_l.jpg"  style="border-radius:5px;width:100%" onerror="this.src=\'/img_v12/img_er.gif\'"></a>'; 
-
-<div style="position:absolute;top:40px;left:50%;margin-left:-90px;"><a href="javascript:moveToCityPlanner('111081001')"><img width="180px" src="/img_v12/exp_label_111081001.png"></a></div>
-
-<div style="border-radius:5px;position:absolute;bottom:0px;right:0px;width:100%;height:70px;background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,5));">&nbsp;</div>
-<div style="position:absolute;top:10px;right:20px;">
-	<font style="color:#fff;font-size:18pt;"><i class="fa fa-heart"></i> 0</font>
-</div>
-<div style="position:absolute;bottom:10px;left:10px;right:10px;">
-	<h5 style="padding-left:3px;line-height:100%;padding-bottom:0px;margin-bottom:0px;text-align:center;color:#fff;" >
-
-	<a href="javascript:moveToCityPlanner('111081001')" style="color:#fff;font-size:11pt;font-weight:300" title="">
-		
-		<i class="fa fa-clock-o" aria-hidden="true"></i> 브뤼셀  ⚡️얼리버드 SALE 
-		
-	</a>
-	
-	</h5>
-
-</div>
-</div>
-
-
-</div>
-
-</li>
-
-
-
-<li class="swiper-slide" style="margin-bottom:0px;margin-top:0px;position:relative;width:29%;float:left;cursor:pointer;margin-bottom:10px;">
-<div style="margin-left:5px;margin-right:5px;">
-
-
-<div style="height:190px;overflow:hidden;position:relative;border-radius:5px;">
-<a href="javascript:moveToCityPlanner('111031001')"><img src="http://d3b39vpyptsv01.cloudfront.net/photo/1/2/e0c6526ddbece5b5df458b3edf6eb60d_l.jpg"  style="border-radius:5px;width:100%" onerror="this.src=\'/img_v12/img_er.gif\'"></a>'; 
-
-<div style="position:absolute;top:40px;left:50%;margin-left:-90px;"><a href="javascript:moveToCityPlanner('111031001')"><img width="180px" src="/img_v12/exp_label_111031001.png"></a></div>
-
-<div style="border-radius:5px;position:absolute;bottom:0px;right:0px;width:100%;height:70px;background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,5));">&nbsp;</div>
-<div style="position:absolute;top:10px;right:20px;">
-	<font style="color:#fff;font-size:18pt;"><i class="fa fa-heart"></i> 0</font>
-</div>
-<div style="position:absolute;bottom:10px;left:10px;right:10px;">
-	<h5 style="padding-left:3px;line-height:100%;padding-bottom:0px;margin-bottom:0px;text-align:center;color:#fff;" >
-
-	<a href="javascript:moveToCityPlanner('111031001')" style="color:#fff;font-size:11pt;font-weight:300" title="">
-		
-		<i class="fa fa-clock-o" aria-hidden="true"></i> 런던  ⚡️얼리버드 SALE 
-		
-	</a>
-	
-	</h5>
-
-</div>
-</div>
-
-
-</div>
-
-</li>
-
-
-</ul>
-</div></div>
-
-
-	</div>
-	</section>	
-
-
 <script>
 
 function moveToCityPlanner2(cityid,rid,tdate,timeoption)
 {
 	
-	showLinkInModal('/planner/planner_city_schd2.asp?selecteddate='+tdate+'&stype=tour&TimeOption='+timeoption+'&trip_id=10288912&l=planner10288912&region='+cityid+'&rid='+rid+'&bucket_ids=&tripwith='+tripwith);
+	showLinkInModal('/planner/planner_city_schd2.asp?selecteddate='+tdate+'&stype=tour&TimeOption='+timeoption+'&trip_id=<%=trip_id%>&l=planner<%=trip_id%>&region='+cityid+'&rid='+rid+'&bucket_ids=&tripwith='+tripwith);
 	
 }
 
 function moveToCityPlanner(rid,tdate)
 {
 	
-	showLinkInModal('/planner/planner_city_schd2.asp?trip_id=10288912&needlogin=&access_key=&l=planner10288912&region='+rid+'&bucket_ids=&tripwith='+tripwith);
+	showLinkInModal('/planner/planner_city_schd2.asp?trip_id=<%=trip_id%>&needlogin=&access_key=&l=planner<%=trip_id%>&region='+rid+'&bucket_ids=&tripwith='+tripwith);
 	
 }
 </script>
-
-            <section >
-	<div class="stu_inner_wrap">
-		<div style="width:100%;border-radius:3px;border:0px solid #efefef;padding-top:5px;padding-bottom:5px;padding-top:10px;">
-			<div style="float:left;width:25%;" >
-				<font style="font-size:18pt;font-weight:700;color:#696969">맞춤 숙소 추천</font><br>
-				<a href="javascript:func_alert('내가 이용할 역, 공항 그리고 내가 방문할 주요 관광지와 해당도시의 거의 모든 숙소(2,833만개 숙소를 보유하고 있는 BOOKING.com의 모든 숙소)와의 거리를 자동 계산해 동선상 유리한 숙소순으로 정리해 보여드립니다.')"><font style="font-size:14pt;font-weight:400;color:#c0c0c0">내가 선택한 일정에서<br>최적 동선의 숙소 추천</font><font style="font-size:12pt;color:#3ad195"><i class="fa fa-question-circle" aria-hidden="true"></i></font></a>
-			</div>
-
-
-			<div style="float:left;width:75%">
-	
-
-
-				<div  class="swiper-container swiper">
-
-
-
-
-
-
-				<ul class="nolist swiper-wrapper">
-
-
-
-			<li class="swiper-slide">
-				<div class="mbold">파리&nbsp;3박</div>
-				<div class="ht_date">7월 13일~7월 16일</div>
-			
-
-
-
-
-				<a href="javascript:showLinkInModal('/planner/if_favorite_slp.asp?city_id=111011004&from=planner&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16')"><div class="hotellink"><font style="color:#c0c0c0"><i class="fa fa-heart"></i></font> 찜한 숙소 <span>0개</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111011004&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16&stype=ht')"><div class="hotellink">#호텔 <span>33.6%</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111011004&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16&stype=hst')"><div class="hotellink">#호스텔 <span>15.2%</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111011004&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16&stype=apt')"><div class="hotellink">#아파트 <span>16.4%</span></div></a>
-
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111011004&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16&stype=slp')"><div class="hotellink">#한인민박 <span>34.8%</span></div></a>
-
-
-			</li>
-
-
-
-
-			<li class="swiper-slide">
-				<div class="mbold">브뤼셀&nbsp;1박</div>
-				<div class="ht_date">7월 16일~7월 17일</div>
-			
-
-
-
-
-				<a href="javascript:showLinkInModal('/planner/if_favorite_slp.asp?city_id=111081001&from=planner&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17')"><div class="hotellink"><font style="color:#c0c0c0"><i class="fa fa-heart"></i></font> 찜한 숙소 <span>0개</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111081001&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17&stype=ht')"><div class="hotellink">#호텔 </div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111081001&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17&stype=hst')"><div class="hotellink">#호스텔 </div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111081001&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17&stype=apt')"><div class="hotellink">#아파트 </div></a>
-
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111081001&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17&stype=slp')"><div class="hotellink">#한인민박 </div></a>
-
-
-			</li>
-
-
-
-
-			<li class="swiper-slide">
-				<div class="mbold">런던&nbsp;3박</div>
-				<div class="ht_date">7월 17일~7월 20일</div>
-			
-
-
-
-
-				<a href="javascript:showLinkInModal('/planner/if_favorite_slp.asp?city_id=111031001&from=planner&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20')"><div class="hotellink"><font style="color:#c0c0c0"><i class="fa fa-heart"></i></font> 찜한 숙소 <span>0개</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111031001&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20&stype=ht')"><div class="hotellink">#호텔 <span>22.7%</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111031001&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20&stype=hst')"><div class="hotellink">#호스텔 <span>41.8%</span></div></a>
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111031001&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20&stype=apt')"><div class="hotellink">#아파트 <span>9.4%</span></div></a>
-
-
-				<a href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111031001&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20&stype=slp')"><div class="hotellink">#한인민박 <span>26.1%</span></div></a>
-
-
-			</li>
-
-
-
-
-				</ul>
-				</div>
-
-
-	<div style="margin-bottom:10px;padding-left:10px;"><a href="javascript:func_alert('추천받은 인기 숙소는 가격이 점차 상승하거나 예약이 불가능해지므로 미리 예약할수록 유리합니다.')"><font style="font-size:10pt;color:#c0c0c0">내 일정에 맞는 숙소를 빠르게 찾고 미리 예약해 17%의 비용을 절감하세요. </font><font style="font-size:12pt;color:#3ad195"><i class="fa fa-question-circle" aria-hidden="true"></i></font> </a></div>
-
-
-
-			</div>
-			<div style="clear:both"></div>
-
-		</div>
-		<div style="clear:both"></div>
-
-	</div>
-	</section>	
 
 <script>
 function openSLP(turl)
@@ -2181,530 +1843,6 @@ function openSLP(turl)
 	
 }
 </script>
-
-
-
-            <section style="margin-top:40px">
-	<div class="stu_inner_wrap">
-		<div style="width:100%;border-radius:3px;border:0px solid #efefef;padding-top:5px;padding-bottom:5px;border-top:1px solid #efefef;padding-top:30px;">
-			<div style="margin-bottom:15px" >
-				<font style="font-size:18pt;font-weight:700;color:#696969"> 일정표 </font>
-				<div><font style="font-size:14pt;font-weight:400;color:#c0c0c0">빈칸을 더블클릭해서 일정을 추가해보세요.</font></div>
-			</div>
-			<div style="overflow-x:auto">
-				<div  class="swiper-container swiper">
-				<ul class="nolist swiper-wrapper">
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/13  <span style="font-size:10pt;color:#c0c0c0"> 토, D1</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">파리(입국일)</div>
-
-
-
-<input type="hidden" id="dayExtInfo_cid_1" value="111011004">
-<input type="hidden" id="dayExtInfo_mm_1" value="M1">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=1&citylist=111011004')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,8,'7월 13일 (1일차)  0~9시의 일정 <br>파리입국일','111011004');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,9,'7월 13일 (1일차) 9시경의 일정 <br>파리입국일','111011004');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,10,'7월 13일 (1일차) 10시경의 일정 <br>파리입국일','111011004');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,11,'7월 13일 (1일차) 11시경의 일정 <br>파리입국일','111011004');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,12,'7월 13일 (1일차) 12시경의 일정 <br>파리입국일','111011004');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,13,'7월 13일 (1일차) 13시경의 일정 <br>파리입국일','111011004');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,14,'7월 13일 (1일차) 14시경의 일정 <br>파리입국일','111011004');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,15,'7월 13일 (1일차) 15시경의 일정 <br>파리입국일','111011004');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,16,'7월 13일 (1일차) 16시경의 일정 <br>파리입국일','111011004');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,17,'7월 13일 (1일차) 17시경의 일정 <br>파리입국일','111011004');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,18,'7월 13일 (1일차) 18시경의 일정 <br>파리입국일','111011004');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,19,'7월 13일 (1일차) 19시경의 일정 <br>파리입국일','111011004');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(1,20,'7월 13일 (1일차)  20~24시의 일정 <br>파리입국일','111011004');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_1_20"></div></div>
-
-
-
-							<a href="/planner/planner_resv_air_m.asp?trip_id=10288912"><div style="cursor:pointer;position:absolute;left:25%;top:-2px;z-index:999;background:#f3f3f3;height:34px;width:70%;border:1px solid #c0c0c0;font-size:8pt;color:#c0c0c0"><b>입국</b> </div></a>
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/14  <span style="font-size:10pt;color:#c0c0c0"> 일, D2</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">파리(둘째날)</div>
-
-
-<input type="hidden" id="dayExtInfo_cid_2" value="">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=2&citylist=111011004')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,8,'7월 14일 (2일차)  0~9시의 일정 <br>파리둘째날','111011004');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,9,'7월 14일 (2일차) 9시경의 일정 <br>파리둘째날','111011004');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,10,'7월 14일 (2일차) 10시경의 일정 <br>파리둘째날','111011004');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,11,'7월 14일 (2일차) 11시경의 일정 <br>파리둘째날','111011004');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,12,'7월 14일 (2일차) 12시경의 일정 <br>파리둘째날','111011004');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,13,'7월 14일 (2일차) 13시경의 일정 <br>파리둘째날','111011004');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,14,'7월 14일 (2일차) 14시경의 일정 <br>파리둘째날','111011004');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,15,'7월 14일 (2일차) 15시경의 일정 <br>파리둘째날','111011004');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,16,'7월 14일 (2일차) 16시경의 일정 <br>파리둘째날','111011004');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,17,'7월 14일 (2일차) 17시경의 일정 <br>파리둘째날','111011004');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,18,'7월 14일 (2일차) 18시경의 일정 <br>파리둘째날','111011004');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,19,'7월 14일 (2일차) 19시경의 일정 <br>파리둘째날','111011004');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(2,20,'7월 14일 (2일차)  20~24시의 일정 <br>파리둘째날','111011004');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_2_20"></div></div>
-
-
-
-							<a class="helper_day_2" href="javascript:moveToCityPlanner2('111011004','','2019-07-14',1)"><div style="position:absolute;left:55%;top:35px;z-index:999;cursor:pointer;height:80px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>오전투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-<!--							<a class="helper_day_2" href="javascript:moveToCityPlanner2('111011004','','2019-07-14',0)"><div style="position:absolute;left:55%;top:120px;z-index:999;background:#c0c0c0;cursor:pointer;height:30px;width:40%;border:1px solid #c0c0c0;font-size:8pt;color:#fff">점심</div></a>-->
-							<a class="helper_day_2" href="javascript:moveToCityPlanner2('111011004','','2019-07-14',2)"><div style="position:absolute;left:55%;top:155px;z-index:999;cursor:pointer;height:140px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>오후투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-<!--							<a class="helper_day_2" href="/market/index_city.asp?l=planner10288912&stype=guidebook_4&region=111011004&rid=&trip_id=10288912" target="_blank"><div style="position:absolute;left:55%;top:300px;z-index:999;background:#c0c0c0;cursor:pointer;height:30px;width:40%;border:1px solid #c0c0c0;font-size:8pt;color:#fff">저녁식사</div></a>-->
-							<a class="helper_day_2" href="javascript:moveToCityPlanner2('111011004','','2019-07-14',3)"><div style="position:absolute;left:55%;top:335px;z-index:999;cursor:pointer;height:55px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>저녁투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/15  <span style="font-size:10pt;color:#c0c0c0"> 월, D3</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">파리(셋째날)</div>
-
-
-<input type="hidden" id="dayExtInfo_cid_3" value="">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=3&citylist=111011004')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,8,'7월 15일 (3일차)  0~9시의 일정 <br>파리셋째날','111011004');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,9,'7월 15일 (3일차) 9시경의 일정 <br>파리셋째날','111011004');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,10,'7월 15일 (3일차) 10시경의 일정 <br>파리셋째날','111011004');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,11,'7월 15일 (3일차) 11시경의 일정 <br>파리셋째날','111011004');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,12,'7월 15일 (3일차) 12시경의 일정 <br>파리셋째날','111011004');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,13,'7월 15일 (3일차) 13시경의 일정 <br>파리셋째날','111011004');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,14,'7월 15일 (3일차) 14시경의 일정 <br>파리셋째날','111011004');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,15,'7월 15일 (3일차) 15시경의 일정 <br>파리셋째날','111011004');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,16,'7월 15일 (3일차) 16시경의 일정 <br>파리셋째날','111011004');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,17,'7월 15일 (3일차) 17시경의 일정 <br>파리셋째날','111011004');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,18,'7월 15일 (3일차) 18시경의 일정 <br>파리셋째날','111011004');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,19,'7월 15일 (3일차) 19시경의 일정 <br>파리셋째날','111011004');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(3,20,'7월 15일 (3일차)  20~24시의 일정 <br>파리셋째날','111011004');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_3_20"></div></div>
-
-
-
-							<a class="helper_day_3" href="javascript:moveToCityPlanner2('111011004','','2019-07-15',4)"><div style="position:absolute;left:55%;top:35px;z-index:999;cursor:pointer;height:320px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">3일차<br>DAY투어<br>근교투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/16  <span style="font-size:10pt;color:#c0c0c0"> 화, D4</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">파리,브뤼셀(도착일)</div>
-
-
-
-<input type="hidden" id="dayExtInfo_cid_4" value="111081001">
-<input type="hidden" id="dayExtInfo_mm_4" value="M1">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=4&citylist=111011004,111081001')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,8,'7월 16일 (4일차)  0~9시의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,9,'7월 16일 (4일차) 9시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,10,'7월 16일 (4일차) 10시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,11,'7월 16일 (4일차) 11시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,12,'7월 16일 (4일차) 12시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,13,'7월 16일 (4일차) 13시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,14,'7월 16일 (4일차) 14시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,15,'7월 16일 (4일차) 15시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,16,'7월 16일 (4일차) 16시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,17,'7월 16일 (4일차) 17시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,18,'7월 16일 (4일차) 18시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,19,'7월 16일 (4일차) 19시경의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(4,20,'7월 16일 (4일차)  20~24시의 일정 <br>파리,브뤼셀도착일','111011004,111081001');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_4_20"></div></div>
-
-
-
-<!---
-							<div style="position:absolute;left:25%;top:135px;z-index:999;background:#f3f3f3;height:180px;width:70%;border:1px solid #c0c0c0;font-size:8pt;color:#c0c0c0">도시이동</div>
---->
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/17  <span style="font-size:10pt;color:#c0c0c0"> 수, D5</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">브뤼셀,런던(도착일)</div>
-
-
-
-<input type="hidden" id="dayExtInfo_cid_5" value="111031001">
-<input type="hidden" id="dayExtInfo_mm_5" value="M1">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=5&citylist=111081001,111031001')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,8,'7월 17일 (5일차)  0~9시의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,9,'7월 17일 (5일차) 9시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,10,'7월 17일 (5일차) 10시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,11,'7월 17일 (5일차) 11시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,12,'7월 17일 (5일차) 12시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,13,'7월 17일 (5일차) 13시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,14,'7월 17일 (5일차) 14시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,15,'7월 17일 (5일차) 15시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,16,'7월 17일 (5일차) 16시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,17,'7월 17일 (5일차) 17시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,18,'7월 17일 (5일차) 18시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,19,'7월 17일 (5일차) 19시경의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(5,20,'7월 17일 (5일차)  20~24시의 일정 <br>브뤼셀,런던도착일','111081001,111031001');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_5_20"></div></div>
-
-
-
-<!---
-							<div style="position:absolute;left:25%;top:135px;z-index:999;background:#f3f3f3;height:180px;width:70%;border:1px solid #c0c0c0;font-size:8pt;color:#c0c0c0">도시이동</div>
---->
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/18  <span style="font-size:10pt;color:#c0c0c0"> 목, D6</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">런던(둘째날)</div>
-
-
-<input type="hidden" id="dayExtInfo_cid_6" value="">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=6&citylist=111031001')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,8,'7월 18일 (6일차)  0~9시의 일정 <br>런던둘째날','111031001');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,9,'7월 18일 (6일차) 9시경의 일정 <br>런던둘째날','111031001');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,10,'7월 18일 (6일차) 10시경의 일정 <br>런던둘째날','111031001');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,11,'7월 18일 (6일차) 11시경의 일정 <br>런던둘째날','111031001');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,12,'7월 18일 (6일차) 12시경의 일정 <br>런던둘째날','111031001');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,13,'7월 18일 (6일차) 13시경의 일정 <br>런던둘째날','111031001');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,14,'7월 18일 (6일차) 14시경의 일정 <br>런던둘째날','111031001');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,15,'7월 18일 (6일차) 15시경의 일정 <br>런던둘째날','111031001');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,16,'7월 18일 (6일차) 16시경의 일정 <br>런던둘째날','111031001');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,17,'7월 18일 (6일차) 17시경의 일정 <br>런던둘째날','111031001');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,18,'7월 18일 (6일차) 18시경의 일정 <br>런던둘째날','111031001');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,19,'7월 18일 (6일차) 19시경의 일정 <br>런던둘째날','111031001');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(6,20,'7월 18일 (6일차)  20~24시의 일정 <br>런던둘째날','111031001');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_6_20"></div></div>
-
-
-
-							<a class="helper_day_6" href="javascript:moveToCityPlanner2('111031001','','2019-07-18',1)"><div style="position:absolute;left:55%;top:35px;z-index:999;cursor:pointer;height:80px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>오전투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-<!--							<a class="helper_day_6" href="javascript:moveToCityPlanner2('111031001','','2019-07-18',0)"><div style="position:absolute;left:55%;top:120px;z-index:999;background:#c0c0c0;cursor:pointer;height:30px;width:40%;border:1px solid #c0c0c0;font-size:8pt;color:#fff">점심</div></a>-->
-							<a class="helper_day_6" href="javascript:moveToCityPlanner2('111031001','','2019-07-18',2)"><div style="position:absolute;left:55%;top:155px;z-index:999;cursor:pointer;height:140px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>오후투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-<!--							<a class="helper_day_6" href="/market/index_city.asp?l=planner10288912&stype=guidebook_4&region=111031001&rid=&trip_id=10288912" target="_blank"><div style="position:absolute;left:55%;top:300px;z-index:999;background:#c0c0c0;cursor:pointer;height:30px;width:40%;border:1px solid #c0c0c0;font-size:8pt;color:#fff">저녁식사</div></a>-->
-							<a class="helper_day_6" href="javascript:moveToCityPlanner2('111031001','','2019-07-18',3)"><div style="position:absolute;left:55%;top:335px;z-index:999;cursor:pointer;height:55px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">2일차<br>저녁투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/19  <span style="font-size:10pt;color:#c0c0c0"> 금, D7</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">런던(셋째날)</div>
-
-
-<input type="hidden" id="dayExtInfo_cid_7" value="">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=7&citylist=111031001')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,8,'7월 19일 (7일차)  0~9시의 일정 <br>런던셋째날','111031001');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,9,'7월 19일 (7일차) 9시경의 일정 <br>런던셋째날','111031001');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,10,'7월 19일 (7일차) 10시경의 일정 <br>런던셋째날','111031001');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,11,'7월 19일 (7일차) 11시경의 일정 <br>런던셋째날','111031001');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,12,'7월 19일 (7일차) 12시경의 일정 <br>런던셋째날','111031001');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,13,'7월 19일 (7일차) 13시경의 일정 <br>런던셋째날','111031001');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,14,'7월 19일 (7일차) 14시경의 일정 <br>런던셋째날','111031001');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,15,'7월 19일 (7일차) 15시경의 일정 <br>런던셋째날','111031001');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,16,'7월 19일 (7일차) 16시경의 일정 <br>런던셋째날','111031001');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,17,'7월 19일 (7일차) 17시경의 일정 <br>런던셋째날','111031001');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,18,'7월 19일 (7일차) 18시경의 일정 <br>런던셋째날','111031001');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,19,'7월 19일 (7일차) 19시경의 일정 <br>런던셋째날','111031001');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(7,20,'7월 19일 (7일차)  20~24시의 일정 <br>런던셋째날','111031001');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_7_20"></div></div>
-
-
-
-							<a class="helper_day_7" href="javascript:moveToCityPlanner2('111031001','','2019-07-19',4)"><div style="position:absolute;left:55%;top:35px;z-index:999;cursor:pointer;height:320px;width:40%;border-right:5px solid #c0c0c0;font-size:8pt;color:#c0c0c0;text-align:right;padding-right:8px;font-weight:400">3일차<br>DAY투어<br>근교투어<br>추천&nbsp;<font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></div></a>
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-				<li class="swiper-slide" style="border-right:1px solid #efefef;">
-						<div class="sbold" style="text-align:left;padding-left:5px;font-size:12pt;color:#696969;">7/20  <span style="font-size:10pt;color:#c0c0c0"> 토, D8</span></div>
-						<div style="height:68px;font-size:10pt;text-align:left;padding-left:5px;color:#696969;padding-bottom:5px;">
-
-
-<div style="line-height:110%;height:32px;">런던(출국일)</div>
-
-
-<input type="hidden" id="dayExtInfo_cid_8" value="">
-
-
-<div style="margin-top:3px;padding-left:5px;padding-right:5px;"><a class="btn-u  btn-u-default" href="javascript:showLinkInModal('daymap.asp?trip_id=10288912&theday=8&citylist=111031001')" style="width:95%;text-align:center;margin-right:5px;margin-left:5px;background:#3ad195;color:#fff;border-radius:15px"><i class="fa fa-map"></i> DAY MAP</a></div>
-
-						</div>
-						<div style="position:relative">
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,8,'7월 20일 (8일차)  0~9시의 일정 <br>런던출국일','111031001');">0~9 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_8"></div></div>
-
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,9,'7월 20일 (8일차) 9시경의 일정 <br>런던출국일','111031001');">9<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_9"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,10,'7월 20일 (8일차) 10시경의 일정 <br>런던출국일','111031001');">10<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_10"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,11,'7월 20일 (8일차) 11시경의 일정 <br>런던출국일','111031001');">11<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_11"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,12,'7월 20일 (8일차) 12시경의 일정 <br>런던출국일','111031001');">12<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_12"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,13,'7월 20일 (8일차) 13시경의 일정 <br>런던출국일','111031001');">13<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_13"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,14,'7월 20일 (8일차) 14시경의 일정 <br>런던출국일','111031001');">14<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_14"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,15,'7월 20일 (8일차) 15시경의 일정 <br>런던출국일','111031001');">15<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_15"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,16,'7월 20일 (8일차) 16시경의 일정 <br>런던출국일','111031001');">16<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_16"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,17,'7월 20일 (8일차) 17시경의 일정 <br>런던출국일','111031001');">17<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_17"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,18,'7월 20일 (8일차) 18시경의 일정 <br>런던출국일','111031001');">18<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_18"></div></div>						
-						
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,19,'7월 20일 (8일차) 19시경의 일정 <br>런던출국일','111031001');">19<div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_19"></div></div>						
-						
-
-							<div style="border-top:1px solid #efefef;height:30px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;position:relative;" ondblclick="openSchdEdit(8,20,'7월 20일 (8일차)  20~24시의 일정 <br>런던출국일','111031001');">20~24 <div style="position:absolute;top:3px;left:40px;color:gray;font-size:9pt;" id="schd_detail_8_20"></div></div>
-
-
-
-							<a href="/planner/planner_resv_air_m.asp?trip_id=10288912"><div style="cursor:pointer;position:absolute;left:25%;top:358px;z-index:999;background:#f3f3f3;height:34px;width:70%;border:1px solid #c0c0c0;font-size:8pt;color:#c0c0c0"><b>출국</b> </div></a>
-
-
-						</div>
-						
-						
-						<div style="border-top:1px solid #efefef;height:75px;font-size:8pt;text-align:left;color:#c0c0c0;padding-left:10px;">숙소</div>
-
-
-				</li>
-
-
-<a class="helper_slp_111011004" href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111011004&trip_id=10288912&checkin=2019-07-13&checkout=2019-07-16');">
-<li style="display:block;left:105px;width:632px;position:absolute;top:500px;z-index:999;cursor:pointer;color:#c0c0c0;height:50px;border-top:5px solid #c0c0c0;line-height:110%"><font style="font-size:8pt;">파리3박<br>추천숙소</font> <font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></li>
-</a>		
-
-
-<a class="helper_slp_111081001" href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111081001&trip_id=10288912&checkin=2019-07-16&checkout=2019-07-17');">
-<li style="display:block;left:747px;width:204px;position:absolute;top:500px;z-index:999;cursor:pointer;color:#c0c0c0;height:50px;border-top:5px solid #c0c0c0;line-height:110%"><font style="font-size:8pt;">브뤼셀1박<br>추천숙소</font> <font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></li>
-</a>		
-
-
-<a class="helper_slp_111031001" href="javascript:openSLP('http://www.stubbyplanner.com/mb/index_city.asp?l=planner10288912&region=111031001&trip_id=10288912&checkin=2019-07-17&checkout=2019-07-20');">
-<li style="display:block;left:961px;width:632px;position:absolute;top:500px;z-index:999;cursor:pointer;color:#c0c0c0;height:50px;border-top:5px solid #c0c0c0;line-height:110%"><font style="font-size:8pt;">런던3박<br>추천숙소</font> <font style="font-size:12pt;color:#3ad195"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></font></li>
-</a>		
-
-
-
-
-
-
-
-				</ul>
-
-				
-				</div>
-			</div>
-			<div style="clear:both"></div>
-
-
-		</div>
-		<div style="clear:both"></div>
-
-	</div>
-
-	</section>
-
-
-
-
-
-
-
 
 
 
@@ -2744,315 +1882,7 @@ function mng_small_city()
 
 
 
-            <section style="margin-top:40px">
-	<div class="stu_inner_wrap">
-		<div style="width:100%;border-radius:3px;border:0px solid #efefef;padding-top:5px;padding-bottom:5px;border-top:1px solid #efefef;padding-top:30px;">
-			<div style="float:left;width:25%;" >
-				<font style="font-size:18pt;font-weight:700;color:#696969">소도시 정보 </font><br>
-				<a href="javascript:mng_small_city()"><font style="font-size:12pt;color:#c0c0c0;">나만의 특별한 여행지정보</font></a>
-
-			</div>
-
-
-			<div style="float:left;width:75%">
-				<div  class="swiper-container swiper">
-
-				<ul class="nolist swiper-wrapper">
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011008">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f183b5399ca4329728d14a05b4e09fe7.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">몽생미셸</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031187">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/13f6dc305d53ccb6574b6d0963f47c46.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">세븐시스터즈</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031004">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/639cb1b411abca4c82f6628d446ae1a7.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">옥스퍼드</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031197">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f05bd98f0758ec138c02f0f4ff435232.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">코츠월드</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011143">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/334f3b7dfa643495567e86d448bb2549.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">지베르니</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031184">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/88021f851a19c840b812bd127f17f71f.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">스톤헨지</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011141">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f2152f3f5c9275ae6bfa2be517737597.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">퐁텐블로</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111081002">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2ab739bee64d9cae6e7f0ff30d0c39d3.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">브뤼헤</div>
-						<div>브뤼셀근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031003">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/fd145110ed12213769c68db5a8e60b42.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">윈저</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011144">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/e7f22c23b4aad29705d17d64d9064709.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">오베르 쉬르 우아즈</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011161">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/906c8504a2191e2ee49f5b1398910337.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">에트르타</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031065">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/61174b7aa2cd163368667a73106954a7.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">켄터베리</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111031195">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/21e7e1738dce72fbc06ad790c0907b5f.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">라이</div>
-						<div>런던근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011126">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/ebceda8887b61d14c3946fe35b9cd94f.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">옹플뢰르</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011013">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/3794ead4468eb735cfda4bf56461cedd.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">보르도</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011154">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/a23ba652973fbac8874a62804f02716a.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">바르비종</div>
-						<div>파리근교</div>
-				</a></li>
-
-				<li class="swiper-slide" style="width:140px"><a href="bucket_detail.asp?trip_id=10288912&cityserial=111011098">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/d6d69236f6a905dcf87d3582810ec5cb.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">루아르 계곡</div>
-						<div>파리근교</div>
-				</a></li>
-
-				</ul>
-				</div>
-			</div>
-			<div style="clear:both"></div>
-		</div>
-		<div style="clear:both"></div>
-
-	</div>
-
-	</section>	
-
-            <section style="margin-top:40px">
-	<div class="stu_inner_wrap">
-		<div style="width:100%;border-radius:3px;border:0px solid #efefef;padding-top:5px;padding-bottom:5px;border-top:1px solid #efefef;padding-top:30px;">
-			<div style="float:left;width:25%;" >
-				<font style="font-size:18pt;font-weight:700;color:#696969">프리미엄 셀프북 </font><br>
-				<font style="font-size:12pt;color:#c0c0c0;"><a href="selfguide.asp?trip_id=10288912" class="btn-u btn-u-dark" style="border-radius:25px">유럽 110권 모두보기</a></font>
-
-			</div>
-
-
-			<div style="float:left;width:75%">
-				<div  class="swiper-container swiper">
-
-				<ul class="nolist swiper-wrapper">	
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('111')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/ff3aa3b2fa1011843814ce0b66df9445_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">영국박물관 지식..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('147')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/6545442b288e58054a139f338c2d2594_l.PNG" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">자연사박물관</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('65')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c74d56bc27a64d79d3ab9441f8187f39_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">루브르 지식가이..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('85')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/319d67befcdb7a422b2f84be4aa24358_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">내셔널갤러리 지..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('67')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/7810a1a38e77c8899268232640446105_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">오르세 지식가이..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('54')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/941b2a533a47ca603bbc355b5a974304_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">베르사유 지식가..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('126')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/1e5ced9f4b7ea94949cae33f49594df6_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 패션 쇼핑..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('16')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/e41540dd78dee01cfb2b06fb7bf80dba_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 약국화장품..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('15')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/dcf95203c6944e0936cf695cea36e2e6_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">프랑스 니치향수..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('81')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/8f27e6eee23a0d4d818d31702709eec3_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">세포라 쇼핑 마..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('87')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/7ac971a154ee68a200abd97242702f95_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">영국 홍차 마스..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('117')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2ed1c980e7ea53652431d01b2a488c2b_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 빵 마스터..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('116')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/6c118ac8db4c2583b1449a0c277563cf_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">런던 펍 마스터..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('68')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/65d2d49487ce1d99141d23bb66abd148_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 미슐랭 마..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('114')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/5b892600f1876d093c4172c52fbe42ab_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">세븐 시스터즈 ..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('66')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/4f42ecd62b94b4b275658ffbc4eada95_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">지베르니 공략집</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('129')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c950cdf010c907edab33c34b6b358999_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 나이트라이..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('123')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/f65d9ed68320193fcbb7073232a335ca_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 자전거여행..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('108')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/743b3b8024f64f843356fc57e6f6a69b_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">런던 버스여행 ..</div>
-						<div>런던</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('106')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/060246428fdc15f5d552be8b8dd0b818_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 셀프스냅 ..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('102')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/52ed913bc24fd95c79c9feadab45760a_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 라탱지구 ..</div>
-						<div>파리</div>
-				</a></li>
-
-
-				<li class="swiper-slide" style="width:140px"><a href="javascript:showGuidebook('93')">
-						<div><img src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/88ffb4641afe35f142982ed3c04d878f_l.jpg" style="border-radius:5px;width:90%"></div>
-						<div class="sbold">파리 디즈니랜드..</div>
-						<div>파리</div>
-				</a></li>
-
-
-
-				</ul>
-				</div>
-			</div>
-			<div style="clear:both"></div>
-		</div>
-		<div style="clear:both"></div>
-
-	</div>
-
-	</section>
+   
 
 
 <script>
@@ -3066,7 +1896,7 @@ function showGuidebook(se)
 {
 
 
-		window.location="premium.asp?trip_id=10288912";
+		window.location="premium.asp?trip_id=<%=trip_id%>";
 	
 
 }
@@ -3115,342 +1945,6 @@ function loadDayExtInfo()
 
 }
 </script>
-
-
-
-            <section style="margin-top:40px">
-	<div class="stu_inner_wrap">
-	<hr>
-	<h4 style="margin-left:5px;font-weight: 700;letter-spacing:0;font-size:18pt;color:#696969">테마별 할인상품 비교 <small><font style="color:#ee685a"><b>⚡️ 얼리버드 + 결합 SALE</b></font></small></h4>
-	<div style="margin-bottom:10px;padding-left:10px;"><a href="javascript:func_alert('몽생미셀, 패러글라이딩, 남부투어등 필수투어들은 성수기가 되어 예약인원이 어느정도 차면 보통 가격이 인상됩니다.')"><font style="font-size:10pt;color:#c0c0c0">마음에 둔 투어가 있다면 비교해서 미리 할인가격에 예약해두세요.<font style="font-size:12pt;color:#3ad195"><i class="fa fa-question-circle" aria-hidden="true"></i></font></font></u></a></div>
-	<div style="clear:both"></div>
-<div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=72&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/309ccb3a2964cbb4e4e2b4e93ce393a7.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">해리포터 스튜디오 </p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">4개 투어
-                                            <span>₩ 79,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=232&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1551250146150zupASzzTR8.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">프로방스/라벤더</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">8개 투어
-                                            <span>₩ 79,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=1&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/008d40a42b47fd66efaececd9f9c6128.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">몽생미셀 베스트</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">16개 투어
-                                            <span>₩ 90,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=20&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/db6768706a857b61c960a0ade9735c36.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">런던 뮤지컬</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">8개 투어
-                                            <span>₩ 72,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=69&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/04c935581b2f46f26a84d52e3c2b5f2a.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">벨기에 시내투어</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">1개 투어
-                                            <span>₩ 73,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">벨기에</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=65&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1551232402868KDGZ5lX4at.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">에든버러 시내워킹</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">2개 투어
-                                            <span>₩ 40,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=233&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1551250142086Z4AzycKbFW.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">모나코</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">2개 투어
-                                            <span>₩ 79,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=191&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/c1fb7bd64a0badb6ec7ca14c9dd20017.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">리옹 시내투어</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">2개 투어
-                                            <span>₩ 45,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=21&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/59ac8f57c40bb386375caac96351edac.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">코츠월드+근교</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">14개 투어
-                                            <span>₩ 59,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=5&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/2e57876f040b2fba175b7e426d44ffdd.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">루브르 지식가이드</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">14개 투어
-                                            <span>₩ 28,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=70&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/19d7c14d2db89fa26379fff5f789ba05.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">브뤼헤+겐트 차량</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">1개 투어
-                                            <span>₩ 200,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">벨기에</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=234&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1551250145289meN8gss3O2.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">에즈</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">4개 투어
-                                            <span>₩ 79,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=323&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1556185393971UYKv90dFel.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">하이랜드</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">2개 투어
-                                            <span>₩ 70,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=140&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/0c02e5f3a8c8f25c6ddfd1bf36958bca.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">벨기에 맥주투어</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">1개 투어
-                                            <span>₩ 53,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">벨기에</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=22&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/7bb7e4415875fdc19c7c6e8ac6535460.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">세븐시스터즈</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">7개 투어
-                                            <span>₩ 69,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">영국</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=6&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/4093eafbaa083b69db5b13657c361994.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">오르세 미술관</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">11개 투어
-                                            <span>₩ 19,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=85&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/1538149408004APcAaAgzc3.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">앤트워프 워킹</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">1개 투어
-                                            <span>₩ 5,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">벨기에</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="width:33.3%;float:left;text-align:center;margin-bottom:0px;">
-		<div style="margin-left:10px;margin-right:10px;position:relative;height:150px;overflow:hidden;border-radius:5px;">
-		<a style="display:block;text-decoration:none;" href="javascript:showLinkInModal('/market/group.asp?serial=231&thedate=2019-07-13&from=planner&trip_id=10288912')">
-			<img style="position:absolute;top:50%;left:50%;height:100%;transform: translate(-50%, -50%);border-radius:5px;" src="http://d3b39vpyptsv01.cloudfront.net/0/0/15512501434655iMVZoTaCf.jpg">
-			<div style="position: absolute;display: flex;flex-flow: column nowrap;justify-content: center;align-items: center;width:100%;height:100%;margin: 4px 0;color: #fff;text-align: center;text-shadow: #000 0 0 3px;">
-                                        <p style="font-size:18px;font-weight:600;color:#fff;">베르동</p>
-                                        <p style="font-size: 14px;font-weight:300;color:#fff;">3개 투어
-                                            <span>₩ 230,000~</span>
-                                        </p>
-			<p style="font-weight:300;font-size:9pt;color:#fff;">프랑스</p>
-
-			
-			<div style="display:inline-block;background:#ee685a;color:#fff;font-size:8pt;padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;margin-top:5px;">⚡️ 얼리버드SALE</div>
-		
-			</div>
-		</a></div>
-	</div><div style="clear:both;margin-bottom:20px;"></div>
-	<div style="clear:both"></div>
-
-	</div>
-	</section>
-
-
-
-
-
-
-            <section style="margin-top:20px;padding-top:10px;padding-bottom:20px;background:#f5f5f5">
-	<div class="stu_inner_wrap">
-		<div style="border-top:0px solid #efefef;padding-top:20px;width:100%;padding-bottom:5px;padding-top:20px;">
-			<div style="float:left;width:25%;" >
-				<font style="font-size:18pt;font-weight:700;color:#696969">전문가의뢰</font>
-			</div>
-		</div>
-	
-
-<div id="div_feedback" style="float:left;width:75%;background:#fff;border:1px solid #e5e5e5;padding-top:10px;padding-left:10px;padding-right:10px;padding-bottom:10px;">
-
-<div style="padding-left:15px;padding-right:15px;font-size:13pt;color:gray;padding-top:20px;padding-bottom:20px;">
-	루트부터 숙소, 일정까지<br>
-	이 여행을 전문가에게 의뢰해 보세요!<br>
-	
-	<br>
-	<a href="/consulting/index.asp?trip_id=10288912" target="_blank" class="btn-u btn-u-lg btn-block" style="background:#ee685a">스투비 맞춤여행의뢰 </a>
-</div>
-
-
-</div>
-
-
-	</div>
-
-  </section>
-
-
         </main>
 
 
@@ -3501,10 +1995,10 @@ function loadDayExtInfo()
 	
 </script>
 
-	<form name="form" action="detail.asp" method="get">
+	<form name="form" action="detail.do" method="get">
 
 
-		<input type="hidden" name="trip_id" value="10288912">
+		<input type="hidden" name="trip_id" value="<%=trip_id%>">
 		<input type="hidden" name="neededit" value="1">
 		<input type="hidden" name="needlogin" value="">
 		<input type="hidden" name="access_key" value="">
@@ -3685,21 +2179,21 @@ function loadDayExtInfo()
 
 
     <!-- swiper.js : 이미지슬라이더 -->
-    <script type="text/javascript" src="/market/js/swiper.min.js"></script>
+    <script type="text/javascript" src="/stubbyPlanner/externalData/market/js/swiper.min.js"></script>
 
 <!-- JS Global Compulsory -->
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
-<script src="/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery.min.js"></script>
+<script src="/stubbyPlanner/externalData/superguide/One-Pages/assets/plugins/jquery/jquery-migrate.min.js"></script>
 
 <!-- JS Implementing Plugins -->
 
 
 <!-- JS Global Compulsory -->
-<script type="text/javascript" src="/js/fullcalendar/lib/jquery-ui.min.js"></script>
-<script src="/js/fullcalendar/lib/moment.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%= contextPath %>/externalData/js/fullcalendar/lib/jquery-ui.min.js"></script>
+<script src="/stubbyPlanner/externalData/js/fullcalendar/lib/moment.min.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="/js/fullcalendar.min.js"></script>
-<script type="text/javascript" src="/js/fullcalendar_lang-all.js"></script>
+<script type="text/javascript" src="/stubbyPlanner/externalData/js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="/stubbyPlanner/externalData/js/fullcalendar_lang-all.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/flickity@2.0/dist/flickity.pkgd.min.js"></script>
@@ -3761,7 +2255,7 @@ function loadDayExtInfo()
 <script>
 	function openResvinfo(rs)
 	{
-		var surl="if_resv_air.asp?pl=10288912&region=&1[1-4]startdate=2019-07-13";
+		var surl="if_resv_air.asp?pl=<%=trip_id%>&region=&1[1-4]startdate=2019-07-13";
 		if(rs)
 			surl=surl+"&rs="+rs;
 		document.getElementById("if_resv_info").src=surl;
@@ -3806,7 +2300,8 @@ function closeMyModal()
 
 	
 }
-var sd=new Date('2019-07-13');
+console.log('${list.get(1)}');
+var sd=new Date('2019-07-10');
 dis_cur_year=sd.getFullYear();
 dis_cur_month=sd.getMonth()+1;
 dis_cur_day=sd.getDate();
@@ -3976,7 +2471,7 @@ function updateStartdate()
 			  data: {
 				tripgene:'111011004:3:X,111081001:1:X,111031001:3:X',
 				startdate:startdate,
-				tid:'10288912',
+				tid:'<%=trip_id%>',
 				term:plan_term,
 				arr_nextday:arr_nextday
 	
@@ -4002,10 +2497,10 @@ function initKakaoBtn()
 {
 	
 
-	mURL="//www.stubbyplanner.com/planner/detail.asp?tid=10288912";
-	mURL0="//www.stubbyplanner.com/planner/planner_rt_m.asp?trip_id=10288912";
-	wURL="//www.stubbyplanner.com/planner/detail.asp?tid=10288912";
-	wURL0="//www.stubbyplanner.com/planner/planner_rt.asp?trip_id=10288912";
+	mURL="//www.stubbyplanner.com/planner/detail.asp?tid=<%=trip_id%>";
+	mURL0="//www.stubbyplanner.com/planner/planner_rt_m.asp?trip_id=<%=trip_id%>";
+	wURL="//www.stubbyplanner.com/planner/detail.asp?tid=<%=trip_id%>";
+	wURL0="//www.stubbyplanner.com/planner/planner_rt.asp?trip_id=<%=trip_id%>";
     Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
       objectType: 'feed',
@@ -4013,8 +2508,8 @@ function initKakaoBtn()
         title: '2019년 7월 13일 출발 8일간 여행',
         imageUrl: 'http://maps.googleapis.com/maps/api/staticmap?size=500x500&mobile=true&path=color:0x333333ff|weight:2|48.861,2.342|50.847,4.351|51.5,-0.126&&markers=color:red|label:E|51.5,-0.126&key=AIzaSyAlG3b7IeRzDZW46KIpOFPtiIxXt9MU46I&style=feature:administrative%7Celement:geometry.stroke%7Ccolor:0xb8b8b8%7Cvisibility:on%7Cweight:1&style=feature:administrative%7Celement:labels.text.fill%7Ccolor:0x6195a0&style=feature:administrative.province%7Celement:geometry.stroke%7Cvisibility:off&style=feature:landscape%7Celement:geometry%7Ccolor:0xfffef5&style=feature:landscape.man_made%7Clightness:-5&style=feature:landscape.natural.terrain%7Cvisibility:off&style=feature:poi%7Cvisibility:off&style=feature:poi.park%7Celement:geometry.fill%7Ccolor:0xbae5ce%7Cvisibility:on&style=feature:road%7Csaturation:-100%7Clightness:45%7Cvisibility:simplified&style=feature:road.arterial%7Cvisibility:off&style=feature:road.highway%7Cvisibility:off&style=feature:transit%7Cvisibility:simplified&style=feature:water%7Ccolor:0xc2f1f5%7Csaturation:35%7Clightness:40%7Cgamma:0.42%7Cvisibility:on&style=feature:water%7Celement:labels.text.fill%7Ccolor:0xadadad%7Cvisibility:on&scale=2',
         link: {
-          mobileWebUrl: "https://www.stubbyplanner.com/planner/detail.asp?tid=10288912",
-          webUrl: "https://www.stubbyplanner.com/planner/detail.asp?tid=10288912"
+          mobileWebUrl: "https://www.stubbyplanner.com/planner/detail.asp?tid=<%=trip_id%>",
+          webUrl: "https://www.stubbyplanner.com/planner/detail.asp?tid=<%=trip_id%>"
         }
       }
     });
@@ -4023,14 +2518,32 @@ function initKakaoBtn()
 
   //]]>
 
-
+var thedate;
 var tripgene;
 $( document ).ready(function() {
+	
+	$.ajax({
+		  url: "/stubbyPlanner/model1/tr1.jsp",
+		 type: "GET",
+		 dataType: 'json',
+		 data: {
+			trip_id:<%=trip_id%>
+		  },
+		  success: function( data ) {
+// 				alert(data[0].startdate);
+				thedate = data[0].startdate;
+				console.log("ajax:: " +thedate);
+				// 
+		setTimeout(function(){toggleSelectTripWith(); }, 1500);
+			
+			
+	
 	tripgene="111011004:3:X,111081001:1:X,111031001:3:X";
-	startdate="2019-07-13";
+// 	console.log(startdate);
+	startdate=startdate;
 
 
-	setTimeout(function(){showCalendar();}, 1000);
+	setTimeout(function(){showCalendar(data);}, 1000);
 
             var mySwiper3 = new Swiper ('.swiper', {
                 slidesPerView:'auto',
@@ -4054,9 +2567,12 @@ $( document ).ready(function() {
 	
 	initKakaoBtn();
 	
-
+		  }
+	});//ajax
 
 });
+	
+
 
 
 
@@ -4068,23 +2584,18 @@ function saveTripgene()
 		tripgene: tripgene,
 		startdate:'2019-07-13',
 		tripwith:tripwith,
-		tid:'10288912'
+		tid:'<%=trip_id%>'
 	},
 	function(data) {
 		xx=JSON.parse(data);
 	});
 }
 
-
-
-
 	function openSocialMsg(isfirst)
 	{
-		var surl="if_socialmsg.asp?gid=&planserial=10288912&isFirst="+isfirst;
+		var surl="if_socialmsg.asp?gid=&planserial=<%=trip_id%>&isFirst="+isfirst;
 		document.getElementById("if_page").src=surl;
 		
-
-
 		$('#modal-page').modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -4119,10 +2630,24 @@ $(function () {
     {}
   })
 })
-
-function showCalendar()
+/* 
+$('div').find('span').each(function(i, e){
+						console.log($(this).text());
+					})
+ */
+function showCalendar(data)
 {
-
+var randomColor = '#'+ ('000000' + Math.floor(Math.random()*16777215).toString(16)).slice(-6);
+// 	alert("startdate :: "  + startdate);
+	
+// 	console.log(data[1].rt_trans +"//" + data[1].rt_startdate);
+	var id;
+	var title;
+	var start;
+	var end;
+	var color;
+					
+	
 	$("#div_loading_on_map").hide();
 			$("#div_calendar").fullCalendar({
 				header: {
@@ -4130,54 +2655,27 @@ function showCalendar()
 					center: 'title',
 					right: 'next'
 				},
- 
-				defaultDate: '2019-07-13',
+				defaultDate: startdate,
 				buttonIcons: true, // show the prev/next text
 				weekNumbers: false,
 				editable: false,
 				lang:'ko',
-				events: [
-
-
-
-					{
-						id:'0',
-						title: '<img src="/images/is/flag/11101_s.gif" style="width:15px;height:11px"> 파리',
-						start: '2019-07-13',
-						end: '2019-07-17',
-						
-						color: '#51bec9'
-					},
-
-					{
-						id:'1',
-						title: '<img src="/images/is/flag/11108_s.gif" style="width:15px;height:11px"> 브뤼셀',
-						start: '2019-07-16',
-						end: '2019-07-18',
-						
-						color: '#24afd6'
-					},
-
-					{
-						id:'2',
-						title: '<img src="/images/is/flag/11103_s.gif" style="width:15px;height:11px"> 런던',
-						start: '2019-07-17',
-						end: '2019-07-21',
-						
-						color: '#ffaf51'
-					},
-
-					{
-						title: '출국일',
-						start: '2019-07-13',
-						
-						color: '#999999'
-						
+				events: function(start, end, timezone, callback){
+					var events = [];
+					for (var i = 1; i < data.length; i++) {
+						console.log(data[i].scity_name + "//" + data[i].rt_startdate);
+						event.push({
+							title:'<img src="/images/is/flag/11101_s.gif" style="width:15px;height:11px">'+data[i].scity_name+'',
+							start:data[i].rt_startdate,
+							end:data[i].rt_enddate,
+							color: randomColor
+						});
 					}
-				],
+				},
 				eventRender: function (event, element) {
 				    element.find('.fc-event-title').html(event.title);
 				}
+				
 			});
 		
 
@@ -4320,27 +2818,13 @@ function getTrsInfo(idx,dep,des,thedate)
 				
 
 }
-$( document ).ready(function() {
 
-
-	setTimeout(function(){toggleSelectTripWith(); }, 1500);
-	
-
-
-
-
-});
 </script>
-
 <script>
-$( document ).ready(function() {
-
-
-});
+ 
 
 function openSchdEdit(d,t,head_title,cityserials)
 {
-
 
 	$("#my_modal_title").html(head_title+" 일정");
 
@@ -4349,7 +2833,7 @@ function openSchdEdit(d,t,head_title,cityserials)
 			 type: "POST",
 			 dataType: 'json',
 			 data: {
-				trip_id:'10288912',
+				trip_id:'<%=trip_id%>',
 				t:t,
 				d:d,
 				mybuckets:'',
@@ -4447,9 +2931,6 @@ function openSchdEdit(d,t,head_title,cityserials)
 			}
 		});
 
-	
-	
-
 }
 function openSelectedGuidebook()
 {
@@ -4469,7 +2950,7 @@ function openSelectedBucket()
 	if(bucket_id!="")
 	{
 		
-		window.open('http://www.stubbyplanner.com/planner/bucket_detail.asp?&from=cityplanner&trip_id=10288912&expserial='+bucket_id);
+		window.open('http://www.stubbyplanner.com/planner/bucket_detail.asp?&from=cityplanner&trip_id=<%=trip_id%>&expserial='+bucket_id);
 		
 	}
 }
@@ -4523,7 +3004,7 @@ function saveSchd(d,t)
 			 type: "POST",
 			 dataType: 'json',
 			 data: {
-				trip_id:'10288912',
+				trip_id:'<%=trip_id%>',
 				t:t,
 				d:d,
 				adrs:adrs,
@@ -4552,7 +3033,7 @@ function delSchd(d,t)
 			 type: "POST",
 			 dataType: 'json',
 			 data: {
-				trip_id:'10288912',
+				trip_id:'<%=trip_id%>',
 				t:t,
 				d:d,
 
@@ -4568,1307 +3049,9 @@ function delSchd(d,t)
 }
 
 
-//패스시작
-function purchase_step2()
-{
-
-
-	xtitle="스투비패스 구매(2/2)";
-	$("#my_modal_title").html(xtitle);
-
-
-	thtml='<form>';
-
-
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">핸드폰</div><div style="float:left;width:65%;color:#fff"><input id="stubbypass_phone" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">이메일</div><div style="float:left;width:65%;color:#fff"><input id="stubbypass_email" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-
-	for(i=0;i<prv_idx;i++)
-	{
-		if(prv_idx==1)
-		{
-			thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">패스 이용자 한글명</div><div style="float:left;width:65%;color:#fff"><input id="pass_user_1_kor" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-			thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">패스 이용자 영문명</div><div style="float:left;width:65%;color:#fff"><input id="pass_user_1_eng" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-
-		}
-		else
-		{
-			thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">패스 이용자'+eval(i+1)+' 영문명</div><div style="float:left;width:65%;color:#fff"><input id="pass_user_'+eval(i+1)+'_kor" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-		}
-	}
-
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">캐쉬백 입금은행</div><div style="float:left;width:65%;color:#fff"><input id="bank_name" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">캐쉬백 입금계좌</div><div style="float:left;width:65%;color:#fff"><input id="bank_account" style="padding-top:0px;height:35px;" type="text" class="form-control"></div><div style="clear:both"></div></div>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff">캐쉬백 예정일자</div><div style="float:left;width:65%;color:#fff">2019년 8월 15일~18일<br>(여행종료후 1개월이후에 가장 빠른 15일)</div><div style="clear:both"></div></div>';
-
-
-	thtml+='<div style="margin-top:20px"><a href="javascript:req_pass_reservation()" class="btn-u btn-u-green btn-block btn-u-lg">패스 구매하기</a></div></form>';
-	$("#my_modal_desc").html(thtml);
-
-
-}
-function req_pass_reservation()
-{
-	userid='ggplay1';
-	pass_start='2019-07-13';
-	pass_end='2019-07-20';
-	trip_id='10288912';
-	member_cnt=prv_idx;
-	pass_price=cur_pass_price;
-	exp_cashback_at_txt='2019년 8월 15일~18일';
-	phone=$("#stubbypass_phone").val();
-	email=$("#stubbypass_email").val();
-	bank_account=$("#bank_account").val();
-	bank_name=$("#bank_name").val();
-
-	if(userid=="")
-	{
-		func_alert("로그인후에 이용가능합니다.");
-		return;
-	}
-	if(member_cnt=="")
-	{
-		func_alert("1명 이상용 패스만 구매가능합니다.");
-		return;
-	}
-	if(pass_price==""||pass_price==0)
-	{
-		func_alert("패스 가격 산정에 문제가 발생했습니다.");
-		return;
-	}
-	if(phone=="")
-	{
-		func_alert("핸드폰 번호는 필수항목입니다.");
-		return;
-	}
-	if(email=="")
-	{
-		func_alert("이메일 주소는 필수항목입니다.");
-		return;
-	}
-
-
-	pass_user_1_kor="";
-	pass_user_1_eng="";
-	pass_user_2_eng="";
-	pass_user_3_eng="";
-	pass_user_4_eng="";
-	pass_user_5_eng="";
-	pass_user_6_eng="";
-
-	if($("#pass_user_1_kor"))
-		pass_user_1_kor=$("#pass_user_1_kor").val();
-	if($("#pass_user_1_eng"))
-		pass_user_1_eng=$("#pass_user_1_eng").val();
-	if($("#pass_user_2_eng"))
-		pass_user_2_eng=$("#pass_user_2_eng").val();
-	if($("#pass_user_3_eng"))
-		pass_user_3_eng=$("#pass_user_3_eng").val();
-	if($("#pass_user_4_eng"))
-		pass_user_4_eng=$("#pass_user_4_eng").val();
-	if($("#pass_user_5_eng"))
-		pass_user_5_eng=$("#pass_user_5_eng").val();
-	if($("#pass_user_6_eng"))
-		pass_user_6_eng=$("#pass_user_6_eng").val();
-
-
-	if(pass_user_1_eng=="")
-	{
-		func_alert("영문이름은 필수항목입니다.");
-		return;
-	}
-
-
-	thtml="";
-	$.ajax({
-		url: '/api/planning/savePassReq.asp',
-		type: "POST",
-
-		data: {
-	
-			userid:userid,
-			pass_start:pass_start,
-			pass_end:pass_end,
-			trip_id:'10288912',
-			member_cnt:member_cnt,
-			pass_price:pass_price,
-			exp_cashback_at_txt:exp_cashback_at_txt,
-			phone:phone,
-			email:email,
-			K532352363432:'V436235230d431',
-			bank_account:bank_account,
-			bank_name:bank_name,
-			pass_user_1_kor:pass_user_1_kor,
-			pass_user_1_eng:pass_user_1_eng,
-			pass_user_2_eng:pass_user_2_eng,
-			pass_user_3_eng:pass_user_3_eng,
-			pass_user_4_eng:pass_user_4_eng,
-			pass_user_5_eng:pass_user_5_eng,
-			pass_user_6_eng:pass_user_6_eng
-		},
-		success: function(data){
-			if(data!="")
-			{
-				func_alert("이메일과 문자로 결제 요청이 전송되었습니다. 24시간 이내에 결제를 해주시기 바랍니다. 결제완료후에는 24시간이내에 스투비패스 할인 링크가 플래너상에서 제공됩니다.");
-				window.history.go(0);
-			}
-		}
-	});
-}
-function purchase()
-{
-
-
-	userid='ggplay1';
-	pass_start='2019-07-13';
-	pass_end='2019-07-20';
-	trip_id='10288912';
-	member_cnt=prv_idx;
-	pass_price=cur_pass_price;
-
-
-	$.ajax({
-		url: '/api/planning/wantPassReq.asp',
-		type: "POST",
-
-		data: {
-	
-			userid:userid,
-			pass_start:pass_start,
-			pass_end:pass_end,
-			trip_id:'10288912',
-			member_cnt:member_cnt,
-			pass_price:pass_price,
-			K532352363432:'V436235230d431'
-		},
-		success: function(data){
-		}
-	});	
-
-	
-		func_alert("죄송합니다. 오늘 판매분이 이미  매진되었습니다. 내일 다시 시도해주세요. 현재 스투비패스는 시범운영중이며 자정을 기준으로 하루에 선착순 10명에게만 판매되고 있습니다.");
-		return;
-		
-		
-
-	if(cur_pass_price==0)
-		return;
-	xtitle="스투비패스 구매(1/2)";
-	$("#my_modal_title").html(xtitle);
-	thtml='<form>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff;font-size:11pt;">여행기간</div><div style="float:left;width:65%;color:#fff;font-size:11pt;"><b>2019. 7. 13 - 2019. 7. 20</b></div><div style="clear:both"></div></div>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff;font-size:11pt;">이용인원</div><div style="float:left;width:65%;color:#fff;font-size:11pt;"><b>'+prv_idx+'명</b></div><div style="clear:both"></div></div>';
-	thtml+='<div style="margin:10px 0px"><div style="float:left;width:35%;color:#fff;font-size:11pt;">패스가격</div><div style="float:left;width:65%;color:#fff;font-size:11pt;"><b>'+cur_pass_price+'원</b></div><div style="clear:both"></div></div>';
-
-	thtml+='<div style="margin-top:30px;margin-bottom:10px;color:#fff"><font style="font-weight:700;font-size:11pt">중요 고지사항</font></div>';
-	thtml+='<div style="text-align:left;margin-bottom:30px;color:#696969;border:1px solid #696969;font-size:10pt;line-height:170%;padding:10px 10px;background:#efefef;">';
-	thtml+='1. 모든 할인은 위의 여행기간에 필요한 예약을 진행할 때에만 적용 가능합니다.<br>';
-	thtml+='2. 모든 할인은 패스구매시 기입한 패스이용자들에 대해서만 적용가능합니다.<br>';
-	thtml+='3. 투어 할인은 상품에 따라 즉시할인과 캐쉬백할인으로 제공됩니다. <br>';
-	thtml+='4. 숙소 할인은 모두 캐쉬백 할인으로 제공되며 최종 숙소체류후 최소 1개월이후의 매월 15일~18일에 일괄 입금됩니다.<br>';
-	thtml+='5. 숙소 할인은  패스구매후 이 플래너상에서 제공되는 부킹닷컴 링크를 통한 예약에만 적용됩니다.<br>';
-	thtml+='6. 투어 할인은 스투비플래너에서 광고판매중인 모든 투어상품에 대해  적용되나 선착순 슈퍼특가 할인과는 중복적용이 불가능합니다.<br>';
-
-	thtml+='</div>';
-
-
-
-	thtml+='<a href="javascript:purchase_step2()" class="btn-u btn-u-green btn-block btn-u-lg">다음단계로 ></a></form>';
-	$("#my_modal_desc").html(thtml);
-	openMyModal();
-}
-</script>
-
-<!-----팝업 시작 ---->
-<div id="modal-info" class="modal fade">
-  <div class="modal-dialog modal-lg" style="background:#fff">
-			<div><a href="javascript:closeModal()"  style="position:absolute;top:0px;right:5px;color:#696969;font-size:27pt"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-	 <iframe id="if_info" frameborder="0" src="about:blank" width="100%" height="590px" ></iframe>
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div id="mymodal" style="display:none">
-	<div style="position:fixed;top:0px;left:0px;z-index:999;background:#000;opacity: 0.9;filter: alpha(opacity=90);width:100%;height:100%"></div>
-
-	<div style="position:fixed;top:0px;left:0px;z-index:1999;width:100%;padding-top:10px;text-align:center;padding-left:20%;padding-right:20%">
-		<div style="width:500px;display:inline-block;">
-			<div><a href="javascript:closeMyModal()" class="pull-right" style="color:#fff;font-size:27pt"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-			<div style="margin-top:10px"><font style="font-size:14pt;color:#fff;font-weight:bold" id="my_modal_title">제목</font></div>
-			<div style="clear:both"></div>
-			<div style="margin-top:0px"  id="my_modal_desc"></div>
-		</div>
-	</div>
-</div>
-
-
-
-<div id="alert_modal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.15); z-index:99999;">
-            <div style="position:relative; top:30%; left:50%; transform:translate(-50%, -50%); width:320px; border-radius:2px; box-shadow:0 0 0 1px rgba(0,0,0,.1), 0 2px 8px 0 rgba(0,0,0,.25); background:#fff;">
-                <div style="position:relative; height:42px; padding:0 18px; background:#f5f5f7; font-size:15px; font-weight:normal; line-height:42px; color:#4a4a4a;">안내
-                    <a href="javascript:closeAlertModal()" class="" style="position:absolute; top:50%; right:20px; transform:translateY(-50%); width:22px; height:22px; background-image:url(https://d3b39vpyptsv01.cloudfront.net/0/0/1548911555427eWBbProQMk.png); background-size:cover;"></a>
-                </div>
-                <div id="alert_modal_msg" style="padding:16px 24px; font-size:15px; font-weight:normal; line-height:1.4; word-break:keep-all; letter-spacing:0; text-align:center; color:#4a4a4a;"></div>
-                <div style="padding:0 24px 20px; text-align:center;">
-                    <a href="javascript:closeAlertModal()" class="btn-u btn-u-xs" style="border-radius:3px; background:#8f8f8f">
-                        <font style="font-size:16px; font-weight:normal; line-height:42px; color:#fff">확인</font>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
-
-<script src="/js2/header_footer3.js" type="text/javascript"></script>
+<script src="<%= contextPath %>/externalData/js2/header_footer3.js" type="text/javascript"></script>
  
-       <section class="stu_md_search">
-            <div class="search_background"></div>
-            <div class="md-container">
-                <div class="md-header">
-                    <a href="#stu_md-close" class="ico_close"></a>
-                    <div class="md-searchWrap">
-                            <fieldset>
-                                <input type="search" name="search_keyword" autocorrect="off" autosave="off" class="md-search-input" placeholder="도시,국가,키워드로 검색" value>
-                            </fieldset>
-                     
-                    </div>
-                </div>
 
-                    <div class="md-content">
-                        <div class="md-section">
-                            <div class="content-header ico_country">서유럽 국가</div>
-                            <ul class="content-list">
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11101">
-                                        <div class="value">
-                                            <b class="name">프랑스</b>
-                                        </div>
-                                        <div class="count">
-               
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11104">
-                                        <div class="value">
-                                            <b class="name">이탈리아</b>
-                                        </div>
-                                        <div class="count">
-                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11102">
-                                        <div class="value">
-                                            <b class="name">스위스</b>
-                                        </div>
-                                        <div class="count">
-                              
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11103">
-                                        <div class="value">
-                                            <b class="name">영국</b>
-                                        </div>
-                                        <div class="count">
-                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11106">
-                                        <div class="value">
-                                            <b class="name">독일</b>
-                                        </div>
-                                        <div class="count">
-                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11108">
-                                        <div class="value">
-                                            <b class="name">벨기에</b>
-                                        </div>
-                                        <div class="count">
-               
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11107">
-                                        <div class="value">
-                                            <b class="name">네덜란드</b>
-                                        </div>
-                                        <div class="count">
-                              
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=11110">
-                                        <div class="value">
-                                            <b class="name">아일랜드</b>
-                                        </div>
-                                        <div class="count">
-                              
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="md-section">
-                            <div class="content-header ico_country">지중해 국가</div>
-                            <ul class="content-list">
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=12101">
-                                        <div class="value">
-                                            <b class="name">스페인</b>
-                                        </div>
-                                        <div class="count">
-                      
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=12102">
-                                        <div class="value">
-                                            <b class="name">포르투갈</b>
-                                        </div>
-                                        <div class="count">
-                       
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=12103">
-                                        <div class="value">
-                                            <b class="name">그리스</b>
-                                        </div>
-                                        <div class="count">
-                 
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=12104">
-
-                                        <div class="value">
-                                            <b class="name">터키</b>
-                                        </div>
-                                        <div class="count">
-       
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=12107">
-
-                                        <div class="value">
-                                            <b class="name">몰타</b>
-                                        </div>
-                                        <div class="count">
-                   
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md-section">
-                            <div class="content-header ico_country">동유럽 국가</div>
-                            <ul class="content-list">
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=13">
-
-                                        <div class="value">
-                                            <b class="name">체코</b>
-                                        </div>
-                                        <div class="count">
-                    
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=13">
-                                        <div class="value">
-                                            <b class="name">헝가리</b>
-                                        </div>
-                                        <div class="count">
-                 
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=13">
-                                        <div class="value">
-                                            <b class="name">오스트리아</b>
-                                        </div>
-                                        <div class="count">
-                    
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=13">
-                                        <div class="value">
-                                            <b class="name">슬로베니아</b>
-                                        </div>
-                                        <div class="count">
-
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=13106">
-                                        <div class="value">
-                                            <b class="name">크로아티아</b>
-                                        </div>
-                                        <div class="count">
-                    
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md-section">
-                            <div class="content-header ico_country">북유럽 국가</div>
-                            <ul class="content-list">
-                                <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=14107">
-                                        <div class="value">
-                                            <b class="name">아이슬란드</b>
-                                        </div>
-                                        <div class="count">
-                  
-                                        </div>
-                                    </a>
-                                </li>
-	                     <li class="content-item">
-                                    <a href="/market/index_ctry.asp?l=&region=14104">
-                                        <div class="value">
-                                            <b class="name">노르웨이</b>
-                                        </div>
-                                        <div class="count">
-                   
-                                        </div>
-                                    </a>
-                                </li>
-
-
-
-                                <li class="content-item">
-                                     <a href="/market/index_ctry.asp?l=&region=14103">
-                                        <div class="value">
-                                            <b class="name">덴마크</b>
-                                        </div>
-                                        <div class="count">
-                
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                                <li class="content-item">
-                                     <a href="/market/index_ctry.asp?l=&region=14102">
-                                        <div class="value">
-                                            <b class="name">핀란드</b>
-                                        </div>
-                                        <div class="count">
-                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/market/index_ctry.asp?l=&region=14105">
-                                        <div class="value">
-                                            <b class="name">스웨덴</b>
-                                        </div>
-                                        <div class="count">
-                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                     <a href="/market/index_ctry.asp?l=&region=14101">
-                                        <div class="value">
-                                            <b class="name">러시아</b>
-                                        </div>
-                                        <div class="count">
-                
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="content-item">
-                                      <a href="/market/index_ctry.asp?l=&region=14106">
-                                        <div class="value">
-                                            <b class="name">발트3국</b>
-                                        </div>
-                                        <div class="count">
- 
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md-section">
-                            <div class="content-header ico_theme">도시</div>
-                            <ul class="content-list">
-
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111011004">
-                                        <div class="value">
-                                            <b class="name">파리</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111031001">
-                                        <div class="value">
-                                            <b class="name">런던</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011002">
-                                        <div class="value">
-                                            <b class="name">바르셀로나</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131011001">
-                                        <div class="value">
-                                            <b class="name">프라하</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111011003">
-                                        <div class="value">
-                                            <b class="name">니스</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141051001">
-                                        <div class="value">
-                                            <b class="name">스톡홀름</b>
-                                            <i class="category">스웨덴</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011003">
-                                        <div class="value">
-                                            <b class="name">마드리드</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111021002">
-                                        <div class="value">
-                                            <b class="name">인터라켄</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041004">
-                                        <div class="value">
-                                            <b class="name">로마</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131041001">
-                                        <div class="value">
-                                            <b class="name">비엔나</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141031001">
-                                        <div class="value">
-                                            <b class="name">코펜하겐</b>
-                                            <i class="category">덴마크</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121031001">
-                                        <div class="value">
-                                            <b class="name">아테네</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041006">
-                                        <div class="value">
-                                            <b class="name">베니스</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041003">
-                                        <div class="value">
-                                            <b class="name">피렌체</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131021001">
-                                        <div class="value">
-                                            <b class="name">부다페스트</b>
-                                            <i class="category">헝가리</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141021001">
-                                        <div class="value">
-                                            <b class="name">헬싱키</b>
-                                            <i class="category">핀란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121021001">
-                                        <div class="value">
-                                            <b class="name">리스본</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061006">
-                                        <div class="value">
-                                            <b class="name">프랑크푸르트</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061005">
-                                        <div class="value">
-                                            <b class="name">뮌헨</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131061001">
-                                        <div class="value">
-                                            <b class="name">두브로브니크</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121041001">
-                                        <div class="value">
-                                            <b class="name">이스탄불</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111011014">
-                                        <div class="value">
-                                            <b class="name">마르세유</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041001">
-                                        <div class="value">
-                                            <b class="name">밀라노</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121041111">
-                                        <div class="value">
-                                            <b class="name">알라니아</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141041002">
-                                        <div class="value">
-                                            <b class="name">오슬로</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061008">
-                                        <div class="value">
-                                            <b class="name">베를린</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111071001">
-                                        <div class="value">
-                                            <b class="name">암스테르담</b>
-                                            <i class="category">네덜란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141041002">
-                                        <div class="value">
-                                            <b class="name">오슬로</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111081001">
-                                        <div class="value">
-                                            <b class="name">브뤼셀</b>
-                                            <i class="category">벨기에</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111101001">
-                                        <div class="value">
-                                            <b class="name">더블린</b>
-                                            <i class="category">아일랜드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131081001">
-                                        <div class="value">
-                                            <b class="name">부쿠레슈티</b>
-                                            <i class="category">루마니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131031004">
-                                        <div class="value">
-                                            <b class="name">크라쿠프</b>
-                                            <i class="category">폴란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131031003">
-                                        <div class="value">
-                                            <b class="name">바르샤바</b>
-                                            <i class="category">폴란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131051002">
-                                        <div class="value">
-                                            <b class="name">브라티슬라바</b>
-                                            <i class="category">슬로바키아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041011">
-                                        <div class="value">
-                                            <b class="name">나폴리</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111011005">
-                                        <div class="value">
-                                            <b class="name">아비뇽</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131061011">
-                                        <div class="value">
-                                            <b class="name">흐바르</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061020">
-                                        <div class="value">
-                                            <b class="name">뉘른베르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011057">
-                                        <div class="value">
-                                            <b class="name">론다</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141011008">
-                                        <div class="value">
-                                            <b class="name">블라디보스톡</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061004">
-                                        <div class="value">
-                                            <b class="name">드레스덴</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111021005">
-                                        <div class="value">
-                                            <b class="name">취리히</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011028">
-                                        <div class="value">
-                                            <b class="name">테네리페</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011005">
-                                        <div class="value">
-                                            <b class="name">말라가</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071001">
-                                        <div class="value">
-                                            <b class="name">아퀴레이리</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071010">
-                                        <div class="value">
-                                            <b class="name">후사비크</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071044">
-                                        <div class="value">
-                                            <b class="name">요쿨살론</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071019">
-                                        <div class="value">
-                                            <b class="name">스카프타펠</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071022">
-                                        <div class="value">
-                                            <b class="name">굴포스</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141071003">
-                                        <div class="value">
-                                            <b class="name">레이캬비크</b>
-                                            <i class="category">아이슬란드</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141061001">
-                                        <div class="value">
-                                            <b class="name">탈린</b>
-                                            <i class="category">에스토니아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141041012">
-                                        <div class="value">
-                                            <b class="name">트롬쇠</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141041011">
-                                        <div class="value">
-                                            <b class="name">스타방에르</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141041011">
-                                        <div class="value">
-                                            <b class="name">뤼세 피오르드</b>
-                                            <i class="category">노르웨이</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141011002">
-                                        <div class="value">
-                                            <b class="name">상트페테르부르크</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=141011001">
-                                        <div class="value">
-                                            <b class="name">모스크바</b>
-                                            <i class="category">러시아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131061008">
-                                        <div class="value">
-                                            <b class="name">자그레브</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131061002">
-                                        <div class="value">
-                                            <b class="name">스플리트</b>
-                                            <i class="category">크로아티아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131041032">
-                                        <div class="value">
-                                            <b class="name">할슈타트</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131041002">
-                                        <div class="value">
-                                            <b class="name">잘츠부르크</b>
-                                            <i class="category">오스트리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=131011003">
-                                        <div class="value">
-                                            <b class="name">체스키크롬로프</b>
-                                            <i class="category">체코</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121041008">
-                                        <div class="value">
-                                            <b class="name">보드룸</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121041028">
-                                        <div class="value">
-                                            <b class="name">페티예</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121041003">
-                                        <div class="value">
-                                            <b class="name">카파도키아</b>
-                                            <i class="category">터키</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121031021">
-                                        <div class="value">
-                                            <b class="name">자킨토스</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121031002">
-                                        <div class="value">
-                                            <b class="name">산토리니</b>
-                                            <i class="category">그리스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121021008">
-                                        <div class="value">
-                                            <b class="name">포르투</b>
-                                            <i class="category">포르투갈</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011007">
-                                        <div class="value">
-                                            <b class="name">세비야</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011001">
-                                        <div class="value">
-                                            <b class="name">그라나다</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121011004">
-                                        <div class="value">
-                                            <b class="name">톨레도</b>
-                                            <i class="category">스페인</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061003">
-                                        <div class="value">
-                                            <b class="name">퓌센</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111061001">
-                                        <div class="value">
-                                            <b class="name">하이델베르크</b>
-                                            <i class="category">독일</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=121071009">
-                                        <div class="value">
-                                            <b class="name">몰타</b>
-                                            <i class="category">몰타</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041026">
-                                        <div class="value">
-                                            <b class="name">팔레르모</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041016">
-                                        <div class="value">
-                                            <b class="name">볼로냐</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041036">
-                                        <div class="value">
-                                            <b class="name">베로나</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111041123">
-                                        <div class="value">
-                                            <b class="name">친퀘테레</b>
-                                            <i class="category">이탈리아</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111031008">
-                                        <div class="value">
-                                            <b class="name">에든버러</b>
-                                            <i class="category">영국</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111021001">
-                                        <div class="value">
-                                            <b class="name">루체른</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111021009">
-                                        <div class="value">
-                                            <b class="name">라우터브룬넨</b>
-                                            <i class="category">스위스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li class="content-item">
-                                    <a href="/market/index_city.asp?l=&region=111011010">
-                                        <div class="value">
-                                            <b class="name">리옹</b>
-                                            <i class="category">프랑스</i>
-                                        </div>
-                                    </a>
-                                </li>
-
-
-                            </ul>
-                        </div>
-
-
-                        <div class="md-section">
-                            <div class="content-header ico_country">인기투어 카테고리</div>
-                            <ul class="content-list">
-
-<li class="content-item"><a href="/market/group.asp?serial=146"><div class="value"><b class="name">슬로베니아 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=148"><div class="value"><b class="name">코토르</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=149"><div class="value"><b class="name">스르지산</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=151"><div class="value"><b class="name">번지점프</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=152"><div class="value"><b class="name">캐년스윙</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=153"><div class="value"><b class="name">탈린 워킹투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=1"><div class="value"><b class="name">몽생미셀 베스트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=3"><div class="value"><b class="name">파리 자전거투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=4"><div class="value"><b class="name">파리스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=5"><div class="value"><b class="name">루브르 지식가이드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=206"><div class="value"><b class="name">와이너리투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=166"><div class="value"><b class="name">고조섬 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=167"><div class="value"><b class="name">코미노섬 크루즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=169"><div class="value"><b class="name">몰타섬 지프</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=6"><div class="value"><b class="name">오르세 미술관</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=7"><div class="value"><b class="name">베르사유</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=44"><div class="value"><b class="name">체코 와인</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=56"><div class="value"><b class="name">바르셀로나 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=58"><div class="value"><b class="name">카를로비 바리</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=15"><div class="value"><b class="name">래프팅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=18"><div class="value"><b class="name">무동력 자전거</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=19"><div class="value"><b class="name">카약(KAYAK)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=234"><div class="value"><b class="name">에즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=247"><div class="value"><b class="name">아베이로</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=20"><div class="value"><b class="name">런던 뮤지컬</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=21"><div class="value"><b class="name">코츠월드+근교</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=170"><div class="value"><b class="name">리스본 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=191"><div class="value"><b class="name">리옹 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=22"><div class="value"><b class="name">세븐시스터즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=25"><div class="value"><b class="name">스톤헨지</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=69"><div class="value"><b class="name">벨기에 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=36"><div class="value"><b class="name">체코 스카이다이빙</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=38"><div class="value"><b class="name">프라하 시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=325"><div class="value"><b class="name">자다르 카약</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=40"><div class="value"><b class="name">프라하 자전거</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=41"><div class="value"><b class="name">사운드오브뮤직</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=43"><div class="value"><b class="name">벌룬투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=52"><div class="value"><b class="name">보르게세</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=51"><div class="value"><b class="name">런던 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=8"><div class="value"><b class="name">삭제</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=138"><div class="value"><b class="name">이스탄불 지식가이드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=45"><div class="value"><b class="name">체스키</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=9"><div class="value"><b class="name">루아르 고성</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=11"><div class="value"><b class="name">몽마르뜨</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=319"><div class="value"><b class="name">스노쿨링</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=13"><div class="value"><b class="name">스위스 패러글라이딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=16"><div class="value"><b class="name">제트보트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=26"><div class="value"><b class="name">바티칸 지식가이드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=46"><div class="value"><b class="name">드레스덴</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=62"><div class="value"><b class="name">타파스 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=178"><div class="value"><b class="name">플라멩고</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=72"><div class="value"><b class="name">해리포터 스튜디오 </b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=24"><div class="value"><b class="name">런던 자전거투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=29"><div class="value"><b class="name">베니스 워킹투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=32"><div class="value"><b class="name">가우디 지식가이드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=34"><div class="value"><b class="name">세고비아</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=67"><div class="value"><b class="name">토스카나</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=74"><div class="value"><b class="name">삭제</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=80"><div class="value"><b class="name">몬세라트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=81"><div class="value"><b class="name">마드리드시내 / 프라도 미술관</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=86"><div class="value"><b class="name">잔세스칸스(풍차)+</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=145"><div class="value"><b class="name">플리트비체</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=42"><div class="value"><b class="name">소금광산</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=82"><div class="value"><b class="name">마드리드 근교(톨레도/세고비아)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=10"><div class="value"><b class="name">벨기에 당일치기</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=14"><div class="value"><b class="name">캐녀닝</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=28"><div class="value"><b class="name">로마 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=33"><div class="value"><b class="name">톨레도</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=35"><div class="value"><b class="name">지로나+투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=39"><div class="value"><b class="name">프라하 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=98"><div class="value"><b class="name">몽생미셀 야경 벤투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=215"><div class="value"><b class="name">델피-메테오라</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=216"><div class="value"><b class="name">프리이빗 차량 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=217"><div class="value"><b class="name">산토리니 세일링</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=218"><div class="value"><b class="name">크레타</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=219"><div class="value"><b class="name">산토리니 요트투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=99"><div class="value"><b class="name">블루라군투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=96"><div class="value"><b class="name">우피치미술관</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=30"><div class="value"><b class="name">피렌체 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=154"><div class="value"><b class="name">오랑주리 미술관</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=55"><div class="value"><b class="name">로마 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=61"><div class="value"><b class="name">바르셀로나 시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=54"><div class="value"><b class="name">베로나 자전거 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=230"><div class="value"><b class="name">아이슬란드 일주(feat.링로드)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=231"><div class="value"><b class="name">베르동</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=235"><div class="value"><b class="name">아를</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=238"><div class="value"><b class="name">융프라우 가이드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=239"><div class="value"><b class="name">몽블랑 트레킹</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=243"><div class="value"><b class="name">실프라 스노쿨링</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=244"><div class="value"><b class="name">파티마</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=245"><div class="value"><b class="name">나자레</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=246"><div class="value"><b class="name">오비도스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=249"><div class="value"><b class="name">돌로미티</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=250"><div class="value"><b class="name">카프리섬</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=251"><div class="value"><b class="name">나폴리<>포지타노/아말피/소렌토 차량</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=252"><div class="value"><b class="name">두브로브니크 성벽/워킹투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=321"><div class="value"><b class="name">산토리니 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=237"><div class="value"><b class="name">파리 공항픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=256"><div class="value"><b class="name">왕좌의게임 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=257"><div class="value"><b class="name">트로기르&#38;블루라군&#38;솔타</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=263"><div class="value"><b class="name">프라힐리아나</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=297"><div class="value"><b class="name">깐느</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=300"><div class="value"><b class="name">나폴리공항 픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=301"><div class="value"><b class="name">볼로냐 자전거 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=302"><div class="value"><b class="name">밀란 경기장투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=303"><div class="value"><b class="name">세비야-론다 차량투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=304"><div class="value"><b class="name">세비야 플라멩고</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=306"><div class="value"><b class="name">자그레브 공항픽업</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=307"><div class="value"><b class="name">스플리트↔두브로브니크</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=308"><div class="value"><b class="name">스플리트 공항픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=309"><div class="value"><b class="name">무라노, 부라노섬</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=310"><div class="value"><b class="name">바라주딘&#38;트라코스찬 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=311"><div class="value"><b class="name">프라하→판도르프 아울렛</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=314"><div class="value"><b class="name">한적한 잘츠부르크 근교</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=240"><div class="value"><b class="name">인터라켄 프라이빗 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=272"><div class="value"><b class="name">부다페스트→판도르프 아울렛</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=273"><div class="value"><b class="name">까를로비 바리</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=274"><div class="value"><b class="name">할슈타트(비엔나, 잘츠부르크)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=283"><div class="value"><b class="name">루마니아 드라큘라성</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=294"><div class="value"><b class="name">흐바르 섬 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=295"><div class="value"><b class="name">두브로브니크 공항픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=312"><div class="value"><b class="name">에보라</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=313"><div class="value"><b class="name">부다페스트 공항픽업/샌딩/트랜스퍼</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=315"><div class="value"><b class="name">오스트리아 공항픽업/샌딩/트랜스퍼</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=316"><div class="value"><b class="name">프라하 공항픽업/샌딩/트랜스퍼</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=318"><div class="value"><b class="name">해적선 크루즈 파티</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=267"><div class="value"><b class="name">코모호수 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=268"><div class="value"><b class="name">티볼리투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=64"><div class="value"><b class="name">피카소 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=65"><div class="value"><b class="name">에든버러 시내워킹</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=102"><div class="value"><b class="name">골든서클투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=103"><div class="value"><b class="name">[프랑스남부]코트다쥐르</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=104"><div class="value"><b class="name">쿠킹 클래스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=184"><div class="value"><b class="name">스플리트 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=326"><div class="value"><b class="name">엘라피티섬 크루즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=185"><div class="value"><b class="name">체르마트/마테호른 트레킹</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=186"><div class="value"><b class="name">라보/몽트뢰</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=187"><div class="value"><b class="name">루체른 </b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=190"><div class="value"><b class="name">더몰/프라다 스페이스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=140"><div class="value"><b class="name">벨기에 맥주투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=101"><div class="value"><b class="name">오로라 헌팅투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=114"><div class="value"><b class="name">친퀘테레 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=126"><div class="value"><b class="name">플젠+맥주스파</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=127"><div class="value"><b class="name">천국의 문</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=76"><div class="value"><b class="name">내셔널 갤러리</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=83"><div class="value"><b class="name">암스테르담 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=128"><div class="value"><b class="name">라이(+세븐시스터즈)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=129"><div class="value"><b class="name">거북이섬 보트투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=135"><div class="value"><b class="name">벌룬투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=136"><div class="value"><b class="name">그린&레드 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=137"><div class="value"><b class="name">ATV투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=142"><div class="value"><b class="name">오르비에토+아씨시</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=130"><div class="value"><b class="name">나바지오 해변+블루케이브 보트투어!</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=139"><div class="value"><b class="name">이스탄불 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=131"><div class="value"><b class="name">케팔로니아 섬 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=132"><div class="value"><b class="name">할슈타트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=2"><div class="value"><b class="name">지베르니+근교</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=48"><div class="value"><b class="name">인터라켄 호스텔</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=70"><div class="value"><b class="name">브뤼헤+겐트 차량</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=77"><div class="value"><b class="name">아테네 근교 섬 1DAY 크루즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=78"><div class="value"><b class="name">뤼세피오르드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=141"><div class="value"><b class="name">세비야 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=17"><div class="value"><b class="name">스위스 스카이다이빙</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=23"><div class="value"><b class="name">대영박물관</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=27"><div class="value"><b class="name">이탈리아 남부투어(로마출발<>포지타노/소렌토/폼페이/아말피/카프리)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=121"><div class="value"><b class="name">파리시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=115"><div class="value"><b class="name">나폴레옹 왕궁</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=79"><div class="value"><b class="name">코스타브라바 스쿠버/스노클링</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=327"><div class="value"><b class="name">파리 라발레 아울렛 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=123"><div class="value"><b class="name">런던 시내(city)투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=155"><div class="value"><b class="name">프랑크푸르트 시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=85"><div class="value"><b class="name">앤트워프 워킹</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=100"><div class="value"><b class="name">공항 셔틀버스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=157"><div class="value"><b class="name">포르투 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=156"><div class="value"><b class="name">하이델베르크시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=158"><div class="value"><b class="name">상트페테르부르크 시내/근교</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=159"><div class="value"><b class="name">모스크바 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=162"><div class="value"><b class="name">부다페스트 시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=163"><div class="value"><b class="name">센텐드레 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=160"><div class="value"><b class="name">자그레브 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=161"><div class="value"><b class="name">비엔나 시내</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=164"><div class="value"><b class="name">행글라이딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=171"><div class="value"><b class="name">두브로브니크 근교 와이너리</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=174"><div class="value"><b class="name">스플리트 수상 액티비티</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=176"><div class="value"><b class="name">두브로브니크 바다카약</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=179"><div class="value"><b class="name">베를린 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=182"><div class="value"><b class="name">빙하투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=183"><div class="value"><b class="name">고래투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=193"><div class="value"><b class="name">스나이펠스네스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=194"><div class="value"><b class="name">아이슬란드 남부투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=195"><div class="value"><b class="name">얼음동굴</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=196"><div class="value"><b class="name">화산투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=232"><div class="value"><b class="name">프로방스/라벤더</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=233"><div class="value"><b class="name">모나코</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=236"><div class="value"><b class="name">파리 필수 티켓</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=248"><div class="value"><b class="name">코임브라</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=253"><div class="value"><b class="name">두브로브니크↔스플리트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=254"><div class="value"><b class="name">크르카 국립공원</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=259"><div class="value"><b class="name">이스트라반도 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=260"><div class="value"><b class="name">알함브라 궁전투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=262"><div class="value"><b class="name">코르도바</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=265"><div class="value"><b class="name">네르하</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=270"><div class="value"><b class="name">나폴리 푸드/쿠킹클래스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=305"><div class="value"><b class="name">바르셀로나 티켓</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=320"><div class="value"><b class="name">보드룸 보트투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=197"><div class="value"><b class="name">페티예 패러글라이딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=198"><div class="value"><b class="name">파묵칼레+ 차량투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=199"><div class="value"><b class="name">달얀 차량투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=200"><div class="value"><b class="name">카푸타스해변 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=201"><div class="value"><b class="name">사클리켄트 래프팅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=202"><div class="value"><b class="name">모스타르&#38;포세닉</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=203"><div class="value"><b class="name">신트라/카스카이스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=204"><div class="value"><b class="name">아라비다 와인투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=205"><div class="value"><b class="name">대항해 보트</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=207"><div class="value"><b class="name">그라나다 패러글라이딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=208"><div class="value"><b class="name">트롬소 오로라투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=210"><div class="value"><b class="name">라인폭포&마이링겐</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=255"><div class="value"><b class="name">브라츠섬</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=241"><div class="value"><b class="name">공항픽업서비스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=242"><div class="value"><b class="name">런던필수 티켓</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=261"><div class="value"><b class="name">그라나다 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=264"><div class="value"><b class="name">그라나다-론다 차량투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=266"><div class="value"><b class="name">베니스 곤돌라</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=269"><div class="value"><b class="name">폼페이&#38;베수비오</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=277"><div class="value"><b class="name">부다페스트 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=278"><div class="value"><b class="name">브라티슬라바 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=279"><div class="value"><b class="name">크라쿠프 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=280"><div class="value"><b class="name">바르샤바 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=282"><div class="value"><b class="name">비엔나 공연 티켓</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=284"><div class="value"><b class="name">와이너리 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=285"><div class="value"><b class="name">산토리니 공항 픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=317"><div class="value"><b class="name">천혜의 자연, 루스키섬</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=211"><div class="value"><b class="name">에스프레소 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=212"><div class="value"><b class="name">파스타 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=213"><div class="value"><b class="name">피자 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=214"><div class="value"><b class="name">쿠킹클래스</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=288"><div class="value"><b class="name">스트라스부르 당일치기</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=289"><div class="value"><b class="name">블라디보스톡 시내투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=290"><div class="value"><b class="name">블라디보스톡 공항픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=291"><div class="value"><b class="name">로도스섬 페리</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=292"><div class="value"><b class="name">보스포러스 크루즈</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=293"><div class="value"><b class="name">라스토케</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=296"><div class="value"><b class="name">피사 투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=298"><div class="value"><b class="name">피렌체 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=299"><div class="value"><b class="name">베니스 스냅</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=220"><div class="value"><b class="name">용암굴</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=221"><div class="value"><b class="name">개썰매투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=222"><div class="value"><b class="name">데티포스투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=223"><div class="value"><b class="name">미바튼호수투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=224"><div class="value"><b class="name">스노모빌</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=225"><div class="value"><b class="name">스카프타펠</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=226"><div class="value"><b class="name">에트나 화산투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=227"><div class="value"><b class="name">시칠리아 푸드투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=228"><div class="value"><b class="name">아그리젠토</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=229"><div class="value"><b class="name">아이슬란드 렌트카(특가중)</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=322"><div class="value"><b class="name">비세보섬 블루케이브</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=323"><div class="value"><b class="name">하이랜드</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=328"><div class="value"><b class="name">타오르미나 워킹투어</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=330"><div class="value"><b class="name">밀라노 공항 픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=324"><div class="value"><b class="name">로마공항 픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=329"><div class="value"><b class="name">베니스공항 픽업/샌딩</b></div></a></li><li class="content-item"><a href="/market/group.asp?serial=331"><div class="value"><b class="name">피렌체공항 픽업/샌딩</b></div></a></li>
-
-                            </ul>
-                        </div>
-
-                </div>
-            </section>
 
 </body>
 </html>

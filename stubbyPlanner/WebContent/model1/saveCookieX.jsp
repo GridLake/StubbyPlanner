@@ -42,6 +42,7 @@
 	// tbl_planner
 	
 	String startdate = request.getParameter("startdate");
+	System.out.println("startdate:" + startdate);
 	String tripwith = request.getParameter("tripwith"); 		//여행타입
 	int term = Integer.parseInt(request.getParameter("term")); 	// eg., 13박 14일 -> term == 14일
 	System.out.println("term:" + term);
@@ -58,7 +59,7 @@
 	String [] tripgeneArr3;
 	String sql = "";
 	
-	if (tid == "") {
+	if (tid.equals("")) {
 		sql = " insert into tbl_planner(trip_id, triptype, startdate, terms) "
 		    + " values(seq_planner.nextval, ?, ?, ?)";
 
@@ -112,13 +113,11 @@
 			pstmt.close();
 			conn.close();
 		}
-		
-		
 	}
 	
 	sql = " insert into tbl_route(rt_id, trip_id, rt_days, rt_trans, "
-		+ " rt_startdate, rt_enddate, scity_id, ecity_id, night_move ) "
-		+ " values(seq_route.nextval, ?, ?, ?, ?, ?, ?, ?, ?) ";
+		+ " rt_startdate, rt_enddate, scity_id, night_move, triporder ) "
+		+ " values(seq_route.nextval, ?, ?, ?, ?, ?, ?, ?, ? ) ";
 	 	
 	try {
 		conn = ConnectionProvider.getConnection();
@@ -129,7 +128,7 @@
 		tripgeneArr2 = tripgeneArr1[tgarrlength - 1].split(":");
 		
 		// 출발도시, 도착도시 id
-		int scity_id = 0;
+		int scity_id = Integer.parseInt(tripgeneArr2[0]);
 		int ecity_id = 0;
 		
 		// 숙박일수
@@ -141,10 +140,10 @@
 		int duration;
 		if(tripgeneArr2.length -1 == 3) {		// 야간이동 포함
 			duration = term - rt_days;
-			pstmt.setString(8, tripgeneArr2[3]);
+			pstmt.setString(7, tripgeneArr2[3]);
 		} else {
 			duration = term - rt_days - 1;
-			pstmt.setString(8, "");
+			pstmt.setString(7, "");
 		}
 		
 		String rt_startdate = getDate(startdate, duration);
@@ -156,69 +155,85 @@
 		pstmt.setString(4, rt_startdate);
 		rt_enddate = getDate(rt_startdate, rt_days);
 		pstmt.setString(5, rt_enddate);
-		
-		if(tgarrlength == 1) {
-			
-			scity_id = ecity_id = Integer.parseInt(tripgeneArr2[0]);
-			pstmt.setInt(6, scity_id);
-			pstmt.setInt(7, ecity_id);
-			
-		}
-		
-		else if (tgarrlength > 1) {
-			
-			tripgeneArr3 = tripgeneArr1[tgarrlength - 2].split(":");
-			
-			scity_id = Integer.parseInt(tripgeneArr3[0]);
-			ecity_id = Integer.parseInt(tripgeneArr2[0]);
-			pstmt.setInt(6, scity_id);
-			pstmt.setInt(7, ecity_id);
-					
-		}
+		pstmt.setInt(6, scity_id);
+		pstmt.setInt(8, tgarrlength);
 		
 		rs = pstmt.executeQuery();
 		
+		if (tgarrlength > 1) {
+			
+			rs.close();
+			pstmt.close();
+			
+			sql = " update tbl_route set "
+				+ " ecity_id = ? " 
+				+ " where trip_id = ? and triporder = ? ";
+			
+			//tripgeneArr3 = tripgeneArr1[tgarrlength - 2].split(":");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			ecity_id = Integer.parseInt(tripgeneArr2[0]);
+			pstmt.setInt(1, ecity_id);
+			pstmt.setString(2, tid);
+			pstmt.setInt(3, tgarrlength-1);
+			
+			rs = pstmt.executeQuery();
+		}
+		
+		 
 		rs.close();
 		pstmt.close();
 		
-		sql = " select a.city_name as scity_name, b.city_name as ecity_name " 
-	     	+ " from tbl_city a, tbl_city b, tbl_route c "
-	     	+ " where a.city_id = ? and b.city_id = ? " 
-	     	+ " and trip_id = ? and rt_startdate = ? "; 
+		sql = " select a.city_name as scity_name " 
+	     	+ " from tbl_city a, tbl_route b "
+	     	+ " where a.city_id = ? and trip_id = ? and triporder = ? "; 
 		
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, scity_id);
-		pstmt.setInt(2, ecity_id);
-		pstmt.setString(3, tid);
-		pstmt.setString(4, rt_startdate);
+		pstmt.setString(2, tid);
+		pstmt.setInt(3, tgarrlength);
 		
 		rs = pstmt.executeQuery();
 		
 		String scity_name = "";
-		String ecity_name = "";
 		
 		if(rs.next()) {
 			scity_name = rs.getString("scity_name");
-			ecity_name = rs.getString("ecity_name");
 		}
-		System.out.println("scity_name: " + scity_name + "/" + "ecity_name: " + ecity_name);
 		
 		rs.close();
 		pstmt.close();
 		
 		sql = " update tbl_route set "
-			+ " scity_name = ? , ecity_name = ?"
-			+ " where trip_id = ? and rt_startdate = ?";
+			+ " scity_name = ? "
+			+ " where trip_id = ? and triporder = ?";
 		
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setString(1, scity_name);
-		pstmt.setString(2, ecity_name);
-		pstmt.setString(3, tid);
-		pstmt.setString(4, rt_startdate);
+		pstmt.setString(2, tid);
+		pstmt.setInt(3, tgarrlength);
 		
 		rs = pstmt.executeQuery();
+		
+		if(tgarrlength > 1) {
+			rs.close();
+			pstmt.close();
+			
+			sql = " update tbl_route set "
+				+ " ecity_name = ? "
+				+ " where trip_id = ? and triporder = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, scity_name);
+			pstmt.setString(2, tid);
+			pstmt.setInt(3, tgarrlength-1);
+			
+			rs = pstmt.executeQuery();
+		}
 		
 	} catch (Exception e) {
 		e.printStackTrace();

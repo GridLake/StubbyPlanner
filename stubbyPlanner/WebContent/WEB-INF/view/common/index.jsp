@@ -497,17 +497,20 @@ h1,h2,h3,h4,h5,p,b,i,div,span,a,td,li,i,font,small{font-family: 'Noto Sans', san
 
 				<div style="margin-top:20px;margin-bottom:20px;">
 					<div style="width:50%;position:relative;display:inline-block;margin-top:8px;vertical-align:middle">
-						<a href="javascript:showPlannerSelector();" style="margin-right:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
+						<!-- <a href="javascript:showPlannerSelector();" style="margin-right:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a> -->
+						<a href="<%= contextPath %>/planner/planner_rt.do" style="margin-right:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
 					</div><div style="width:50%;display:inline-block;margin-top:8px;margin-left:0px;vertical-align:middle ">
 						<a href="<%= contextPath %>/consulting/index.do" style="margin-left:5px;text-align:center;width:100%;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('consulting','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
 					</div>
 					<div style="clear:both"></div>
+<%-- 					
 <script>
 function showPlannerSelector()
 {
 	$("#speech-bubble").show();
 }
 </script>
+
 					<div id="speech-bubble" class="speech-bubble" style="display:none;margin-top:20px;height:56px;">	
 	
 						<div style="width:50%;vertical-align:middle;float:left">
@@ -518,7 +521,7 @@ function showPlannerSelector()
 						<div style="clear:both"></div>
 
 					</div>
-
+ --%>
 				</div>
 
 
@@ -561,7 +564,7 @@ function logging(a,p)
      </div>
 </section>
 
-
+<%-- 
 <div class="stu_inner_wrap" style="padding-top:20px;margin-top:30px;margin-bottom:30px;border-top:1px solid #efefef;" >
 
 	<div style="padding-bottom:10px;"><font style="font-size:18pt;font-weight:700;color:#696969">다른 여행자들의 플래너 </font></div>
@@ -626,14 +629,14 @@ function logging(a,p)
 	</div>
 </div>
 
-
+ --%>
 
 
 
 
              <section class="stu_bestPrice" style="margin-top:0px;margin-bottom:20px;">
-<div class="stu_inner_wrap" style="padding-top:10px;;border-top:1px solid #efefef;">
-                
+<!-- <div class="stu_inner_wrap" style="padding-top:10px;;border-top:1px solid #efefef;"> -->
+<div class="stu_inner_wrap" style="padding-top:20px;margin-top:30px;margin-bottom:30px;border-top:1px solid #efefef;" >
 		<h2 style="font-size:18pt;font-weight:700;color:#696969">
                    슈퍼 얼리버드 할인중! <small style="font-size:12pt;color:#3ad195">최대 30%할인!</small>
                 </h2>

@@ -302,11 +302,13 @@ function openURLXXX(xurl)
 
 				<div style="padding-top:20px;padding-right:30px;">
 					<div style="width:50%;position:relative;display:inline-block;margin-top:8px;vertical-align:middle">
-						<a href="javascript:showPlannerSelector();" style="text-align:center;width:100%;margin-right:5px;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
+						<!-- <a href="javascript:showPlannerSelector();" style="text-align:center;width:100%;margin-right:5px;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a> -->
+						<a href="<%= contextPath %>/planner/planner_rt.do" style="text-align:center;width:100%;margin-right:5px;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 20px;background:#ee685a" onclick="logging('planning','home')"><i class="fa fa-map" aria-hidden="true"></i> 플래너 시작</a>
 					</div><div style="width:50%;display:inline-block;margin-top:8px;margin-left:0px;vertical-align:middle ">
 						<a href="<%= contextPath %>/consulting/index.do" style="text-align:center;width:100%;margin-left:5px;text-decoration:none;font-weight:700;color:#fff;font-size:14pt;display:inline-block;padding:10px 15px;background:#3ad195" onclick="logging('recom','home')"><i class="fa fa-magic" aria-hidden="true"></i> 맞춤여행 의뢰</a>
 					</div>
 					<div style="clear:both"></div>
+<%-- 					
 <script>
 function showPlannerSelector()
 {
@@ -323,7 +325,7 @@ function showPlannerSelector()
 						<div style="clear:both"></div>
 
 					</div>
-
+ --%>
 			
 				</div>
 

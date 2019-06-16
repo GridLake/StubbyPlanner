@@ -776,7 +776,7 @@ function openInfoWindow2(city_x,city_y,se)
 }
 function update_arr_nextday()
 {
-//	deleteData();
+	deleteData();
 	saveCookie();
 	updateTerm();
 	updateDateInOut();
@@ -808,7 +808,7 @@ function updateTerm()
 
 var trip_id=<%= trip_id %>;
 var tripwith="";
-/* 
+
 function deleteData(is_sync) {
 	is_async=true;
 	if(is_sync)
@@ -826,7 +826,7 @@ function deleteData(is_sync) {
 		}
 	});
 }
- */
+
 
 function saveCookie(is_sync)
 {
@@ -2701,27 +2701,22 @@ function register()
 // 완료
 function complete()
 {
-	if('${authUser.member_id}'!=''){
-		if(!trip_id)
-			saveCookie(1);
 
-		if(!trip_id)
-		{
-			alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
-			return;
-		}
+	if(!trip_id)
+		saveCookie(1);
+
+	if(!trip_id)
+	{
+		alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
+		return;
+	}
 	
-		window.location="/stubbyPlanner/planner/detail.do?tid="+trip_id;
+	if('${authUser.member_id}'!=''){
+		
+		window.location="/stubbyPlanner/planner/detail.do?tid="+trip_id+"&member_id="+'${authUser.member_id}';
 	
 	} else {
-		if(!trip_id)
-			saveCookie(1);
-
-		if(!trip_id)
-		{
-			alert("도시를 하나 이상 추가한 뒤에 완료를 눌러주세요.");
-			return;
-		}
+		
 		thtml="";
 		thtml+='<div style="margin-bottom:7px;">';
 		thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">여행명</div>';
@@ -2733,47 +2728,9 @@ function complete()
 		thtml+='<div style="width:30%;float:left;font-size:10pt;color:#fff">인원</div>';
 		thtml+='<div style="width:70%;float:left;"><select name="member_cnt" id="member_cnt" class="form-control">';
 
-			thtml+='<option value="0" >0명</option>';
-
-			thtml+='<option value="1" >1명</option>';
-
-			thtml+='<option value="2" >2명</option>';
-
-			thtml+='<option value="3" >3명</option>';
-
-			thtml+='<option value="4" >4명</option>';
-
-			thtml+='<option value="5" >5명</option>';
-
-			thtml+='<option value="6" >6명</option>';
-
-			thtml+='<option value="7" >7명</option>';
-
-			thtml+='<option value="8" >8명</option>';
-
-			thtml+='<option value="9" >9명</option>';
-
-			thtml+='<option value="10" >10명</option>';
-
-			thtml+='<option value="11" >11명</option>';
-
-			thtml+='<option value="12" >12명</option>';
-
-			thtml+='<option value="13" >13명</option>';
-
-			thtml+='<option value="14" >14명</option>';
-
-			thtml+='<option value="15" >15명</option>';
-
-			thtml+='<option value="16" >16명</option>';
-
-			thtml+='<option value="17" >17명</option>';
-
-			thtml+='<option value="18" >18명</option>';
-
-			thtml+='<option value="19" >19명</option>';
-
-			thtml+='<option value="20" >20명</option>';
+			<c:forEach var="i" begin="0" end="20"> 
+			thtml+='<option value="${i}" >${i}명</option>';
+			</c:forEach>
 
 		thtml+='</select></div><div style="clear:both"></div>';
 		thtml+='</div>';
@@ -3315,7 +3272,7 @@ function moveCity(sidx,eidx)
 
 	
 //	drawDayList();
-//	deleteData();
+	deleteData();
 	saveCookie();
 
     }
@@ -3474,7 +3431,7 @@ function delCity(idx)
 //	reloadCostNPeriod();
 //	getHighlights('');
 //	getAirPrice();
-//	deleteData();
+	deleteData();
 	saveCookie();
 
 }
@@ -3491,7 +3448,7 @@ function chgNights(i,nights)
 //	drawDayList();
 	redrawMapMarkers();
 	updateTerm();
-//	deleteData();
+	deleteData();
 	saveCookie();
 	updateDateSilent(i);
 }
@@ -4349,7 +4306,7 @@ function selNightMoveTab(id_idx,rt_i)
 	des=routelist[rt_i].city_id;
 	loadTrsInfo(rt_i,dep,des);
 	updateTerm();
-//	deleteData();
+	deleteData();
 	saveCookie();
 }
 function showTrsHistory()
@@ -4377,7 +4334,7 @@ function showTrsInfo()
 function chgTrsType(i,trstype)
 {
 	routelist[i].trstype=trstype;
-//	deleteData();
+	deleteData();
 	saveCookie();
 	redrawMapMarkers();
 	depserial=routelist[i-1].city_id;
