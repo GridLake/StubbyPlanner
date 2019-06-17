@@ -11,6 +11,7 @@ import com.util.ConnectionProvider;
 
 import stbplanner.guide.dao.GuideDAO;
 import stbplanner.guide.model.GuideDTO;
+import stbplanner.guide.model.GuideDetailDTO;
 import stbplanner.guide.model.TourtypeDTO;
 
 public class GuideListService {
@@ -25,6 +26,14 @@ public class GuideListService {
 
 		}
 		
+	}
+
+
+	public Map<String, Object> getCityGuide(GuideDetailDTO dto) throws SQLException, NamingException {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			Map<String, Object> cityGuide = dao.selectCityGuide(conn, dto);
+			return cityGuide;
+		}
 	}
 
 }

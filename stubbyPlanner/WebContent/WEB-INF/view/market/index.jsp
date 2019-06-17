@@ -851,7 +851,7 @@
 
 
 
-
+<%-- 
         <section class="stu_swiper-section select_city">
             <div class="stu_inner_wrap">
                 <div class="titArea">
@@ -1045,7 +1045,7 @@
 	</div>
 	</div>
 	</section>
-
+ --%>
 
 
 
@@ -2299,7 +2299,7 @@
                             <div class="content-header ico_country">서유럽 국가</div>
                             <ul class="content-list">
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/market/index_ctry.do?l=&region=11101">
+                                    <a href="<%= contextPath %>/market/index_ctry.do?l=&country_id=1">
                                         <div class="value">
                                             <b class="name">프랑스</b>
                                         </div>
@@ -2585,7 +2585,7 @@
 
 
                                 <li class="content-item">
-                                    <a href="<%= contextPath %>/market/index_city.do?l=&region=1">
+                                    <a href="<%= contextPath %>/market/index_city.do?l=&city_id=1">
                                         <div class="value">
                                             <b class="name">파리</b>
                                             <i class="category">프랑스</i>

@@ -5,10 +5,19 @@ public class TourtypeDTO {
 	private int attr_id;
 	private int city_id;
 	private String attr_name;
+	private String img;
 	
 	
 	
 	
+	
+	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public String getAttr_name() {
 		return attr_name;
 	}

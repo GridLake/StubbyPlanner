@@ -1,7 +1,16 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/include.jspf" %>
+<%
+
+        Cookie cok = new Cookie("guide",URLEncoder.encode("${detail.mainInfo[0].guide_seq}","UTF-8"));
+
+        response.addCookie(cok);
+        cok.setMaxAge(60*60*120);
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -754,7 +763,7 @@ function getCoupon(cid)
      			w:${authUser.member_id}
      		}, 
      		function(data) { 
-     			alert(data);
+     			//alert(data);
      			window.history.go(0);
      		});
      	}
@@ -1785,7 +1794,7 @@ function getCoupon(cid)
 	
 	function ss(id, pid)
 	{
-		alert(pid);
+		//alert(pid);
 		var id = id;
 		var pid = pid;
 // 		return "/stubbyPlanner/guide/reservation.do";

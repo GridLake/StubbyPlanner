@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<link rel="image_src" href="" />
+<meta property="og:title" content="${attr_list[0].city_name} 숙소 - 스투비플래너" />
 
 <script src="https://www.google.com/jsapi"></script>
 
@@ -30,6 +31,10 @@ ga('send','event','tour','city','${attr_list[0].city_id}');
 	<meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+	
+	<!-- Favicon -->
+    <link rel="shortcut icon" href="<%= contextPath %>/externalData/images2/common/favicon.ico">
+    <link rel="icon" href="<%= contextPath %>/externalData/images2/common/favicon.png"> 
 	
 
 
@@ -1475,21 +1480,30 @@ function chgMenu(menu)
 					
 					
 					// 리스트 찜하기(토글)
-			     	$('.prd_item .like').on('click', function(){
-			     		tid=$(this).attr("id");
-			     		$(this).toggleClass('active');
-			     		$.ajax({
-			     			url:'/stubbyPlanner/market/tour_like.jsp?city_id=${attr_list[0].city_id}&tour_id='+tid,
-			             	
+			     	$('.prd_item .like').on('click', function() {
+						id=$(this).attr("id");
+						if('${authUser.member_id}'==''){
+			     			alert("로그인 후 이용해주세요.");
+			     		} else {
+			     		var user_id = '${authUser.member_id}';
+			     	
+						$(this).toggleClass('active');
+						
+						$.ajax({
+							//url: 'url: '/api/guidetour/toggle_slp_like.asp?slp_id='+tid+'&region=111031001',
+							url:'/stubbyPlanner/mb/mb_like.jsp?city_id=${attr_list[0].city_id}&slp_id='+tid+'&user_id='+user_id,
+							dataType: 'json',
+							success : function(data){
+								if(data!=""){
+									thtml='';
+								}
+							}
 
-			     			dataType: 'json',
-			     			success: function(data){
-			     				if(data!=""){
-			     					thtml='';
-			     				}
-			     			}
-			     		});
-			     	});
+						});//ajax
+						
+			     		}
+			        last_hotel_ids=cur_hotel_ids;
+			        });//$(prd_item . like)
 					
 			     	$('.prd_count').text(data.totalcnt);
 			     	
@@ -1575,6 +1589,7 @@ function chgMenu(menu)
 	
 	//목록 업데이트
 	function updateHTs(cur_page){
+		var id = '${authUser.member_id}';
 		nights=dateDiff(checkin, checkout);
 		var sum = nights * 12123;
 
@@ -1626,7 +1641,7 @@ function chgMenu(menu)
 	$.ajax({
 		//url : '/stubbyPlanner/mb/get_searched_hoterls.jsp?tripwith='+tripwith+'&'+roominfo+'&check_in='+checkin+'&check_out='+checkout+'&dep='+dep+'&des='+des+'&cityserial=${param.city_id}&max_price='+max_price+'&min_price='+min_price+'&bucketlist='+bucketlist+'&property_type='+thema_codeX+'&stars='+tHT_class+'&min_review_score='+HT_review_score+'&orderby='+orderby+'&page='+cur_page+'&district_ids='+districts,
 		//url : '/stubbyPlanner/mb/get.jsp?city_id=${param.city_id}&tour_id='+tid,
-		url: '/stubbyPlanner/mb/get_list.jsp?city_id=${attr_list[0].city_id}&bucketlist='+bucketlist+'&roomtype='+thema_code+'&orderby='+orderby+'&max_price='+max_price+'&min_price='+min_price+'&page='+cur_page+'&review_score='+HT_review_score+'&grade='+HT_class+'&type='+type,
+		url: '/stubbyPlanner/mb/get_list.jsp?city_id=${attr_list[0].city_id}&bucketlist='+bucketlist+'&roomtype='+thema_code+'&orderby='+orderby+'&max_price='+max_price+'&min_price='+min_price+'&page='+cur_page+'&review_score='+HT_review_score+'&grade='+HT_class+'&type='+type+'&id='+id,
 		dataType: 'json',
 		//console.log(url),
 		success: function(data) {
@@ -1778,7 +1793,7 @@ function chgMenu(menu)
 					
 			        // 리스트 찜하기(토글)
 			        $('.prd_item .like').on('click', function() {
-						id=$(this).attr("id");
+						tid=$(this).attr("id");
 						if('${authUser.member_id}'==''){
 			     			alert("로그인 후 이용해주세요.");
 			     		} else {
@@ -1799,7 +1814,6 @@ function chgMenu(menu)
 						});//ajax
 						
 			     		}
-			        last_hotel_ids=cur_hotel_ids;
 			        });//$(prd_item . like)
 					
 					

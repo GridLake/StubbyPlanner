@@ -304,8 +304,8 @@ public class GuideDAO {
 			
 			while (rs.next()) {
 				dto = new GuideDetailDTO();
-				dto.setMapImg(rs.getString("mapurl"));
-				dto.setMapUrl(rs.getString("mapimg"));
+				dto.setMapImg(rs.getString("mapimg"));
+				dto.setMapUrl(rs.getString("mapurl"));
 				dto.setIntroduction(rs.getString("product_introduction").replace("\n", "<br>"));
 				dto.setPlace(rs.getString("meeting_place").replace("\n", "<br>"));
 				dto.setCourse(rs.getString("course").replace("\n", "<br>"));
@@ -442,6 +442,7 @@ public class GuideDAO {
 				dto.setTourtype_id(rs.getInt("tourtype_id"));
 				dto.setAttr_id(rs.getInt("attr_id"));
 				dto.setCity_id(rs.getInt("city_id"));
+				dto.setImg(rs.getString("imgurl"));
 				tourType.add(dto);
 			}
 			
@@ -455,6 +456,63 @@ public class GuideDAO {
 		
 		
 		return tourType;
+	}
+	
+	
+	public Map<String, Object> selectCityGuide(Connection conn, GuideDetailDTO dto) {
+		Map<String, Object> getCityGuide = new LinkedHashMap<>();
+		List<GuideDetailDTO> superealybird = getEalybird(conn, dto);
+		
+		getCityGuide.put("superealybird", superealybird);
+		
+		return getCityGuide;
+	}
+	
+	private List<GuideDetailDTO> getEalybird(Connection conn, GuideDetailDTO dto) {
+		
+		List<GuideDetailDTO> superealybird = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			StringBuffer sql = new StringBuffer(" select rownum, a.* from( ");
+			sql.append(" select g.out_link ,g.imgurl, g.list, g.guide_seq, g.coupon_txt, g.is_lowest_price, g.price_ealybird, g.stime, g.company, g.title, g.price, g.hours, w.member_id ");
+			sql.append(", round(avg((v.prog_score + v.prop_score + v.kind_score)/3),1)  as avg");
+			sql.append(", (g.price_ealybird/g.price) as dis");
+			sql.append(" from tbl_guide_maket g left outer join tbl_reserve r on g.guide_seq = r.guide_seq "); // 가이드상품, 예약 조인
+			sql.append(" 						left outer join tbl_guide_review v on r.reserve_seq = v.reserve_seq "); // 리뷰 조인
+			sql.append("                        left outer join tbl_wishlist w on g.guide_seq = w.guide_seq ");
+			sql.append(" where g.city_id = ? ");
+			sql.append(" group by g.out_link ,g.imgurl, g.list, g.guide_seq, g.title, g.price, g.hours, g.company, g.coupon_txt, g.is_lowest_price, g.stime, g.price_ealybird, w.member_id ");
+			sql.append(" order by dis");
+			sql.append(" )a where rownum between 1 and 15 ");
+		
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, dto.getCity_id());
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				dto = new GuideDetailDTO();
+				dto.setGuide_seq(rs.getInt("guide_seq"));
+				dto.setCompany(rs.getString("company"));
+				dto.setHours(rs.getString("hours"));
+				dto.setTitle(rs.getString("title"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setCoupon_txt(rs.getString("coupon_txt"));
+				dto.setPrice_ealybird(rs.getInt("price_ealybird"));
+				dto.setMapImg(rs.getString("imgurl"));
+				dto.setAvg(rs.getDouble("avg"));
+				superealybird.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return superealybird;
 	}
 
 	

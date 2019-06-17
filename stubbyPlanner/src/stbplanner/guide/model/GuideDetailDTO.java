@@ -3,6 +3,7 @@ package stbplanner.guide.model;
 public class GuideDetailDTO {
 	
 	//main_info
+	private int city_id;
 	private int guide_seq;
 	private int price;
 	private int price_ealybird;
@@ -18,6 +19,8 @@ public class GuideDetailDTO {
 	private double avg;
 	private String persons;
 	private String pt_email;
+	private String coupon_txt;
+	private String id;
 	
 	
 	//사진
@@ -57,6 +60,24 @@ public class GuideDetailDTO {
 	
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getCoupon_txt() {
+		return coupon_txt;
+	}
+	public void setCoupon_txt(String coupon_txt) {
+		this.coupon_txt = coupon_txt;
+	}
+	public int getCity_id() {
+		return city_id;
+	}
+	public void setCity_id(int city_id) {
+		this.city_id = city_id;
+	}
 	public String getPt_email() {
 		return pt_email;
 	}

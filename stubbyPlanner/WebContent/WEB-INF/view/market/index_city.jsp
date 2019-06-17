@@ -6,6 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<head>
+<link rel="image_src" href="" />
+<meta property="og:title" content="투어 상품 - 스투비 플래너" />
 
 <script src="https://www.google.com/jsapi"></script>
 
@@ -31,6 +34,13 @@
 
 
 <title> 투어 상품 - 스투비 플래너 </title>
+
+<!-- Favicon -->
+    <link rel="shortcut icon" href="<%= contextPath %>/externalData/images2/common/favicon.ico">
+    <link rel="icon" href="<%= contextPath %>/externalData/images2/common/favicon.png"> 
+
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- CSS/JavaScript -->
@@ -401,13 +411,13 @@ header .stu_gnb_container button.ico_planner {
 
 
 
-
-
+ 
+<!-- 
 		<section class="stu_prd_category">
 			<div class="stu_inner_wrap">
 				<div class="swiper-container swiper-category">
 					<ul class="swiper-wrapper stu_tabArea">
-						<!--전체(all),오전(am),오후(pm),야간(night),전일(oneDay)-->
+						전체(all),오전(am),오후(pm),야간(night),전일(oneDay)
 						<li class="swiper-slide all on"><a
 							href="javascript:chgTimeOption('','');"><span>전체</span></a></li>
 						<li class="swiper-slide am"><a
@@ -422,7 +432,7 @@ header .stu_gnb_container button.ico_planner {
 				</div>
 			</div>
 		</section>
-
+  -->
 
 
 
@@ -430,7 +440,7 @@ header .stu_gnb_container button.ico_planner {
 			<div class="stu_inner_wrap">
 
 				<div class="filter-header">
-					<!---
+				<!-- 	
                     <h3 class="stu_title">투어시간 선택</h3>
 		<div style="margin-bottom:15px;font-size:11pt">
 
@@ -444,8 +454,7 @@ header .stu_gnb_container button.ico_planner {
 &nbsp;
 			<input style="width:25px;" type="radio" name="tourtime" onclick="chgTimeOption('00002400','03609999');"> 1DAY
 		</div>
-
---->
+ -->
 					<h3 class="stu_title">
 						투어 종류 선택<font style="font-size: 9pt;"></font> <span
 							class="spot_count"></span>
@@ -465,7 +474,7 @@ header .stu_gnb_container button.ico_planner {
 								<div class="img-wrap" id="B${tourtype.tourtype_id}" style="border-radius: 5px;"
 									onclick="toggleBucket('${tourtype.tourtype_id}')">
 									<img class="lazyload fh"
-										data-src="https://d3b39vpyptsv01.cloudfront.net/photo/1/2/9e57e4e0ccdefa75dfed73607119b67c_l.jpg">
+										data-src="${tourtype.img}" src="${tourtype.img}"> 
 									<div class="checkmark draw d-n"></div>
 								</div>
 								<div class="txt-wrap">
@@ -604,39 +613,22 @@ header .stu_gnb_container button.ico_planner {
 
 
 
-		<div style="clear: both"></div>
-
-		<section style="width: 100%; text-align: center; margin: 0 auto;">
-			<div
-				style="padding-top: 20px; font-size: 18px; font-weight: 700; color: #444;">
-				투어선택이 어렵다면? <span
-					style="padding-top: 6px; display: block; font-size: 26px; color: #222;">스투비
-					무료 투어상담</span>
-			</div>
-			<div style="display: block; width: 60%; margin: 6px auto;">
-				<a href="tel:02-886-0982"><img
-					src="/market/images/ico_phonecall.jpg"
-					style="display: inline-block; max-width: 260px; width: 100%; padding: 5px 7px;"></a>
-				<a href="http://pf.kakao.com/_QwGUM/chat" target="_blank"
-					style="display: inline-block;"><img
-					src="/market/images/ico_kakaotalk.jpg"
-					style="display: inline-block; max-width: 260px; width: 100%; padding: 5px 7px;"></a>
-
-			</div>
-			<div
-				style="clear: both; font-size: 16px; font-weight: normal; color: #888;">상담시간(한국)
-				10:00 ~ 19:00, 주말/공휴일 휴무</div>
-		</section>
-
-
+ 
 		</main>
 		<!--//메인영역_End-->
-		
-		<jsp:include page="/WEB-INF/layout/advertisement.jsp"></jsp:include>
+		   <jsp:include page="/WEB-INF/layout/advertisement.jsp"></jsp:include>
 
+		<jsp:include page="/WEB-INF/layout/footer_large.jsp"></jsp:include>
+    
+	
 	</div>
 
 <script>
+//스크롤 이동(포함사항)
+function fnMove(seq) {
+    var posPrice = $('.stu_s' + seq).offset();
+    $('html, body').animate({scrollTop : posPrice.top - menuHeight}, 400);
+}
 
 
 	$(document).ready(function() {
@@ -765,7 +757,7 @@ header .stu_gnb_container button.ico_planner {
             $('.popover-wrap, .set_time').removeClass('on');
         });
         
-        // 맨 위로 가기
+     	// 맨 위로 가기
         $(window).scroll(function() {
             if($(this).scrollTop() > 600) {
                 $('.stu_top_wrap').fadeIn();
@@ -777,6 +769,7 @@ header .stu_gnb_container button.ico_planner {
             $('html, body').animate({scrollTop : 0}, 400);
             return false;
         });
+
 
         // 아코디언 메뉴(토글)
         $('.tb-wrap').addClass('d-n');
