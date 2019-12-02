@@ -28,39 +28,22 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 ![uc1](https://user-images.githubusercontent.com/22606025/69931948-8dbd3680-150c-11ea-9f8d-a30bfd6c7997.png)  
 ![uc2](https://user-images.githubusercontent.com/22606025/69931988-aa596e80-150c-11ea-8dfb-ac7861c27cb7.png)
 
-### Break down into end to end tests
+## Screenshots
+* 메인 페이지  
+![main](https://user-images.githubusercontent.com/22606025/69932371-3750f780-150e-11ea-8af9-bf3b9ffd8ea3.png)  
+  
+* 마이페이지  
+![mypage](https://user-images.githubusercontent.com/22606025/69932415-5c456a80-150e-11ea-9ac0-6a4623f52ff1.png)  
+  
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+## Demonstration
 
-### And coding style tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
@@ -72,8 +55,7 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
+## Contacts
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* souldrain@ajou.ac.kr  
+* https://github.com/GridLake
