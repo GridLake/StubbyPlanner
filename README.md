@@ -13,31 +13,9 @@
   * 사용자가 원하는 대로 여행 경로 구성
   * 사용자가 입력한 여행 관련 정보 및 플래너를 다른 회원에게 공유함으로써 사용자 간에 다양한 정보 교류
 
-### Prerequisites
+### Development environment
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Windows 10 64bit / Eclipse_photon_win32-x86-64 / jdk-8u192-windows-x64 / Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 
 ## Running the tests
 
