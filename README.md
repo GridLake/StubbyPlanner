@@ -35,8 +35,21 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 * 마이페이지  
 ![mypage](https://user-images.githubusercontent.com/22606025/69932415-5c456a80-150e-11ea-9ac0-6a4623f52ff1.png)  
   
-
-
+* 플래너 메인
+![플래너](https://user-images.githubusercontent.com/22606025/69932600-0d4c0500-150f-11ea-8434-846702a41cfa.png)  
+  
+* 플래너 상세  
+![플래너상세](https://user-images.githubusercontent.com/22606025/69932633-2ce32d80-150f-11ea-9781-0194042c3b9e.png)  
+  
+* 숙박  
+![숙박](https://user-images.githubusercontent.com/22606025/69932660-4edcb000-150f-11ea-9710-6bbd2b498fce.png)  
+  
+* 여행지 추천  
+![여행지추천](https://user-images.githubusercontent.com/22606025/69932677-687df780-150f-11ea-8e77-de0254a6bbbd.png)  
+  
+* 투어상품  
+![투어상품](https://user-images.githubusercontent.com/22606025/69932700-7a5f9a80-150f-11ea-9af5-7251a7a227f9.png)  
+  
 ## Demonstration
 
 
@@ -44,16 +57,6 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Contacts
 
