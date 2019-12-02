@@ -26,7 +26,7 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 
 * Use Case diagram  
 ![uc1](https://user-images.githubusercontent.com/22606025/69931948-8dbd3680-150c-11ea-9f8d-a30bfd6c7997.png)  
-
+![uc2](https://user-images.githubusercontent.com/22606025/69931988-aa596e80-150c-11ea-8dfb-ac7861c27cb7.png)
 
 ### Break down into end to end tests
 
