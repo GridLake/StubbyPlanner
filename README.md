@@ -54,10 +54,6 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 [![Video Label](http://img.youtube.com/vi/lSQPSQW7yP4/0.jpg)](https://youtu.be/lSQPSQW7yP4)
 
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Contacts
 
 * souldrain@ajou.ac.kr  
