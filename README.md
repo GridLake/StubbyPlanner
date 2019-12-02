@@ -25,7 +25,8 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 ## UML
 
 * Use Case diagram  
-* Sequence diagram
+![uc1](https://user-images.githubusercontent.com/22606025/69931948-8dbd3680-150c-11ea-9f8d-a30bfd6c7997.png)  
+
 
 ### Break down into end to end tests
 
