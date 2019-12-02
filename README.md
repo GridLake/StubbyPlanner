@@ -18,9 +18,14 @@
 Windows 10 64bit / Eclipse_photon_win32-x86-64 / jdk-8u192-windows-x64  
 Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 
-## Running the tests
+## Database structure
 
-Explain how to run the automated tests for this system
+* aa
+
+## UML
+
+* Use Case diagram  
+* Sequence diagram
 
 ### Break down into end to end tests
 
