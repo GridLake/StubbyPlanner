@@ -58,10 +58,10 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 [![플래너](http://img.youtube.com/vi/DMUSDqPJEMw/0.jpg)](https://youtu.be/DMUSDqPJEMw?t=0s)  
   
 * 플래너 상세  
-[![플래너](http://img.youtube.com/vi/7lF8Qgm1Ys8/0.jpg)](https://youtu.be/7lF8Qgm1Ys8?t=0s)  
+[![플래너상세](http://img.youtube.com/vi/7lF8Qgm1Ys8/0.jpg)](https://youtu.be/7lF8Qgm1Ys8?t=0s)  
   
 * 투어 & 숙소 예약
-[![플래너](http://img.youtube.com/vi/g4_nl6WFHtU/0.jpg)](https://youtu.be/g4_nl6WFHtU?t=0s)  
+[![투어숙소](http://img.youtube.com/vi/g4_nl6WFHtU/0.jpg)](https://youtu.be/g4_nl6WFHtU?t=0s)  
   
 * 광장  
 [![광장](http://img.youtube.com/vi/lSQPSQW7yP4/0.jpg)](https://youtu.be/lSQPSQW7yP4?t=0s)  
