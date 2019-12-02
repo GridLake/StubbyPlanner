@@ -20,7 +20,7 @@ Oracle XE 11g / Apache tomcat_8.5.39-x64 / Google maps platform
 
 ## Database structure
 
-![screenshot_20171221-151714](https://github.com/GridLake/stubbyPlanner/issues/1#issue-530891083)!
+![exerd](https://user-images.githubusercontent.com/22606025/69931856-2606eb80-150c-11ea-85a9-1e890ec1df72.png)
 
 ## UML
 
